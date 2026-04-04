@@ -3,235 +3,502 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>BitLogic</title>
+<title>BitLogic — Crypto Market Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#030a0e;--grid:#0f2a35;--accent:#00ffe7;--text:#c8f0ff;--muted:#4a7a8a;
-  --card:#0a1a20;--card-border:rgba(0,255,231,0.15);--red:#ff4b4b;--green:#00e676;
+  --bg:#080808;
+  --surface:#0f0f0f;
+  --surface2:#161616;
+  --gold:#c9a84c;
+  --gold-light:#e8c97a;
+  --gold-dim:rgba(201,168,76,0.12);
+  --gold-border:rgba(201,168,76,0.2);
+  --text:#f0ece4;
+  --text-muted:#6b6560;
+  --text-dim:#3a3530;
+  --red:#e05555;
+  --green:#4caf7d;
+  --radius:2px;
 }
-html,body{min-height:100vh;background:var(--bg);font-family:'Share Tech Mono',monospace;color:var(--text)}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 18s linear infinite;opacity:0.4;z-index:0;pointer-events:none}
-@keyframes gridMove{0%{background-position:0 0}100%{background-position:40px 40px}}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:1}
 
-.wrapper{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:24px 16px 48px}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  font-family:'DM Mono',monospace;
+  color:var(--text);
+  line-height:1.6;
+}
 
-header{display:flex;align-items:center;justify-content:space-between;padding:16px 0 32px;border-bottom:1px solid var(--card-border);margin-bottom:32px}
-.logo-area{display:flex;align-items:center;gap:14px}
-.logo-circle{width:48px;height:48px;border-radius:50%;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:var(--accent);text-shadow:0 0 8px var(--accent);flex-shrink:0;animation:spin 10s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.logo-text{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:var(--accent);text-shadow:0 0 16px rgba(0,255,231,0.5);letter-spacing:3px}
-.logo-sub{font-size:10px;color:var(--muted);letter-spacing:3px;margin-top:2px}
+/* Subtle noise texture */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.4;
+}
 
-.section{margin-bottom:40px}
-.section-title{font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0.3}
+/* LAYOUT */
+.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 80px}
 
-.coin-tabs{display:flex;gap:8px;margin-bottom:16px}
-.coin-tab{padding:6px 16px;border:1px solid var(--card-border);border-radius:3px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;transition:all 0.2s;color:var(--muted)}
-.coin-tab.active{border-color:var(--accent);color:var(--accent);background:rgba(0,255,231,0.06)}
+/* HEADER */
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:32px 0 40px;
+  border-bottom:1px solid var(--text-dim);
+  margin-bottom:64px;
+  animation:fadeUp 0.6s ease both;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{
+  width:36px;height:36px;
+  border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:900;
+  color:var(--gold);
+  letter-spacing:-1px;
+}
+.brand-name{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--text);
+  letter-spacing:2px;
+}
+.brand-tag{
+  font-size:9px;
+  color:var(--text-muted);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-top:2px;
+}
+.nav-date{
+  font-size:10px;
+  color:var(--text-muted);
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
 
-.screenshots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:20px}
-.screenshot-card{background:var(--card);border:1px solid var(--card-border);border-radius:6px;overflow:hidden;position:relative;transition:border-color 0.25s,box-shadow 0.25s;cursor:zoom-in}
-.screenshot-card:hover{border-color:var(--accent);box-shadow:0 0 32px rgba(0,255,231,0.10)}
+/* HERO TICKER */
+.ticker-wrap{
+  overflow:hidden;
+  border-top:1px solid var(--text-dim);
+  border-bottom:1px solid var(--text-dim);
+  padding:10px 0;
+  margin-bottom:64px;
+  animation:fadeUp 0.6s ease 0.1s both;
+}
+.ticker-track{
+  display:flex;
+  gap:48px;
+  white-space:nowrap;
+  animation:ticker 30s linear infinite;
+}
+.ticker-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:1px;
+}
+.ticker-name{color:var(--text-muted)}
+.ticker-price{color:var(--text);font-weight:500}
+.ticker-change{font-size:10px}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTION */
+.section{margin-bottom:72px;animation:fadeUp 0.6s ease both}
+.section:nth-child(2){animation-delay:0.15s}
+.section:nth-child(3){animation-delay:0.2s}
+.section:nth-child(4){animation-delay:0.25s}
+
+.section-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:28px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--text-dim);
+}
+.section-label{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;
+  color:var(--text);
+  letter-spacing:0.5px;
+}
+.section-meta{
+  font-size:9px;
+  color:var(--text-muted);
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+/* CHART TABS */
+.chart-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--text-dim)}
+.chart-tab{
+  padding:8px 24px;
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;
+  cursor:pointer;
+  color:var(--text-muted);
+  transition:all 0.2s;
+  border:none;
+  background:transparent;
+  flex:1;text-align:center;
+}
+.chart-tab.active{
+  background:var(--gold-dim);
+  color:var(--gold);
+  border-bottom:2px solid var(--gold);
+}
+.chart-tab:hover:not(.active){color:var(--text);background:var(--surface)}
+
+/* SCREENSHOT CARDS */
+.screenshots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:2px}
+.screenshot-card{
+  background:var(--surface);
+  position:relative;
+  overflow:hidden;
+  cursor:zoom-in;
+  transition:opacity 0.2s;
+}
+.screenshot-card:hover{opacity:0.92}
 .screenshot-img-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
-.screenshot-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease}
-.screenshot-card:hover img{transform:scale(1.04)}
-.screenshot-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,10,14,0.85) 0%,transparent 50%);display:flex;align-items:flex-end;padding:14px 16px;opacity:0;transition:opacity 0.3s}
-.screenshot-card:hover .screenshot-overlay{opacity:1}
-.screenshot-overlay-text{font-size:11px;color:var(--accent);letter-spacing:2px}
-.screenshot-zoom-icon{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,255,231,0.12);border:1px solid rgba(0,255,231,0.3);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transition:opacity 0.3s}
-.screenshot-card:hover .screenshot-zoom-icon{opacity:1}
-.screenshot-info{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--card-border)}
-.screenshot-coin{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:3px}
-.screenshot-date{font-size:10px;color:var(--muted);letter-spacing:1px}
-.empty-state{color:var(--muted);font-size:12px;letter-spacing:2px;padding:32px;text-align:center;border:1px solid var(--card-border);border-radius:4px}
+.screenshot-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease}
+.screenshot-card:hover img{transform:scale(1.03)}
+.screenshot-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,8,8,0.9) 0%,transparent 40%);
+  display:flex;align-items:flex-end;
+  padding:20px;
+}
+.screenshot-info-inner{display:flex;justify-content:space-between;align-items:flex-end;width:100%}
+.screenshot-coin{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;
+  color:var(--gold);
+  letter-spacing:1px;
+}
+.screenshot-coin-sub{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:2px}
+.screenshot-date{font-size:10px;color:var(--text-muted);letter-spacing:1px}
+.screenshot-zoom{
+  position:absolute;top:16px;right:16px;
+  width:28px;height:28px;
+  background:rgba(201,168,76,0.1);
+  border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;
+  opacity:0;transition:opacity 0.2s;
+}
+.screenshot-card:hover .screenshot-zoom{opacity:1}
+.empty-state{
+  padding:60px 40px;
+  text-align:center;
+  border:1px solid var(--text-dim);
+  color:var(--text-muted);
+  font-size:12px;
+  letter-spacing:2px;
+}
 
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}
-.lightbox.open{display:flex}
-.lightbox img{max-width:94vw;max-height:90vh;border:1px solid var(--card-border);border-radius:6px;box-shadow:0 0 60px rgba(0,255,231,0.1)}
-.lightbox-close{position:fixed;top:20px;right:28px;font-size:28px;color:var(--accent);cursor:pointer;font-family:'Share Tech Mono',monospace;background:none;border:none;line-height:1}
-
-.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
-.coin-card{background:var(--card);border:1px solid var(--card-border);border-radius:4px;padding:14px 16px;transition:border-color 0.2s}
-.coin-card:hover{border-color:var(--accent)}
-.coin-rank{font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:4px}
-.coin-name{font-size:13px;color:var(--text);letter-spacing:1px;margin-bottom:2px}
-.coin-symbol{font-size:10px;color:var(--muted)}
-.coin-price{font-size:16px;color:var(--accent);margin:8px 0 4px;font-weight:bold}
-.coin-change{font-size:12px;letter-spacing:1px}
-.coin-cap{font-size:10px;color:var(--muted);margin-top:4px}
+/* MARKET GRID */
+.market-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+@media(max-width:700px){.market-grid{grid-template-columns:repeat(2,1fr)}}
+.coin-card{
+  background:var(--surface);
+  padding:20px 18px;
+  transition:background 0.2s;
+  border-left:2px solid transparent;
+}
+.coin-card:hover{background:var(--surface2);border-left-color:var(--gold)}
+.coin-rank{font-size:9px;color:var(--text-dim);letter-spacing:2px;margin-bottom:8px}
+.coin-name{font-size:13px;color:var(--text);margin-bottom:2px;letter-spacing:0.3px}
+.coin-symbol{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+.coin-price{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;
+  color:var(--gold);
+  margin:12px 0 6px;
+  letter-spacing:-0.5px;
+}
+.coin-change{font-size:10px;letter-spacing:1px;margin-bottom:4px}
+.coin-cap{font-size:9px;color:var(--text-muted);letter-spacing:1px}
 .up{color:var(--green)}.down{color:var(--red)}
-.loading{color:var(--muted);font-size:12px;letter-spacing:2px;padding:20px;text-align:center}
 
-.news-list{display:flex;flex-direction:column;gap:10px}
-.news-item{background:var(--card);border:1px solid var(--card-border);border-radius:4px;padding:16px 18px;position:relative;overflow:hidden;transition:border-color 0.2s}
-.news-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0.6}
-.news-item:hover{border-color:var(--accent)}
-.news-item-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:12px}
-.news-item-title{font-size:13px;color:var(--accent);letter-spacing:1px;line-height:1.4;font-weight:bold}
-.news-item-date{font-size:10px;color:var(--muted);letter-spacing:1px;white-space:nowrap;flex-shrink:0}
-.news-item-body{font-size:12px;color:var(--text);line-height:1.7;letter-spacing:0.3px}
-.news-item-url{display:inline-block;margin-top:8px;font-size:10px;color:var(--accent);letter-spacing:1px;text-decoration:none;opacity:0.7;transition:opacity 0.2s}
-.news-item-url:hover{opacity:1}
-.empty-news{color:var(--muted);font-size:12px;letter-spacing:2px;padding:24px;text-align:center;border:1px solid var(--card-border);border-radius:4px}
+/* NEWS */
+.news-list{display:flex;flex-direction:column;gap:2px}
+.news-item{
+  background:var(--surface);
+  padding:28px 32px;
+  border-left:2px solid transparent;
+  transition:border-color 0.2s,background 0.2s;
+  position:relative;
+}
+.news-item:hover{border-left-color:var(--gold);background:var(--surface2)}
+.news-meta-row{display:flex;align-items:center;gap:16px;margin-bottom:10px}
+.news-date{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
+.news-dot{width:3px;height:3px;background:var(--gold);border-radius:50%;opacity:0.5}
+.news-tag{font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;opacity:0.7}
+.news-title{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--text);
+  line-height:1.3;
+  margin-bottom:14px;
+  letter-spacing:0.2px;
+}
+.news-body{
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.8;
+  letter-spacing:0.3px;
+  max-width:760px;
+}
+.news-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:16px;
+  font-size:10px;
+  color:var(--gold);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-decoration:none;
+  opacity:0.7;
+  transition:opacity 0.2s;
+}
+.news-link:hover{opacity:1}
+.empty-news{
+  padding:60px 40px;
+  text-align:center;
+  border:1px solid var(--text-dim);
+  color:var(--text-muted);
+  font-size:12px;letter-spacing:2px;
+}
 
-footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;text-align:center;font-size:10px;color:var(--muted);letter-spacing:2px}
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:94vw;max-height:90vh;border:1px solid var(--gold-border)}
+.lightbox-close{position:fixed;top:24px;right:32px;font-size:20px;color:var(--gold);cursor:pointer;background:none;border:none;font-family:'DM Mono',monospace;letter-spacing:2px;opacity:0.7}
+.lightbox-close:hover{opacity:1}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--text-dim);
+  padding-top:32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.footer-brand{
+  font-family:'Playfair Display',serif;
+  font-size:14px;color:var(--text-muted);
+  letter-spacing:1px;
+}
+.footer-right{font-size:9px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+
+/* LOADING */
+.loading{
+  padding:48px;text-align:center;
+  font-size:10px;color:var(--text-muted);
+  letter-spacing:3px;text-transform:uppercase;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
 </style>
 </head>
 <body>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-close" onclick="closeLightbox()">✕ CLOSE</button>
   <img id="lightboxImg" src="" alt="chart"/>
 </div>
 
-<div class="wrapper">
+<div class="page">
 
-  <header>
-    <div class="logo-area">
-      <div class="logo-circle">BL</div>
+  <!-- NAV -->
+  <nav>
+    <div class="brand">
+      <div class="brand-mark">BL</div>
       <div>
-        <div class="logo-text">BITLOGIC</div>
-        <div class="logo-sub">// crypto market trends //</div>
+        <div class="brand-name">BITLOGIC</div>
+        <div class="brand-tag">Crypto Market Intelligence</div>
       </div>
     </div>
-  </header>
+    <div class="nav-date" id="navDate"></div>
+  </nav>
 
-  <div class="section">
-    <div class="section-title">Chart Analysis</div>
-    <div class="coin-tabs">
-      <div class="coin-tab active" id="viewTabBTC" onclick="switchView('BTC')">BTC</div>
-      <div class="coin-tab" id="viewTabETH" onclick="switchView('ETH')">ETH</div>
-    </div>
-    <div id="screenshotsContainer">
-      <div class="loading">Loading charts...</div>
+  <!-- LIVE TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="tickerTrack">
+      <span class="ticker-item"><span class="ticker-name">Loading market data</span></span>
     </div>
   </div>
 
+  <!-- CHART ANALYSIS -->
   <div class="section">
-    <div class="section-title">Top 5 by Market Cap</div>
+    <div class="section-header">
+      <div class="section-label">Chart Analysis</div>
+      <div class="section-meta">Technical · Daily</div>
+    </div>
+    <div class="chart-tabs">
+      <button class="chart-tab active" id="viewTabBTC" onclick="switchView('BTC')">BTC / USD</button>
+      <button class="chart-tab" id="viewTabETH" onclick="switchView('ETH')">ETH / USD</button>
+    </div>
+    <div id="screenshotsContainer"><div class="loading">Loading charts...</div></div>
+  </div>
+
+  <!-- MARKET CAP -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-label">Market Overview</div>
+      <div class="section-meta">Top 5 · Live</div>
+    </div>
     <div id="marketGrid" class="market-grid">
-      <div class="loading">Fetching live data...</div>
+      <div class="loading" style="grid-column:1/-1">Loading...</div>
     </div>
   </div>
 
+  <!-- NEWS -->
   <div class="section">
-    <div class="section-title">BitLogic News</div>
+    <div class="section-header">
+      <div class="section-label">Latest News</div>
+      <div class="section-meta">By BitLogic</div>
+    </div>
     <div id="newsList" class="news-list">
-      <div class="loading">Loading news...</div>
+      <div class="loading">Loading...</div>
     </div>
   </div>
 
-  <footer>© 2026 BitLogic · All systems operational · bitlogicalpha.com</footer>
+  <footer>
+    <div class="footer-brand">BitLogic</div>
+    <div class="footer-right">© 2026 · bitlogicalpha.com · All rights reserved</div>
+  </footer>
+
 </div>
 
 <script>
 const BASE = 'https://bitlogicalpha.com';
 let viewCoin = 'BTC';
 let allCharts = { BTC: [], ETH: [] };
+let marketData = [];
+
+// Date
+document.getElementById('navDate').textContent = new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase();
 
 function switchView(c){
-  viewCoin = c;
-  document.getElementById('viewTabBTC').classList.toggle('active', c==='BTC');
-  document.getElementById('viewTabETH').classList.toggle('active', c==='ETH');
+  viewCoin=c;
+  document.getElementById('viewTabBTC').classList.toggle('active',c==='BTC');
+  document.getElementById('viewTabETH').classList.toggle('active',c==='ETH');
   renderScreenshots();
 }
-
-function openLightbox(src){ document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('open'); }
-function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); document.getElementById('lightboxImg').src=''; }
+function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open')}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lightboxImg').src=''}
 
 async function fetchCharts(){
-  const el = document.getElementById('screenshotsContainer');
-  try {
-    const [btcRes, ethRes] = await Promise.all([
-      fetch(`${BASE}/charts/BTC/manifest.txt?t=${Date.now()}`).then(r => r.ok ? r.text() : ''),
-      fetch(`${BASE}/charts/ETH/manifest.txt?t=${Date.now()}`).then(r => r.ok ? r.text() : '')
+  try{
+    const [btcRes,ethRes]=await Promise.all([
+      fetch(`${BASE}/charts/BTC/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():''),
+      fetch(`${BASE}/charts/ETH/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():'')
     ]);
-    allCharts.BTC = btcRes.split('\n').map(l=>l.trim()).filter(l=>l.length>0).map(f=>({
-      src: `${BASE}/charts/BTC/${f}`,
-      name: f
-    }));
-    allCharts.ETH = ethRes.split('\n').map(l=>l.trim()).filter(l=>l.length>0).map(f=>({
-      src: `${BASE}/charts/ETH/${f}`,
-      name: f
-    }));
+    allCharts.BTC=btcRes.split('\n').map(l=>l.trim()).filter(Boolean).map(f=>({src:`${BASE}/charts/BTC/${f}`,name:f}));
+    allCharts.ETH=ethRes.split('\n').map(l=>l.trim()).filter(Boolean).map(f=>({src:`${BASE}/charts/ETH/${f}`,name:f}));
     renderScreenshots();
-  } catch(e){
-    el.innerHTML = '<div class="empty-state">// Could not load charts //</div>';
-  }
+  }catch(e){document.getElementById('screenshotsContainer').innerHTML='<div class="empty-state">Charts unavailable</div>'}
 }
 
 function renderScreenshots(){
-  const charts = allCharts[viewCoin];
-  const c = document.getElementById('screenshotsContainer');
-  if(!charts.length){
-    c.innerHTML = `<div class="empty-state">No ${viewCoin} charts uploaded yet.</div>`;
-    return;
-  }
-  c.innerHTML = '<div class="screenshots-grid">' + charts.map(ch => {
-    const dateMatch = ch.name.match(/(\d{4}-\d{2}-\d{2})/);
-    const dateStr = dateMatch
-      ? new Date(dateMatch[1]).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
-      : ch.name.replace(/\.[^.]+$/,'');
+  const charts=allCharts[viewCoin];
+  const c=document.getElementById('screenshotsContainer');
+  if(!charts.length){c.innerHTML=`<div class="empty-state">No ${viewCoin} charts published yet.</div>`;return}
+  c.innerHTML='<div class="screenshots-grid">'+charts.map(ch=>{
+    const m=ch.name.match(/(\d{4}-\d{2}-\d{2})/);
+    const d=m?new Date(m[1]).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):ch.name.replace(/\.[^.]+$/,'');
     return `<div class="screenshot-card" onclick="openLightbox('${ch.src}')">
       <div class="screenshot-img-wrap">
-        <img src="${ch.src}" alt="${viewCoin} chart"/>
-        <div class="screenshot-overlay"><span class="screenshot-overlay-text">Click to expand</span></div>
-        <div class="screenshot-zoom-icon">🔍</div>
-      </div>
-      <div class="screenshot-info">
-        <span class="screenshot-coin">${viewCoin} / USD</span>
-        <span class="screenshot-date">${dateStr}</span>
+        <img src="${ch.src}" alt="${viewCoin}"/>
+        <div class="screenshot-overlay">
+          <div class="screenshot-info-inner">
+            <div>
+              <div class="screenshot-coin">${viewCoin}</div>
+              <div class="screenshot-coin-sub">/ USD · Daily Chart</div>
+            </div>
+            <div class="screenshot-date">${d}</div>
+          </div>
+        </div>
+        <div class="screenshot-zoom">⊕</div>
       </div>
     </div>`;
-  }).join('') + '</div>';
-}
-
-async function fetchNews(){
-  const el = document.getElementById('newsList');
-  try {
-    const res = await fetch(`${BASE}/news.json?t=${Date.now()}`);
-    if(!res.ok) throw new Error();
-    const items = await res.json();
-    if(!items.length){ el.innerHTML='<div class="empty-news">No updates posted yet.</div>'; return; }
-    el.innerHTML = items.map(n => `
-      <div class="news-item">
-        <div class="news-item-header">
-          <div class="news-item-title">${n.title||''}</div>
-          <div class="news-item-date">${n.date||''}</div>
-        </div>
-        ${n.body ? `<div class="news-item-body">${n.body}</div>` : ''}
-        ${n.url  ? `<a class="news-item-url" href="${n.url}" target="_blank" rel="noopener">→ Read more</a>` : ''}
-      </div>`).join('');
-  } catch(e){
-    el.innerHTML = '<div class="empty-news">No updates posted yet.</div>';
-  }
+  }).join('')+'</div>';
 }
 
 async function fetchMarket(){
   try{
-    const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false').then(r=>r.json());
-    document.getElementById('marketGrid').innerHTML = data.map((c,i)=>{
-      const up = c.price_change_percentage_24h >= 0;
+    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false').then(r=>r.json());
+    marketData=data;
+    document.getElementById('marketGrid').innerHTML=data.map((c,i)=>{
+      const up=c.price_change_percentage_24h>=0;
       return `<div class="coin-card">
-        <div class="coin-rank">#${i+1}</div>
+        <div class="coin-rank">0${i+1}</div>
         <div class="coin-name">${c.name}</div>
         <div class="coin-symbol">${c.symbol.toUpperCase()}</div>
         <div class="coin-price">$${c.current_price.toLocaleString()}</div>
-        <div class="coin-change ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</div>
-        <div class="coin-cap">MCap: $${(c.market_cap/1e9).toFixed(1)}B</div>
+        <div class="coin-change ${up?'up':'down'}">${up?'↑':'↓'} ${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</div>
+        <div class="coin-cap">$${(c.market_cap/1e9).toFixed(1)}B cap</div>
       </div>`;
     }).join('');
-  } catch(e){ document.getElementById('marketGrid').innerHTML='<div class="loading">// Unable to fetch data //</div>'; }
+    updateTicker(data);
+  }catch(e){document.getElementById('marketGrid').innerHTML='<div class="loading" style="grid-column:1/-1">Market data unavailable</div>'}
+}
+
+function updateTicker(data){
+  const items=data.map(c=>{
+    const up=c.price_change_percentage_24h>=0;
+    return `<span class="ticker-item">
+      <span class="ticker-name">${c.symbol.toUpperCase()}</span>
+      <span class="ticker-price">$${c.current_price.toLocaleString()}</span>
+      <span class="ticker-change ${up?'up':'down'}">${up?'↑':'↓'}${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</span>
+    </span>`;
+  }).join('');
+  // Duplicate for seamless loop
+  document.getElementById('tickerTrack').innerHTML=items+items;
+}
+
+async function fetchNews(){
+  const el=document.getElementById('newsList');
+  try{
+    const res=await fetch(`${BASE}/news.json?t=${Date.now()}`);
+    if(!res.ok) throw new Error();
+    const items=await res.json();
+    if(!items.length){el.innerHTML='<div class="empty-news">No analysis published yet.</div>';return}
+    el.innerHTML=items.map(n=>`
+      <div class="news-item">
+        <div class="news-meta-row">
+          <span class="news-date">${n.date||''}</span>
+          <span class="news-dot"></span>
+          <span class="news-tag">BitLogic Analysis</span>
+        </div>
+        <div class="news-title">${n.title||''}</div>
+        ${n.body?`<div class="news-body">${n.body}</div>`:''}
+        ${n.url?`<a class="news-link" href="${n.url}" target="_blank" rel="noopener">Read source →</a>`:''}
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty-news">No analysis published yet.</div>'}
 }
 
 fetchCharts();
 fetchNews();
 fetchMarket();
-setInterval(fetchMarket, 60000);
+setInterval(fetchMarket,60000);
 </script>
 </body>
 </html>
