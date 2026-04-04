@@ -33,7 +33,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .coin-tab{padding:6px 16px;border:1px solid var(--card-border);border-radius:3px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;transition:all 0.2s;color:var(--muted)}
 .coin-tab.active{border-color:var(--accent);color:var(--accent);background:rgba(0,255,231,0.06)}
 
-/* SCREENSHOT CARDS */
 .screenshots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:20px}
 .screenshot-card{background:var(--card);border:1px solid var(--card-border);border-radius:6px;overflow:hidden;position:relative;transition:border-color 0.25s,box-shadow 0.25s;cursor:zoom-in}
 .screenshot-card:hover{border-color:var(--accent);box-shadow:0 0 32px rgba(0,255,231,0.10)}
@@ -48,16 +47,13 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .screenshot-info{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--card-border)}
 .screenshot-coin{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:3px}
 .screenshot-date{font-size:10px;color:var(--muted);letter-spacing:1px}
-
 .empty-state{color:var(--muted);font-size:12px;letter-spacing:2px;padding:32px;text-align:center;border:1px solid var(--card-border);border-radius:4px}
 
-/* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}
 .lightbox.open{display:flex}
 .lightbox img{max-width:94vw;max-height:90vh;border:1px solid var(--card-border);border-radius:6px;box-shadow:0 0 60px rgba(0,255,231,0.1)}
 .lightbox-close{position:fixed;top:20px;right:28px;font-size:28px;color:var(--accent);cursor:pointer;font-family:'Share Tech Mono',monospace;background:none;border:none;line-height:1}
 
-/* MARKET */
 .market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .coin-card{background:var(--card);border:1px solid var(--card-border);border-radius:4px;padding:14px 16px;transition:border-color 0.2s}
 .coin-card:hover{border-color:var(--accent)}
@@ -70,7 +66,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .up{color:var(--green)}.down{color:var(--red)}
 .loading{color:var(--muted);font-size:12px;letter-spacing:2px;padding:20px;text-align:center}
 
-/* NEWS */
 .news-list{display:flex;flex-direction:column;gap:10px}
 .news-item{background:var(--card);border:1px solid var(--card-border);border-radius:4px;padding:16px 18px;position:relative;overflow:hidden;transition:border-color 0.2s}
 .news-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0.6}
@@ -105,7 +100,6 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
     </div>
   </header>
 
-  <!-- CHART ANALYSIS -->
   <div class="section">
     <div class="section-title">Chart Analysis</div>
     <div class="coin-tabs">
@@ -117,7 +111,6 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
     </div>
   </div>
 
-  <!-- TOP 5 MARKET CAP -->
   <div class="section">
     <div class="section-title">Top 5 by Market Cap</div>
     <div id="marketGrid" class="market-grid">
@@ -125,7 +118,6 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
     </div>
   </div>
 
-  <!-- NEWS -->
   <div class="section">
     <div class="section-title">BitLogic News</div>
     <div id="newsList" class="news-list">
@@ -137,14 +129,7 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
 </div>
 
 <script>
-// ─── GitHub config ───────────────────────────────────────────────
-const GH_USER   = 'bitlogicengine';
-const GH_REPO   = 'bitlogicalpha';
-const GH_BRANCH = 'main';
-const RAW       = `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}`;
-const API       = `https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents`;
-// ─────────────────────────────────────────────────────────────────
-
+const BASE = 'https://bitlogicengine.github.io/bitlogicalpha';
 let viewCoin = 'BTC';
 let allCharts = { BTC: [], ETH: [] };
 
@@ -158,22 +143,21 @@ function switchView(c){
 function openLightbox(src){ document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('open'); }
 function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); document.getElementById('lightboxImg').src=''; }
 
-// Fetch list of images from charts/BTC and charts/ETH folders on GitHub
 async function fetchCharts(){
   const el = document.getElementById('screenshotsContainer');
   try {
     const [btcRes, ethRes] = await Promise.all([
-      fetch(`${API}/charts/BTC`).then(r => r.ok ? r.json() : []),
-      fetch(`${API}/charts/ETH`).then(r => r.ok ? r.json() : [])
+      fetch(`${BASE}/charts/BTC/manifest.txt?t=${Date.now()}`).then(r => r.ok ? r.text() : ''),
+      fetch(`${BASE}/charts/ETH/manifest.txt?t=${Date.now()}`).then(r => r.ok ? r.text() : '')
     ]);
-    allCharts.BTC = (Array.isArray(btcRes) ? btcRes : [])
-      .filter(f => /\.(png|jpg|jpeg|webp|gif)$/i.test(f.name))
-      .sort((a,b) => b.name.localeCompare(a.name))
-      .map(f => ({ src: `${RAW}/charts/BTC/${f.name}`, name: f.name }));
-    allCharts.ETH = (Array.isArray(ethRes) ? ethRes : [])
-      .filter(f => /\.(png|jpg|jpeg|webp|gif)$/i.test(f.name))
-      .sort((a,b) => b.name.localeCompare(a.name))
-      .map(f => ({ src: `${RAW}/charts/ETH/${f.name}`, name: f.name }));
+    allCharts.BTC = btcRes.split('\n').map(l=>l.trim()).filter(l=>l.length>0).map(f=>({
+      src: `${BASE}/charts/BTC/${f}`,
+      name: f
+    }));
+    allCharts.ETH = ethRes.split('\n').map(l=>l.trim()).filter(l=>l.length>0).map(f=>({
+      src: `${BASE}/charts/ETH/${f}`,
+      name: f
+    }));
     renderScreenshots();
   } catch(e){
     el.innerHTML = '<div class="empty-state">// Could not load charts //</div>';
@@ -188,7 +172,6 @@ function renderScreenshots(){
     return;
   }
   c.innerHTML = '<div class="screenshots-grid">' + charts.map(ch => {
-    // Try to extract a date from filename e.g. 2026-04-04.png
     const dateMatch = ch.name.match(/(\d{4}-\d{2}-\d{2})/);
     const dateStr = dateMatch
       ? new Date(dateMatch[1]).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
@@ -207,11 +190,10 @@ function renderScreenshots(){
   }).join('') + '</div>';
 }
 
-// Fetch news.json from GitHub root
 async function fetchNews(){
   const el = document.getElementById('newsList');
   try {
-    const res = await fetch(`${RAW}/news.json?t=${Date.now()}`);
+    const res = await fetch(`${BASE}/news.json?t=${Date.now()}`);
     if(!res.ok) throw new Error();
     const items = await res.json();
     if(!items.length){ el.innerHTML='<div class="empty-news">No updates posted yet.</div>'; return; }
