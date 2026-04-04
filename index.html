@@ -15,9 +15,9 @@ html,body{min-height:100vh;background:var(--bg);font-family:'Share Tech Mono',mo
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 18s linear infinite;opacity:0.4;z-index:0;pointer-events:none}
 @keyframes gridMove{0%{background-position:0 0}100%{background-position:40px 40px}}
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:1}
- 
+
 .wrapper{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:24px 16px 48px}
- 
+
 header{display:flex;align-items:center;justify-content:space-between;padding:16px 0 32px;border-bottom:1px solid var(--card-border);margin-bottom:32px}
 .logo-area{display:flex;align-items:center;gap:14px}
 .logo-circle{width:48px;height:48px;border-radius:50%;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:var(--accent);text-shadow:0 0 8px var(--accent);flex-shrink:0;animation:spin 10s linear infinite}
@@ -27,12 +27,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .admin-btn{background:transparent;border:1px solid var(--card-border);color:var(--muted);padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;border-radius:3px;transition:all 0.2s;display:none}
 .admin-btn:hover{border-color:var(--accent);color:var(--accent)}
 .admin-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(0,255,231,0.06)}
- 
+
 .section{margin-bottom:40px}
 .section-title{font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0.3}
- 
-/* ADMIN PANEL */
+
 .admin-panel{background:var(--card);border:1px solid var(--card-border);border-radius:4px;padding:20px;margin-bottom:32px;display:none}
 .admin-panel.visible{display:block}
 .admin-login{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -40,14 +39,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .admin-input:focus{border-color:var(--accent)}
 .btn{background:rgba(0,255,231,0.08);border:1px solid var(--card-border);color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;padding:8px 16px;cursor:pointer;border-radius:3px;transition:all 0.2s}
 .btn:hover{background:rgba(0,255,231,0.14);border-color:var(--accent)}
-.btn-danger{background:rgba(255,75,75,0.08);border-color:rgba(255,75,75,0.3);color:var(--red)}
-.btn-danger:hover{background:rgba(255,75,75,0.15);border-color:var(--red)}
 .err{color:var(--red);font-size:11px;letter-spacing:1px;margin-top:8px}
- 
+
 .admin-tools{display:flex;flex-direction:column;gap:20px}
 .admin-section-label{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
- 
-/* UPLOAD */
+
 .upload-area{border:1px dashed rgba(0,255,231,0.3);border-radius:4px;padding:28px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:12px}
 .upload-area:hover{border-color:var(--accent);background:rgba(0,255,231,0.03)}
 .upload-icon{font-size:28px;margin-bottom:8px}
@@ -55,34 +51,40 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .coin-tabs{display:flex;gap:8px;margin-bottom:12px}
 .coin-tab{padding:6px 16px;border:1px solid var(--card-border);border-radius:3px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;transition:all 0.2s;color:var(--muted)}
 .coin-tab.active{border-color:var(--accent);color:var(--accent);background:rgba(0,255,231,0.06)}
- 
-/* NEWS EDITOR */
+
 .news-editor{display:flex;flex-direction:column;gap:10px}
-.news-editor-row{display:flex;gap:10px;flex-wrap:wrap}
 .news-editor input[type="text"]{background:rgba(0,255,231,0.04);border:1px solid var(--card-border);color:var(--text);font-family:'Share Tech Mono',monospace;font-size:12px;padding:8px 12px;border-radius:3px;outline:none;width:100%}
 .news-editor input[type="text"]:focus{border-color:var(--accent)}
 .news-editor textarea{background:rgba(0,255,231,0.04);border:1px solid var(--card-border);color:var(--text);font-family:'Share Tech Mono',monospace;font-size:12px;padding:8px 12px;border-radius:3px;outline:none;width:100%;resize:vertical;min-height:80px;line-height:1.6}
 .news-editor textarea:focus{border-color:var(--accent)}
-.news-editor input::placeholder, .news-editor textarea::placeholder{color:var(--muted)}
- 
-/* SCREENSHOTS */
-.screenshots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.screenshot-card{background:var(--card);border:1px solid var(--card-border);border-radius:4px;overflow:hidden;position:relative}
-.screenshot-card img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;cursor:pointer}
-.screenshot-info{padding:8px 10px;display:flex;justify-content:space-between;align-items:center}
-.screenshot-coin{font-size:11px;color:var(--accent);letter-spacing:2px}
-.screenshot-date{font-size:10px;color:var(--muted)}
-.delete-btn{position:absolute;top:6px;right:6px;background:rgba(255,75,75,0.15);border:1px solid var(--red);color:var(--red);font-size:10px;padding:2px 6px;border-radius:2px;cursor:pointer;display:none;font-family:'Share Tech Mono',monospace}
+.news-editor input::placeholder,.news-editor textarea::placeholder{color:var(--muted)}
+
+/* SCREENSHOT CARDS — large and beautiful */
+.screenshots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:20px}
+.screenshot-card{background:var(--card);border:1px solid var(--card-border);border-radius:6px;overflow:hidden;position:relative;transition:border-color 0.25s,box-shadow 0.25s;cursor:zoom-in}
+.screenshot-card:hover{border-color:var(--accent);box-shadow:0 0 32px rgba(0,255,231,0.10)}
+.screenshot-img-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
+.screenshot-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease}
+.screenshot-card:hover img{transform:scale(1.04)}
+.screenshot-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,10,14,0.85) 0%,transparent 50%);display:flex;align-items:flex-end;padding:14px 16px;opacity:0;transition:opacity 0.3s}
+.screenshot-card:hover .screenshot-overlay{opacity:1}
+.screenshot-overlay-text{font-size:11px;color:var(--accent);letter-spacing:2px}
+.screenshot-zoom-icon{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,255,231,0.12);border:1px solid rgba(0,255,231,0.3);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transition:opacity 0.3s}
+.screenshot-card:hover .screenshot-zoom-icon{opacity:1}
+.screenshot-info{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--card-border)}
+.screenshot-coin{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:3px}
+.screenshot-date{font-size:10px;color:var(--muted);letter-spacing:1px}
+.delete-btn{position:absolute;top:10px;left:10px;background:rgba(255,75,75,0.15);border:1px solid rgba(255,75,75,0.4);color:var(--red);font-size:10px;padding:3px 8px;border-radius:2px;cursor:pointer;display:none;font-family:'Share Tech Mono',monospace;letter-spacing:1px;z-index:2}
 .screenshot-card:hover .delete-btn{display:block}
-.empty-state{color:var(--muted);font-size:12px;letter-spacing:2px;padding:24px;text-align:center;border:1px solid var(--card-border);border-radius:4px}
- 
+
+.empty-state{color:var(--muted);font-size:12px;letter-spacing:2px;padding:32px;text-align:center;border:1px solid var(--card-border);border-radius:4px}
+
 /* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}
 .lightbox.open{display:flex}
-.lightbox img{max-width:92vw;max-height:88vh;border:1px solid var(--card-border);border-radius:4px}
+.lightbox img{max-width:94vw;max-height:90vh;border:1px solid var(--card-border);border-radius:6px;box-shadow:0 0 60px rgba(0,255,231,0.1)}
 .lightbox-close{position:fixed;top:20px;right:28px;font-size:28px;color:var(--accent);cursor:pointer;font-family:'Share Tech Mono',monospace;background:none;border:none;line-height:1}
- 
-/* MARKET */
+
 .market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .coin-card{background:var(--card);border:1px solid var(--card-border);border-radius:4px;padding:14px 16px;transition:border-color 0.2s}
 .coin-card:hover{border-color:var(--accent)}
@@ -94,8 +96,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .coin-cap{font-size:10px;color:var(--muted);margin-top:4px}
 .up{color:var(--green)}.down{color:var(--red)}
 .loading{color:var(--muted);font-size:12px;letter-spacing:2px;padding:20px;text-align:center}
- 
-/* NEWS DISPLAY */
+
 .news-list{display:flex;flex-direction:column;gap:10px}
 .news-item{background:var(--card);border:1px solid var(--card-border);border-radius:4px;padding:16px 18px;position:relative;overflow:hidden;transition:border-color 0.2s}
 .news-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0.6}
@@ -109,20 +110,19 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .news-delete{position:absolute;top:8px;right:8px;background:rgba(255,75,75,0.12);border:1px solid rgba(255,75,75,0.3);color:var(--red);font-size:10px;padding:2px 7px;border-radius:2px;cursor:pointer;display:none;font-family:'Share Tech Mono',monospace}
 .news-item:hover .news-delete{display:block}
 .empty-news{color:var(--muted);font-size:12px;letter-spacing:2px;padding:24px;text-align:center;border:1px solid var(--card-border);border-radius:4px}
- 
+
 footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;text-align:center;font-size:10px;color:var(--muted);letter-spacing:2px}
 </style>
 </head>
 <body>
- 
-<!-- LIGHTBOX -->
+
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img id="lightboxImg" src="" alt="chart"/>
 </div>
- 
+
 <div class="wrapper">
- 
+
   <header>
     <div class="logo-area">
       <div class="logo-circle">BL</div>
@@ -133,8 +133,7 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
     </div>
     <button class="admin-btn" id="adminToggle" onclick="toggleAdminPanel()">[ ADMIN ]</button>
   </header>
- 
-  <!-- ADMIN PANEL -->
+
   <div class="admin-panel" id="adminPanel">
     <div id="loginSection">
       <div class="section-title">Admin Access</div>
@@ -144,11 +143,8 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
       </div>
       <div class="err" id="loginErr"></div>
     </div>
- 
     <div id="uploadSection" style="display:none">
       <div class="admin-tools">
- 
-        <!-- SCREENSHOT UPLOAD -->
         <div>
           <div class="admin-section-label">Upload Chart Screenshot</div>
           <div class="coin-tabs">
@@ -161,29 +157,23 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
             <div class="upload-label">Click to upload screenshot</div>
           </div>
         </div>
- 
-        <!-- NEWS EDITOR -->
         <div>
           <div class="admin-section-label">Post a News Update</div>
           <div class="news-editor">
             <input type="text" id="newsTitle" placeholder="Title (e.g. BTC breaks $100K resistance)"/>
             <textarea id="newsBody" placeholder="Write your analysis or news update here..."></textarea>
-            <input type="text" id="newsUrl" placeholder="Link URL (optional — e.g. https://...)"/>
-            <div>
-              <button class="btn" onclick="postNews()">POST UPDATE →</button>
-            </div>
+            <input type="text" id="newsUrl" placeholder="Link URL (optional)"/>
+            <div><button class="btn" onclick="postNews()">POST UPDATE →</button></div>
           </div>
         </div>
- 
         <div style="padding-top:8px;border-top:1px solid var(--card-border)">
           <button class="btn" onclick="logout()" style="font-size:10px;opacity:0.6">LOCK SESSION</button>
         </div>
- 
       </div>
     </div>
   </div>
- 
-  <!-- CHART SCREENSHOTS -->
+
+  <!-- CHART ANALYSIS -->
   <div class="section">
     <div class="section-title">Chart Analysis</div>
     <div class="coin-tabs">
@@ -194,7 +184,7 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
       <div class="empty-state">No charts uploaded yet.</div>
     </div>
   </div>
- 
+
   <!-- TOP 5 MARKET CAP -->
   <div class="section">
     <div class="section-title">Top 5 by Market Cap</div>
@@ -202,7 +192,7 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
       <div class="loading">Fetching live data...</div>
     </div>
   </div>
- 
+
   <!-- MANUAL NEWS -->
   <div class="section">
     <div class="section-title">BitLogic News</div>
@@ -210,35 +200,34 @@ footer{border-top:1px solid var(--card-border);margin-top:40px;padding-top:16px;
       <div class="empty-news">No updates posted yet.</div>
     </div>
   </div>
- 
+
   <footer>© 2026 BitLogic · All systems operational · bitlogicalpha.com</footer>
 </div>
- 
+
 <script>
 const ADMIN_HASH = 'cfafea54e27dc9f092fc40f20cba8fff74de87111587288c7439eaf4184641b8';
- 
 let isAdmin = false;
 let selectedCoin = 'BTC';
 let viewCoin = 'BTC';
 let screenshots = JSON.parse(localStorage.getItem('bl_screenshots') || '[]');
 let newsItems = JSON.parse(localStorage.getItem('bl_news') || '[]');
- 
+
 const urlParams = new URLSearchParams(window.location.search);
 if(urlParams.get('admin') === 'true') document.getElementById('adminToggle').style.display = 'block';
- 
+
 async function hashPassword(pw){
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
- 
+
 function saveScreenshots(){ localStorage.setItem('bl_screenshots', JSON.stringify(screenshots)); }
 function saveNews(){ localStorage.setItem('bl_news', JSON.stringify(newsItems)); }
- 
+
 function toggleAdminPanel(){
   const p=document.getElementById('adminPanel'),b=document.getElementById('adminToggle');
   b.classList.toggle('active',p.classList.toggle('visible'));
 }
- 
+
 async function login(){
   const hashed = await hashPassword(document.getElementById('pwInput').value);
   if(hashed === ADMIN_HASH){
@@ -246,11 +235,10 @@ async function login(){
     document.getElementById('loginSection').style.display='none';
     document.getElementById('uploadSection').style.display='block';
     document.getElementById('loginErr').textContent='';
-    renderScreenshots();
-    renderNews();
+    renderScreenshots(); renderNews();
   } else { document.getElementById('loginErr').textContent='// ACCESS DENIED //'; }
 }
- 
+
 function logout(){
   isAdmin=false;
   document.getElementById('loginSection').style.display='block';
@@ -258,21 +246,12 @@ function logout(){
   document.getElementById('pwInput').value='';
   document.getElementById('adminPanel').classList.remove('visible');
   document.getElementById('adminToggle').classList.remove('active');
-  renderScreenshots();
-  renderNews();
+  renderScreenshots(); renderNews();
 }
- 
-function selectCoin(c){
-  selectedCoin=c;
-  document.getElementById('tabBTC').classList.toggle('active',c==='BTC');
-  document.getElementById('tabETH').classList.toggle('active',c==='ETH');
-}
-function switchView(c){
-  viewCoin=c;
-  document.getElementById('viewTabBTC').classList.toggle('active',c==='BTC');
-  document.getElementById('viewTabETH').classList.toggle('active',c==='ETH');
-  renderScreenshots();
-}
+
+function selectCoin(c){ selectedCoin=c; document.getElementById('tabBTC').classList.toggle('active',c==='BTC'); document.getElementById('tabETH').classList.toggle('active',c==='ETH'); }
+function switchView(c){ viewCoin=c; document.getElementById('viewTabBTC').classList.toggle('active',c==='BTC'); document.getElementById('viewTabETH').classList.toggle('active',c==='ETH'); renderScreenshots(); }
+
 function handleUpload(e){
   const file=e.target.files[0]; if(!file) return;
   const reader=new FileReader();
@@ -282,45 +261,47 @@ function handleUpload(e){
   };
   reader.readAsDataURL(file); e.target.value='';
 }
-function deleteScreenshot(i){ screenshots.splice(i,1); saveScreenshots(); renderScreenshots(); }
+
+function deleteScreenshot(i,e){ e.stopPropagation(); screenshots.splice(i,1); saveScreenshots(); renderScreenshots(); }
 function openLightbox(src){ document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('open'); }
 function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); document.getElementById('lightboxImg').src=''; }
- 
+
 function renderScreenshots(){
   const filtered=screenshots.map((s,i)=>({...s,idx:i})).filter(s=>s.coin===viewCoin);
   const c=document.getElementById('screenshotsContainer');
   if(!filtered.length){ c.innerHTML='<div class="empty-state">No '+viewCoin+' charts uploaded yet.</div>'; return; }
   c.innerHTML='<div class="screenshots-grid">'+filtered.map(s=>`
-    <div class="screenshot-card">
-      <img src="${s.src}" alt="${s.coin} chart" onclick="openLightbox('${s.src}')"/>
+    <div class="screenshot-card" onclick="openLightbox('${s.src}')">
+      <div class="screenshot-img-wrap">
+        <img src="${s.src}" alt="${s.coin} chart"/>
+        <div class="screenshot-overlay">
+          <span class="screenshot-overlay-text">Click to expand</span>
+        </div>
+        <div class="screenshot-zoom-icon">🔍</div>
+        ${isAdmin?`<button class="delete-btn" onclick="deleteScreenshot(${s.idx},event)">✕ DELETE</button>`:''}
+      </div>
       <div class="screenshot-info">
-        <span class="screenshot-coin">${s.coin}</span>
+        <span class="screenshot-coin">${s.coin} / USD</span>
         <span class="screenshot-date">${s.date}</span>
       </div>
-      ${isAdmin?`<button class="delete-btn" onclick="deleteScreenshot(${s.idx})">✕</button>`:''}
     </div>`).join('')+'</div>';
 }
- 
+
 function postNews(){
   const title=document.getElementById('newsTitle').value.trim();
   const body=document.getElementById('newsBody').value.trim();
   const url=document.getElementById('newsUrl').value.trim();
-  if(!title&&!body){ return; }
-  newsItems.unshift({
-    title,
-    body,
-    url,
-    date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
-  });
+  if(!title&&!body) return;
+  newsItems.unshift({title,body,url,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})});
   saveNews();
   document.getElementById('newsTitle').value='';
   document.getElementById('newsBody').value='';
   document.getElementById('newsUrl').value='';
   renderNews();
 }
- 
+
 function deleteNews(i){ newsItems.splice(i,1); saveNews(); renderNews(); }
- 
+
 function renderNews(){
   const el=document.getElementById('newsList');
   if(!newsItems.length){ el.innerHTML='<div class="empty-news">No updates posted yet.</div>'; return; }
@@ -335,7 +316,7 @@ function renderNews(){
       ${isAdmin?`<button class="news-delete" onclick="deleteNews(${i})">✕</button>`:''}
     </div>`).join('');
 }
- 
+
 async function fetchMarket(){
   try{
     const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false').then(r=>r.json());
@@ -352,7 +333,7 @@ async function fetchMarket(){
     }).join('');
   } catch(e){ document.getElementById('marketGrid').innerHTML='<div class="loading">// Unable to fetch data //</div>'; }
 }
- 
+
 renderScreenshots();
 renderNews();
 fetchMarket();
