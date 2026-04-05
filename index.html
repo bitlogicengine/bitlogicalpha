@@ -3,7 +3,23 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>BitLogic — Crypto Market Intelligence</title>
+<title>BitLogic Alpha — Crypto Market Intelligence</title>
+<meta name="description" content="Daily BTC and ETH chart analysis, live crypto market data, and expert insights. Stay ahead of the market with BitLogic Alpha."/>
+<meta name="keywords" content="bitcoin analysis, ethereum analysis, crypto market trends, BTC chart, ETH chart, crypto intelligence, daily crypto analysis"/>
+<meta name="author" content="BitLogic Alpha"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://bitlogicalpha.com/"/>
+<!-- Open Graph (for social sharing previews) -->
+<meta property="og:title" content="BitLogic Alpha — Crypto Market Intelligence"/>
+<meta property="og:description" content="Daily BTC and ETH chart analysis, live crypto market data, and expert insights."/>
+<meta property="og:url" content="https://bitlogicalpha.com/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://bitlogicalpha.com/charts/BTC/2026-04-04.png"/>
+<!-- Twitter/X card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="BitLogic Alpha — Crypto Market Intelligence"/>
+<meta name="twitter:description" content="Daily BTC and ETH chart analysis, live crypto market data, and expert insights."/>
+<meta name="twitter:image" content="https://bitlogicalpha.com/charts/BTC/2026-04-04.png"/>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DED8MMWG24"></script>
 <script>
@@ -318,6 +334,47 @@ footer{
   letter-spacing:3px;text-transform:uppercase;
 }
 
+/* FEAR & GREED */
+.fg-wrap{
+  display:flex;align-items:center;gap:32px;
+  background:var(--surface);
+  padding:24px 32px;
+  flex-wrap:wrap;
+}
+.fg-gauge{
+  position:relative;
+  width:120px;height:120px;flex-shrink:0;
+}
+.fg-gauge svg{transform:rotate(-90deg)}
+.fg-gauge-track{fill:none;stroke:var(--surface2);stroke-width:10}
+.fg-gauge-fill{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.fg-center{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.fg-value{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:700;
+  color:var(--text);line-height:1;
+}
+.fg-label-small{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.fg-info{flex:1}
+.fg-title{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--text);margin-bottom:6px;
+}
+.fg-subtitle{font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:16px}
+.fg-scale{display:flex;gap:6px;flex-wrap:wrap}
+.fg-scale-item{
+  font-size:9px;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 10px;
+  border:1px solid var(--text-dim);
+  color:var(--text-dim);
+}
+.fg-scale-item.active{border-color:currentColor}
+
 /* ANIMATIONS */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(16px)}
@@ -350,6 +407,39 @@ footer{
   <div class="ticker-wrap">
     <div class="ticker-track" id="tickerTrack">
       <span class="ticker-item"><span class="ticker-name">Loading market data</span></span>
+    </div>
+  </div>
+
+  <!-- FEAR & GREED -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-label">Market Sentiment</div>
+      <div class="section-meta">Fear & Greed · Live</div>
+    </div>
+    <div class="fg-wrap" id="fgWrap">
+      <div class="fg-gauge">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="fg-gauge-track" cx="60" cy="60" r="50"/>
+          <circle class="fg-gauge-fill" id="fgArc" cx="60" cy="60" r="50"
+            stroke-dasharray="314"
+            stroke-dashoffset="314"/>
+        </svg>
+        <div class="fg-center">
+          <div class="fg-value" id="fgValue">--</div>
+          <div class="fg-label-small">/ 100</div>
+        </div>
+      </div>
+      <div class="fg-info">
+        <div class="fg-title" id="fgTitle">Loading...</div>
+        <div class="fg-subtitle" id="fgSubtitle">Fetching market sentiment data</div>
+        <div class="fg-scale">
+          <span class="fg-scale-item" style="color:#e05555" data-range="extreme-fear">Extreme Fear</span>
+          <span class="fg-scale-item" style="color:#e07755" data-range="fear">Fear</span>
+          <span class="fg-scale-item" style="color:#c9a84c" data-range="neutral">Neutral</span>
+          <span class="fg-scale-item" style="color:#7bc47f" data-range="greed">Greed</span>
+          <span class="fg-scale-item" style="color:#4caf7d" data-range="extreme-greed">Extreme Greed</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -502,10 +592,48 @@ async function fetchNews(){
   }catch(e){el.innerHTML='<div class="empty-news">No analysis published yet.</div>'}
 }
 
+async function fetchFearGreed(){
+  try{
+    const data = await fetch('https://api.alternative.me/fng/?limit=1').then(r=>r.json());
+    const item = data.data[0];
+    const value = parseInt(item.value);
+    const classification = item.value_classification;
+
+    // Update value
+    document.getElementById('fgValue').textContent = value;
+    document.getElementById('fgTitle').textContent = classification;
+    document.getElementById('fgSubtitle').textContent = `Last updated: ${new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`;
+
+    // Color based on value
+    let color = '#e05555';
+    let range = 'extreme-fear';
+    if(value >= 75){ color='#4caf7d'; range='extreme-greed'; }
+    else if(value >= 55){ color='#7bc47f'; range='greed'; }
+    else if(value >= 45){ color='#c9a84c'; range='neutral'; }
+    else if(value >= 25){ color='#e07755'; range='fear'; }
+
+    // Update gauge arc
+    const circumference = 314;
+    const offset = circumference - (value / 100) * circumference;
+    const arc = document.getElementById('fgArc');
+    arc.style.stroke = color;
+    arc.style.strokeDashoffset = offset;
+    document.getElementById('fgValue').style.color = color;
+    document.getElementById('fgTitle').style.color = color;
+
+    // Highlight active scale item
+    document.querySelectorAll('.fg-scale-item').forEach(el=>{
+      el.classList.toggle('active', el.dataset.range === range);
+    });
+  } catch(e){ document.getElementById('fgTitle').textContent = 'Sentiment unavailable'; }
+}
+
 fetchCharts();
 fetchNews();
 fetchMarket();
+fetchFearGreed();
 setInterval(fetchMarket,60000);
+setInterval(fetchFearGreed,300000);
 </script>
 </body>
 </html>
