@@ -273,6 +273,7 @@ nav{
   line-height:1.3;
   margin-bottom:14px;
   letter-spacing:0.2px;
+  max-width:760px;
 }
 .news-body{
   font-size:12px;
@@ -586,7 +587,7 @@ async function fetchNews(){
 
         </div>
         <div class="news-title">${n.title||''}</div>
-        ${n.body?`<div class="news-body">${n.body}</div>`:''}
+        ${n.body?`<div class="news-body">${n.body.split('\\n').filter(p=>p.trim()).map(p=>`<p style="margin-bottom:12px">${p}</p>`).join('')}</div>`:''}
         ${n.url?`<a class="news-link" href="${n.url}" target="_blank" rel="noopener">Read source →</a>`:''}
       </div>`).join('');
   }catch(e){el.innerHTML='<div class="empty-news">No analysis published yet.</div>'}
