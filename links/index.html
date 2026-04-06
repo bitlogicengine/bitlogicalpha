@@ -65,20 +65,14 @@ html,body{
 }
 
 .brand-mark{
-  width:56px;height:56px;
-  border:1px solid var(--gold-border);
+  width:64px;height:64px;
+  border-radius:50%;
+  border:1.5px solid var(--gold);
+  box-shadow:0 0 14px rgba(201,168,76,0.4),0 0 32px rgba(201,168,76,0.15),inset 0 0 14px rgba(201,168,76,0.05);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;
-  font-size:20px;font-weight:900;
-  color:var(--gold);
-  letter-spacing:-1px;
+  background:radial-gradient(circle at 40% 40%,#1a1400,#080808);
   position:relative;
-}
-.brand-mark::before{
-  content:'';
-  position:absolute;
-  inset:-4px;
-  border:1px solid var(--gold-dim);
+  flex-shrink:0;
 }
 
 .brand-name{
@@ -193,8 +187,10 @@ html,body{
 <div class="container">
 
   <div class="brand-wrap">
-    <div class="brand-mark">BL</div>
-    <div class="brand-name">BITLOGIC</div>
+    <div class="brand-mark">
+      <span style="font-size:20px;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:-1px;line-height:1">₿L</span>
+    </div>
+    <div class="brand-name">BITLOGIC <span style="color:var(--gold);font-size:22px;letter-spacing:3px">ALPHA</span></div>
     <div class="brand-tag">Crypto Market Intelligence</div>
   </div>
 
@@ -226,15 +222,4 @@ html,body{
         <div class="link-name">Website</div>
         <div class="link-sub">bitlogicalpha.com</div>
       </div>
-      <span class="link-arrow">→</span>
-    </a>
-
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="footer">© 2026 BitLogic · All rights reserved</div>
-
-</div>
-</body>
-</html>
+      <span class="link-arrow">→</sp
