@@ -267,6 +267,17 @@ header{
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
 .footer-brand{font-family:'Playfair Display',serif;font-size:14px;color:var(--text-muted);letter-spacing:1px}
 .footer-right{font-size:9px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.footer-x{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;
+  border:1px solid var(--text-dim);
+  color:var(--text-muted);
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;
+  transition:border-color 0.2s,color 0.2s,background 0.2s;
+}
+.footer-x:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.footer-x svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -422,6 +433,10 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
   <footer>
     <div class="footer-brand">BitLogic Alpha</div>
+    <a class="footer-x" href="https://x.com/QuantAlphaTrend" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Follow @QuantAlphaTrend
+    </a>
     <div class="footer-right">© 2026 · bitlogicalpha.com · All rights reserved</div>
   </footer>
 
