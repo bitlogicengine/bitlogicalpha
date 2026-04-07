@@ -211,19 +211,35 @@ header{
 .dom-item-bar-fill{height:100%;transition:width 1.2s ease}
 
 .week-list{display:flex;flex-direction:column;gap:2px}
-.week-item{background:var(--surface);border-left:2px solid transparent;transition:border-color 0.2s,background 0.2s}
-.week-item:hover{border-left-color:var(--gold);background:var(--surface2)}
-.week-header{padding:20px 28px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px}
-.week-label{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text)}
-.week-count{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:3px}
-.week-toggle{font-size:12px;color:var(--gold);transition:transform 0.2s;flex-shrink:0}
-.week-body{display:none;padding:0 28px 20px;border-top:1px solid var(--text-dim)}
+.week-item{background:var(--surface);border-left:2px solid transparent;transition:border-color 0.2s}
+.week-item.expanded{border-left-color:var(--gold)}
+.week-header{padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px;transition:background 0.2s}
+.week-header:hover{background:var(--surface2)}
+.week-header-left{display:flex;align-items:center;gap:16px}
+.week-label{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text)}
+.week-count{font-size:9px;color:var(--text-muted);letter-spacing:2px;background:var(--surface2);padding:3px 8px}
+.week-toggle{font-size:10px;color:var(--gold);transition:transform 0.25s;flex-shrink:0;letter-spacing:1px}
+.week-toggle.open{transform:rotate(180deg)}
+.week-body{display:none;border-top:1px solid var(--text-dim)}
 .week-body.open{display:block}
-.week-post{padding:14px 0;border-bottom:1px solid var(--text-dim)}
+.week-post{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 24px;
+  border-bottom:1px solid var(--text-dim);
+  cursor:pointer;
+  transition:background 0.15s;
+}
 .week-post:last-child{border-bottom:none}
-.week-post-date{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
-.week-post-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);line-height:1.3}
-.week-post-excerpt{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.7;max-width:720px}
+.week-post:hover{background:var(--surface2)}
+.week-post-date{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;width:90px}
+.week-post-title{font-size:13px;color:var(--text);letter-spacing:0.3px;flex:1;line-height:1.4}
+.week-post-arrow{font-size:12px;color:var(--gold);opacity:0.4;flex-shrink:0;transition:opacity 0.15s,transform 0.15s}
+.week-post:hover .week-post-arrow{opacity:1;transform:translateX(3px)}
+.week-post-expand{display:none;padding:0 24px 16px 130px}
+.week-post-expand.open{display:block}
+.week-post-excerpt{font-size:11px;color:var(--text-muted);line-height:1.8;max-width:680px}
+.week-post-excerpt p{margin-bottom:8px}
+.week-post-excerpt p:last-child{margin-bottom:0}
 .empty-week{padding:60px 40px;text-align:center;border:1px solid var(--text-dim);color:var(--text-muted);font-size:12px;letter-spacing:2px}
 
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
@@ -375,7 +391,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="section-header">
         <div class="section-label">Weekly Summary</div>
-        <div class="section-meta">Auto · From Your Posts</div>
+        <div class="section-meta"></div>
       </div>
       <div id="weeklyList" class="week-list">
         <div class="loading">Building summaries...</div>
@@ -604,10 +620,17 @@ function getWeekKey(dateStr){
 }
 
 function toggleWeek(el){
-  const body=el.nextElementSibling;
+  const item=el.closest('.week-item');
+  const body=item.querySelector('.week-body');
   const icon=el.querySelector('.week-toggle');
   body.classList.toggle('open');
-  icon.style.transform=body.classList.contains('open')?'rotate(180deg)':'';
+  icon.classList.toggle('open');
+  item.classList.toggle('expanded');
+}
+
+function togglePost(el){
+  const expand=el.nextElementSibling;
+  expand.classList.toggle('open');
 }
 
 async function fetchWeeklySummary(){
@@ -624,20 +647,23 @@ async function fetchWeeklySummary(){
       weeks[key].push(item);
     });
     el.innerHTML=Object.entries(weeks).map(([week,posts],i)=>`
-      <div class="week-item">
+      <div class="week-item ${i===0?'expanded':''}">
         <div class="week-header" onclick="toggleWeek(this)">
-          <div>
+          <div class="week-header-left">
             <div class="week-label">Week of ${week}</div>
-            <div class="week-count">${posts.length} post${posts.length>1?'s':''} published</div>
+            <div class="week-count">${posts.length} post${posts.length>1?'s':''}</div>
           </div>
-          <div class="week-toggle">▼</div>
+          <div class="week-toggle ${i===0?'open':''}">▼</div>
         </div>
         <div class="week-body ${i===0?'open':''}">
           ${posts.map(p=>`
-            <div class="week-post">
+            <div class="week-post" onclick="togglePost(this)">
               <div class="week-post-date">${p.date||''}</div>
               <div class="week-post-title">${p.title||''}</div>
-              ${p.body?`<div class="week-post-excerpt">${p.body.split('\\n')[0].substring(0,200)}${p.body.split('\\n')[0].length>200?'...':''}</div>`:''}
+              <div class="week-post-arrow">→</div>
+            </div>
+            <div class="week-post-expand">
+              ${p.body?`<div class="week-post-excerpt">${p.body.split('\\n').filter(x=>x.trim()).map(x=>`<p>${x}</p>`).join('')}</div>`:''}
             </div>`).join('')}
         </div>
       </div>`).join('');
