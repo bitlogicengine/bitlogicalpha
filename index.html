@@ -169,6 +169,17 @@ header{
   font-size:12px;
   letter-spacing:0.5px;
 }
+.news-body .news-section-title{
+  color:var(--text);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:1px;
+  margin-top:16px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  font-size:10px;
+  color:var(--gold);
+}
 .news-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;text-decoration:none;opacity:0.7;transition:opacity 0.2s}
 .news-link:hover{opacity:1}
 .empty-news{padding:60px 40px;text-align:center;border:1px solid var(--text-dim);color:var(--text-muted);font-size:12px;letter-spacing:2px}
@@ -525,8 +536,10 @@ async function fetchNews(){
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
         <div class="news-title">${n.title||''}</div>
         ${n.body?`<div class="news-body">${n.body.split('\\n').filter(p=>p.trim()).map(p=>{
-          if(/^\d+\./.test(p.trim())) return `<p class="news-list-item">${p}</p>`;
-          return `<p>${p}</p>`;
+          const t=p.trim();
+          if(/^[1-9]\d*\./.test(t)) return `<p class="news-list-item">${t}</p>`;
+          if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
+          return `<p>${t}</p>`;
         }).join('')}</div>`:''}
         ${n.url?`<a class="news-link" href="${n.url}" target="_blank" rel="noopener">Read source →</a>`:''}
       </div>`).join('');
