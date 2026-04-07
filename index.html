@@ -29,66 +29,67 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080808;
-  --surface:#0f0f0f;
-  --surface2:#161616;
-  --gold:#c9a84c;
-  --gold-light:#e8c97a;
-  --gold-dim:rgba(201,168,76,0.08);
-  --gold-border:rgba(201,168,76,0.2);
-  --text:#f0ece4;
-  --text-muted:#6b6560;
-  --text-dim:#3a3530;
-  --red:#e05555;
-  --green:#4caf7d;
+  --bg:#080808;--surface:#0f0f0f;--surface2:#161616;
+  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.08);--gold-border:rgba(201,168,76,0.2);
+  --text:#f0ece4;--text-muted:#6b6560;--text-dim:#3a3530;
+  --red:#e05555;--green:#4caf7d;
 }
-
 html{scroll-behavior:smooth}
-body{
-  min-height:100vh;
-  background:var(--bg);
-  font-family:'DM Mono',monospace;
-  color:var(--text);
-  line-height:1.6;
-}
-
+body{min-height:100vh;background:var(--bg);font-family:'DM Mono',monospace;color:var(--text);line-height:1.6}
 body::before{
-  content:'';
-  position:fixed;inset:0;
+  content:'';position:fixed;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events:none;z-index:0;opacity:0.4;
 }
-
 .page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 80px}
 
+/* HEADER */
 header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:32px 0 40px;
-  border-bottom:1px solid var(--text-dim);
-  margin-bottom:64px;
+  padding:32px 0 0;
+  margin-bottom:0;
   animation:fadeUp 0.6s ease both;
 }
-.brand{display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:14px;cursor:pointer}
 .brand-mark{
-  width:48px;height:48px;
-  border-radius:50%;
+  width:48px;height:48px;border-radius:50%;
   border:1.5px solid var(--gold);
-  box-shadow:0 0 12px rgba(201,168,76,0.4), 0 0 28px rgba(201,168,76,0.15), inset 0 0 12px rgba(201,168,76,0.05);
+  box-shadow:0 0 12px rgba(201,168,76,0.4),0 0 28px rgba(201,168,76,0.15),inset 0 0 12px rgba(201,168,76,0.05);
   display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 40% 40%, #1a1400, #080808);
-  position:relative;
-  flex-shrink:0;
+  background:radial-gradient(circle at 40% 40%,#1a1400,#080808);flex-shrink:0;
 }
 .brand-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);letter-spacing:2px}
 .brand-tag{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-top:2px}
 .nav-date{font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
 
-.ticker-wrap{
-  overflow:hidden;
-  border-top:1px solid var(--text-dim);
+/* NAV TABS */
+.nav-tabs{
+  display:flex;gap:0;
   border-bottom:1px solid var(--text-dim);
+  margin-bottom:64px;
+  margin-top:24px;
+}
+.nav-tab{
+  padding:12px 28px;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text-muted);cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color 0.2s,border-color 0.2s;
+  margin-bottom:-1px;
+  background:transparent;border-top:none;border-left:none;border-right:none;
+  font-family:'DM Mono',monospace;
+}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* VIEWS */
+.view{display:none}
+.view.active{display:block;animation:fadeUp 0.4s ease both}
+
+/* TICKER */
+.ticker-wrap{
+  overflow:hidden;border-top:1px solid var(--text-dim);border-bottom:1px solid var(--text-dim);
   padding:10px 0;margin-bottom:64px;
-  animation:fadeUp 0.6s ease 0.1s both;
 }
 .ticker-track{display:flex;gap:48px;white-space:nowrap;animation:ticker 30s linear infinite}
 .ticker-item{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px}
@@ -97,20 +98,13 @@ header{
 .ticker-change{font-size:10px}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-.section{margin-bottom:72px;animation:fadeUp 0.6s ease both}
-.section:nth-child(2){animation-delay:0.1s}
-.section:nth-child(3){animation-delay:0.15s}
-.section:nth-child(4){animation-delay:0.2s}
-.section:nth-child(5){animation-delay:0.25s}
-
-.section-header{
-  display:flex;align-items:baseline;justify-content:space-between;
-  margin-bottom:28px;padding-bottom:16px;
-  border-bottom:1px solid var(--text-dim);
-}
+/* SECTION */
+.section{margin-bottom:72px}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--text-dim)}
 .section-label{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:0.5px}
 .section-meta{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
+/* CHART TABS */
 .chart-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--text-dim)}
 .chart-tab{
   padding:8px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;
@@ -120,36 +114,30 @@ header{
 .chart-tab.active{background:var(--gold-dim);color:var(--gold);border-bottom:2px solid var(--gold)}
 .chart-tab:hover:not(.active){color:var(--text);background:var(--surface)}
 
+/* SCREENSHOTS */
 .screenshots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:2px}
 .screenshot-card{background:var(--surface);position:relative;overflow:hidden;cursor:zoom-in;transition:opacity 0.2s}
 .screenshot-card:hover{opacity:0.92}
 .screenshot-img-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
 .screenshot-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease}
 .screenshot-card:hover img{transform:scale(1.03)}
-.screenshot-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(8,8,8,0.9) 0%,transparent 40%);
-  display:flex;align-items:flex-end;padding:20px;
-}
+.screenshot-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,0.9) 0%,transparent 40%);display:flex;align-items:flex-end;padding:20px}
 .screenshot-info-inner{display:flex;justify-content:space-between;align-items:flex-end;width:100%}
 .screenshot-coin{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:1px}
 .screenshot-coin-sub{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:2px}
 .screenshot-date{font-size:10px;color:var(--text-muted);letter-spacing:1px}
-.screenshot-zoom{
-  position:absolute;top:16px;right:16px;width:28px;height:28px;
-  background:rgba(201,168,76,0.1);border:1px solid var(--gold-border);
-  display:flex;align-items:center;justify-content:center;font-size:12px;
-  opacity:0;transition:opacity 0.2s;
-}
+.screenshot-zoom{position:absolute;top:16px;right:16px;width:28px;height:28px;background:rgba(201,168,76,0.1);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:12px;opacity:0;transition:opacity 0.2s}
 .screenshot-card:hover .screenshot-zoom{opacity:1}
 .empty-state{padding:60px 40px;text-align:center;border:1px solid var(--text-dim);color:var(--text-muted);font-size:12px;letter-spacing:2px}
 
+/* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}
 .lightbox.open{display:flex}
 .lightbox img{max-width:94vw;max-height:90vh;border:1px solid var(--gold-border);border-radius:2px}
 .lightbox-close{position:fixed;top:24px;right:32px;font-size:20px;color:var(--gold);cursor:pointer;background:none;border:none;font-family:'DM Mono',monospace;letter-spacing:2px;opacity:0.7}
 .lightbox-close:hover{opacity:1}
 
+/* MARKET */
 .market-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
 @media(max-width:700px){.market-grid{grid-template-columns:repeat(2,1fr)}}
 .coin-card{background:var(--surface);padding:20px 18px;transition:background 0.2s;border-left:2px solid transparent}
@@ -162,22 +150,7 @@ header{
 .coin-cap{font-size:9px;color:var(--text-muted);letter-spacing:1px}
 .up{color:var(--green)}.down{color:var(--red)}
 
-/* FEAR & GREED */
-.fg-wrap{display:flex;align-items:center;gap:32px;background:var(--surface);padding:24px 32px;flex-wrap:wrap}
-.fg-gauge{position:relative;width:120px;height:120px;flex-shrink:0}
-.fg-gauge svg{transform:rotate(-90deg)}
-.fg-gauge-track{fill:none;stroke:var(--surface2);stroke-width:10}
-.fg-gauge-fill{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
-.fg-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.fg-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1}
-.fg-label-small{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
-.fg-info{flex:1}
-.fg-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px}
-.fg-subtitle{font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:16px}
-.fg-scale{display:flex;gap:6px;flex-wrap:wrap}
-.fg-scale-item{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--text-dim);color:var(--text-dim)}
-.fg-scale-item.active{border-color:currentColor}
-
+/* NEWS */
 .news-list{display:flex;flex-direction:column;gap:2px}
 .news-item{background:var(--surface);padding:28px 32px;border-left:2px solid transparent;transition:border-color 0.2s,background 0.2s;position:relative}
 .news-item:hover{border-left-color:var(--gold);background:var(--surface2)}
@@ -191,12 +164,71 @@ header{
 .news-link:hover{opacity:1}
 .empty-news{padding:60px 40px;text-align:center;border:1px solid var(--text-dim);color:var(--text-muted);font-size:12px;letter-spacing:2px}
 
+/* ── INSIGHTS STYLES ── */
+.sentiment-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px}
+.sentiment-card{background:var(--surface);padding:28px;border-left:2px solid transparent;transition:border-color 0.2s}
+.sentiment-card:hover{border-left-color:var(--gold)}
+.sc-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.sc-value{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px}
+.sc-sub{font-size:11px;color:var(--text-muted);letter-spacing:1px}
+.sc-bar{height:3px;background:var(--surface2);margin-top:16px;overflow:hidden}
+.sc-bar-fill{height:100%;transition:width 1s ease}
+
+.fg-large{background:var(--surface);padding:32px;display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.fg-gauge-large{position:relative;width:160px;height:160px;flex-shrink:0}
+.fg-gauge-large svg{transform:rotate(-90deg)}
+.fg-track{fill:none;stroke:var(--surface2);stroke-width:12}
+.fg-fill{fill:none;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease}
+.fg-center-large{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.fg-big-val{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1}
+.fg-big-lbl{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:4px}
+.fg-detail{flex:1}
+.fg-classification{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:8px}
+.fg-updated{font-size:10px;color:var(--text-muted);letter-spacing:2px;margin-bottom:20px}
+.fg-history{display:flex;gap:8px;align-items:flex-end;height:48px}
+.fg-bar-item{flex:1;border-radius:1px;min-height:4px;position:relative;cursor:default}
+.fg-bar-item:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--surface2);color:var(--text);font-size:9px;padding:3px 6px;white-space:nowrap;letter-spacing:1px;pointer-events:none;z-index:10}
+.fg-scale-row{display:flex;justify-content:space-between;margin-top:6px;font-size:8px;color:var(--text-dim);letter-spacing:1px}
+
+.dominance-wrap{background:var(--surface);padding:32px;display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.dom-donut{position:relative;width:160px;height:160px;flex-shrink:0}
+.dom-donut svg{transform:rotate(-90deg)}
+.dom-track{fill:none;stroke:var(--surface2);stroke-width:18}
+.dom-btc{fill:none;stroke:#f7931a;stroke-width:18;stroke-linecap:butt;transition:stroke-dashoffset 1.2s ease}
+.dom-eth{fill:none;stroke:#627eea;stroke-width:18;stroke-linecap:butt;transition:stroke-dashoffset 1.2s ease 0.1s}
+.dom-other{fill:none;stroke:#2a2a2a;stroke-width:18;stroke-linecap:butt}
+.dom-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.dom-btc-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#f7931a;line-height:1}
+.dom-btc-lbl{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:4px}
+.dom-detail{flex:1}
+.dom-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:20px}
+.dom-legend{display:flex;flex-direction:column;gap:12px}
+.dom-item{display:flex;align-items:center;gap:12px}
+.dom-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dom-item-name{font-size:11px;color:var(--text-muted);letter-spacing:1px;flex:1}
+.dom-item-val{font-size:14px;font-weight:500;letter-spacing:1px}
+.dom-item-bar{height:2px;background:var(--surface2);margin-top:4px;overflow:hidden;width:100%}
+.dom-item-bar-fill{height:100%;transition:width 1.2s ease}
+
+.week-list{display:flex;flex-direction:column;gap:2px}
+.week-item{background:var(--surface);border-left:2px solid transparent;transition:border-color 0.2s,background 0.2s}
+.week-item:hover{border-left-color:var(--gold);background:var(--surface2)}
+.week-header{padding:20px 28px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px}
+.week-label{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text)}
+.week-count{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:3px}
+.week-toggle{font-size:12px;color:var(--gold);transition:transform 0.2s;flex-shrink:0}
+.week-body{display:none;padding:0 28px 20px;border-top:1px solid var(--text-dim)}
+.week-body.open{display:block}
+.week-post{padding:14px 0;border-bottom:1px solid var(--text-dim)}
+.week-post:last-child{border-bottom:none}
+.week-post-date{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.week-post-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);line-height:1.3}
+.week-post-excerpt{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.7;max-width:720px}
+.empty-week{padding:60px 40px;text-align:center;border:1px solid var(--text-dim);color:var(--text-muted);font-size:12px;letter-spacing:2px}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
-footer{
-  border-top:1px solid var(--text-dim);padding-top:32px;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
-}
+footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
 .footer-brand{font-family:'Playfair Display',serif;font-size:14px;color:var(--text-muted);letter-spacing:1px}
 .footer-right{font-size:9px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
 
@@ -212,8 +244,9 @@ footer{
 
 <div class="page">
 
+  <!-- HEADER -->
   <header>
-    <div class="brand">
+    <div class="brand" onclick="switchTab('home')">
       <div class="brand-mark">
         <span style="font-size:16px;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:-1px;line-height:1">₿L</span>
       </div>
@@ -225,72 +258,130 @@ footer{
     <div class="nav-date" id="navDate"></div>
   </header>
 
-  <div class="ticker-wrap">
-    <div class="ticker-track" id="tickerTrack">
-      <span class="ticker-item"><span class="ticker-name">Loading market data</span></span>
-    </div>
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" id="tab-home" onclick="switchTab('home')">Home</button>
+    <button class="nav-tab" id="tab-insights" onclick="switchTab('insights')">Insights</button>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-label">Market Sentiment</div>
-      <div class="section-meta">Fear & Greed · Live</div>
-    </div>
-    <div class="fg-wrap">
-      <div class="fg-gauge">
-        <svg width="120" height="120" viewBox="0 0 120 120">
-          <circle class="fg-gauge-track" cx="60" cy="60" r="50"/>
-          <circle class="fg-gauge-fill" id="fgArc" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
-        </svg>
-        <div class="fg-center">
-          <div class="fg-value" id="fgValue">--</div>
-          <div class="fg-label-small">/ 100</div>
-        </div>
-      </div>
-      <div class="fg-info">
-        <div class="fg-title" id="fgTitle">Loading...</div>
-        <div class="fg-subtitle" id="fgSubtitle">Fetching sentiment data</div>
-        <div class="fg-scale">
-          <span class="fg-scale-item" style="color:#e05555" data-range="extreme-fear">Extreme Fear</span>
-          <span class="fg-scale-item" style="color:#e07755" data-range="fear">Fear</span>
-          <span class="fg-scale-item" style="color:#c9a84c" data-range="neutral">Neutral</span>
-          <span class="fg-scale-item" style="color:#7bc47f" data-range="greed">Greed</span>
-          <span class="fg-scale-item" style="color:#4caf7d" data-range="extreme-greed">Extreme Greed</span>
-        </div>
+  <!-- ══════════════ HOME VIEW ══════════════ -->
+  <div class="view active" id="view-home">
+
+    <div class="ticker-wrap">
+      <div class="ticker-track" id="tickerTrack">
+        <span class="ticker-item"><span class="ticker-name">Loading market data</span></span>
       </div>
     </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Chart Analysis</div>
+        <div class="section-meta">Daily Trend</div>
+      </div>
+      <div class="chart-tabs">
+        <button class="chart-tab active" id="viewTabBTC" onclick="switchView('BTC')">BTC / USD</button>
+        <button class="chart-tab" id="viewTabETH" onclick="switchView('ETH')">ETH / USD</button>
+      </div>
+      <div id="screenshotsContainer"><div class="loading">Loading charts...</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Market Overview</div>
+        <div class="section-meta">Top 5 · Live</div>
+      </div>
+      <div id="marketGrid" class="market-grid">
+        <div class="loading" style="grid-column:1/-1">Loading...</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Latest News</div>
+        <div class="section-meta">By BitLogic</div>
+      </div>
+      <div id="newsList" class="news-list">
+        <div class="loading">Loading...</div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-label">Chart Analysis</div>
-      <div class="section-meta">Daily Trend</div>
-    </div>
-    <div class="chart-tabs">
-      <button class="chart-tab active" id="viewTabBTC" onclick="switchView('BTC')">BTC / USD</button>
-      <button class="chart-tab" id="viewTabETH" onclick="switchView('ETH')">ETH / USD</button>
-    </div>
-    <div id="screenshotsContainer"><div class="loading">Loading charts...</div></div>
-  </div>
+  <!-- ══════════════ INSIGHTS VIEW ══════════════ -->
+  <div class="view" id="view-insights">
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-label">Market Overview</div>
-      <div class="section-meta">Top 5 · Live</div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Crypto Fear & Greed</div>
+        <div class="section-meta">Live · Updates Daily</div>
+      </div>
+      <div class="fg-large">
+        <div class="fg-gauge-large">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <circle class="fg-track" cx="80" cy="80" r="64"/>
+            <circle class="fg-fill" id="fgArc" cx="80" cy="80" r="64" stroke-dasharray="402" stroke-dashoffset="402"/>
+          </svg>
+          <div class="fg-center-large">
+            <div class="fg-big-val" id="fgVal">--</div>
+            <div class="fg-big-lbl">/ 100</div>
+          </div>
+        </div>
+        <div class="fg-detail">
+          <div class="fg-classification" id="fgClass">Loading...</div>
+          <div class="fg-updated" id="fgUpdated">Fetching data...</div>
+          <div class="fg-history" id="fgHistory"></div>
+          <div class="fg-scale-row">
+            <span>Extreme Fear</span><span>Fear</span><span>Neutral</span><span>Greed</span><span>Extreme Greed</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="marketGrid" class="market-grid">
-      <div class="loading" style="grid-column:1/-1">Loading...</div>
-    </div>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-label">Latest News</div>
-      <div class="section-meta">By BitLogic</div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Market Dominance</div>
+        <div class="section-meta">Live · CoinGecko</div>
+      </div>
+      <div class="dominance-wrap">
+        <div class="dom-donut">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <circle class="dom-track" cx="80" cy="80" r="62"/>
+            <circle class="dom-other" cx="80" cy="80" r="62" stroke-dasharray="390" stroke-dashoffset="0"/>
+            <circle class="dom-eth" id="domEth" cx="80" cy="80" r="62" stroke-dasharray="390" stroke-dashoffset="390"/>
+            <circle class="dom-btc" id="domBtc" cx="80" cy="80" r="62" stroke-dasharray="390" stroke-dashoffset="390"/>
+          </svg>
+          <div class="dom-center">
+            <div class="dom-btc-val" id="domBtcVal">--</div>
+            <div class="dom-btc-lbl">BTC DOM</div>
+          </div>
+        </div>
+        <div class="dom-detail">
+          <div class="dom-title">Global Market Share</div>
+          <div class="dom-legend" id="domLegend"><div class="loading" style="padding:0">Loading...</div></div>
+        </div>
+      </div>
     </div>
-    <div id="newsList" class="news-list">
-      <div class="loading">Loading...</div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Market Metrics</div>
+        <div class="section-meta">Live · CoinGecko</div>
+      </div>
+      <div class="sentiment-grid" id="metricsGrid">
+        <div class="loading" style="grid-column:1/-1">Loading...</div>
+      </div>
     </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Weekly Summary</div>
+        <div class="section-meta">Auto · From Your Posts</div>
+      </div>
+      <div id="weeklyList" class="week-list">
+        <div class="loading">Building summaries...</div>
+      </div>
+    </div>
+
   </div>
 
   <footer>
@@ -304,9 +395,27 @@ footer{
 const BASE = 'https://bitlogicalpha.com';
 let viewCoin = 'BTC';
 let allCharts = { BTC: [], ETH: [] };
+let insightsLoaded = false;
 
 document.getElementById('navDate').textContent = new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase();
 
+// ── TAB SWITCHING ─────────────────────────────────────────
+function switchTab(tab){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('view-'+tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(tab==='insights' && !insightsLoaded){
+    insightsLoaded=true;
+    fetchFearGreed();
+    fetchDominance();
+    fetchMetrics();
+    fetchWeeklySummary();
+  }
+}
+
+// ── CHART VIEW ────────────────────────────────────────────
 function switchView(c){
   viewCoin=c;
   document.getElementById('viewTabBTC').classList.toggle('active',c==='BTC');
@@ -340,10 +449,7 @@ function renderScreenshots(){
         <img src="${ch.src}" alt="${viewCoin}"/>
         <div class="screenshot-overlay">
           <div class="screenshot-info-inner">
-            <div>
-              <div class="screenshot-coin">${viewCoin}</div>
-              <div class="screenshot-coin-sub">/ USD · Daily Chart</div>
-            </div>
+            <div><div class="screenshot-coin">${viewCoin}</div><div class="screenshot-coin-sub">/ USD · Daily Chart</div></div>
             <div class="screenshot-date">${d}</div>
           </div>
         </div>
@@ -374,11 +480,7 @@ async function fetchMarket(){
 function updateTicker(data){
   const items=data.map(c=>{
     const up=c.price_change_percentage_24h>=0;
-    return `<span class="ticker-item">
-      <span class="ticker-name">${c.symbol.toUpperCase()}</span>
-      <span class="ticker-price">$${c.current_price.toLocaleString()}</span>
-      <span class="ticker-change ${up?'up':'down'}">${up?'↑':'↓'}${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</span>
-    </span>`;
+    return `<span class="ticker-item"><span class="ticker-name">${c.symbol.toUpperCase()}</span><span class="ticker-price">$${c.current_price.toLocaleString()}</span><span class="ticker-change ${up?'up':'down'}">${up?'↑':'↓'}${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</span></span>`;
   }).join('');
   document.getElementById('tickerTrack').innerHTML=items+items;
 }
@@ -400,34 +502,153 @@ async function fetchNews(){
   }catch(e){el.innerHTML='<div class="empty-news">No analysis published yet.</div>'}
 }
 
-async function fetchFearGreed(){
-  try{
-    const data=await fetch('https://api.alternative.me/fng/?limit=1').then(r=>r.json());
-    const item=data.data[0];
-    const value=parseInt(item.value);
-    document.getElementById('fgValue').textContent=value;
-    document.getElementById('fgTitle').textContent=item.value_classification;
-    document.getElementById('fgSubtitle').textContent=`Last updated: ${new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`;
-    let color='#e05555';let range='extreme-fear';
-    if(value>=75){color='#4caf7d';range='extreme-greed';}
-    else if(value>=55){color='#7bc47f';range='greed';}
-    else if(value>=45){color='#c9a84c';range='neutral';}
-    else if(value>=25){color='#e07755';range='fear';}
-    const arc=document.getElementById('fgArc');
-    arc.style.stroke=color;
-    arc.style.strokeDashoffset=314-(value/100)*314;
-    document.getElementById('fgValue').style.color=color;
-    document.getElementById('fgTitle').style.color=color;
-    document.querySelectorAll('.fg-scale-item').forEach(el=>{el.classList.toggle('active',el.dataset.range===range)});
-  }catch(e){document.getElementById('fgTitle').textContent='Sentiment unavailable'}
+// ── INSIGHTS ──────────────────────────────────────────────
+function fgColor(v){
+  if(v>=75) return '#4caf7d';
+  if(v>=55) return '#7bc47f';
+  if(v>=45) return '#c9a84c';
+  if(v>=25) return '#e07755';
+  return '#e05555';
 }
 
+async function fetchFearGreed(){
+  try{
+    const data=await fetch('https://api.alternative.me/fng/?limit=10').then(r=>r.json());
+    const items=data.data;
+    const latest=items[0];
+    const value=parseInt(latest.value);
+    const color=fgColor(value);
+    document.getElementById('fgVal').textContent=value;
+    document.getElementById('fgVal').style.color=color;
+    document.getElementById('fgClass').textContent=latest.value_classification;
+    document.getElementById('fgClass').style.color=color;
+    document.getElementById('fgUpdated').textContent=`Last updated: ${new Date(latest.timestamp*1000).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}`;
+    const arc=document.getElementById('fgArc');
+    arc.style.stroke=color;
+    arc.style.strokeDashoffset=402-(value/100)*402;
+    const hist=document.getElementById('fgHistory');
+    hist.innerHTML=[...items].reverse().map(item=>{
+      const v=parseInt(item.value);
+      const c=fgColor(v);
+      const h=Math.max(8,(v/100)*48);
+      const d=new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+      return `<div class="fg-bar-item" style="background:${c};height:${h}px;opacity:0.7" data-tip="${d}: ${v}"></div>`;
+    }).join('');
+  }catch(e){document.getElementById('fgClass').textContent='Unavailable'}
+}
+
+async function fetchDominance(){
+  try{
+    const data=await fetch('https://api.coingecko.com/api/v3/global').then(r=>r.json());
+    const mcp=data.data.market_cap_percentage;
+    const btc=mcp.btc||0;
+    const eth=mcp.eth||0;
+    const other=100-btc-eth;
+    const circ=390;
+    document.getElementById('domBtc').style.strokeDashoffset=circ-(btc/100)*circ;
+    document.getElementById('domBtcVal').textContent=btc.toFixed(1)+'%';
+    const ethArc=document.getElementById('domEth');
+    ethArc.style.strokeDasharray=`${(eth/100)*circ} ${circ}`;
+    ethArc.style.strokeDashoffset=-(btc/100)*circ;
+    document.getElementById('domLegend').innerHTML=[
+      {name:'Bitcoin',sym:'BTC',val:btc,color:'#f7931a'},
+      {name:'Ethereum',sym:'ETH',val:eth,color:'#627eea'},
+      {name:'Others',sym:'ALT',val:other,color:'#3a3530'},
+    ].map(item=>`
+      <div>
+        <div class="dom-item">
+          <div class="dom-dot" style="background:${item.color}"></div>
+          <span class="dom-item-name">${item.name} (${item.sym})</span>
+          <span class="dom-item-val" style="color:${item.color}">${item.val.toFixed(1)}%</span>
+        </div>
+        <div class="dom-item-bar"><div class="dom-item-bar-fill" style="width:${item.val}%;background:${item.color}"></div></div>
+      </div>`).join('');
+  }catch(e){document.getElementById('domBtcVal').textContent='--'}
+}
+
+async function fetchMetrics(){
+  try{
+    const [global,btc]=await Promise.all([
+      fetch('https://api.coingecko.com/api/v3/global').then(r=>r.json()),
+      fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&sparkline=false').then(r=>r.json())
+    ]);
+    const g=global.data;
+    const b=btc[0];
+    const up=b.price_change_percentage_24h>=0;
+    const metrics=[
+      {label:'Total Market Cap',value:'$'+((g.total_market_cap.usd||0)/1e12).toFixed(2)+'T',sub:'All crypto combined',bar:Math.min(100,((g.total_market_cap.usd||0)/3e12)*100)},
+      {label:'24h Market Volume',value:'$'+((g.total_volume.usd||0)/1e9).toFixed(0)+'B',sub:'Global trading volume',bar:Math.min(100,((g.total_volume.usd||0)/500e9)*100)},
+      {label:'BTC 24h Change',value:(up?'+':'')+b.price_change_percentage_24h.toFixed(2)+'%',sub:'$'+b.current_price.toLocaleString(),bar:Math.abs(b.price_change_percentage_24h)*5,color:up?'#4caf7d':'#e05555'},
+      {label:'Active Cryptocurrencies',value:(g.active_cryptocurrencies||0).toLocaleString(),sub:'Listed on CoinGecko',bar:60},
+    ];
+    document.getElementById('metricsGrid').innerHTML=metrics.map(m=>`
+      <div class="sentiment-card">
+        <div class="sc-label">${m.label}</div>
+        <div class="sc-value" style="${m.color?'color:'+m.color:''}">${m.value}</div>
+        <div class="sc-sub">${m.sub}</div>
+        <div class="sc-bar"><div class="sc-bar-fill" style="width:${m.bar}%;background:${m.color||'var(--gold)'}"></div></div>
+      </div>`).join('');
+  }catch(e){document.getElementById('metricsGrid').innerHTML='<div class="loading">Data unavailable</div>'}
+}
+
+function getWeekKey(dateStr){
+  const d=new Date(dateStr);
+  if(isNaN(d)) return 'Unknown Week';
+  const day=d.getDay();
+  const monday=new Date(d);
+  monday.setDate(d.getDate()-(day===0?6:day-1));
+  const sunday=new Date(monday);
+  sunday.setDate(monday.getDate()+6);
+  const fmt=(dt)=>dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  return `${fmt(monday)} — ${fmt(sunday)}`;
+}
+
+function toggleWeek(el){
+  const body=el.nextElementSibling;
+  const icon=el.querySelector('.week-toggle');
+  body.classList.toggle('open');
+  icon.style.transform=body.classList.contains('open')?'rotate(180deg)':'';
+}
+
+async function fetchWeeklySummary(){
+  const el=document.getElementById('weeklyList');
+  try{
+    const res=await fetch(`${BASE}/news.json?t=${Date.now()}`);
+    if(!res.ok) throw new Error();
+    const items=await res.json();
+    if(!items.length){el.innerHTML='<div class="empty-week">No posts yet — weekly summaries will appear automatically.</div>';return}
+    const weeks={};
+    items.forEach(item=>{
+      const key=getWeekKey(item.date||'');
+      if(!weeks[key]) weeks[key]=[];
+      weeks[key].push(item);
+    });
+    el.innerHTML=Object.entries(weeks).map(([week,posts],i)=>`
+      <div class="week-item">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div>
+            <div class="week-label">Week of ${week}</div>
+            <div class="week-count">${posts.length} post${posts.length>1?'s':''} published</div>
+          </div>
+          <div class="week-toggle">▼</div>
+        </div>
+        <div class="week-body ${i===0?'open':''}">
+          ${posts.map(p=>`
+            <div class="week-post">
+              <div class="week-post-date">${p.date||''}</div>
+              <div class="week-post-title">${p.title||''}</div>
+              ${p.body?`<div class="week-post-excerpt">${p.body.split('\\n')[0].substring(0,200)}${p.body.split('\\n')[0].length>200?'...':''}</div>`:''}
+            </div>`).join('')}
+        </div>
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty-week">No posts yet.</div>'}
+}
+
+// ── INIT ──────────────────────────────────────────────────
 fetchCharts();
 fetchNews();
 fetchMarket();
-fetchFearGreed();
 setInterval(fetchMarket,60000);
-setInterval(fetchFearGreed,300000);
 </script>
 </body>
 </html>
