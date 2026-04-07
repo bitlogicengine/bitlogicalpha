@@ -535,7 +535,7 @@ async function fetchNews(){
       <div class="news-item">
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
         <div class="news-title">${n.title||''}</div>
-        ${n.body?`<div class="news-body">${n.body.split('\\n').filter(p=>p.trim()).map(p=>{
+        ${n.body?`<div class="news-body">${n.body.split('\n').filter(p=>p.trim()).map(p=>{
           const t=p.trim();
           if(/^[1-9]\d*\./.test(t)) return `<p class="news-list-item">${t}</p>`;
           if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
@@ -730,8 +730,8 @@ async function fetchWeeklySummary(){
               <div class="week-post-arrow">→</div>
             </div>
             <div class="week-post-expand">
-              ${p.body?`<div class="week-post-excerpt">${p.body.split('\\n').filter(x=>x.trim()).map(x=>{
-                if(/^\d+\./.test(x.trim())) return `<p class="news-list-item">${x}</p>`;
+              ${p.body?`<div class="week-post-excerpt">${p.body.split('\n').filter(x=>x.trim()).map(x=>{
+                if(/^[1-9]\d*\./.test(x.trim())) return `<p class="news-list-item">${x}</p>`;
                 return `<p>${x}</p>`;
               }).join('')}</div>`:''}
             </div>`).join('')}
