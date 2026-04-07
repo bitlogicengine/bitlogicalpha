@@ -412,6 +412,7 @@ const BASE = 'https://bitlogicalpha.com';
 let viewCoin = 'BTC';
 let allCharts = { BTC: [], ETH: [] };
 let insightsLoaded = false;
+let cachedMarketData = [];
 
 document.getElementById('navDate').textContent = new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase();
 
@@ -478,6 +479,7 @@ function renderScreenshots(){
 async function fetchMarket(){
   try{
     const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false').then(r=>r.json());
+    cachedMarketData = data;
     document.getElementById('marketGrid').innerHTML=data.map((c,i)=>{
       const up=c.price_change_percentage_24h>=0;
       return `<div class="coin-card">
@@ -584,12 +586,16 @@ async function fetchDominance(){
 
 async function fetchMetrics(){
   try{
+    // Reuse cached global data if available, otherwise fetch with delay
+    await new Promise(r=>setTimeout(r,1000));
     const [global,btc]=await Promise.all([
       fetch('https://api.coingecko.com/api/v3/global').then(r=>r.json()),
-      fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&sparkline=false').then(r=>r.json())
+      Promise.resolve({data:cachedMarketData||[]}).then(d=>d.data.length?d.data:fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&sparkline=false').then(r=>r.json()))
     ]);
     const g=global.data;
-    const b=btc[0];
+    const btcData=Array.isArray(btc)?btc:btc.data||[];
+    const b=btcData.find?btcData.find(c=>c.id==='bitcoin')||btcData[0]:btcData[0];
+    if(!b) throw new Error('No BTC data');
     const up=b.price_change_percentage_24h>=0;
     const metrics=[
       {label:'Total Market Cap',value:'$'+((g.total_market_cap.usd||0)/1e12).toFixed(2)+'T',sub:'All crypto combined',bar:Math.min(100,((g.total_market_cap.usd||0)/3e12)*100)},
@@ -604,7 +610,31 @@ async function fetchMetrics(){
         <div class="sc-sub">${m.sub}</div>
         <div class="sc-bar"><div class="sc-bar-fill" style="width:${m.bar}%;background:${m.color||'var(--gold)'}"></div></div>
       </div>`).join('');
-  }catch(e){document.getElementById('metricsGrid').innerHTML='<div class="loading">Data unavailable</div>'}
+  }catch(e){
+    // Retry once after 3 seconds
+    setTimeout(async()=>{
+      try{
+        const [global,btc]=await Promise.all([
+          fetch('https://api.coingecko.com/api/v3/global').then(r=>r.json()),
+          fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&sparkline=false').then(r=>r.json())
+        ]);
+        const g=global.data; const b=btc[0]; const up=b.price_change_percentage_24h>=0;
+        const metrics=[
+          {label:'Total Market Cap',value:'$'+((g.total_market_cap.usd||0)/1e12).toFixed(2)+'T',sub:'All crypto combined',bar:Math.min(100,((g.total_market_cap.usd||0)/3e12)*100)},
+          {label:'24h Market Volume',value:'$'+((g.total_volume.usd||0)/1e9).toFixed(0)+'B',sub:'Global trading volume',bar:Math.min(100,((g.total_volume.usd||0)/500e9)*100)},
+          {label:'BTC 24h Change',value:(up?'+':'')+b.price_change_percentage_24h.toFixed(2)+'%',sub:'$'+b.current_price.toLocaleString(),bar:Math.abs(b.price_change_percentage_24h)*5,color:up?'#4caf7d':'#e05555'},
+          {label:'Active Cryptocurrencies',value:(g.active_cryptocurrencies||0).toLocaleString(),sub:'Listed on CoinGecko',bar:60},
+        ];
+        document.getElementById('metricsGrid').innerHTML=metrics.map(m=>`
+          <div class="sentiment-card">
+            <div class="sc-label">${m.label}</div>
+            <div class="sc-value" style="${m.color?'color:'+m.color:''}">${m.value}</div>
+            <div class="sc-sub">${m.sub}</div>
+            <div class="sc-bar"><div class="sc-bar-fill" style="width:${m.bar}%;background:${m.color||'var(--gold)'}"></div></div>
+          </div>`).join('');
+      }catch(e2){document.getElementById('metricsGrid').innerHTML='<div class="loading">Data unavailable — try refreshing</div>'}
+    },3000);
+  }
 }
 
 function getWeekKey(dateStr){
