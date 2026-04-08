@@ -563,8 +563,12 @@ async function fetchTrend(){
       </div>`;
     }
 
-    // Fetch live prices
-    const prices = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum&sparkline=false').then(r=>r.json());
+    // Reuse cached market data if available, otherwise wait and fetch
+    let prices = cachedMarketData;
+    if(!prices || !prices.length){
+      await new Promise(r=>setTimeout(r,2000));
+      prices = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum&sparkline=false').then(r=>r.json());
+    }
     const btcData = prices.find(p=>p.id==='bitcoin');
     const ethData = prices.find(p=>p.id==='ethereum');
 
@@ -573,15 +577,15 @@ async function fetchTrend(){
       buildCard('ETH', eth, ethData?.current_price.toLocaleString()||'--', ethData?.price_change_percentage_24h||0);
 
   }catch(e){
-    el.innerHTML='<div class="loading">Trend data unavailable</div>';
+    // Retry once after 3 seconds
+    setTimeout(()=>fetchTrend(), 3000);
   }
 }
 
 async function fetchMarket(){
   try{
     const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false').then(r=>r.json());
-    cachedMarketData = data;
-    document.getElementById('marketGrid').innerHTML=data.map((c,i)=>{
+    cachedMarketData = data;    document.getElementById('marketGrid').innerHTML=data.map((c,i)=>{
       const up=c.price_change_percentage_24h>=0;
       return `<div class="coin-card">
         <div class="coin-rank">0${i+1}</div>
@@ -822,9 +826,8 @@ async function fetchWeeklySummary(){
 }
 
 // ── INIT ──────────────────────────────────────────────────
-fetchTrend();
 fetchNews();
-fetchMarket();
+fetchMarket().then(()=>fetchTrend());
 setInterval(fetchMarket,60000);
 setInterval(fetchTrend,300000);
 </script>
