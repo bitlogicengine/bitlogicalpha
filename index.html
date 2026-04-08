@@ -262,6 +262,53 @@ header{
 .week-post-excerpt p:last-child{margin-bottom:0}
 .empty-week{padding:60px 40px;text-align:center;border:1px solid var(--text-dim);color:var(--text-muted);font-size:12px;letter-spacing:2px}
 
+/* MARKET STATUS */
+.market-status-row{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.market-status-badge{
+  display:none;align-items:center;gap:10px;
+  padding:10px 18px;border:1px solid;
+  transition:all 0.3s;
+}
+.ms-icon{font-size:18px;font-weight:700;line-height:1}
+.ms-body{display:flex;flex-direction:column;gap:2px}
+.ms-label{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;letter-spacing:2px;line-height:1}
+.ms-coin{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.ms-pulse{width:6px;height:6px;border-radius:50%;animation:mspulse 2s ease infinite;flex-shrink:0}
+@keyframes mspulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* TREND WIDGET */
+.trend-widget{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+@media(max-width:600px){.trend-widget{grid-template-columns:1fr}}
+.trend-card{
+  background:var(--surface);
+  padding:32px 28px;
+  border-left:3px solid transparent;
+  transition:border-color 0.3s,background 0.3s;
+  position:relative;overflow:hidden;
+}
+.trend-card::before{
+  content:'';position:absolute;inset:0;
+  opacity:0.03;pointer-events:none;
+  transition:opacity 0.3s;
+}
+.trend-card:hover::before{opacity:0.06}
+.trend-card.positive{border-left-color:#4caf7d}
+.trend-card.positive::before{background:#4caf7d}
+.trend-card.negative{border-left-color:#e05555}
+.trend-card.negative::before{background:#e05555}
+.trend-card.neutral{border-left-color:#c9a84c}
+.trend-card.neutral::before{background:#c9a84c}
+.trend-coin-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.trend-live{font-size:9px;letter-spacing:2px;display:flex;align-items:center;gap:5px}
+.trend-live-dot{width:5px;height:5px;border-radius:50%;animation:mspulse 2s ease infinite}
+.trend-price{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-0.5px}
+.trend-change{font-size:11px;letter-spacing:1px;margin-bottom:20px}
+.trend-status-wrap{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.trend-status-icon{font-size:32px;line-height:1;font-weight:700}
+.trend-status-text{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;letter-spacing:2px}
+.trend-note{font-size:11px;color:var(--text-muted);letter-spacing:0.5px;line-height:1.6;padding-top:12px;border-top:1px solid var(--text-dim)}
+.trend-updated{font-size:9px;color:var(--text-dim);letter-spacing:2px;margin-top:12px;text-transform:uppercase}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -325,11 +372,9 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-label">BTC & ETH Trend Expectation</div>
         <div class="section-meta">Updated Daily</div>
       </div>
-      <div class="chart-tabs">
-        <button class="chart-tab active" id="viewTabBTC" onclick="switchView('BTC')">BTC / USD</button>
-        <button class="chart-tab" id="viewTabETH" onclick="switchView('ETH')">ETH / USD</button>
+      <div id="trendWidget" class="trend-widget">
+        <div class="loading">Loading trend status...</div>
       </div>
-      <div id="screenshotsContainer"><div class="loading">Loading charts...</div></div>
     </div>
 
     <div class="section">
@@ -467,48 +512,69 @@ function switchTab(tab){
   }
 }
 
-// ── CHART VIEW ────────────────────────────────────────────
-function switchView(c){
-  viewCoin=c;
-  document.getElementById('viewTabBTC').classList.toggle('active',c==='BTC');
-  document.getElementById('viewTabETH').classList.toggle('active',c==='ETH');
-  renderScreenshots();
-}
-function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open')}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lightboxImg').src=''}
-
-async function fetchCharts(){
+// ── TREND WIDGET ──────────────────────────────────────────
+async function fetchTrend(){
+  const el = document.getElementById('trendWidget');
   try{
-    const [btcRes,ethRes]=await Promise.all([
+    const [btcRes, ethRes] = await Promise.all([
       fetch(`${BASE}/charts/BTC/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():''),
       fetch(`${BASE}/charts/ETH/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():'')
     ]);
-    allCharts.BTC=btcRes.split('\n').map(l=>l.trim()).filter(Boolean).map(f=>({src:`${BASE}/charts/BTC/${f}`,name:f}));
-    allCharts.ETH=ethRes.split('\n').map(l=>l.trim()).filter(Boolean).map(f=>({src:`${BASE}/charts/ETH/${f}`,name:f}));
-    renderScreenshots();
-  }catch(e){document.getElementById('screenshotsContainer').innerHTML='<div class="empty-state">Charts unavailable</div>'}
-}
 
-function renderScreenshots(){
-  const charts=allCharts[viewCoin];
-  const c=document.getElementById('screenshotsContainer');
-  if(!charts.length){c.innerHTML=`<div class="empty-state">No ${viewCoin} charts uploaded yet.</div>`;return}
-  c.innerHTML='<div class="screenshots-grid">'+charts.map(ch=>{
-    const m=ch.name.match(/(\d{4}-\d{2}-\d{2})/);
-    const d=m?new Date(m[1]).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):ch.name.replace(/\.[^.]+$/,'');
-    return `<div class="screenshot-card" onclick="openLightbox('${ch.src}')">
-      <div class="screenshot-img-wrap">
-        <img src="${ch.src}" alt="${viewCoin}"/>
-        <div class="screenshot-overlay">
-          <div class="screenshot-info-inner">
-            <div><div class="screenshot-coin">${viewCoin}</div><div class="screenshot-coin-sub">/ USD · Daily Chart</div></div>
-            <div class="screenshot-date">${d}</div>
-          </div>
+    function parseManifest(txt){
+      const lines = txt.split('\n').map(l=>l.trim()).filter(Boolean);
+      let status='neutral', note='', updated='';
+      lines.forEach(l=>{
+        if(l.toLowerCase().startsWith('status:')) status=l.split(':')[1].trim().toLowerCase();
+        else if(l.toLowerCase().startsWith('note:')) note=l.substring(l.indexOf(':')+1).trim();
+        else if(l.toLowerCase().startsWith('updated:')) updated=l.substring(l.indexOf(':')+1).trim();
+      });
+      return {status,note,updated};
+    }
+
+    const btc = parseManifest(btcRes);
+    const eth = parseManifest(ethRes);
+
+    const statusConfig = {
+      positive: {label:'Positive', icon:'↑', color:'#4caf7d', cls:'positive'},
+      negative: {label:'Negative', icon:'↓', color:'#e05555', cls:'negative'},
+      neutral:  {label:'Neutral',  icon:'→', color:'#c9a84c', cls:'neutral'},
+    };
+
+    function buildCard(coin, data, price, change){
+      const s = statusConfig[data.status] || statusConfig.neutral;
+      const up = change >= 0;
+      return `<div class="trend-card ${s.cls}">
+        <div class="trend-coin-label">
+          <span>${coin} / USD</span>
+          <span class="trend-live" style="color:${s.color}">
+            <span class="trend-live-dot" style="background:${s.color}"></span>
+            LIVE
+          </span>
         </div>
-        <div class="screenshot-zoom">⊕</div>
-      </div>
-    </div>`;
-  }).join('')+'</div>';
+        <div class="trend-price">$${price}</div>
+        <div class="trend-change ${up?'up':'down'}">${up?'↑':'↓'} ${Math.abs(change).toFixed(2)}% today</div>
+        <div class="trend-status-wrap">
+          <div class="trend-status-icon" style="color:${s.color}">${s.icon}</div>
+          <div class="trend-status-text" style="color:${s.color}">${s.label}</div>
+        </div>
+        ${data.note?`<div class="trend-note">${data.note}</div>`:''}
+        ${data.updated?`<div class="trend-updated">Updated: ${data.updated}</div>`:''}
+      </div>`;
+    }
+
+    // Fetch live prices
+    const prices = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum&sparkline=false').then(r=>r.json());
+    const btcData = prices.find(p=>p.id==='bitcoin');
+    const ethData = prices.find(p=>p.id==='ethereum');
+
+    el.innerHTML =
+      buildCard('BTC', btc, btcData?.current_price.toLocaleString()||'--', btcData?.price_change_percentage_24h||0) +
+      buildCard('ETH', eth, ethData?.current_price.toLocaleString()||'--', ethData?.price_change_percentage_24h||0);
+
+  }catch(e){
+    el.innerHTML='<div class="loading">Trend data unavailable</div>';
+  }
 }
 
 async function fetchMarket(){
@@ -756,10 +822,11 @@ async function fetchWeeklySummary(){
 }
 
 // ── INIT ──────────────────────────────────────────────────
-fetchCharts();
+fetchTrend();
 fetchNews();
 fetchMarket();
 setInterval(fetchMarket,60000);
+setInterval(fetchTrend,300000);
 </script>
 </body>
 </html>
