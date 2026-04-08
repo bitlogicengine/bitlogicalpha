@@ -1,1 +1,3 @@
-2026-04-08.png
+status: Neutral
+note: ETH consolidating.
+updated: 08 Apr 2026
