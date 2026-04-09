@@ -595,20 +595,15 @@ async function fetchTrend(){
     let prices = cachedMarketData;
     if(!prices || !prices.length){
       await new Promise(r=>setTimeout(r,2000));
-      prices = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum&sparkline=false').then(r=>r.json());
+      prices = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,pax-gold&sparkline=false').then(r=>r.json());
     }
     const btcData  = prices.find(p=>p.id==='bitcoin');
     const ethData  = prices.find(p=>p.id==='ethereum');
+    const goldData = prices.find(p=>p.id==='pax-gold');
 
-    // Fetch gold price from metals API
-    let goldPrice = '--', goldChange = 0;
-    try{
-      const goldData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=pax-gold&sparkline=false').then(r=>r.json());
-      if(goldData && goldData[0]){
-        goldPrice = goldData[0].current_price.toLocaleString();
-        goldChange = goldData[0].price_change_percentage_24h || 0;
-      }
-    }catch(e){}
+    // Gold price from same cached call
+    const goldPrice  = goldData?.current_price.toLocaleString() || '--';
+    const goldChange = goldData?.price_change_percentage_24h || 0;
 
     el.innerHTML =
       buildCard('BTC', 'BTC / USD', btc,  btcData?.current_price.toLocaleString()||'--', btcData?.price_change_percentage_24h||0, '$') +
@@ -622,7 +617,7 @@ async function fetchTrend(){
 
 async function fetchMarket(){
   try{
-    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false').then(r=>r.json());
+    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&ids=bitcoin,ethereum,tether,binancecoin,ripple,pax-gold&sparkline=false').then(r=>r.json());
     cachedMarketData = data;    document.getElementById('marketGrid').innerHTML=data.map((c,i)=>{
       const up=c.price_change_percentage_24h>=0;
       return `<div class="coin-card">
