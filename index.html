@@ -532,9 +532,9 @@ function switchTab(tab){
   if(tab==='insights' && !insightsLoaded){
     insightsLoaded=true;
     fetchFearGreed();
-    fetchDominance();
-    fetchMetrics();
-    fetchWeeklySummary();
+    setTimeout(()=>fetchDominance(), 1000);
+    setTimeout(()=>fetchMetrics(), 2500);
+    setTimeout(()=>fetchWeeklySummary(), 500);
   }
 }
 
