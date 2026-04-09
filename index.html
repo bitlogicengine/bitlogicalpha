@@ -277,8 +277,8 @@ header{
 @keyframes mspulse{0%,100%{opacity:1}50%{opacity:0.3}}
 
 /* TREND WIDGET */
-.trend-widget{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-@media(max-width:600px){.trend-widget{grid-template-columns:1fr}}
+.trend-widget{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
+@media(max-width:800px){.trend-widget{grid-template-columns:1fr}}
 .trend-card{
   background:var(--surface);
   padding:32px 28px;
@@ -346,7 +346,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
       <div>
         <div class="brand-name">BITLOGIC <span style="color:var(--gold);font-size:16px;letter-spacing:3px">ALPHA</span></div>
-        <div class="brand-tag">Crypto Market Intelligence</div>
+        <div class="brand-tag">Crypto & Gold Market Intelligence</div>
       </div>
     </div>
     <div class="nav-date" id="navDate"></div>
@@ -369,7 +369,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
     <div class="section">
       <div class="section-header">
-        <div class="section-label">BTC & ETH Trend Expectation</div>
+        <div class="section-label">Daily Market State</div>
         <div class="section-meta">Updated Daily</div>
       </div>
       <div id="trendWidget" class="trend-widget">
@@ -516,9 +516,10 @@ function switchTab(tab){
 async function fetchTrend(){
   const el = document.getElementById('trendWidget');
   try{
-    const [btcRes, ethRes] = await Promise.all([
+    const [btcRes, ethRes, goldRes] = await Promise.all([
       fetch(`${BASE}/charts/BTC/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():''),
-      fetch(`${BASE}/charts/ETH/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():'')
+      fetch(`${BASE}/charts/ETH/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():''),
+      fetch(`${BASE}/charts/GOLD/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():'')
     ]);
 
     function parseManifest(txt){
@@ -532,8 +533,9 @@ async function fetchTrend(){
       return {status,note,updated};
     }
 
-    const btc = parseManifest(btcRes);
-    const eth = parseManifest(ethRes);
+    const btc  = parseManifest(btcRes);
+    const eth  = parseManifest(ethRes);
+    const gold = parseManifest(goldRes);
 
     const statusConfig = {
       positive: {label:'Positive', icon:'↑', color:'#4caf7d', cls:'positive'},
@@ -541,18 +543,18 @@ async function fetchTrend(){
       neutral:  {label:'Neutral',  icon:'→', color:'#c9a84c', cls:'neutral'},
     };
 
-    function buildCard(coin, data, price, change){
+    function buildCard(coin, label, data, price, change, symbol){
       const s = statusConfig[data.status] || statusConfig.neutral;
       const up = change >= 0;
       return `<div class="trend-card ${s.cls}">
         <div class="trend-coin-label">
-          <span>${coin} / USD</span>
+          <span>${label}</span>
           <span class="trend-live" style="color:${s.color}">
             <span class="trend-live-dot" style="background:${s.color}"></span>
             LIVE
           </span>
         </div>
-        <div class="trend-price">$${price}</div>
+        <div class="trend-price">${symbol}${price}</div>
         <div class="trend-change ${up?'up':'down'}">${up?'↑':'↓'} ${Math.abs(change).toFixed(2)}% today</div>
         <div class="trend-status-wrap">
           <div class="trend-status-icon" style="color:${s.color}">${s.icon}</div>
@@ -569,15 +571,25 @@ async function fetchTrend(){
       await new Promise(r=>setTimeout(r,2000));
       prices = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum&sparkline=false').then(r=>r.json());
     }
-    const btcData = prices.find(p=>p.id==='bitcoin');
-    const ethData = prices.find(p=>p.id==='ethereum');
+    const btcData  = prices.find(p=>p.id==='bitcoin');
+    const ethData  = prices.find(p=>p.id==='ethereum');
+
+    // Fetch gold price from metals API
+    let goldPrice = '--', goldChange = 0;
+    try{
+      const goldRes2 = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=tether-gold&sparkline=false').then(r=>r.json());
+      if(goldRes2 && goldRes2[0]){
+        goldPrice = goldRes2[0].current_price.toLocaleString();
+        goldChange = goldRes2[0].price_change_percentage_24h || 0;
+      }
+    }catch(e){}
 
     el.innerHTML =
-      buildCard('BTC', btc, btcData?.current_price.toLocaleString()||'--', btcData?.price_change_percentage_24h||0) +
-      buildCard('ETH', eth, ethData?.current_price.toLocaleString()||'--', ethData?.price_change_percentage_24h||0);
+      buildCard('BTC', 'BTC / USD', btc,  btcData?.current_price.toLocaleString()||'--', btcData?.price_change_percentage_24h||0, '$') +
+      buildCard('ETH', 'ETH / USD', eth,  ethData?.current_price.toLocaleString()||'--', ethData?.price_change_percentage_24h||0, '$') +
+      buildCard('GOLD','GOLD / USD', gold, goldPrice, goldChange, '$');
 
   }catch(e){
-    // Retry once after 3 seconds
     setTimeout(()=>fetchTrend(), 3000);
   }
 }
