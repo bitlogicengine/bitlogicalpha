@@ -617,8 +617,10 @@ async function fetchTrend(){
 
 async function fetchMarket(){
   try{
-    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&ids=bitcoin,ethereum,tether,binancecoin,ripple,pax-gold&sparkline=false').then(r=>r.json());
-    cachedMarketData = data;    document.getElementById('marketGrid').innerHTML=data.map((c,i)=>{
+    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,tether,binancecoin,ripple,pax-gold&sparkline=false').then(r=>r.json());
+    cachedMarketData = data;
+    const top5 = data.filter(c=>c.id!=='pax-gold').slice(0,5);
+    document.getElementById('marketGrid').innerHTML=top5.map((c,i)=>{
       const up=c.price_change_percentage_24h>=0;
       return `<div class="coin-card">
         <div class="coin-rank">0${i+1}</div>
@@ -629,7 +631,7 @@ async function fetchMarket(){
         <div class="coin-cap">$${(c.market_cap/1e9).toFixed(1)}B cap</div>
       </div>`;
     }).join('');
-    updateTicker(data);
+    updateTicker(top5);
   }catch(e){document.getElementById('marketGrid').innerHTML='<div class="loading" style="grid-column:1/-1">Market data unavailable</div>'}
 }
 
