@@ -577,10 +577,10 @@ async function fetchTrend(){
     // Fetch gold price from metals API
     let goldPrice = '--', goldChange = 0;
     try{
-      const goldRes2 = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=tether-gold&sparkline=false').then(r=>r.json());
-      if(goldRes2 && goldRes2[0]){
-        goldPrice = goldRes2[0].current_price.toLocaleString();
-        goldChange = goldRes2[0].price_change_percentage_24h || 0;
+      const goldData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=pax-gold&sparkline=false').then(r=>r.json());
+      if(goldData && goldData[0]){
+        goldPrice = goldData[0].current_price.toLocaleString();
+        goldChange = goldData[0].price_change_percentage_24h || 0;
       }
     }catch(e){}
 
