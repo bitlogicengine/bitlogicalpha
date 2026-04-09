@@ -408,6 +408,45 @@ header{
 .about-x-cta:hover{background:var(--gold-dim);border-color:var(--gold)}
 .about-x-cta svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 
+/* GOLD COMPARISON */
+.gold-comparison{
+  background:var(--surface2);
+  padding:28px 32px;
+  margin-top:2px;
+  border-left:2px solid #c9a84c;
+}
+.gold-comp-header{margin-bottom:24px}
+.gold-comp-title{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;
+  color:var(--text);display:block;margin-bottom:6px;
+}
+.gold-comp-sub{font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+.gold-comp-bars{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.gold-comp-row{display:flex;align-items:center;gap:16px}
+.gold-comp-label{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;color:var(--text-muted);letter-spacing:1px;
+  width:60px;flex-shrink:0;
+}
+.gold-comp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.gold-comp-bar-wrap{
+  flex:1;height:8px;background:var(--surface);
+  overflow:hidden;
+}
+.gold-comp-bar-fill{height:100%;transition:width 1.2s ease;border-radius:1px}
+.gold-comp-val{
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:700;
+  color:var(--text);width:60px;text-align:right;flex-shrink:0;
+}
+.gold-comp-note{
+  font-size:11px;color:var(--text-muted);
+  letter-spacing:0.5px;line-height:1.7;
+  padding-top:16px;border-top:1px solid var(--text-dim);
+}
+.gold-comp-note strong{color:var(--gold)}
+
 .dom-tooltip-wrap{position:relative;display:inline-flex;align-items:center;gap:6px}
 .dom-tooltip-icon{
   width:14px;height:14px;border-radius:50%;
@@ -583,6 +622,35 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <div class="dom-title">Global Market Share</div>
           <div class="dom-legend" id="domLegend"><div class="loading" style="padding:0">Loading...</div></div>
         </div>
+      </div>
+      <div class="gold-comparison" id="goldComparison" style="display:none">
+        <div class="gold-comp-header">
+          <span class="gold-comp-title">Gold vs Crypto — Market Cap Comparison</span>
+          <span class="gold-comp-sub">How much room does crypto still have to grow?</span>
+        </div>
+        <div class="gold-comp-bars">
+          <div class="gold-comp-row">
+            <div class="gold-comp-label">
+              <span class="gold-comp-dot" style="background:#c9a84c"></span>
+              <span>Gold</span>
+            </div>
+            <div class="gold-comp-bar-wrap">
+              <div class="gold-comp-bar-fill" id="goldBar" style="background:#c9a84c;width:0%"></div>
+            </div>
+            <span class="gold-comp-val" id="goldMcap">--</span>
+          </div>
+          <div class="gold-comp-row">
+            <div class="gold-comp-label">
+              <span class="gold-comp-dot" style="background:#f7931a"></span>
+              <span>Crypto</span>
+            </div>
+            <div class="gold-comp-bar-wrap">
+              <div class="gold-comp-bar-fill" id="cryptoBar" style="background:#f7931a;width:0%"></div>
+            </div>
+            <span class="gold-comp-val" id="cryptoMcap">--</span>
+          </div>
+        </div>
+        <div class="gold-comp-note" id="goldCompNote"></div>
       </div>
     </div>
 
@@ -935,6 +1003,23 @@ async function fetchDominance(){
         </div>
         <div class="dom-item-bar"><div class="dom-item-bar-fill" style="width:${item.val}%;background:${item.color}"></div></div>
       </div>`).join('');
+
+    // Gold vs Crypto comparison
+    // Gold world market cap is approximately $21 trillion
+    const GOLD_MCAP_T = 21;
+    const cryptoMcapT = (data.data.total_market_cap.usd||0) / 1e12;
+    const total = GOLD_MCAP_T + cryptoMcapT;
+    const goldPct = (GOLD_MCAP_T / total) * 100;
+    const cryptoPct = (cryptoMcapT / total) * 100;
+    const ratio = (GOLD_MCAP_T / cryptoMcapT).toFixed(1);
+
+    document.getElementById('goldBar').style.width = goldPct + '%';
+    document.getElementById('cryptoBar').style.width = cryptoPct + '%';
+    document.getElementById('goldMcap').textContent = '$' + GOLD_MCAP_T + 'T';
+    document.getElementById('cryptoMcap').textContent = '$' + cryptoMcapT.toFixed(1) + 'T';
+    document.getElementById('goldCompNote').innerHTML = `Gold's market cap is currently <strong>${ratio}x larger</strong> than the entire crypto market. If crypto were to reach just half of gold's market cap, it would represent a <strong>${((GOLD_MCAP_T/2)/cryptoMcapT).toFixed(1)}x increase</strong> from current levels.`;
+    document.getElementById('goldComparison').style.display = 'block';
+
   }catch(e){document.getElementById('domBtcVal').textContent='--'}
 }
 
