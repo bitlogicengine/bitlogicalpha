@@ -309,6 +309,25 @@ header{
 .trend-note{font-size:11px;color:var(--text-muted);letter-spacing:0.5px;line-height:1.6;padding-top:12px;border-top:1px solid var(--text-dim)}
 .trend-updated{font-size:9px;color:var(--text-dim);letter-spacing:2px;margin-top:12px;text-transform:uppercase}
 
+.fg-comment-wrap{
+  background:var(--surface2);
+  border-left:2px solid var(--gold);
+  padding:20px 24px;
+  margin-top:2px;
+}
+.fg-comment-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:12px;
+}
+.fg-comment-label{
+  font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;
+}
+.fg-comment-date{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+.fg-comment-text{
+  font-size:13px;color:var(--text-muted);line-height:1.8;letter-spacing:0.3px;
+  font-family:'DM Mono',monospace;
+}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -426,6 +445,13 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
             <span>Extreme Fear</span><span>Fear</span><span>Neutral</span><span>Greed</span><span>Extreme Greed</span>
           </div>
         </div>
+      </div>
+      <div class="fg-comment-wrap" id="fgCommentWrap" style="display:none">
+        <div class="fg-comment-header">
+          <span class="fg-comment-label">BitLogic Analysis</span>
+          <span class="fg-comment-date" id="fgCommentDate"></span>
+        </div>
+        <div class="fg-comment-text" id="fgCommentText"></div>
       </div>
     </div>
 
@@ -675,6 +701,24 @@ async function fetchFearGreed(){
       const d=new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
       return `<div class="fg-bar-item" style="background:${c};height:${h}px;opacity:0.7" data-tip="${d}: ${v}"></div>`;
     }).join('');
+
+    // Load analyst comment
+    try{
+      const commentRes = await fetch(`${BASE}/charts/FG/manifest.txt?t=${Date.now()}`);
+      if(commentRes.ok){
+        const txt = await commentRes.text();
+        let comment='', date='';
+        txt.split('\n').forEach(l=>{
+          if(l.toLowerCase().startsWith('comment:')) comment=l.substring(l.indexOf(':')+1).trim();
+          else if(l.toLowerCase().startsWith('date:')) date=l.substring(l.indexOf(':')+1).trim();
+        });
+        if(comment){
+          document.getElementById('fgCommentText').textContent=comment;
+          document.getElementById('fgCommentDate').textContent=date;
+          document.getElementById('fgCommentWrap').style.display='block';
+        }
+      }
+    }catch(e){}
   }catch(e){document.getElementById('fgClass').textContent='Unavailable'}
 }
 
