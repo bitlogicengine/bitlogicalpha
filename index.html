@@ -328,6 +328,86 @@ header{
   font-family:'DM Mono',monospace;
 }
 
+/* ABOUT */
+.about-hero{
+  display:flex;align-items:center;gap:32px;
+  background:var(--surface);padding:40px 36px;
+  border-left:2px solid var(--gold);
+  flex-wrap:wrap;
+}
+.about-logo{
+  width:80px;height:80px;border-radius:50%;
+  border:1.5px solid var(--gold);
+  box-shadow:0 0 20px rgba(201,168,76,0.4),0 0 40px rgba(201,168,76,0.15);
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 40% 40%,#1a1400,#080808);
+  flex-shrink:0;
+}
+.about-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;
+  color:var(--gold);margin-bottom:12px;letter-spacing:0.5px;
+}
+.about-subtitle{
+  font-size:13px;color:var(--text-muted);line-height:1.8;
+  max-width:680px;letter-spacing:0.3px;
+}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr}}
+.about-card{
+  background:var(--surface);padding:28px 24px;
+  border-top:2px solid var(--text-dim);
+  transition:border-color 0.2s,background 0.2s;
+}
+.about-card:hover{border-top-color:var(--gold);background:var(--surface2)}
+.about-card-icon{font-size:24px;margin-bottom:16px}
+.about-card-title{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;
+  color:var(--text);margin-bottom:12px;letter-spacing:0.3px;
+}
+.about-card-text{font-size:12px;color:var(--text-muted);line-height:1.8;letter-spacing:0.3px}
+.about-methodology{
+  background:var(--surface);padding:36px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.about-method-text{
+  font-size:13px;color:var(--text-muted);line-height:1.9;
+  letter-spacing:0.3px;max-width:800px;
+}
+.about-positive{color:#4caf7d;font-weight:500}
+.about-neutral{color:#c9a84c;font-weight:500}
+.about-negative{color:#e05555;font-weight:500}
+.about-why-gold{
+  border-top:1px solid var(--text-dim);
+  padding-top:20px;margin-top:4px;
+}
+.about-why-title{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;
+  color:var(--text);margin-bottom:12px;
+}
+.about-audience{
+  background:var(--surface);padding:36px;
+  border-left:2px solid var(--text-dim);
+  transition:border-color 0.2s;
+}
+.about-audience:hover{border-left-color:var(--gold)}
+.about-audience-text{
+  font-size:13px;color:var(--text-muted);line-height:1.9;
+  letter-spacing:0.3px;max-width:800px;margin-bottom:28px;
+}
+.about-x-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 24px;
+  border:1px solid var(--gold-border);
+  color:var(--gold);font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;
+  transition:background 0.2s,border-color 0.2s;
+}
+.about-x-cta:hover{background:var(--gold-dim);border-color:var(--gold)}
+.about-x-cta svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -375,6 +455,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <div class="nav-tabs">
     <button class="nav-tab active" id="tab-home" onclick="switchTab('home')">Home</button>
     <button class="nav-tab" id="tab-insights" onclick="switchTab('insights')">Insights</button>
+    <button class="nav-tab" id="tab-about" onclick="switchTab('about')">About</button>
   </div>
 
   <!-- ══════════════ HOME VIEW ══════════════ -->
@@ -497,6 +578,84 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
       <div id="weeklyList" class="week-list">
         <div class="loading">Building summaries...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ ABOUT VIEW ══════════════ -->
+  <div class="view" id="view-about">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">About BitLogic Alpha</div>
+        <div class="section-meta">Who We Are</div>
+      </div>
+      <div class="about-hero">
+        <div class="about-logo">
+          <span style="font-size:32px;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:-2px;line-height:1">₿L</span>
+        </div>
+        <div class="about-hero-text">
+          <div class="about-title">Clarity in a noisy market</div>
+          <div class="about-subtitle">BitLogic Alpha is a daily market intelligence platform built to give anyone — regardless of experience — an immediate, clear understanding of what is happening in crypto and gold markets right now.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">What We Do</div>
+        <div class="section-meta">Our Mission</div>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-card-icon">📊</div>
+          <div class="about-card-title">Daily Market State</div>
+          <div class="about-card-text">Every day we publish the market state for BTC, ETH and Gold — Positive, Neutral or Negative. No complex charts to interpret. Just a clear signal backed by real analysis.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">📰</div>
+          <div class="about-card-title">Market News & Commentary</div>
+          <div class="about-card-text">We track the macro events, regulatory developments and geopolitical factors that move markets. Every article is written to explain not just what happened — but why it matters for your assets.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">📈</div>
+          <div class="about-card-title">Live Market Data</div>
+          <div class="about-card-text">Real-time prices, market dominance, Fear & Greed Index and market metrics — all in one place, updated continuously so you always have the full picture at a glance.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">How The Market State Works</div>
+        <div class="section-meta">Our Methodology</div>
+      </div>
+      <div class="about-methodology">
+        <div class="about-method-text">
+          The Daily Market State for each asset — BTC, ETH and Gold — is determined using multiple technical indicators working together on the daily timeframe. No single indicator drives the signal. Instead, we look for confluence: when multiple indicators align in the same direction, that forms the basis of the state.
+        </div>
+        <div class="about-method-text">
+          The result is a simple, actionable signal: <span class="about-positive">Positive</span>, <span class="about-neutral">Neutral</span> or <span class="about-negative">Negative</span>. Updated every day. Free for everyone.
+        </div>
+        <div class="about-why-gold">
+          <div class="about-why-title">Why Gold?</div>
+          <div class="about-method-text">Bitcoin and Gold are inversely correlated. In a risk-on environment — when confidence is high and appetite for growth assets is strong — Bitcoin tends to outperform. In a risk-off or safe-haven environment — when uncertainty rises — Gold is typically the stronger performer. Tracking both gives you a more complete picture of where the market is in the cycle and which asset is likely leading.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Who Is This For</div>
+        <div class="section-meta">Our Audience</div>
+      </div>
+      <div class="about-audience">
+        <div class="about-audience-text">BitLogic Alpha is built for everyone who wants useful, honest information about crypto and gold — whether you are just starting out or have been trading for years. We believe that good market intelligence should not require a finance degree to understand. Our goal is to cut through the noise and give you what actually matters, every single day.</div>
+        <a class="about-x-cta" href="https://x.com/QuantAlphaTrend" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Follow us on X @QuantAlphaTrend
+        </a>
       </div>
     </div>
 
