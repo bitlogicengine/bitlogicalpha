@@ -408,6 +408,31 @@ header{
 .about-x-cta:hover{background:var(--gold-dim);border-color:var(--gold)}
 .about-x-cta svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 
+.dom-tooltip-wrap{position:relative;display:inline-flex;align-items:center;gap:6px}
+.dom-tooltip-icon{
+  width:14px;height:14px;border-radius:50%;
+  border:1px solid var(--text-dim);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:8px;color:var(--text-dim);cursor:help;
+  flex-shrink:0;transition:border-color 0.2s,color 0.2s;
+}
+.dom-tooltip-icon:hover{border-color:var(--gold);color:var(--gold)}
+.dom-tooltip{
+  display:none;
+  position:absolute;
+  bottom:calc(100% + 8px);
+  left:50%;transform:translateX(-50%);
+  background:var(--surface2);
+  border:1px solid var(--gold-border);
+  padding:10px 14px;
+  font-size:10px;color:var(--text-muted);
+  letter-spacing:0.5px;line-height:1.6;
+  white-space:nowrap;z-index:100;
+  pointer-events:none;
+}
+.dom-tooltip-icon:hover + .dom-tooltip,
+.dom-tooltip-wrap:hover .dom-tooltip{display:block}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -892,14 +917,20 @@ async function fetchDominance(){
     ethArc.style.strokeDasharray=`${(eth/100)*circ} ${circ}`;
     ethArc.style.strokeDashoffset=-(btc/100)*circ;
     document.getElementById('domLegend').innerHTML=[
-      {name:'Bitcoin',sym:'BTC',val:btc,color:'#f7931a'},
-      {name:'Ethereum',sym:'ETH',val:eth,color:'#627eea'},
-      {name:'Others',sym:'ALT',val:other,color:'#3a3530'},
+      {name:'Bitcoin',sym:'BTC',val:btc,color:'#f7931a', tip:'BTC dominance shows Bitcoin\'s share of total crypto market cap. High dominance = investors prefer BTC over altcoins.'},
+      {name:'Ethereum',sym:'ETH',val:eth,color:'#627eea', tip:'ETH dominance reflects Ethereum\'s market share. Rising ETH dom often signals growing interest in DeFi and smart contracts.'},
+      {name:'Others',sym:'ALT',val:other,color:'#3a3530', tip:'Altcoin dominance is everything outside BTC and ETH. When this rises, capital is rotating into smaller coins — altcoin season.'},
     ].map(item=>`
       <div>
         <div class="dom-item">
           <div class="dom-dot" style="background:${item.color}"></div>
-          <span class="dom-item-name">${item.name} (${item.sym})</span>
+          <span class="dom-item-name">
+            <span class="dom-tooltip-wrap">
+              ${item.name} (${item.sym})
+              <span class="dom-tooltip-icon">?</span>
+              <span class="dom-tooltip">${item.tip}</span>
+            </span>
+          </span>
           <span class="dom-item-val" style="color:${item.color}">${item.val.toFixed(1)}%</span>
         </div>
         <div class="dom-item-bar"><div class="dom-item-bar-fill" style="width:${item.val}%;background:${item.color}"></div></div>
