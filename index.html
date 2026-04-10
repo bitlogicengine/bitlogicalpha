@@ -984,7 +984,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       Follow @QuantAlphaTrend
     </a>
-    <a class="footer-email" href="/cdn-cgi/l/email-protection#12707b667e7d757b713c777c757b7c7752757f737b7e3c717d7f"><span class="__cf_email__" data-cfemail="c8aaa1bca4a7afa1abe6ada6afa1a6ad88afa5a9a1a4e6aba7a5">[email&#160;protected]</span></a>
+    <a class="footer-email" id="footerEmail" href="#"></a>
     <div class="footer-right">© 2026 · bitlogicalpha.com · All rights reserved</div>
   </footer>
 
@@ -1465,3 +1465,18 @@ async function fetchPerformance(){
 
 // ── INIT ──────────────────────────────────────────────────
 fetchNews()
+// Stagger API calls
+setTimeout(()=>{
+  fetchMarket().then(()=>{
+    setTimeout(()=>fetchTrend(), 1000);
+  });
+}, 500);
+setInterval(fetchMarket,60000);
+setInterval(fetchTrend,300000);
+
+// Render email via JS
+const em = document.getElementById('footerEmail');
+if(em){ const e='bitlogic.engine'+'@'+'gmail.com'; em.href='mailto:'+e; em.textContent=e; }
+</script>
+</body>
+</html>
