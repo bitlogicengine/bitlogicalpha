@@ -180,8 +180,19 @@ header{
   font-size:10px;
   color:var(--gold);
 }
-.news-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;text-decoration:none;opacity:0.7;transition:opacity 0.2s}
-.news-link:hover{opacity:1}
+.news-footer{display:flex;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap;gap:12px}
+.news-share{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 14px;
+  border:1px solid var(--text-dim);
+  color:var(--text-muted);
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;background:transparent;
+  font-family:'DM Mono',monospace;
+  transition:border-color 0.2s,color 0.2s,background 0.2s;
+}
+.news-share:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.news-share svg{width:12px;height:12px;fill:currentColor;flex-shrink:0}
 .empty-news{padding:60px 40px;text-align:center;border:1px solid var(--text-dim);color:var(--text-muted);font-size:12px;letter-spacing:2px}
 
 /* ── INSIGHTS STYLES ── */
@@ -903,7 +914,10 @@ async function fetchNews(){
     const items=await res.json();
     if(!items.length){el.innerHTML='<div class="empty-news">No analysis published yet.</div>';return}
     const latest=[items[0]]; // Show only most recent on Home
-    el.innerHTML=latest.map(n=>`
+    el.innerHTML=latest.map(n=>{
+      const shareText = encodeURIComponent(`${n.title}\n\nRead the full analysis 👇\nhttps://bitlogicalpha.com\n\n#Bitcoin #Crypto #Gold @QuantAlphaTrend`);
+      const shareUrl = `https://x.com/intent/tweet?text=${shareText}`;
+      return `
       <div class="news-item">
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
         <div class="news-title">${n.title||''}</div>
@@ -913,8 +927,15 @@ async function fetchNews(){
           if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
           return `<p>${t}</p>`;
         }).join('')}</div>`:''}
-        ${n.url?`<a class="news-link" href="${n.url}" target="_blank" rel="noopener">Read source →</a>`:''}
-      </div>`).join('');
+        <div class="news-footer">
+          ${n.url?`<a class="news-link" href="${n.url}" target="_blank" rel="noopener">Read source →</a>`:'<span></span>'}
+          <a class="news-share" href="${shareUrl}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Share on X
+          </a>
+        </div>
+      </div>`;
+    }).join('');
   }catch(e){el.innerHTML='<div class="empty-news">No analysis published yet.</div>'}
 }
 
