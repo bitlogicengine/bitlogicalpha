@@ -494,6 +494,44 @@ header{
 .dom-tooltip-icon:hover + .dom-tooltip,
 .dom-tooltip-wrap:hover .dom-tooltip{display:block}
 
+/* ATH BANNER */
+.ath-banner{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);padding:16px 24px;
+  margin-bottom:2px;gap:24px;flex-wrap:wrap;
+  border-left:2px solid var(--gold);
+}
+.ath-left{flex:1;min-width:200px}
+.ath-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;display:block;margin-bottom:10px}
+.ath-bar-wrap{height:4px;background:var(--surface2);overflow:hidden}
+.ath-bar-fill{height:100%;background:var(--gold);transition:width 1s ease;border-radius:1px}
+.ath-right{text-align:right;flex-shrink:0}
+.ath-pct{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--red);display:block;line-height:1}
+.ath-sub{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;display:block}
+
+/* BTC VS GOLD PERFORMANCE */
+.perf-wrap{background:var(--surface);padding:28px 32px}
+.perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:20px}
+@media(max-width:600px){.perf-grid{grid-template-columns:1fr}}
+.perf-card{background:var(--surface2);padding:20px 24px}
+.perf-card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.perf-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.perf-name{font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+.perf-price{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:16px}
+.perf-rows{display:flex;flex-direction:column;gap:10px}
+.perf-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.perf-period{font-size:9px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;width:50px;flex-shrink:0}
+.perf-bar-wrap{flex:1;height:4px;background:var(--surface);overflow:hidden}
+.perf-bar-inner{height:100%;transition:width 1s ease;border-radius:1px}
+.perf-val{font-size:11px;font-weight:500;letter-spacing:1px;width:60px;text-align:right;flex-shrink:0}
+.perf-winner{
+  background:var(--surface2);padding:14px 20px;
+  border-top:1px solid var(--text-dim);
+  font-size:11px;color:var(--text-muted);letter-spacing:0.5px;
+  text-align:center;
+}
+.perf-winner strong{color:var(--gold)}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -568,6 +606,16 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-label">Market Overview</div>
         <div class="section-meta">Top 5 · Live</div>
       </div>
+      <div id="athBanner" class="ath-banner" style="display:none">
+        <div class="ath-left">
+          <span class="ath-label">BTC Distance from ATH</span>
+          <div class="ath-bar-wrap"><div class="ath-bar-fill" id="athBar"></div></div>
+        </div>
+        <div class="ath-right">
+          <span class="ath-pct" id="athPct">--</span>
+          <span class="ath-sub" id="athSub">below all-time high</span>
+        </div>
+      </div>
       <div id="marketGrid" class="market-grid">
         <div class="loading" style="grid-column:1/-1">Loading...</div>
       </div>
@@ -622,9 +670,22 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
+    <!-- BTC VS GOLD PERFORMANCE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">BTC vs Gold Performance</div>
+        <div class="section-meta">Live · CoinGecko</div>
+      </div>
+      <div class="perf-wrap" id="perfWrap">
+        <div class="loading">Loading performance data...</div>
+      </div>
+    </div>
+
     <div class="section">
       <div class="section-header">
         <div class="section-label">Market Dominance</div>
+        <div class="section-meta">Live · CoinGecko</div>
+      </div>
         <div class="section-meta">Live · CoinGecko</div>
       </div>
       <div class="dominance-wrap">
@@ -807,6 +868,7 @@ function switchTab(tab){
   if(tab==='insights' && !insightsLoaded){
     insightsLoaded=true;
     fetchFearGreed();
+    setTimeout(()=>fetchPerformance(), 800);
     setTimeout(()=>fetchDominance(), 1500);
     setTimeout(()=>fetchMetrics(), 2500);
     setTimeout(()=>fetchWeeklySummary(), 500);
@@ -892,10 +954,22 @@ async function fetchTrend(){
 
 async function fetchMarket(){
   try{
-    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,tether,binancecoin,ripple,pax-gold&sparkline=false').then(r=>r.json());
+    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,tether,binancecoin,ripple,pax-gold&sparkline=false&price_change_percentage=7d,30d,1y').then(r=>r.json());
     cachedMarketData = data;
     const top5 = data.filter(c=>c.id!=='pax-gold').slice(0,5);
     document.getElementById('marketGrid').innerHTML=top5.map((c,i)=>{
+
+    // Update ATH banner
+    const btc = data.find(c=>c.id==='bitcoin');
+    if(btc && btc.ath){
+      const pctFromAth = ((btc.current_price - btc.ath) / btc.ath * 100);
+      const pctBelow = Math.abs(pctFromAth).toFixed(1);
+      const barWidth = Math.max(5, 100 - Math.abs(pctFromAth));
+      document.getElementById('athPct').textContent = '-' + pctBelow + '%';
+      document.getElementById('athSub').textContent = `below ATH of $${btc.ath.toLocaleString()}`;
+      document.getElementById('athBar').style.width = barWidth + '%';
+      document.getElementById('athBanner').style.display = 'flex';
+    }
       const up=c.price_change_percentage_24h>=0;
       return `<div class="coin-card">
         <div class="coin-rank">0${i+1}</div>
@@ -1166,6 +1240,85 @@ async function fetchWeeklySummary(){
         </div>
       </div>`).join('');
   }catch(e){el.innerHTML='<div class="empty-week">No posts yet.</div>'}
+}
+
+async function fetchPerformance(){
+  const el = document.getElementById('perfWrap');
+  try{
+    // Reuse cached market data if available, otherwise fetch
+    let data = cachedMarketData.length ? cachedMarketData : null;
+    if(!data){
+      await new Promise(r=>setTimeout(r,1000));
+      data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,pax-gold&sparkline=false&price_change_percentage=7d,30d,1y').then(r=>r.json());
+    } else {
+      // If we have cached data but it might not have 7d/30d/1y, fetch fresh for performance
+      const hasPerfData = data.find(d=>d.id==='bitcoin' && d.price_change_percentage_7d_in_currency!=null);
+      if(!hasPerfData){
+        data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,pax-gold&sparkline=false&price_change_percentage=7d,30d,1y').then(r=>r.json());
+      }
+    }
+    const btc  = data.find(d=>d.id==='bitcoin');
+    const gold = data.find(d=>d.id==='pax-gold');
+    if(!btc||!gold){ el.innerHTML='<div class="loading">Data unavailable</div>'; return; }
+
+    function perfColor(v){ return v>=0?'#4caf7d':'#e05555'; }
+    function perfBar(v){ return Math.min(100, Math.abs(v)*3); }
+    function fmt(v){ if(v==null) return '--'; return (v>=0?'+':'')+v.toFixed(2)+'%'; }
+
+    const periods = [
+      { label:'24h',  btcVal: btc.price_change_percentage_24h,  goldVal: gold.price_change_percentage_24h },
+      { label:'7d',   btcVal: btc.price_change_percentage_7d_in_currency,  goldVal: gold.price_change_percentage_7d_in_currency },
+      { label:'30d',  btcVal: btc.price_change_percentage_30d_in_currency, goldVal: gold.price_change_percentage_30d_in_currency },
+      { label:'1y',   btcVal: btc.price_change_percentage_1y_in_currency,  goldVal: gold.price_change_percentage_1y_in_currency },
+    ];
+
+    // Determine winner for each period
+    const winners = periods.map(p=>{
+      if(p.btcVal==null||p.goldVal==null) return null;
+      return p.btcVal > p.goldVal ? 'BTC' : 'GOLD';
+    });
+
+    function buildCard(name, color, price, rows, wins){
+      return `<div class="perf-card">
+        <div class="perf-card-header">
+          <div class="perf-dot" style="background:${color}"></div>
+          <span class="perf-name">${name}</span>
+        </div>
+        <div class="perf-price">$${price.toLocaleString()}</div>
+        <div class="perf-rows">
+          ${rows.map((r,i)=>`
+            <div class="perf-row">
+              <span class="perf-period">${r.label}</span>
+              <div class="perf-bar-wrap">
+                <div class="perf-bar-inner" style="width:${perfBar(r.val)}%;background:${perfColor(r.val)}"></div>
+              </div>
+              <span class="perf-val" style="color:${perfColor(r.val)}">${fmt(r.val)}${winners[i]===name?' ★':''}</span>
+            </div>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    const btcRows  = periods.map(p=>({label:p.label, val:p.btcVal}));
+    const goldRows = periods.map(p=>({label:p.label, val:p.goldVal}));
+
+    const btcWins  = winners.filter(w=>w==='BTC').length;
+    const goldWins = winners.filter(w=>w==='GOLD').length;
+    const winnerText = btcWins > goldWins
+      ? `<strong>BTC</strong> is outperforming Gold in ${btcWins} of 4 timeframes`
+      : goldWins > btcWins
+      ? `<strong>Gold</strong> is outperforming BTC in ${goldWins} of 4 timeframes — risk-off environment`
+      : `<strong>BTC and Gold</strong> are evenly matched across timeframes`;
+
+    el.innerHTML = `
+      <div class="perf-grid">
+        ${buildCard('BTC', '#f7931a', btc.current_price, btcRows, winners)}
+        ${buildCard('GOLD', '#c9a84c', gold.current_price, goldRows, winners)}
+      </div>
+      <div class="perf-winner">★ = outperformer for that period · ${winnerText}</div>`;
+
+  }catch(e){
+    el.innerHTML='<div class="loading">Performance data unavailable</div>';
+  }
 }
 
 // ── INIT ──────────────────────────────────────────────────
