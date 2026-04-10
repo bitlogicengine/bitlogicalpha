@@ -350,7 +350,45 @@ header{
   font-family:'DM Mono',monospace;
 }
 
-/* ABOUT */
+/* RESOURCES */
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:800px){.res-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.res-grid{grid-template-columns:1fr}}
+.res-card{
+  background:var(--surface);padding:22px 20px;
+  border-left:2px solid transparent;
+  transition:border-color 0.2s,background 0.2s;
+}
+.res-card:hover{border-left-color:var(--gold);background:var(--surface2)}
+.res-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.res-card-left{display:flex;align-items:center;gap:10px}
+.res-logo{width:28px;height:28px;border-radius:50%;object-fit:contain;background:#161616;flex-shrink:0;border:1px solid var(--text-dim)}
+.res-logo-placeholder{width:28px;height:28px;border-radius:50%;background:var(--surface2);border:1px solid var(--text-dim);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-muted);flex-shrink:0}
+.res-card-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text)}
+.res-badge{
+  font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 8px;border:1px solid;
+}
+.badge-cex{color:#4caf7d;border-color:rgba(76,175,61,0.3);background:rgba(76,175,61,0.06)}
+.badge-dex{color:#627eea;border-color:rgba(98,126,234,0.3);background:rgba(98,126,234,0.06)}
+.badge-defi{color:#c9a84c;border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.06)}
+.badge-l1{color:#f7931a;border-color:rgba(247,147,26,0.3);background:rgba(247,147,26,0.06)}
+.badge-l2{color:#9b59b6;border-color:rgba(155,89,182,0.3);background:rgba(155,89,182,0.06)}
+.res-desc{font-size:11px;color:var(--text-muted);line-height:1.7;letter-spacing:0.3px;margin-bottom:12px}
+.res-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.res-tag{font-size:9px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border:1px solid var(--text-dim)}
+.res-link{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:9px;color:var(--gold);letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;opacity:0.6;
+  transition:opacity 0.2s;
+}
+.res-link:hover{opacity:1}
+.res-intro{
+  background:var(--surface);padding:24px 28px;
+  margin-bottom:2px;border-left:2px solid var(--gold);
+  font-size:12px;color:var(--text-muted);line-height:1.8;letter-spacing:0.3px;
+}
 .about-hero{
   display:flex;align-items:center;gap:32px;
   background:var(--surface);padding:40px 36px;
@@ -548,6 +586,12 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 }
 .footer-x:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 .footer-x svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+.footer-email{
+  font-size:9px;color:var(--text-dim);letter-spacing:2px;
+  text-decoration:none;text-transform:lowercase;
+  transition:color 0.2s;
+}
+.footer-email:hover{color:var(--gold)}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -579,6 +623,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <div class="nav-tabs">
     <button class="nav-tab active" id="tab-home" onclick="switchTab('home')">Home</button>
     <button class="nav-tab" id="tab-insights" onclick="switchTab('insights')">Insights</button>
+    <button class="nav-tab" id="tab-resources" onclick="switchTab('resources')">Resources</button>
     <button class="nav-tab" id="tab-about" onclick="switchTab('about')">About</button>
   </div>
 
@@ -686,8 +731,6 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-label">Market Dominance</div>
         <div class="section-meta">Live · CoinGecko</div>
       </div>
-        <div class="section-meta">Live · CoinGecko</div>
-      </div>
       <div class="dominance-wrap">
         <div class="dom-donut">
           <svg width="160" height="160" viewBox="0 0 160 160">
@@ -754,6 +797,104 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
       <div id="weeklyList" class="week-list">
         <div class="loading">Building summaries...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ RESOURCES VIEW ══════════════ -->
+  <div class="view" id="view-resources">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Blockchain Networks</div>
+        <div class="section-meta">L1 · L2 · Infrastructure</div>
+      </div>
+      <div class="res-intro">
+        Blockchain networks are the infrastructure that everything in crypto runs on. L1s are the base layer — secure and decentralised. L2s are faster, cheaper networks built on top of L1s. Understanding which network an asset runs on is fundamental to navigating the space.
+      </div>
+      <div class="res-grid">
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png" alt="BTC"/><div class="res-card-name">Bitcoin</div></div>
+            <div class="res-badge badge-l1">L1</div>
+          </div>
+          <div class="res-desc">The original blockchain. Digital store of value with a fixed supply of 21 million. The most secure and decentralised network in existence.</div>
+          <div class="res-tags"><span class="res-tag">PoW</span><span class="res-tag">Store of Value</span><span class="res-tag">21M Cap</span></div>
+          <a class="res-link" href="https://bitcoin.org" target="_blank" rel="noopener">bitcoin.org →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/279/small/ethereum.png" alt="ETH"/><div class="res-card-name">Ethereum</div></div>
+            <div class="res-badge badge-l1">L1</div>
+          </div>
+          <div class="res-desc">Smart contract foundation for most of DeFi, stablecoins and tokenised assets. Largest developer ecosystem in crypto. Proof-of-Stake since 2022.</div>
+          <div class="res-tags"><span class="res-tag">PoS</span><span class="res-tag">Smart Contracts</span><span class="res-tag">DeFi</span></div>
+          <a class="res-link" href="https://ethereum.org" target="_blank" rel="noopener">ethereum.org →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/4128/small/solana.png" alt="SOL"/><div class="res-card-name">Solana</div></div>
+            <div class="res-badge badge-l1">L1</div>
+          </div>
+          <div class="res-desc">High-speed L1 with sub-second finality and near-zero fees. Fastest growing ecosystem for payments, AI agents and consumer apps.</div>
+          <div class="res-tags"><span class="res-tag">PoH</span><span class="res-tag">Payments</span><span class="res-tag">AI Agents</span></div>
+          <a class="res-link" href="https://solana.com" target="_blank" rel="noopener">solana.com →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png" alt="BNB"/><div class="res-card-name">BNB Chain</div></div>
+            <div class="res-badge badge-l1">L1</div>
+          </div>
+          <div class="res-desc">Binance's blockchain. EVM-compatible with low fees and fast transactions. Large user base driven by Binance's ecosystem and DeFi activity.</div>
+          <div class="res-tags"><span class="res-tag">PoSA</span><span class="res-tag">EVM</span><span class="res-tag">Low Fees</span></div>
+          <a class="res-link" href="https://www.bnbchain.org" target="_blank" rel="noopener">bnbchain.org →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/12559/small/Avalanche_Circle_RedWhite_Trans.png" alt="AVAX"/><div class="res-card-name">Avalanche</div></div>
+            <div class="res-badge badge-l1">L1</div>
+          </div>
+          <div class="res-desc">Fast finality and EVM-compatible. Known for institutional adoption and subnet architecture allowing custom blockchains to be launched easily.</div>
+          <div class="res-tags"><span class="res-tag">PoS</span><span class="res-tag">Subnets</span><span class="res-tag">EVM</span></div>
+          <a class="res-link" href="https://www.avax.network" target="_blank" rel="noopener">avax.network →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/4713/small/polygon.png" alt="MATIC"/><div class="res-card-name">Polygon</div></div>
+            <div class="res-badge badge-l2">L2</div>
+          </div>
+          <div class="res-desc">Ethereum scaling solution with very low fees. Widely used by enterprises and consumer apps. Transitioning to a ZK-based architecture.</div>
+          <div class="res-tags"><span class="res-tag">ZK</span><span class="res-tag">EVM</span><span class="res-tag">Enterprise</span></div>
+          <a class="res-link" href="https://polygon.technology" target="_blank" rel="noopener">polygon.technology →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/16547/small/photo_2023-03-29_21.47.00.jpeg" alt="ARB"/><div class="res-card-name">Arbitrum</div></div>
+            <div class="res-badge badge-l2">L2</div>
+          </div>
+          <div class="res-desc">Largest Ethereum Layer 2 by TVL. Inherits Ethereum security with 10x lower fees. Home to most major DeFi protocols after Ethereum mainnet.</div>
+          <div class="res-tags"><span class="res-tag">Rollup</span><span class="res-tag">EVM</span><span class="res-tag">DeFi</span></div>
+          <a class="res-link" href="https://arbitrum.io" target="_blank" rel="noopener">arbitrum.io →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/asset_platforms/images/131/small/base-network.png" alt="BASE"/><div class="res-card-name">Base</div></div>
+            <div class="res-badge badge-l2">L2</div>
+          </div>
+          <div class="res-desc">Coinbase's Ethereum L2. Fast growing, low fees and backed by one of the most regulated companies in crypto. Becoming the onramp for mainstream users.</div>
+          <div class="res-tags"><span class="res-tag">Rollup</span><span class="res-tag">EVM</span><span class="res-tag">Coinbase</span></div>
+          <a class="res-link" href="https://base.org" target="_blank" rel="noopener">base.org →</a>
+        </div>
+        <div class="res-card">
+          <div class="res-card-top">
+            <div class="res-card-left"><img class="res-logo" src="https://assets.coingecko.com/coins/images/25244/small/Optimism.png" alt="OP"/><div class="res-card-name">Optimism</div></div>
+            <div class="res-badge badge-l2">L2</div>
+          </div>
+          <div class="res-desc">Pioneer Ethereum L2 rollup. Powers the OP Superchain — a network of interoperable chains including Base. Strong on public goods funding.</div>
+          <div class="res-tags"><span class="res-tag">Rollup</span><span class="res-tag">EVM</span><span class="res-tag">Superchain</span></div>
+          <a class="res-link" href="https://optimism.io" target="_blank" rel="noopener">optimism.io →</a>
+        </div>
       </div>
     </div>
 
@@ -843,12 +984,13 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       Follow @QuantAlphaTrend
     </a>
+    <a class="footer-email" href="/cdn-cgi/l/email-protection#12707b667e7d757b713c777c757b7c7752757f737b7e3c717d7f"><span class="__cf_email__" data-cfemail="c8aaa1bca4a7afa1abe6ada6afa1a6ad88afa5a9a1a4e6aba7a5">[email&#160;protected]</span></a>
     <div class="footer-right">© 2026 · bitlogicalpha.com · All rights reserved</div>
   </footer>
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const BASE = 'https://bitlogicalpha.com';
 let viewCoin = 'BTC';
 let allCharts = { BTC: [], ETH: [] };
@@ -1322,15 +1464,4 @@ async function fetchPerformance(){
 }
 
 // ── INIT ──────────────────────────────────────────────────
-fetchNews();
-// Stagger API calls to avoid CoinGecko rate limiting on mobile
-setTimeout(()=>{
-  fetchMarket().then(()=>{
-    setTimeout(()=>fetchTrend(), 1000);
-  });
-}, 500);
-setInterval(fetchMarket,60000);
-setInterval(fetchTrend,300000);
-</script>
-</body>
-</html>
+fetchNews()
