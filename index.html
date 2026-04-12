@@ -353,6 +353,48 @@ header{
   font-family:'DM Mono',monospace;
 }
 
+/* HALVING COUNTDOWN */
+.halving-wrap{background:var(--surface);padding:20px 28px;border-left:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:2px}
+.halving-left{display:flex;flex-direction:column;gap:4px}
+.halving-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
+.halving-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text)}
+.halving-sub{font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-top:2px}
+.halving-right{display:flex;gap:2px}
+.halving-unit{background:var(--surface2);padding:10px 14px;text-align:center;min-width:56px}
+.halving-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold);line-height:1;display:block}
+.halving-ulab{font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:4px}
+@media(max-width:500px){.halving-unit{min-width:44px;padding:8px 10px}.halving-num{font-size:20px}}
+
+/* MARKET CALENDAR */
+.cal-wrap{background:var(--surface);padding:0}
+.cal-event{display:flex;align-items:flex-start;gap:16px;padding:16px 24px;border-bottom:1px solid var(--text-dim)}
+.cal-event:last-child{border-bottom:none}
+.cal-date{flex-shrink:0;width:48px;text-align:center;background:var(--surface2);padding:8px 4px}
+.cal-day{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);line-height:1;display:block}
+.cal-month{font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:3px}
+.cal-info{flex:1}
+.cal-event-title{font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px;letter-spacing:0.3px}
+.cal-event-desc{font-size:10px;color:var(--text-muted);line-height:1.6;letter-spacing:0.3px}
+.cal-tag{display:inline-block;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;border:1px solid;margin-bottom:6px}
+.cal-tag-macro{color:#4caf7d;border-color:rgba(76,175,61,0.3)}
+.cal-tag-crypto{color:#c9a84c;border-color:rgba(201,168,76,0.3)}
+.cal-tag-earnings{color:#627eea;border-color:rgba(98,126,234,0.3)}
+.cal-empty{padding:32px;text-align:center;font-size:10px;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase}
+
+/* GLOSSARY */
+.glossary-wrap{padding:0}
+.glossary-item{border-bottom:1px solid var(--text-dim)}
+.glossary-item:last-child{border-bottom:none}
+.glossary-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;cursor:pointer;transition:background 0.2s}
+.glossary-header:hover{background:var(--surface2)}
+.glossary-term{font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.5px}
+.glossary-arrow{font-size:10px;color:var(--text-dim);transition:transform 0.2s;flex-shrink:0}
+.glossary-item.open .glossary-arrow{transform:rotate(180deg);color:var(--gold)}
+.glossary-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease,opacity 0.2s;opacity:0}
+.glossary-item.open .glossary-body{max-height:300px;opacity:1}
+.glossary-def{font-size:11px;color:var(--text-muted);line-height:1.8;padding:0 20px 16px;letter-spacing:0.3px}
+.glossary-def strong{color:var(--gold);font-weight:500}
+
 /* COLLAPSIBLE RESOURCE SECTIONS */
 .res-section-header{
   display:flex;align-items:center;justify-content:space-between;
@@ -700,6 +742,20 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <span class="ath-sub" id="athSub">below all-time high</span>
         </div>
       </div>
+      <!-- HALVING COUNTDOWN -->
+      <div class="halving-wrap">
+        <div class="halving-left">
+          <span class="halving-label">Next Bitcoin Halving</span>
+          <div class="halving-title">Block Reward Halving #5</div>
+          <div class="halving-sub">Est. 14 Dec 2026 · Reward drops from 3.125 → 1.5625 BTC</div>
+        </div>
+        <div class="halving-right">
+          <div class="halving-unit"><span class="halving-num" id="halvDays">--</span><span class="halving-ulab">Days</span></div>
+          <div class="halving-unit"><span class="halving-num" id="halvHours">--</span><span class="halving-ulab">Hours</span></div>
+          <div class="halving-unit"><span class="halving-num" id="halvMins">--</span><span class="halving-ulab">Mins</span></div>
+          <div class="halving-unit"><span class="halving-num" id="halvSecs">--</span><span class="halving-ulab">Secs</span></div>
+        </div>
+      </div>
       <div id="marketGrid" class="market-grid">
         <div class="loading" style="grid-column:1/-1">Loading...</div>
       </div>
@@ -712,6 +768,16 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
       <div id="newsList" class="news-list">
         <div class="loading">Loading...</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Market Calendar</div>
+        <div class="section-meta">Key Dates This Week</div>
+      </div>
+      <div id="calWrap" class="cal-wrap">
+        <div class="cal-empty">Loading calendar...</div>
       </div>
     </div>
 
@@ -1014,6 +1080,22 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
       </div><!-- end res-section-body -->
+    </div>
+
+    <div class="section">
+      <div class="res-section-header" onclick="toggleResSection(this)">
+        <div class="res-section-left">
+          <div class="res-section-title">Glossary</div>
+          <div class="res-section-subtitle">Key Terms · Plain English · 25 Definitions</div>
+        </div>
+        <div class="res-toggle">
+          <span class="res-toggle-label">Expand</span>
+          <div class="res-toggle-arrow">▼</div>
+        </div>
+      </div>
+      <div class="res-section-body">
+        <div class="glossary-wrap" id="glossaryList"></div>
+      </div>
     </div>
 
   </div>
@@ -1590,8 +1672,106 @@ async function fetchPerformance(){
   }
 }
 
+// ── HALVING COUNTDOWN ─────────────────────────────────────
+const HALVING_DATE = new Date('2026-12-14T00:00:00Z');
+function updateHalving(){
+  const now = new Date();
+  const diff = HALVING_DATE - now;
+  if(diff <= 0){ document.querySelector('.halving-wrap').innerHTML='<div style="color:var(--gold);font-family:\'Playfair Display\',serif;font-size:18px">Halving complete — reward is now 1.5625 BTC</div>'; return; }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('halvDays').textContent = String(days).padStart(3,'0');
+  document.getElementById('halvHours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('halvMins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('halvSecs').textContent = String(secs).padStart(2,'0');
+}
+updateHalving();
+setInterval(updateHalving, 1000);
+
+// ── MARKET CALENDAR ────────────────────────────────────────
+async function fetchCalendar(){
+  const el = document.getElementById('calWrap');
+  try{
+    const res = await fetch(`${BASE}/calendar.json?t=${Date.now()}`);
+    if(!res.ok) throw new Error();
+    const events = await res.json();
+    if(!events.length){ el.innerHTML='<div class="cal-empty">No events scheduled this week.</div>'; return; }
+    el.innerHTML = events.map(e=>`
+      <div class="cal-event">
+        <div class="cal-date">
+          <span class="cal-day">${e.day||'--'}</span>
+          <span class="cal-month">${e.month||''}</span>
+        </div>
+        <div class="cal-info">
+          <div class="cal-tag cal-tag-${e.type||'macro'}">${e.type||'macro'}</div>
+          <div class="cal-event-title">${e.title||''}</div>
+          <div class="cal-event-desc">${e.desc||''}</div>
+        </div>
+      </div>`).join('');
+  }catch(e){
+    el.innerHTML='<div class="cal-empty">Calendar unavailable</div>';
+  }
+}
+
+// ── GLOSSARY ───────────────────────────────────────────────
+const GLOSSARY = [
+  {term:'Altcoin', def:'Any cryptocurrency other than Bitcoin. The term covers thousands of tokens including Ethereum, Solana and XRP. Altcoins typically follow Bitcoin\'s price direction but with higher volatility.'},
+  {term:'ATH — All-Time High', def:'The highest price an asset has ever reached. Bitcoin\'s current ATH is around $108,000 reached in early 2025. Distance from ATH is a key indicator of where we are in the market cycle.'},
+  {term:'Bear Market', def:'A prolonged period of falling prices, typically defined as a decline of 20% or more from recent highs. In crypto, bear markets can last 12-24 months and often see prices fall 70-90% from ATH.'},
+  {term:'Block', def:'A batch of validated transactions permanently recorded on the blockchain. Each block is cryptographically linked to the previous one, forming the chain. Bitcoin produces a new block approximately every 10 minutes.'},
+  {term:'Block Reward', def:'The amount of new Bitcoin created and awarded to the miner who successfully adds a new block. Currently 3.125 BTC per block after the 2024 halving. This reward halves approximately every four years.'},
+  {term:'Bull Market', def:'A sustained period of rising prices and positive market sentiment. Bitcoin\'s bull markets have historically produced gains of 1,000% or more, often triggered by halving events and increased institutional adoption.'},
+  {term:'CEX — Centralised Exchange', def:'A company-operated trading platform like Binance or Coinbase where users create accounts and trade. The exchange holds custody of user funds. Offers high liquidity and ease of use but requires trusting a third party.'},
+  {term:'Cold Wallet', def:'A crypto wallet that stores private keys offline, disconnected from the internet. Hardware devices like Ledger are the most common cold wallets. Considered the safest way to store significant amounts of crypto long term.'},
+  {term:'DeFi — Decentralised Finance', def:'Financial services built on blockchain networks using smart contracts, with no banks or intermediaries. Includes lending, borrowing, trading and yield generation. Operates 24/7 and is accessible to anyone with a wallet.'},
+  {term:'DEX — Decentralised Exchange', def:'A trading platform that operates via smart contracts on a blockchain. Users trade directly from their wallets with no account or identity verification required. Uniswap, Jupiter and Hyperliquid are leading DEXs.'},
+  {term:'Dominance', def:'Bitcoin\'s share of the total cryptocurrency market capitalisation, expressed as a percentage. High dominance means capital is concentrated in BTC. Falling dominance often signals capital rotating into altcoins — altcoin season.'},
+  {term:'Fear & Greed Index', def:'A sentiment indicator that measures market emotion on a scale from 0 (Extreme Fear) to 100 (Extreme Greed). Extreme fear can signal buying opportunities. Extreme greed often precedes corrections. Updated daily.'},
+  {term:'Gas Fees', def:'Transaction fees paid to validators on networks like Ethereum to process and confirm transactions. Fees vary based on network congestion. L2 networks like Arbitrum and Base offer significantly lower gas fees than Ethereum mainnet.'},
+  {term:'Halving', def:'A programmed event that cuts Bitcoin\'s block reward in half approximately every four years (every 210,000 blocks). It reduces the rate of new Bitcoin supply. Previous halvings in 2012, 2016, 2020 and 2024 have preceded major bull markets.'},
+  {term:'Hot Wallet', def:'A crypto wallet connected to the internet — such as a browser extension or mobile app. Convenient for frequent transactions but more exposed to hacking risks. Best used for small amounts of crypto for daily use.'},
+  {term:'Layer 1 (L1)', def:'A base blockchain network that handles its own security, consensus and transaction settlement. Bitcoin, Ethereum and Solana are L1s. They are highly secure but can be slower and more expensive at scale.'},
+  {term:'Layer 2 (L2)', def:'A network built on top of a Layer 1 that processes transactions faster and cheaper, then settles back to the L1. Examples include Arbitrum, Base and Optimism on Ethereum. L2s inherit L1 security while improving scalability.'},
+  {term:'Liquidity', def:'How easily an asset can be bought or sold without significantly affecting its price. High liquidity means tight spreads and fast execution. Low liquidity means larger price impact when trading. Bitcoin and Ethereum have the highest crypto liquidity.'},
+  {term:'Market Cap', def:'Total market value of a cryptocurrency, calculated by multiplying its current price by circulating supply. Used to compare the relative size of different assets. Bitcoin\'s market cap is currently around $1.4 trillion.'},
+  {term:'Mempool', def:'Short for memory pool — the waiting area where unconfirmed Bitcoin transactions sit before being picked up by miners and added to a block. A congested mempool means higher fees and slower confirmations.'},
+  {term:'Node', def:'A computer that participates in a blockchain network by storing a copy of the entire transaction history and validating new transactions. Bitcoin has over 20,000 active nodes worldwide, making it extremely difficult to attack or censor.'},
+  {term:'Private Key', def:'A unique cryptographic code that proves ownership of a wallet and authorises transactions. Must never be shared with anyone. Anyone with your private key has complete control over your funds with no way to reverse transactions.'},
+  {term:'Proof of Work (PoW)', def:'Bitcoin\'s consensus mechanism. Miners compete to solve complex mathematical puzzles to add new blocks and earn rewards. Requires significant computing power and energy, which makes the network highly secure and resistant to attack.'},
+  {term:'Proof of Stake (PoS)', def:'A consensus mechanism where validators lock up (stake) cryptocurrency as collateral to earn the right to validate transactions and create new blocks. Used by Ethereum since 2022. More energy efficient than Proof of Work.'},
+  {term:'Smart Contract', def:'Self-executing code stored on a blockchain that automatically carries out predefined actions when conditions are met — with no intermediary required. The foundation of DeFi, NFTs and most blockchain applications beyond simple payments.'},
+  {term:'Stablecoin', def:'A cryptocurrency designed to maintain a stable value, typically pegged 1:1 to the US dollar. USDT and USDC are the largest stablecoins. Used as a safe haven during volatility and as a medium of exchange in DeFi.'},
+  {term:'Staking', def:'Locking up cryptocurrency in a network to support its operations — validating transactions and securing the blockchain. In return, stakers earn rewards, similar to interest. Available on Ethereum, Solana and many other networks.'},
+  {term:'TVL — Total Value Locked', def:'The total amount of assets deposited in a DeFi protocol or blockchain network. A key metric for measuring the size and adoption of DeFi platforms. Higher TVL generally indicates greater trust and usage.'},
+  {term:'Validator', def:'A participant in a Proof of Stake blockchain who locks up cryptocurrency to earn the right to validate transactions and create new blocks. Validators earn rewards for honest behaviour and can be penalised (slashed) for acting dishonestly.'},
+  {term:'Whale', def:'An individual or entity holding a very large amount of cryptocurrency — large enough that their trades can move markets. Whale activity is closely monitored by traders as large buys or sells can signal major price movements.'},
+];
+
+function renderGlossary(){
+  const el = document.getElementById('glossaryList');
+  if(!el) return;
+  el.innerHTML = GLOSSARY.sort((a,b)=>a.term.localeCompare(b.term)).map(g=>`
+    <div class="glossary-item">
+      <div class="glossary-header" onclick="toggleGlossary(this)">
+        <span class="glossary-term">${g.term}</span>
+        <span class="glossary-arrow">▼</span>
+      </div>
+      <div class="glossary-body">
+        <div class="glossary-def">${g.def}</div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleGlossary(header){
+  const item = header.parentElement;
+  item.classList.toggle('open');
+}
+
 // ── INIT ──────────────────────────────────────────────────
-fetchNews()
+fetchNews();
+setTimeout(()=>fetchCalendar(), 1200);
 // Stagger API calls
 setTimeout(()=>{
   fetchMarket().then(()=>{
@@ -1600,6 +1780,7 @@ setTimeout(()=>{
 }, 500);
 setInterval(fetchMarket,60000);
 setInterval(fetchTrend,300000);
+renderGlossary();
 
 // Render email via JS
 const em = document.getElementById('footerEmail');
