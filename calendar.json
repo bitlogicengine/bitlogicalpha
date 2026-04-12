@@ -1,30 +1,44 @@
 [
   {
-    "day": "14",
+    "day": "13",
     "month": "Apr",
-    "type": "earnings",
-    "title": "BlackRock Q1 2026 Earnings",
-    "desc": "World's largest asset manager reports Q1 results. Watch for updates on Bitcoin and Ethereum ETF flows and tokenisation strategy."
+    "type": "crypto",
+    "title": "CLARITY Act — Senate Banking Committee Markup Begins",
+    "desc": "Senator Cynthia Lummis confirmed the Senate Banking Committee takes up the CLARITY Act this week. Senator Moreno warned if it doesn't pass by May, crypto legislation won't pass for the foreseeable future. Highest impact regulatory event of the month."
   },
   {
     "day": "14",
     "month": "Apr",
-    "type": "crypto",
-    "title": "CLARITY Act — Senate Committee Review",
-    "desc": "US Senate Banking Committee expected to advance the CLARITY Act, the key crypto regulatory framework bill. High impact for the entire market."
+    "type": "macro",
+    "title": "US Producer Price Index (PPI)",
+    "desc": "Key inflation indicator. A firm read keeps rate cut expectations pushed further out — bearish for risk assets. A soft print would boost sentiment across crypto and equities."
+  },
+  {
+    "day": "14",
+    "month": "Apr",
+    "type": "earnings",
+    "title": "BlackRock Q1 2026 Earnings",
+    "desc": "World's largest asset manager reports Q1 results. Watch for updates on Bitcoin and Ethereum ETF flows and tokenisation strategy. Key institutional signal for crypto."
+  },
+  {
+    "day": "16",
+    "month": "Apr",
+    "type": "macro",
+    "title": "US Retail Sales Data",
+    "desc": "Measures consumer spending strength. Weak retail sales signal economic slowdown — mixed for crypto. Strong data reduces rate cut expectations."
   },
   {
     "day": "28",
     "month": "Apr",
     "type": "macro",
     "title": "FOMC Meeting — Fed Interest Rate Decision",
-    "desc": "Federal Reserve meets April 28-29. Rate decision on April 29. Markets watching for signals on rate cuts. Lower rates are bullish for risk assets including crypto."
+    "desc": "Federal Reserve meets April 28-29. Rate decision on April 29. BTC has sold off after 8 of the last 9 FOMC meetings. May be Powell's final meeting as Fed Chair before Kevin Warsh takes over May 15."
   },
   {
     "day": "28",
     "month": "Apr",
     "type": "earnings",
     "title": "Robinhood Q1 2026 Earnings",
-    "desc": "Key indicator of retail crypto demand. Focus on crypto trading volumes and revenue from digital assets."
+    "desc": "Key indicator of retail crypto demand. Focus on crypto trading volumes and digital asset revenue."
   }
 ]
