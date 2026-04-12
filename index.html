@@ -365,6 +365,40 @@ header{
 .halving-ulab{font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:4px}
 @media(max-width:500px){.halving-unit{min-width:44px;padding:8px 10px}.halving-num{font-size:20px}}
 
+/* NEWS & CALENDAR EXPAND/COLLAPSE */
+.section-toggle-header{
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;padding-bottom:16px;
+  border-bottom:1px solid var(--text-dim);
+  margin-bottom:0;user-select:none;
+}
+.section-toggle-header:hover .stoggle-btn{border-color:var(--gold);color:var(--gold)}
+.stoggle-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-dim);border:1px solid var(--text-dim);
+  padding:4px 10px;transition:all 0.2s;flex-shrink:0;
+}
+.stoggle-arrow{transition:transform 0.3s;display:inline-block}
+.stoggle-header-left{display:flex;flex-direction:column;gap:3px}
+.stoggle-label{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text)}
+.stoggle-meta{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
+.news-preview{display:block}
+.news-full{overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;max-height:0;opacity:0}
+.news-full.open{max-height:2000px;opacity:1}
+.news-preview-title{
+  font-family:'Playfair Display',serif;font-size:16px;font-weight:700;
+  color:var(--text);line-height:1.4;padding:16px 0 8px;
+}
+.news-preview-snippet{
+  font-size:11px;color:var(--text-muted);line-height:1.7;
+  letter-spacing:0.3px;padding-bottom:12px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.cal-preview{display:block;border-bottom:1px solid var(--text-dim)}
+.cal-full{overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;max-height:0;opacity:0}
+.cal-full.open{max-height:2000px;opacity:1}
+
 /* MARKET CALENDAR */
 .cal-wrap{background:var(--surface);padding:0}
 .cal-event{display:flex;align-items:flex-start;gap:16px;padding:16px 24px;border-bottom:1px solid var(--text-dim)}
@@ -762,9 +796,15 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
 
     <div class="section">
-      <div class="section-header">
-        <div class="section-label">Latest News</div>
-        <div class="section-meta">By BitLogic</div>
+      <div class="section-toggle-header" onclick="toggleSection('news')">
+        <div class="stoggle-header-left">
+          <div class="stoggle-label">Latest News</div>
+          <div class="stoggle-meta">By BitLogic</div>
+        </div>
+        <div class="stoggle-btn">
+          <span id="newsToggleLabel">Expand</span>
+          <span class="stoggle-arrow" id="newsToggleArrow">▼</span>
+        </div>
       </div>
       <div id="newsList" class="news-list">
         <div class="loading">Loading...</div>
@@ -772,9 +812,15 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
 
     <div class="section">
-      <div class="section-header">
-        <div class="section-label">Market Calendar</div>
-        <div class="section-meta">Key Dates This Week</div>
+      <div class="section-toggle-header" onclick="toggleSection('cal')">
+        <div class="stoggle-header-left">
+          <div class="stoggle-label">Market Calendar</div>
+          <div class="stoggle-meta">Key Dates This Week</div>
+        </div>
+        <div class="stoggle-btn">
+          <span id="calToggleLabel">Expand</span>
+          <span class="stoggle-arrow" id="calToggleArrow">▼</span>
+        </div>
       </div>
       <div id="calWrap" class="cal-wrap">
         <div class="cal-empty">Loading calendar...</div>
@@ -1210,6 +1256,29 @@ function toggleResSection(header){
   if(label) label.textContent = isOpen ? 'Expand' : 'Collapse';
 }
 
+function toggleSection(type){
+  if(type==='news'){
+    const full = document.getElementById('newsFull');
+    const label = document.getElementById('newsToggleLabel');
+    const arrow = document.getElementById('newsToggleArrow');
+    if(!full) return;
+    const isOpen = full.classList.contains('open');
+    full.classList.toggle('open', !isOpen);
+    if(label) label.textContent = isOpen ? 'Expand' : 'Collapse';
+    if(arrow) arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+  }
+  if(type==='cal'){
+    const full = document.getElementById('calFull');
+    const label = document.getElementById('calToggleLabel');
+    const arrow = document.getElementById('calToggleArrow');
+    if(!full) return;
+    const isOpen = full.classList.contains('open');
+    full.classList.toggle('open', !isOpen);
+    if(label) label.textContent = isOpen ? 'Expand' : 'Collapse';
+    if(arrow) arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+  }
+}
+
 function switchTab(tab){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
@@ -1354,29 +1423,39 @@ async function fetchNews(){
     if(!res.ok) throw new Error();
     const items=await res.json();
     if(!items.length){el.innerHTML='<div class="empty-news">No analysis published yet.</div>';return}
-    const latest=[items[0]]; // Show only most recent on Home
-    el.innerHTML=latest.map(n=>{
-      const shareText = encodeURIComponent(`${n.title}\n\nRead the full analysis 👇\nhttps://bitlogicalpha.com\n\n#Bitcoin #Crypto #Gold @QuantAlphaTrend`);
-      const shareUrl = `https://x.com/intent/tweet?text=${shareText}`;
-      return `
+    const n=items[0];
+    const shareText = encodeURIComponent(`${n.title}\n\nRead the full analysis 👇\nhttps://bitlogicalpha.com\n\n#Bitcoin #Crypto #Gold @QuantAlphaTrend`);
+    const shareUrl = `https://x.com/intent/tweet?text=${shareText}`;
+
+    // Build body paragraphs
+    const bodyHtml = n.body ? n.body.split('\n').filter(p=>p.trim()).map(p=>{
+      const t=p.trim();
+      if(/^[1-9]\d*\./.test(t)) return `<p class="news-list-item">${t}</p>`;
+      if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
+      return `<p>${t}</p>`;
+    }).join('') : '';
+
+    // First paragraph for preview snippet
+    const firstPara = n.body ? n.body.split('\n').filter(p=>p.trim())[0] || '' : '';
+
+    el.innerHTML = `
       <div class="news-item">
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
-        <div class="news-title">${n.title||''}</div>
-        ${n.body?`<div class="news-body">${n.body.split('\n').filter(p=>p.trim()).map(p=>{
-          const t=p.trim();
-          if(/^[1-9]\d*\./.test(t)) return `<p class="news-list-item">${t}</p>`;
-          if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
-          return `<p>${t}</p>`;
-        }).join('')}</div>`:''}
-        <div class="news-footer">
-          ${n.url?`<a class="news-link" href="${n.url}" target="_blank" rel="noopener">Read source →</a>`:'<span></span>'}
-          <a class="news-share" href="${shareUrl}" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            Share on X
-          </a>
+        <div class="news-preview">
+          <div class="news-preview-title">${n.title||''}</div>
+          <div class="news-preview-snippet">${firstPara}</div>
+        </div>
+        <div class="news-full" id="newsFull">
+          <div class="news-body">${bodyHtml}</div>
+          <div class="news-footer">
+            <span></span>
+            <a class="news-share" href="${shareUrl}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Share on X
+            </a>
+          </div>
         </div>
       </div>`;
-    }).join('');
   }catch(e){el.innerHTML='<div class="empty-news">No analysis published yet.</div>'}
 }
 
@@ -1698,8 +1777,9 @@ async function fetchCalendar(){
     if(!res.ok) throw new Error();
     const events = await res.json();
     if(!events.length){ el.innerHTML='<div class="cal-empty">No events scheduled this week.</div>'; return; }
-    el.innerHTML = events.map(e=>`
-      <div class="cal-event">
+
+    function renderEvent(e){
+      return `<div class="cal-event">
         <div class="cal-date">
           <span class="cal-day">${e.day||'--'}</span>
           <span class="cal-month">${e.month||''}</span>
@@ -1709,7 +1789,16 @@ async function fetchCalendar(){
           <div class="cal-event-title">${e.title||''}</div>
           <div class="cal-event-desc">${e.desc||''}</div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }
+
+    const preview = renderEvent(events[0]);
+    const rest = events.slice(1).map(renderEvent).join('');
+
+    el.innerHTML = `
+      <div class="cal-preview">${preview}</div>
+      ${rest ? `<div class="cal-full" id="calFull">${rest}</div>` : ''}`;
+
   }catch(e){
     el.innerHTML='<div class="cal-empty">Calendar unavailable</div>';
   }
