@@ -1,0 +1,30 @@
+[
+  {
+    "day": "14",
+    "month": "Apr",
+    "type": "earnings",
+    "title": "BlackRock Q1 2026 Earnings",
+    "desc": "World's largest asset manager reports Q1 results. Watch for updates on Bitcoin and Ethereum ETF flows and tokenisation strategy."
+  },
+  {
+    "day": "14",
+    "month": "Apr",
+    "type": "crypto",
+    "title": "CLARITY Act — Senate Committee Review",
+    "desc": "US Senate Banking Committee expected to advance the CLARITY Act, the key crypto regulatory framework bill. High impact for the entire market."
+  },
+  {
+    "day": "28",
+    "month": "Apr",
+    "type": "macro",
+    "title": "FOMC Meeting — Fed Interest Rate Decision",
+    "desc": "Federal Reserve meets April 28-29. Rate decision on April 29. Markets watching for signals on rate cuts. Lower rates are bullish for risk assets including crypto."
+  },
+  {
+    "day": "28",
+    "month": "Apr",
+    "type": "earnings",
+    "title": "Robinhood Q1 2026 Earnings",
+    "desc": "Key indicator of retail crypto demand. Focus on crypto trading volumes and revenue from digital assets."
+  }
+]
