@@ -760,48 +760,6 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
     <div class="section">
       <div class="section-header">
-        <div class="section-label">Live Charts</div>
-        <div class="section-meta">BTC · ETH · Gold · TradingView</div>
-      </div>
-      <div class="charts-grid">
-        <div class="chart-card">
-          <span class="chart-label">Bitcoin / USD</span>
-          <div class="chart-inner">
-            <div class="tradingview-widget-container">
-              <div class="tradingview-widget-container__widget"></div>
-              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-              {"symbol":"BITSTAMP:BTCUSD","width":"100%","height":"160","locale":"en","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"https://www.tradingview.com/chart/?symbol=BITSTAMP:BTCUSD","noTimeScale":false,"chartOnly":false}
-              </script>
-            </div>
-          </div>
-        </div>
-        <div class="chart-card">
-          <span class="chart-label">Ethereum / USD</span>
-          <div class="chart-inner">
-            <div class="tradingview-widget-container">
-              <div class="tradingview-widget-container__widget"></div>
-              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-              {"symbol":"BITSTAMP:ETHUSD","width":"100%","height":"160","locale":"en","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"https://www.tradingview.com/chart/?symbol=BITSTAMP:ETHUSD","noTimeScale":false,"chartOnly":false}
-              </script>
-            </div>
-          </div>
-        </div>
-        <div class="chart-card">
-          <span class="chart-label">Gold / USD</span>
-          <div class="chart-inner">
-            <div class="tradingview-widget-container">
-              <div class="tradingview-widget-container__widget"></div>
-              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-              {"symbol":"TVC:GOLD","width":"100%","height":"160","locale":"en","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"https://www.tradingview.com/chart/?symbol=TVC:GOLD","noTimeScale":false,"chartOnly":false}
-              </script>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
         <div class="section-label">Daily Market State</div>
         <div class="section-meta">Updated Daily</div>
       </div>
@@ -1474,6 +1432,8 @@ async function fetchTrend(){
       neutral:  {label:'Neutral',  icon:'→', color:'#c9a84c', cls:'neutral'},
     };
 
+    const tvSymbols = {BTC:'COINBASE:BTCUSD', ETH:'COINBASE:ETHUSD', GOLD:'OANDA:XAUUSD'};
+
     function buildCard(coin, label, data, price, change, symbol){
       const s = statusConfig[data.status] || statusConfig.neutral;
       const up = change >= 0;
@@ -1485,7 +1445,7 @@ async function fetchTrend(){
             LIVE
           </span>
         </div>
-        <div class="trend-price">${symbol}${price}</div>
+        <div class="chart-inner" style="margin:8px -1px 8px" id="tv-${coin}"></div>
         <div class="trend-change ${up?'up':'down'}">${up?'↑':'↓'} ${Math.abs(change).toFixed(2)}% today</div>
         <div class="trend-status-wrap">
           <div class="trend-status-icon" style="color:${s.color}">${s.icon}</div>
@@ -1514,6 +1474,38 @@ async function fetchTrend(){
       buildCard('BTC', 'BTC / USD', btc,  btcData?.current_price.toLocaleString()||'--', btcData?.price_change_percentage_24h||0, '$') +
       buildCard('ETH', 'ETH / USD', eth,  ethData?.current_price.toLocaleString()||'--', ethData?.price_change_percentage_24h||0, '$') +
       buildCard('GOLD','GOLD / USD', gold, goldPrice, goldChange, '$');
+
+    // Inject TradingView widgets after DOM is ready
+    setTimeout(()=>{
+      [['BTC','BTCUSD'],['ETH','ETHUSD'],['GOLD','XAUUSD']].forEach(([coin, sym])=>{
+        const container = document.getElementById('tv-'+coin);
+        if(!container) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'tradingview-widget-container';
+        const inner = document.createElement('div');
+        inner.className = 'tradingview-widget-container__widget';
+        wrap.appendChild(inner);
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
+        script.async = true;
+        script.innerHTML = JSON.stringify({
+          symbol: sym,
+          width: '100%',
+          height: '140',
+          locale: 'en',
+          dateRange: '1D',
+          colorTheme: 'dark',
+          isTransparent: true,
+          autosize: true,
+          largeChartUrl: 'https://www.tradingview.com/chart/?symbol='+sym,
+          noTimeScale: false,
+          chartOnly: false
+        });
+        wrap.appendChild(script);
+        container.appendChild(wrap);
+      });
+    }, 100);
 
   }catch(e){
     setTimeout(()=>fetchTrend(), 3000);
