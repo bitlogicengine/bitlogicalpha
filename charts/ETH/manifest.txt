@@ -1,3 +1,3 @@
-status: positive
-note: ETH holding positive structure above key daily support around $2,150. Following BTC's lead with no coin-specific negative catalysts. Regulatory clarity from the CLARITY Act markup this week could be a tailwind for ETH given its DeFi and staking exposure.
-updated: 13 Apr 2026
+status: Positive
+note: ETH closed around $2,300 yesterday showing relative strength vs BTC. ETH ETFs recording renewed inflows for the first time in months — a rotation signal. Daily structure clearly positive. CLARITY Act and SEC roundtable this week are specific catalysts for ETH given its DeFi and staking exposure.
+updated: 14 Apr 2026
