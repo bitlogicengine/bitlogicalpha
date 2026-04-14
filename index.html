@@ -356,15 +356,9 @@ header{
 /* TRADINGVIEW CHARTS */
 .charts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:2px}
 @media(max-width:700px){.charts-grid{grid-template-columns:1fr}}
-.chart-card{background:var(--surface);overflow:hidden;position:relative}
-.chart-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;padding:10px 14px 0;display:block}
-.chart-placeholder{
-  height:150px;display:flex;align-items:center;justify-content:center;
-  font-size:9px;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase;
-  position:absolute;top:28px;left:0;right:0;bottom:0;
-  pointer-events:none;
-}
-.chart-placeholder::after{content:'Loading chart...'}
+.chart-card{background:var(--surface);overflow:hidden}
+.chart-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;padding:10px 14px 4px;display:block}
+.chart-inner{min-height:160px;background:#0f0f0f}
 
 /* HALVING COUNTDOWN */
 .halving-wrap{background:var(--surface);padding:20px 28px;border-left:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:2px}
@@ -772,68 +766,35 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       <div class="charts-grid">
         <div class="chart-card">
           <span class="chart-label">Bitcoin / USD</span>
-          <div class="chart-placeholder"></div>
-          <div class="tradingview-widget-container" style="min-height:150px">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-            {
-              "symbol": "BINANCE:BTCUSDT",
-              "width": "100%",
-              "height": "150",
-              "locale": "en",
-              "dateRange": "1D",
-              "colorTheme": "dark",
-              "isTransparent": true,
-              "autosize": true,
-              "largeChartUrl": "https://www.tradingview.com/chart/?symbol=BINANCE:BTCUSDT",
-              "noTimeScale": false,
-              "chartOnly": false
-            }
-            </script>
+          <div class="chart-inner">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+              {"symbol":"BITSTAMP:BTCUSD","width":"100%","height":"160","locale":"en","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"https://www.tradingview.com/chart/?symbol=BITSTAMP:BTCUSD","noTimeScale":false,"chartOnly":false}
+              </script>
+            </div>
           </div>
         </div>
         <div class="chart-card">
           <span class="chart-label">Ethereum / USD</span>
-          <div class="chart-placeholder"></div>
-          <div class="tradingview-widget-container" style="min-height:150px">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-            {
-              "symbol": "BINANCE:ETHUSDT",
-              "width": "100%",
-              "height": "150",
-              "locale": "en",
-              "dateRange": "1D",
-              "colorTheme": "dark",
-              "isTransparent": true,
-              "autosize": true,
-              "largeChartUrl": "https://www.tradingview.com/chart/?symbol=BINANCE:ETHUSDT",
-              "noTimeScale": false,
-              "chartOnly": false
-            }
-            </script>
+          <div class="chart-inner">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+              {"symbol":"BITSTAMP:ETHUSD","width":"100%","height":"160","locale":"en","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"https://www.tradingview.com/chart/?symbol=BITSTAMP:ETHUSD","noTimeScale":false,"chartOnly":false}
+              </script>
+            </div>
           </div>
         </div>
         <div class="chart-card">
           <span class="chart-label">Gold / USD</span>
-          <div class="chart-placeholder"></div>
-          <div class="tradingview-widget-container" style="min-height:150px">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-            {
-              "symbol": "TVC:GOLD",
-              "width": "100%",
-              "height": "150",
-              "locale": "en",
-              "dateRange": "1D",
-              "colorTheme": "dark",
-              "isTransparent": true,
-              "autosize": true,
-              "largeChartUrl": "https://www.tradingview.com/chart/?symbol=TVC:GOLD",
-              "noTimeScale": false,
-              "chartOnly": false
-            }
-            </script>
+          <div class="chart-inner">
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+              {"symbol":"TVC:GOLD","width":"100%","height":"160","locale":"en","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"https://www.tradingview.com/chart/?symbol=TVC:GOLD","noTimeScale":false,"chartOnly":false}
+              </script>
+            </div>
           </div>
         </div>
       </div>
