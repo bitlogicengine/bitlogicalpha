@@ -1,3 +1,3 @@
 status: Positive
-note: BTC closed yesterday around $74K — the highest close since the ceasefire rally began. Testing the key resistance zone that has capped upside for weeks. A daily close above $74K with follow-through would be a significant technical breakout. PPI and BlackRock earnings today are the next catalysts.
-updated: 14 Apr 2026
+note: BTC closed above $74K yesterday — the strongest close since the ceasefire rally began. Holding above this level today following BlackRock's massive Q1 earnings beat. IBIT pulled $8.4 billion in net inflows during Q1 despite a 25% BTC drawdown. Next resistance at $75K-$76K. Key support at $72K. US tax deadline today adds temporary selling pressure but structure remains clearly positive.
+updated: 15 Apr 2026
