@@ -1630,8 +1630,13 @@ function switchTab(tab){
 // ── ALTS TAB ──────────────────────────────────────────────
 async function fetchAlts(){
   try{
-    // Fetch top 100 with both 24h and 7d change
-    const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d').then(r=>r.json());
+    // Use cached master data — populated by fetchMarket on page load
+    let data = cachedMarketData.length ? cachedMarketData : null;
+    if(!data){
+      await new Promise(r=>setTimeout(r,1500));
+      data = cachedMarketData.length ? cachedMarketData : null;
+    }
+    if(!data) throw new Error('No market data');
 
     // --- ALTCOIN SEASON INDEX ---
     const btc = data.find(c=>c.id==='bitcoin');
@@ -1813,12 +1818,13 @@ async function fetchTrend(){
       </div>`;
     }
 
-    // Reuse cached market data if available, otherwise wait and fetch
+    // Always use cached market data — populated by fetchMarket on page load
     let prices = cachedMarketData;
     if(!prices || !prices.length){
       await new Promise(r=>setTimeout(r,2000));
-      prices = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,pax-gold&sparkline=false').then(r=>r.json());
+      prices = cachedMarketData;
     }
+    if(!prices || !prices.length) throw new Error('No market data');
     const btcData  = prices.find(p=>p.id==='bitcoin');
     const ethData  = prices.find(p=>p.id==='ethereum');
     const goldData = prices.find(p=>p.id==='pax-gold');
@@ -1876,22 +1882,13 @@ async function fetchTrend(){
 
 async function fetchMarket(){
   try{
-    const data=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,tether,binancecoin,ripple,pax-gold&sparkline=false&price_change_percentage=7d,30d,1y').then(r=>r.json());
+    // MASTER CALL — top 100 with all timeframes, feeds every function on the site
+    const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
     cachedMarketData = data;
+
+    // Market Overview — top 5 excl PAXG
     const top5 = data.filter(c=>c.id!=='pax-gold').slice(0,5);
     document.getElementById('marketGrid').innerHTML=top5.map((c,i)=>{
-
-    // Update ATH banner
-    const btc = data.find(c=>c.id==='bitcoin');
-    if(btc && btc.ath){
-      const pctFromAth = ((btc.current_price - btc.ath) / btc.ath * 100);
-      const pctBelow = Math.abs(pctFromAth).toFixed(1);
-      const barWidth = Math.max(5, 100 - Math.abs(pctFromAth));
-      document.getElementById('athPct').textContent = '-' + pctBelow + '%';
-      document.getElementById('athSub').textContent = `below ATH of $${btc.ath.toLocaleString()}`;
-      document.getElementById('athBar').style.width = barWidth + '%';
-      document.getElementById('athBanner').style.display = 'flex';
-    }
       const up=c.price_change_percentage_24h>=0;
       return `<div class="coin-card">
         <div class="coin-rank">0${i+1}</div>
@@ -1902,10 +1899,22 @@ async function fetchMarket(){
         <div class="coin-cap">$${(c.market_cap/1e9).toFixed(1)}B cap</div>
       </div>`;
     }).join('');
+
+    // ATH Banner
+    const btc = data.find(c=>c.id==='bitcoin');
+    if(btc && btc.ath){
+      const pctFromAth = ((btc.current_price - btc.ath) / btc.ath * 100);
+      const pctBelow = Math.abs(pctFromAth).toFixed(1);
+      const barWidth = Math.max(5, 100 - Math.abs(pctFromAth));
+      document.getElementById('athPct').textContent = '-' + pctBelow + '%';
+      document.getElementById('athSub').textContent = `below ATH of $${btc.ath.toLocaleString()}`;
+      document.getElementById('athBar').style.width = barWidth + '%';
+      document.getElementById('athBanner').style.display = 'flex';
+    }
+
     updateTicker(top5);
   }catch(e){
     document.getElementById('marketGrid').innerHTML='<div class="loading" style="grid-column:1/-1">Market data unavailable</div>';
-    // Retry after 5 seconds
     setTimeout(()=>fetchMarket(), 5000);
   }
 }
@@ -2070,13 +2079,12 @@ async function fetchDominance(){
 
 async function fetchMetrics(){
   try{
-    const [global, btc] = await Promise.all([
+    const [global, btcArr] = await Promise.all([
       fetchGlobalData(),
       Promise.resolve(cachedMarketData.length ? cachedMarketData : null)
-        .then(d => d || fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&sparkline=false').then(r=>r.json()))
     ]);
-    const g=global.data;
-    const b=Array.isArray(btc)?btc.find(c=>c.id==='bitcoin')||btc[0]:null;
+    const g = global.data;
+    const b = btcArr ? btcArr.find(c=>c.id==='bitcoin') : null;
     if(!b) throw new Error('No BTC data');
     const up=b.price_change_percentage_24h>=0;
     const metrics=[
@@ -2177,18 +2185,13 @@ async function fetchWeeklySummary(){
 async function fetchPerformance(){
   const el = document.getElementById('perfWrap');
   try{
-    // Reuse cached market data if available, otherwise fetch
+    // Always use cached market data — populated by fetchMarket on page load
     let data = cachedMarketData.length ? cachedMarketData : null;
     if(!data){
       await new Promise(r=>setTimeout(r,1000));
-      data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,pax-gold&sparkline=false&price_change_percentage=7d,30d,1y').then(r=>r.json());
-    } else {
-      // If we have cached data but it might not have 7d/30d/1y, fetch fresh for performance
-      const hasPerfData = data.find(d=>d.id==='bitcoin' && d.price_change_percentage_7d_in_currency!=null);
-      if(!hasPerfData){
-        data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,pax-gold&sparkline=false&price_change_percentage=7d,30d,1y').then(r=>r.json());
-      }
+      data = cachedMarketData.length ? cachedMarketData : null;
     }
+    if(!data) throw new Error('No market data');
     const btc  = data.find(d=>d.id==='bitcoin');
     const gold = data.find(d=>d.id==='pax-gold');
     if(!btc||!gold){ el.innerHTML='<div class="loading">Data unavailable</div>'; return; }
