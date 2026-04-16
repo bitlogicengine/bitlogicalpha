@@ -1681,6 +1681,24 @@ async function fetchAlts(){
         </div>
       </div>
       <div class="alt-season-labels" style="margin-bottom:8px"><span>Bitcoin Season (0)</span><span>Altcoin Season (100)</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px;margin:12px 0 16px">
+        <div style="padding:8px;background:rgba(224,85,85,0.15);border-top:2px solid #e05555;text-align:center">
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#e05555">BTC Dominance</div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">0 – 24</div>
+        </div>
+        <div style="padding:8px;background:rgba(201,168,76,0.1);border-top:2px solid #c9a84c;text-align:center">
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c">Bitcoin Season</div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">25 – 49</div>
+        </div>
+        <div style="padding:8px;background:rgba(201,168,76,0.1);border-top:2px solid #c9a84c;text-align:center">
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c">Rotation</div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">50 – 74</div>
+        </div>
+        <div style="padding:8px;background:rgba(76,175,125,0.1);border-top:2px solid #4caf7d;text-align:center">
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4caf7d">Altcoin Season</div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">75 – 100</div>
+        </div>
+      </div>
       <div class="alt-season-desc">${desc}</div>
       <div class="alt-season-meta">
         <div class="alt-season-meta-item"><span class="alt-season-meta-label">BTC 24H</span><span class="alt-season-meta-value ${btcChange24h>=0?'up':'down'}">${btcChange24h>=0?'+':''}${btcChange24h.toFixed(2)}%</span></div>
