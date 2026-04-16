@@ -512,6 +512,52 @@ header{
   margin-bottom:2px;border-left:2px solid var(--gold);
   font-size:12px;color:var(--text-muted);line-height:1.8;letter-spacing:0.3px;
 }
+
+/* ALTS TAB */
+.alts-explainer{background:var(--surface);padding:20px 24px;border-left:2px solid var(--gold)}
+.alts-explainer-text{font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:14px}
+.alts-explainer-text strong{color:var(--gold);font-weight:600}
+.alts-explainer-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.alts-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(201,168,76,0.3);color:var(--gold)}
+.alt-season-wrap{background:var(--surface);padding:24px}
+.alt-season-bar-wrap{background:rgba(255,255,255,0.05);height:8px;border-radius:4px;margin:16px 0 8px;overflow:hidden}
+.alt-season-bar-fill{height:100%;border-radius:4px;transition:width 1s ease;background:linear-gradient(90deg,#4caf7d,#c9a84c)}
+.alt-season-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+.alt-season-score{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.alt-season-status{font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.alt-season-desc{font-size:12px;color:var(--text-secondary);line-height:1.7;margin-top:12px}
+.alt-season-meta{display:flex;gap:24px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.alt-season-meta-item{display:flex;flex-direction:column;gap:2px}
+.alt-season-meta-label{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+.alt-season-meta-value{font-size:14px;font-weight:600;color:var(--text)}
+.performers-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+@media(max-width:600px){.performers-grid{grid-template-columns:1fr}}
+.performers-col{background:var(--surface);padding:16px}
+.performers-col-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+.gainers-title{color:#4caf7d}
+.losers-title{color:#e05555}
+.performer-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+.performer-row:last-child{border-bottom:none}
+.performer-left{display:flex;align-items:center;gap:10px}
+.performer-rank{font-size:10px;color:var(--text-dim);width:18px}
+.performer-name{font-size:13px;font-weight:600;color:var(--text)}
+.performer-symbol{font-size:10px;color:var(--text-muted);letter-spacing:1px}
+.performer-right{text-align:right}
+.performer-price{font-size:12px;color:var(--text-secondary)}
+.performer-change{font-size:13px;font-weight:700}
+.performer-change.up{color:#4caf7d}
+.performer-change.down{color:#e05555}
+.alts-table{width:100%;border-collapse:collapse}
+.alts-table th{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);padding:10px 12px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap}
+.alts-table th:first-child,.alts-table th:nth-child(2){text-align:left}
+.alts-table td{padding:10px 12px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid rgba(255,255,255,0.04);text-align:right;white-space:nowrap}
+.alts-table td:first-child{color:var(--text-dim);font-size:11px;text-align:left}
+.alts-table td:nth-child(2){color:var(--text);font-weight:600;text-align:left}
+.alts-table tr:hover td{background:rgba(255,255,255,0.02)}
+.alts-table .up{color:#4caf7d;font-weight:600}
+.alts-table .down{color:#e05555;font-weight:600}
+@media(max-width:600px){.alts-table th:nth-child(5),.alts-table td:nth-child(5),.alts-table th:nth-child(6),.alts-table td:nth-child(6){display:none}}
+
 .about-hero{
   display:flex;align-items:center;gap:32px;
   background:var(--surface);padding:40px 36px;
@@ -746,6 +792,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <div class="nav-tabs">
     <button class="nav-tab active" id="tab-home" onclick="switchTab('home')">Home</button>
     <button class="nav-tab" id="tab-insights" onclick="switchTab('insights')">Insights</button>
+    <button class="nav-tab" id="tab-alts" onclick="switchTab('alts')">Alts</button>
     <button class="nav-tab" id="tab-resources" onclick="switchTab('resources')">Resources</button>
     <button class="nav-tab" id="tab-about" onclick="switchTab('about')">About</button>
   </div>
@@ -1354,6 +1401,75 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
   </div>
 
+  <!-- ══════════════ ALTS VIEW ══════════════ -->
+  <div class="view" id="view-alts">
+
+    <!-- WHAT ARE ALTS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">What Are Altcoins?</div>
+        <div class="section-meta">The Basics</div>
+      </div>
+      <div class="alts-explainer">
+        <p class="alts-explainer-text">
+          <strong>Altcoins</strong> — short for "alternative coins" — are every cryptocurrency that is not Bitcoin. The term was coined when Bitcoin was the only digital asset and everything else was an "alternative." Today there are tens of thousands of altcoins, ranging from the second-largest asset in the world (Ethereum) to obscure tokens with no real use case.
+        </p>
+        <p class="alts-explainer-text">
+          Not all altcoins are equal. The market divides into tiers: <strong>large caps</strong> like Ethereum, Solana and BNB have deep liquidity and institutional backing. <strong>Mid caps</strong> like Chainlink, Avalanche and Polygon carry more risk but more upside. <strong>Small caps</strong> are highly speculative — some deliver 10x returns, most go to zero.
+        </p>
+        <p class="alts-explainer-text">
+          Altcoins typically follow Bitcoin's lead. When BTC rises, alts tend to follow — often with amplified moves. When BTC falls, alts usually fall harder. The key metric traders watch is <strong>Bitcoin Dominance</strong> — when it falls, capital is rotating from Bitcoin into altcoins. That rotation is what traders call <strong>Altcoin Season</strong>.
+        </p>
+        <div class="alts-explainer-tags">
+          <span class="alts-tag">High Risk</span>
+          <span class="alts-tag">High Reward</span>
+          <span class="alts-tag">Follow BTC</span>
+          <span class="alts-tag">Liquidity Varies</span>
+          <span class="alts-tag">DYOR Always</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALTCOIN SEASON INDEX -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Altcoin Season Index</div>
+        <div class="section-meta">Live · BTC Dominance</div>
+      </div>
+      <div id="altSeasonWidget" class="alt-season-wrap">
+        <div class="loading">Loading...</div>
+      </div>
+    </div>
+
+    <!-- TOP PERFORMERS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Top Performers</div>
+        <div class="section-meta">Top 100 · 24H · Live</div>
+      </div>
+      <div class="performers-grid">
+        <div class="performers-col">
+          <div class="performers-col-title gainers-title">▲ Top 5 Gainers</div>
+          <div id="gainersWidget"><div class="loading">Loading...</div></div>
+        </div>
+        <div class="performers-col">
+          <div class="performers-col-title losers-title">▼ Top 5 Losers</div>
+          <div id="losersWidget"><div class="loading">Loading...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP 20 TABLE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">Top 20 by Market Cap</div>
+        <div class="section-meta">Live · CoinGecko</div>
+      </div>
+      <div id="altsTableWidget"><div class="loading">Loading...</div></div>
+    </div>
+
+  </div>
+
   <!-- ══════════════ ABOUT VIEW ══════════════ -->
   <div class="view" id="view-about">
 
@@ -1449,6 +1565,7 @@ const BASE = 'https://bitlogicalpha.com';
 let viewCoin = 'BTC';
 let allCharts = { BTC: [], ETH: [] };
 let insightsLoaded = false;
+let altsLoaded = false;
 let cachedMarketData = [];
 let cachedGlobalData = null;
 
@@ -1500,6 +1617,126 @@ function switchTab(tab){
     setTimeout(()=>fetchDominance(), 1500);
     setTimeout(()=>fetchMetrics(), 2500);
     setTimeout(()=>fetchWeeklySummary(), 500);
+  }
+  if(tab==='alts' && !altsLoaded){
+    altsLoaded=true;
+    fetchAlts();
+    setInterval(()=>{
+      if(document.getElementById('view-alts').classList.contains('active')) fetchAlts();
+    }, 60000);
+  }
+}
+
+// ── ALTS TAB ──────────────────────────────────────────────
+async function fetchAlts(){
+  try{
+    // Fetch top 100 with both 24h and 7d change
+    const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d').then(r=>r.json());
+
+    // --- ALTCOIN SEASON INDEX ---
+    const btc = data.find(c=>c.id==='bitcoin');
+    const btcChange24h = btc?.price_change_percentage_24h || 0;
+    const btcChange7d  = btc?.price_change_percentage_7d_in_currency || 0;
+    const top50alts = data.filter(c=>c.id!=='bitcoin').slice(0,49);
+
+    // 24h score
+    const out24 = top50alts.filter(c=>(c.price_change_percentage_24h||0) > btcChange24h).length;
+    const score24 = Math.round((out24/50)*100);
+
+    // 7d score
+    const out7d = top50alts.filter(c=>(c.price_change_percentage_7d_in_currency||0) > btcChange7d).length;
+    const score7d = Math.round((out7d/50)*100);
+
+    function getStatus(score){
+      if(score>=75) return {status:'Altcoin Season 🔥', color:'#4caf7d'};
+      if(score>=50) return {status:'Rotation Underway', color:'#c9a84c'};
+      if(score>=25) return {status:'Bitcoin Season',   color:'#c9a84c'};
+      return              {status:'BTC Dominance 🔒',  color:'#e05555'};
+    }
+    const s24 = getStatus(score24);
+    const s7d = getStatus(score7d);
+
+    // Description based on 7d (more meaningful)
+    let desc;
+    if(score7d>=75) desc='More than 75% of the top 50 altcoins are outperforming Bitcoin over the past 7 days. Capital is rotating out of BTC and into alts. Historically this signals peak cycle risk but also the strongest short-term alt gains.';
+    else if(score7d>=50) desc='More than half of the top 50 altcoins are outperforming Bitcoin over 7 days. Capital rotation has started but has not reached full altcoin season levels. Selective opportunities in quality alts.';
+    else if(score7d>=25) desc='Bitcoin is outperforming most altcoins over the past week. Capital is concentrated in BTC. Typical in early bull phases and periods of uncertainty. Alts tend to underperform until BTC stabilises.';
+    else desc='Bitcoin is strongly outperforming nearly all altcoins over 7 days. This typically signals a risk-off environment or early accumulation phase. Hold quality, avoid speculative alts.';
+
+    document.getElementById('altSeasonWidget').innerHTML=`
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:16px">
+        <div style="background:rgba(255,255,255,0.03);padding:16px;border-top:2px solid ${s24.color}">
+          <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">24H Score</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${s24.color};line-height:1">${score24}<span style="font-size:16px;color:var(--text-muted)">/100</span></div>
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:${s24.color};margin-top:6px">${s24.status}</div>
+          <div class="alt-season-bar-wrap" style="margin-top:12px"><div class="alt-season-bar-fill" style="width:${score24}%;background:${s24.color}"></div></div>
+          <div style="font-size:10px;color:var(--text-dim);margin-top:6px">${out24} / 50 alts outperforming BTC</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);padding:16px;border-top:2px solid ${s7d.color}">
+          <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">7D Score</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${s7d.color};line-height:1">${score7d}<span style="font-size:16px;color:var(--text-muted)">/100</span></div>
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:${s7d.color};margin-top:6px">${s7d.status}</div>
+          <div class="alt-season-bar-wrap" style="margin-top:12px"><div class="alt-season-bar-fill" style="width:${score7d}%;background:${s7d.color}"></div></div>
+          <div style="font-size:10px;color:var(--text-dim);margin-top:6px">${out7d} / 50 alts outperforming BTC</div>
+        </div>
+      </div>
+      <div class="alt-season-labels" style="margin-bottom:8px"><span>Bitcoin Season (0)</span><span>Altcoin Season (100)</span></div>
+      <div class="alt-season-desc">${desc}</div>
+      <div class="alt-season-meta">
+        <div class="alt-season-meta-item"><span class="alt-season-meta-label">BTC 24H</span><span class="alt-season-meta-value ${btcChange24h>=0?'up':'down'}">${btcChange24h>=0?'+':''}${btcChange24h.toFixed(2)}%</span></div>
+        <div class="alt-season-meta-item"><span class="alt-season-meta-label">BTC 7D</span><span class="alt-season-meta-value ${btcChange7d>=0?'up':'down'}">${btcChange7d>=0?'+':''}${btcChange7d.toFixed(2)}%</span></div>
+        <div class="alt-season-meta-item"><span class="alt-season-meta-label">Methodology</span><span style="font-size:11px;color:var(--text-muted)">Top 50 alts vs BTC</span></div>
+      </div>`;
+
+    // --- TOP 5 GAINERS & LOSERS (from top 100, excl BTC/stablecoins) ---
+    const filtered = data.filter(c=>!['bitcoin','tether','usd-coin','dai','true-usd','first-digital-usd','ethena-usde'].includes(c.id));
+    const sorted = [...filtered].sort((a,b)=>(b.price_change_percentage_24h||0)-(a.price_change_percentage_24h||0));
+    const gainers = sorted.slice(0,5);
+    const losers = sorted.slice(-5).reverse();
+
+    function perfRow(c,i){
+      const chg = c.price_change_percentage_24h||0;
+      const up = chg>=0;
+      const price = c.current_price>=1 ? '$'+c.current_price.toLocaleString(undefined,{maximumFractionDigits:2}) : '$'+c.current_price.toFixed(4);
+      return `<div class="performer-row">
+        <div class="performer-left">
+          <span class="performer-rank">#${c.market_cap_rank}</span>
+          <div><div class="performer-name">${c.name}</div><div class="performer-symbol">${c.symbol.toUpperCase()}</div></div>
+        </div>
+        <div class="performer-right">
+          <div class="performer-price">${price}</div>
+          <div class="performer-change ${up?'up':'down'}">${up?'+':''}${chg.toFixed(2)}%</div>
+        </div>
+      </div>`;
+    }
+
+    document.getElementById('gainersWidget').innerHTML = gainers.map(perfRow).join('');
+    document.getElementById('losersWidget').innerHTML = losers.map(perfRow).join('');
+
+    // --- TOP 20 TABLE (excl stables) ---
+    const top20 = data.filter(c=>!['tether','usd-coin','dai','true-usd','first-digital-usd','ethena-usde'].includes(c.id)).slice(0,20);
+    const fmtPct = v => v==null?'--':`<span class="${v>=0?'up':'down'}">${v>=0?'+':''}${v.toFixed(2)}%</span>`;
+    const fmtMcap = v => v>=1e12?'$'+(v/1e12).toFixed(2)+'T':v>=1e9?'$'+(v/1e9).toFixed(1)+'B':v>=1e6?'$'+(v/1e6).toFixed(0)+'M':'$'+v.toFixed(0);
+    const fmtPrice = v => v>=1000?'$'+v.toLocaleString(undefined,{maximumFractionDigits:0}):v>=1?'$'+v.toFixed(2):'$'+v.toFixed(4);
+
+    document.getElementById('altsTableWidget').innerHTML=`
+      <div style="overflow-x:auto">
+      <table class="alts-table">
+        <thead><tr>
+          <th>#</th><th>Coin</th><th>Price</th><th>24H</th><th>7D</th><th>Market Cap</th>
+        </tr></thead>
+        <tbody>${top20.map((c,i)=>`<tr>
+          <td>${c.market_cap_rank}</td>
+          <td><strong>${c.name}</strong> <span style="color:var(--text-dim);font-size:10px">${c.symbol.toUpperCase()}</span></td>
+          <td>${fmtPrice(c.current_price)}</td>
+          <td>${fmtPct(c.price_change_percentage_24h)}</td>
+          <td>${fmtPct(c.price_change_percentage_7d_in_currency)}</td>
+          <td>${fmtMcap(c.market_cap)}</td>
+        </tr>`).join('')}</tbody>
+      </table></div>`;
+
+  }catch(e){
+    console.error('fetchAlts error',e);
   }
 }
 
