@@ -1,3 +1,3 @@
 status: Positive
-note: ETH continues to outperform BTC this week with renewed ETF inflows — best weekly performance of 2026. The SEC roundtable today on digital asset market structure is a direct catalyst for ETH given its classification as a digital commodity alongside BTC. Daily structure clearly positive.
-updated: 16 Apr 2026
+note: ETH holding positive structure but facing the $2,300 resistance zone. Best weekly ETF inflows of 2026 confirmed last week at $187M. A break above $2,300 with follow-through would signal the next leg up. Daily structure intact — higher lows building. CLARITY Act progress this week remains a key catalyst for ETH given its DeFi and staking exposure.
+updated: 17 Apr 2026
