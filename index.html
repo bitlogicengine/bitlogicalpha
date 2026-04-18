@@ -19,7 +19,7 @@
 <meta property="og:description" content="Daily BTC, ETH and Gold market state, live crypto data, Fear &amp; Greed Index and expert analysis. Updated every day."/>
 <meta property="og:url" content="https://bitlogicalpha.com/"/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="https://bitlogicalpha.com/preview.png"/>
+<meta property="og:image" content="https://i.postimg.cc/pmFKB7Rn/preview.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:type" content="image/png"/>
@@ -28,7 +28,7 @@
 <meta name="twitter:creator" content="@QuantAlphaTrend"/>
 <meta name="twitter:title" content="BitLogic Alpha — Crypto &amp; Gold Market Intelligence"/>
 <meta name="twitter:description" content="Daily BTC, ETH and Gold market state, live crypto data, Fear &amp; Greed Index and expert analysis. Updated every day."/>
-<meta name="twitter:image" content="https://bitlogicalpha.com/preview.png"/>
+<meta name="twitter:image" content="https://i.postimg.cc/pmFKB7Rn/preview.png"/>
 <meta name="twitter:title" content="BitLogic Alpha — Crypto Market Intelligence"/>
 <meta name="twitter:description" content="Daily BTC and ETH chart analysis, live crypto market data, and expert insights."/>
 <!-- Google Analytics -->
@@ -762,6 +762,111 @@ header{
 }
 .perf-winner strong{color:var(--gold)}
 
+/* BITCOIN TAB */
+.btc-hero{
+  display:flex;align-items:center;gap:28px;
+  background:var(--surface);
+  padding:40px 40px;
+  border-left:3px solid var(--gold);
+  margin-bottom:2px;
+  position:relative;
+  overflow:hidden;
+}
+.btc-hero::before{
+  content:'₿';
+  position:absolute;
+  right:-20px;top:50%;transform:translateY(-50%);
+  font-size:200px;
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  opacity:0.04;
+  line-height:1;
+  pointer-events:none;
+  font-weight:900;
+}
+.btc-hero-symbol{
+  width:64px;height:64px;
+  border-radius:50%;
+  border:2px solid var(--gold);
+  box-shadow:0 0 20px rgba(201,168,76,0.3),0 0 40px rgba(201,168,76,0.1);
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 40% 40%,#1a1400,#080808);
+  font-size:28px;color:var(--gold);
+  font-family:'Playfair Display',serif;
+  line-height:1;flex-shrink:0;
+  font-weight:900;
+}
+.btc-hero-text{display:flex;flex-direction:column;gap:6px}
+.btc-hero-eyebrow{
+  font-size:9px;color:var(--gold);
+  letter-spacing:4px;text-transform:uppercase;
+  opacity:0.7;
+}
+.btc-hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:36px;font-weight:900;
+  color:var(--text);letter-spacing:1px;
+  line-height:1;
+}
+.btc-hero-sub{
+  font-size:11px;color:var(--text-muted);
+  letter-spacing:2px;margin-top:2px;
+}
+.btc-hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btc-hero-tag{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;
+  border:1px solid var(--gold-border);
+  color:var(--text-muted);
+}
+.btc-sections{display:flex;flex-direction:column;gap:2px;margin-top:2px}
+.btc-section{background:var(--surface)}
+.btc-section-header{
+  padding:20px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;transition:background 0.2s;gap:16px;
+}
+.btc-section-header:hover{background:var(--surface2)}
+.btc-section-left{display:flex;align-items:center;gap:14px}
+.btc-section-icon{font-size:22px;flex-shrink:0}
+.btc-section-title{
+  font-family:'Playfair Display',serif;
+  font-size:17px;font-weight:700;
+  color:var(--text);margin-bottom:3px;
+}
+.btc-section-sub{font-size:10px;color:var(--text-muted);letter-spacing:1px}
+.btc-toggle{font-size:11px;color:var(--gold);transition:transform 0.25s;flex-shrink:0}
+.btc-toggle.open{transform:rotate(180deg)}
+.btc-section-body{
+  display:none;
+  border-top:1px solid var(--text-dim);
+  padding:20px;
+}
+.btc-section-body.open{display:block}
+.btc-card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:2px;
+}
+.btc-card{
+  background:var(--surface2);
+  padding:20px;
+  border-left:2px solid transparent;
+  transition:border-color 0.2s;
+}
+.btc-card:hover{border-left-color:var(--gold)}
+.btc-card-title{
+  font-family:'Playfair Display',serif;
+  font-size:14px;font-weight:700;
+  color:var(--gold);
+  margin-bottom:10px;
+  letter-spacing:0.3px;
+}
+.btc-card-body{
+  font-size:12px;color:var(--text-muted);
+  line-height:1.8;letter-spacing:0.3px;
+}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -815,6 +920,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <div class="nav-tabs">
     <button class="nav-tab active" id="tab-home" onclick="switchTab('home')">Home</button>
     <button class="nav-tab" id="tab-insights" onclick="switchTab('insights')">Insights</button>
+    <button class="nav-tab" id="tab-bitcoin" onclick="switchTab('bitcoin')">Bitcoin</button>
     <button class="nav-tab" id="tab-alts" onclick="switchTab('alts')">Alts</button>
     <button class="nav-tab" id="tab-resources" onclick="switchTab('resources')">Resources</button>
     <button class="nav-tab" id="tab-about" onclick="switchTab('about')">About</button>
@@ -1029,6 +1135,197 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
+  </div>
+
+  </div>
+
+  <!-- ══════════════ BITCOIN VIEW ══════════════ -->
+  <div class="view" id="view-bitcoin">
+
+    <!-- INTRO BANNER -->
+    <div class="btc-hero">
+      <div class="btc-hero-symbol">₿</div>
+      <div class="btc-hero-text">
+        <div class="btc-hero-eyebrow">BitLogic Alpha · Deep Dive Series</div>
+        <div class="btc-hero-title">Bitcoin</div>
+        <div class="btc-hero-sub">Deep knowledge. No hype. No price predictions.</div>
+        <div class="btc-hero-tags">
+          <span class="btc-hero-tag">Protocol</span>
+          <span class="btc-hero-tag">Economy</span>
+          <span class="btc-hero-tag">Adoption</span>
+          <span class="btc-hero-tag">History</span>
+          <span class="btc-hero-tag">Security</span>
+          <span class="btc-hero-tag">On-Chain</span>
+          <span class="btc-hero-tag">Future</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTIONS -->
+    <div class="btc-sections" id="btcSections">
+
+      <div class="btc-section">
+        <div class="btc-section-header" onclick="toggleBtcSection(this)">
+          <div class="btc-section-left">
+            <div class="btc-section-icon">⚙️</div>
+            <div>
+              <div class="btc-section-title">Protocol Deep Dives</div>
+              <div class="btc-section-sub">How Bitcoin actually works under the hood</div>
+            </div>
+          </div>
+          <div class="btc-toggle">▼</div>
+        </div>
+        <div class="btc-section-body">
+          <div class="btc-card-grid">
+            <div class="btc-card"><div class="btc-card-title">Proof of Work</div><div class="btc-card-body">Bitcoin secures itself through computational work. Miners compete to solve a cryptographic puzzle — the winner adds the next block and earns the reward. This makes attacks prohibitively expensive: rewriting history requires outcomputing the entire honest network.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The UTXO Model</div><div class="btc-card-body">Bitcoin doesn't use account balances. Instead it tracks Unspent Transaction Outputs — discrete chunks of bitcoin that must be fully spent and change returned. This model improves privacy and parallel validation compared to account-based systems like Ethereum.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The Mempool</div><div class="btc-card-body">Unconfirmed transactions wait in the memory pool before miners include them in a block. When blocks are full, fees become a bidding war. Understanding mempool congestion helps you time transactions and set fees intelligently.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Difficulty Adjustment</div><div class="btc-card-body">Every 2,016 blocks (~2 weeks), Bitcoin automatically recalibrates mining difficulty to keep block times near 10 minutes. If miners leave, difficulty drops. If they flood in, it rises. This self-correcting mechanism is one of Bitcoin's most elegant designs.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The Lightning Network</div><div class="btc-card-body">A Layer 2 protocol built on top of Bitcoin that enables instant, near-zero fee payments. Two parties open a payment channel by committing funds on-chain, transact off-chain as many times as needed, then settle the final balance on-chain. Lightning makes microtransactions viable.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Script & Taproot</div><div class="btc-card-body">Bitcoin transactions are governed by Script — a simple programming language that defines spending conditions. Taproot (2021) improved privacy and efficiency, making complex multi-signature setups indistinguishable from simple transactions on-chain.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btc-section">
+        <div class="btc-section-header" onclick="toggleBtcSection(this)">
+          <div class="btc-section-left">
+            <div class="btc-section-icon">🏦</div>
+            <div>
+              <div class="btc-section-title">Economy & Money</div>
+              <div class="btc-section-sub">Bitcoin as a monetary system and economic force</div>
+            </div>
+          </div>
+          <div class="btc-toggle">▼</div>
+        </div>
+        <div class="btc-section-body">
+          <div class="btc-card-grid">
+            <div class="btc-card"><div class="btc-card-title">Fixed Supply — 21 Million</div><div class="btc-card-body">No central bank, no government, no algorithm can create more than 21 million Bitcoin. This hard cap is enforced by the protocol itself. Scarcity is not a policy choice — it is mathematics. Every other monetary system in history has been debased. Bitcoin cannot be.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The Halving Cycle</div><div class="btc-card-body">Every ~4 years, the block reward is cut in half. This programmatic supply reduction — the halving — reduces new Bitcoin entering circulation and historically precedes significant price cycles. The next halving in 2028 drops the reward from 3.125 to 1.5625 BTC per block.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Bitcoin vs Inflation</div><div class="btc-card-body">Fiat currencies lose purchasing power over time through monetary expansion. Bitcoin's fixed supply means it cannot be inflated away by policy decisions. Whether Bitcoin functions as an inflation hedge depends on time horizon — over long periods the data is compelling, over short periods it correlates with risk assets.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Stock-to-Flow Model</div><div class="btc-card-body">Stock-to-Flow measures scarcity by dividing the existing supply by annual production. Bitcoin's S2F ratio increases with each halving, approaching gold and eventually surpassing it. The model is controversial as a price predictor but useful as a framework for understanding Bitcoin's monetary properties.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Bitcoin as Reserve Asset</div><div class="btc-card-body">Corporations like Strategy hold Bitcoin on their balance sheets. Sovereign wealth funds and pension funds are beginning to allocate. The US government now holds a Strategic Bitcoin Reserve. The transition from speculative asset to reserve asset is underway — and it changes the demand structure fundamentally.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Fee Market & Security Budget</div><div class="btc-card-body">As block rewards diminish, transaction fees become the primary miner incentive. The long-term security of Bitcoin depends on whether fee revenue is sufficient to sustain the mining ecosystem. This is one of the most important open questions in Bitcoin economics.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btc-section">
+        <div class="btc-section-header" onclick="toggleBtcSection(this)">
+          <div class="btc-section-left">
+            <div class="btc-section-icon">🌍</div>
+            <div>
+              <div class="btc-section-title">Adoption & Real World Use</div>
+              <div class="btc-section-sub">How and where Bitcoin is actually being used</div>
+            </div>
+          </div>
+          <div class="btc-toggle">▼</div>
+        </div>
+        <div class="btc-section-body">
+          <div class="btc-card-grid">
+            <div class="btc-card"><div class="btc-card-title">Bitcoin as Legal Tender</div><div class="btc-card-body">El Salvador made Bitcoin legal tender in 2021 — the first country in history to do so. Despite IMF pressure and mixed domestic reception, the experiment continues. Other nations have observed closely. Legal tender status forces merchants to accept it and reduces currency conversion friction for the unbanked.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Corporate Treasury Adoption</div><div class="btc-card-body">Strategy holds over 780,000 BTC. Dozens of publicly traded companies now hold Bitcoin on their balance sheets. This corporate treasury trend transforms Bitcoin from a speculative trade into a strategic financial asset — one that can be audited, financed against, and reported to shareholders.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Bitcoin ETFs</div><div class="btc-card-body">US spot Bitcoin ETFs launched in January 2024 and absorbed billions in their first year. BlackRock's IBIT became one of the fastest-growing ETFs in history. ETFs remove custody friction for institutional investors and pension funds, opening access to capital that could not previously touch crypto directly.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Cross-Border Payments</div><div class="btc-card-body">Bitcoin settles globally in minutes without intermediaries. For the 1.4 billion unbanked adults worldwide — and for anyone sending remittances across borders — Bitcoin and the Lightning Network offer faster and cheaper alternatives to traditional wire transfers and Western Union fees.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Bitcoin Mining & Energy</div><div class="btc-card-body">Bitcoin mining consumes significant energy — but the conversation is more nuanced than headlines suggest. Miners are price-sensitive energy buyers who are incentivised to use the cheapest electricity, which is increasingly surplus renewable energy. Mining can stabilise grids and monetise stranded energy assets.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Ordinals & Digital Assets</div><div class="btc-card-body">Ordinals (2023) enabled the inscription of arbitrary data onto individual satoshis, creating Bitcoin-native NFTs and digital artefacts. This sparked debate about Bitcoin's purpose but demonstrated that its base layer can support use cases beyond simple value transfer — without a hard fork.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btc-section">
+        <div class="btc-section-header" onclick="toggleBtcSection(this)">
+          <div class="btc-section-left">
+            <div class="btc-section-icon">📜</div>
+            <div>
+              <div class="btc-section-title">History, Philosophy & Culture</div>
+              <div class="btc-section-sub">The ideas and events that shaped Bitcoin</div>
+            </div>
+          </div>
+          <div class="btc-toggle">▼</div>
+        </div>
+        <div class="btc-section-body">
+          <div class="btc-card-grid">
+            <div class="btc-card"><div class="btc-card-title">Satoshi Nakamoto</div><div class="btc-card-body">Bitcoin was created by an anonymous person or group using the pseudonym Satoshi Nakamoto. The whitepaper was published in October 2008 — weeks after the Lehman Brothers collapse. Satoshi disappeared in 2010, leaving behind a protocol and a community. Their identity remains unknown. Their invention changed finance.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The Genesis Block</div><div class="btc-card-body">The first Bitcoin block was mined on January 3, 2009. Embedded in it was a headline from The Times: "Chancellor on brink of second bailout for banks." This was not accidental — it was a statement of purpose. Bitcoin was born as a direct response to the failures of centralised monetary systems.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The Cypherpunk Roots</div><div class="btc-card-body">Bitcoin did not emerge from nowhere. It was built on decades of cypherpunk research — a movement of cryptographers and privacy advocates who believed that strong cryptography was essential to individual freedom. Concepts like digital cash, blind signatures, and hash functions had been explored for years before Satoshi assembled them.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The Block Size Wars</div><div class="btc-card-body">Between 2015 and 2017, Bitcoin nearly split over the question of block size. Large-block proponents wanted to scale on-chain. Small-block proponents defended the base layer's decentralisation and pushed scaling to Layer 2. The small-block side won — Bitcoin Cash forked off. The result shaped Bitcoin's architecture permanently.</div></div>
+            <div class="btc-card"><div class="btc-card-title">HODL Culture</div><div class="btc-card-body">HODL originated from a 2013 forum post — a typo for "hold" — and became a philosophy: hold Bitcoin through volatility rather than trade it. The HODL mindset reflects a long-term conviction in Bitcoin's monetary properties over short-term price movements. It has proven consistently correct over multi-year time horizons.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Not Your Keys, Not Your Coins</div><div class="btc-card-body">The collapse of Mt. Gox (2014), Celsius, FTX (2022), and others reinforced the foundational Bitcoin principle: self-custody. If a third party holds your private keys, they control your Bitcoin. The only Bitcoin you truly own is the Bitcoin you hold in a wallet you control.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btc-section">
+        <div class="btc-section-header" onclick="toggleBtcSection(this)">
+          <div class="btc-section-left">
+            <div class="btc-section-icon">🔐</div>
+            <div>
+              <div class="btc-section-title">Security, Privacy & Risks</div>
+              <div class="btc-section-sub">What threatens Bitcoin and how to protect yourself</div>
+            </div>
+          </div>
+          <div class="btc-toggle">▼</div>
+        </div>
+        <div class="btc-section-body">
+          <div class="btc-card-grid">
+            <div class="btc-card"><div class="btc-card-title">51% Attacks</div><div class="btc-card-body">If a single entity controls more than 50% of Bitcoin's hash rate, they could rewrite recent transaction history and double-spend. In practice, Bitcoin's hash rate is now so large that a 51% attack would require an investment exceeding $20 billion in hardware and energy — making it economically irrational for any rational actor.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Private Key Security</div><div class="btc-card-body">A Bitcoin private key is a 256-bit number. Losing it means losing access to your Bitcoin permanently — there is no password reset, no customer service, no recovery. The responsibility of self-custody is absolute. Hardware wallets and secure seed phrase storage are essential for anyone holding significant amounts.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Bitcoin's Pseudonymity</div><div class="btc-card-body">Bitcoin transactions are public. Every transaction is permanently recorded on the blockchain and visible to anyone. What Bitcoin offers is pseudonymity — addresses are not automatically linked to identities, but sophisticated chain analysis can often de-anonymise users. True privacy requires additional tools like CoinJoin or the Lightning Network.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Quantum Computing Risk</div><div class="btc-card-body">Sufficiently powerful quantum computers could theoretically break the elliptic curve cryptography that secures Bitcoin private keys. This risk is real but not imminent — current quantum computers are far from the capability required. Bitcoin's developer community is actively researching quantum-resistant cryptographic upgrades.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Regulatory Risk</div><div class="btc-card-body">Governments can restrict Bitcoin's use — banning exchanges, taxing heavily, or prohibiting financial institutions from engaging with it. China banned it multiple times. The US has moved toward regulation rather than prohibition. Regulatory risk is asymmetric: restrictions slow adoption but have never succeeded in killing the network.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Smart Contract Limitations</div><div class="btc-card-body">Bitcoin's Script language is intentionally simple and not Turing-complete. This is a deliberate security choice — complex smart contracts introduce attack surfaces. Bitcoin prioritises security and predictability over programmability. Those wanting complex applications build on top of Bitcoin via Layer 2, not on the base layer.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btc-section">
+        <div class="btc-section-header" onclick="toggleBtcSection(this)">
+          <div class="btc-section-left">
+            <div class="btc-section-icon">📊</div>
+            <div>
+              <div class="btc-section-title">Data-Driven & Analytical</div>
+              <div class="btc-section-sub">On-chain metrics and analytical frameworks</div>
+            </div>
+          </div>
+          <div class="btc-toggle">▼</div>
+        </div>
+        <div class="btc-section-body">
+          <div class="btc-card-grid">
+            <div class="btc-card"><div class="btc-card-title">MVRV Ratio</div><div class="btc-card-body">Market Value to Realized Value compares Bitcoin's current market cap to the aggregate cost basis of all coins. When MVRV is high, most holders are in profit and distribution risk rises. When MVRV is low, most holders are at a loss — historically a signal of market bottoms and accumulation zones.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Realized Price</div><div class="btc-card-body">The Realized Price is the average price at which every Bitcoin last moved on-chain — effectively the market's aggregate cost basis. When spot price falls below realized price, the market is at a net loss. This level has historically acted as a strong support zone in bear markets.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Hash Rate & Security</div><div class="btc-card-body">Hash rate measures the total computational power securing the Bitcoin network. Rising hash rate signals miner confidence and network security. Hash rate has continued to make all-time highs regardless of price cycles — a sign that long-term participants believe in the network's future.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Exchange Reserves</div><div class="btc-card-body">The amount of Bitcoin held on exchanges is a proxy for sell pressure. When exchange reserves fall, coins are moving to self-custody — a bullish signal indicating holders are not positioning to sell. Rising reserves signal potential increased selling pressure ahead.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Puell Multiple</div><div class="btc-card-body">The Puell Multiple divides daily miner revenue by its 365-day moving average. When miners earn far more than their historical average, they have greater incentive to sell. Low Puell readings historically coincide with market bottoms when miner revenue is depressed relative to history.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Long vs Short-Term Holders</div><div class="btc-card-body">On-chain analysis separates Bitcoin holders into long-term (held 155+ days) and short-term (held less than 155 days). Long-term holders accumulate in bear markets and distribute in bull markets. Their behaviour is the most reliable signal of where the market is in its cycle.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btc-section">
+        <div class="btc-section-header" onclick="toggleBtcSection(this)">
+          <div class="btc-section-left">
+            <div class="btc-section-icon">🔭</div>
+            <div>
+              <div class="btc-section-title">Future Oriented</div>
+              <div class="btc-section-sub">Where Bitcoin could go from here</div>
+            </div>
+          </div>
+          <div class="btc-toggle">▼</div>
+        </div>
+        <div class="btc-section-body">
+          <div class="btc-card-grid">
+            <div class="btc-card"><div class="btc-card-title">Bitcoin vs Gold's Market Cap</div><div class="btc-card-body">Gold's market cap is approximately $22–34 trillion. Bitcoin's is currently under $2 trillion. If Bitcoin captures 10% of gold's monetary role, one Bitcoin would be worth over $100,000. If it captures 50%, over $500,000. The Bitwise CIO and others are now publicly making the case that Bitcoin could eventually eclipse gold entirely.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Nation-State Adoption</div><div class="btc-card-body">El Salvador was first. The US now holds a Strategic Bitcoin Reserve. Other countries are watching. Nation-state adoption changes Bitcoin's geopolitical role — from a fringe asset to a reserve currency competitor. The speed of this shift depends heavily on dollar dominance and the trajectory of US fiscal policy.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The CLARITY Act & Regulation</div><div class="btc-card-body">Clear regulatory frameworks unlock institutional capital that cannot participate without legal certainty. The CLARITY Act, if passed, would define Bitcoin as a commodity and open the door to pension funds, endowments, and sovereign wealth capital. The direction of travel is toward integration, not prohibition.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Bitcoin & AI</div><div class="btc-card-body">As AI agents become economic actors — executing tasks, paying for services, earning compensation — they need a neutral, programmable money that no company controls. Bitcoin and the Lightning Network are the only monetary rails that AI agents can use without permission from any institution. This use case is nascent but structurally significant.</div></div>
+            <div class="btc-card"><div class="btc-card-title">Layer 2 Ecosystem</div><div class="btc-card-body">Lightning, Ark, Fedimint, and other Layer 2 protocols are expanding what Bitcoin can do without changing its base layer. Faster payments, better privacy, smarter contracts — all built on top of the most secure monetary base layer ever created. The Layer 2 ecosystem is where Bitcoin's programmability lives.</div></div>
+            <div class="btc-card"><div class="btc-card-title">The Long Game</div><div class="btc-card-body">Bitcoin is 16 years old. The internet was 16 years old in 1995 — barely understood, mostly dismissed, occasionally banned. The infrastructure being built today — ETFs, corporate treasuries, regulatory frameworks, Layer 2 rails — is the foundation for the next decade. The question is not whether Bitcoin matters. The question is how much.</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- ══════════════ RESOURCES VIEW ══════════════ -->
@@ -1718,6 +2015,13 @@ let cachedMarketData = [];
 let cachedGlobalData = null;
 
 document.getElementById('navDate').textContent = new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase();
+
+function toggleBtcSection(header){
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.btc-toggle');
+  body.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
 
 // ── TAB SWITCHING ─────────────────────────────────────────
 function toggleResSection(header){
