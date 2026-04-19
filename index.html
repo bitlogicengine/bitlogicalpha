@@ -999,6 +999,8 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
 
     <div class="section" id="sec-market-overview">
+      <div class="section-header">
+        <div class="section-label">Market Overview</div>
         <div class="section-meta">Top 5 · Live</div>
       </div>
       <div id="athBanner" class="ath-banner" style="display:none">
@@ -1222,9 +1224,20 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
 
     <!-- SECTIONS -->
+    <!-- BITCOIN JUMP BAR -->
+    <div class="jump-bar">
+      <a class="jump-link" onclick="jumpTo('btc-protocol')">Protocol</a>
+      <a class="jump-link" onclick="jumpTo('btc-economy')">Economy & Money</a>
+      <a class="jump-link" onclick="jumpTo('btc-adoption')">Adoption</a>
+      <a class="jump-link" onclick="jumpTo('btc-history')">History</a>
+      <a class="jump-link" onclick="jumpTo('btc-security')">Security</a>
+      <a class="jump-link" onclick="jumpTo('btc-data')">Analytics</a>
+      <a class="jump-link" onclick="jumpTo('btc-future')">Future</a>
+    </div>
+
     <div class="btc-sections" id="btcSections">
 
-      <div class="btc-section">
+      <div class="btc-section" id="btc-protocol">
         <div class="btc-section-header" onclick="toggleBtcSection(this)">
           <div class="btc-section-left">
             <div class="btc-section-icon">⚙️</div>
@@ -1247,7 +1260,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
 
-      <div class="btc-section">
+      <div class="btc-section" id="btc-economy">
         <div class="btc-section-header" onclick="toggleBtcSection(this)">
           <div class="btc-section-left">
             <div class="btc-section-icon">🏦</div>
@@ -1270,7 +1283,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
 
-      <div class="btc-section">
+      <div class="btc-section" id="btc-adoption">
         <div class="btc-section-header" onclick="toggleBtcSection(this)">
           <div class="btc-section-left">
             <div class="btc-section-icon">🌍</div>
@@ -1293,7 +1306,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
 
-      <div class="btc-section">
+      <div class="btc-section" id="btc-history">
         <div class="btc-section-header" onclick="toggleBtcSection(this)">
           <div class="btc-section-left">
             <div class="btc-section-icon">📜</div>
@@ -1316,7 +1329,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
 
-      <div class="btc-section">
+      <div class="btc-section" id="btc-security">
         <div class="btc-section-header" onclick="toggleBtcSection(this)">
           <div class="btc-section-left">
             <div class="btc-section-icon">🔐</div>
@@ -1339,7 +1352,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
 
-      <div class="btc-section">
+      <div class="btc-section" id="btc-data">
         <div class="btc-section-header" onclick="toggleBtcSection(this)">
           <div class="btc-section-left">
             <div class="btc-section-icon">📊</div>
@@ -1362,7 +1375,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
 
-      <div class="btc-section">
+      <div class="btc-section" id="btc-future">
         <div class="btc-section-header" onclick="toggleBtcSection(this)">
           <div class="btc-section-left">
             <div class="btc-section-icon">🔭</div>
@@ -1391,10 +1404,20 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <!-- ══════════════ RESOURCES VIEW ══════════════ -->
   <div class="view" id="view-resources">
 
+    <!-- RESOURCES JUMP BAR -->
+    <div class="jump-bar" style="margin-top:32px">
+      <a class="jump-link" onclick="jumpTo('res-start')">Start Here</a>
+      <a class="jump-link" onclick="jumpTo('res-networks')">Blockchain Networks</a>
+      <a class="jump-link" onclick="jumpTo('res-security')">Security</a>
+      <a class="jump-link" onclick="jumpTo('res-glossary')">Glossary</a>
+      <a class="jump-link" onclick="jumpTo('res-reading')">Reading</a>
+      <a class="jump-link" onclick="jumpTo('res-history')">History</a>
+    </div>
+
     <div class="section">
       <div class="res-section-header open" onclick="toggleResSection(this)">
         <div class="res-section-left">
-          <div class="res-section-title">Start Here</div>
+          <div class="res-section-title" id="res-start">Start Here</div>
           <div class="res-section-subtitle">Crypto Fundamentals · 5 Concepts</div>
         </div>
         <div class="res-toggle">
@@ -1465,7 +1488,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="res-section-header open" onclick="toggleResSection(this)">
         <div class="res-section-left">
-          <div class="res-section-title">Blockchain Networks</div>
+          <div class="res-section-title" id="res-networks">Blockchain Networks</div>
           <div class="res-section-subtitle">L1 · L2 · Infrastructure · 9 Networks</div>
         </div>
         <div class="res-toggle">
@@ -1566,7 +1589,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="res-section-header" onclick="toggleResSection(this)">
         <div class="res-section-left">
-          <div class="res-section-title">Security & Wallets</div>
+          <div class="res-section-title" id="res-security">Security & Wallets</div>
           <div class="res-section-subtitle">Hardware · Software · Self-Custody</div>
         </div>
         <div class="res-toggle">
@@ -1665,7 +1688,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="res-section-header" onclick="toggleResSection(this)">
         <div class="res-section-left">
-          <div class="res-section-title">Glossary</div>
+          <div class="res-section-title" id="res-glossary">Glossary</div>
           <div class="res-section-subtitle">Key Terms · Plain English · 25 Definitions</div>
         </div>
         <div class="res-toggle">
@@ -1681,7 +1704,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="res-section-header" onclick="toggleResSection(this)">
         <div class="res-section-left">
-          <div class="res-section-title">Recommended Reading</div>
+          <div class="res-section-title" id="res-reading">Recommended Reading</div>
           <div class="res-section-subtitle">News · Data · Research · 8 Sources</div>
         </div>
         <div class="res-toggle">
@@ -1782,7 +1805,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="res-section-header" onclick="toggleResSection(this)">
         <div class="res-section-left">
-          <div class="res-section-title">Bitcoin & Crypto History</div>
+          <div class="res-section-title" id="res-history">Bitcoin & Crypto History</div>
           <div class="res-section-subtitle">Key Milestones · 2008 — Present</div>
         </div>
         <div class="res-toggle">
@@ -1909,10 +1932,18 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   </div>
   <div class="view" id="view-alts">
 
+    <!-- ALTS JUMP BAR -->
+    <div class="jump-bar" style="margin-top:32px">
+      <a class="jump-link" onclick="jumpTo('alts-what')">What Are Altcoins?</a>
+      <a class="jump-link" onclick="jumpTo('alts-season')">Altcoin Season</a>
+      <a class="jump-link" onclick="jumpTo('alts-performers')">Top Performers</a>
+      <a class="jump-link" onclick="jumpTo('alts-top20')">Top 20</a>
+    </div>
+
     <!-- WHAT ARE ALTS -->
     <div class="section">
       <div class="section-header">
-        <div class="section-label">What Are Altcoins?</div>
+        <div class="section-label" id="alts-what">What Are Altcoins?</div>
         <div class="section-meta">The Basics</div>
       </div>
       <div class="alts-explainer">
@@ -1938,7 +1969,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <!-- ALTCOIN SEASON INDEX -->
     <div class="section">
       <div class="section-header">
-        <div class="section-label">Altcoin Season Index</div>
+        <div class="section-label" id="alts-season">Altcoin Season Index</div>
         <div class="section-meta">Live · BTC Dominance</div>
       </div>
       <div id="altSeasonWidget" class="alt-season-wrap">
@@ -1949,7 +1980,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <!-- TOP PERFORMERS -->
     <div class="section">
       <div class="section-header">
-        <div class="section-label">Top Performers</div>
+        <div class="section-label" id="alts-performers">Top Performers</div>
         <div class="section-meta">Top 100 · 24H · Live</div>
       </div>
       <div class="performers-grid">
@@ -1967,7 +1998,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <!-- TOP 20 TABLE -->
     <div class="section">
       <div class="section-header">
-        <div class="section-label">Top 20 by Market Cap</div>
+        <div class="section-label" id="alts-top20">Top 20 by Market Cap</div>
         <div class="section-meta">Live · CoinGecko</div>
       </div>
       <div id="altsTableWidget"><div class="loading">Loading...</div></div>
@@ -1978,9 +2009,17 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <!-- ══════════════ ABOUT VIEW ══════════════ -->
   <div class="view" id="view-about">
 
+    <!-- ABOUT JUMP BAR -->
+    <div class="jump-bar" style="margin-top:32px">
+      <a class="jump-link" onclick="jumpTo('about-intro')">About</a>
+      <a class="jump-link" onclick="jumpTo('about-what')">What We Do</a>
+      <a class="jump-link" onclick="jumpTo('about-how')">How It Works</a>
+      <a class="jump-link" onclick="jumpTo('about-who')">Who Is This For</a>
+    </div>
+
     <div class="section">
       <div class="section-header">
-        <div class="section-label">About BitLogic Alpha</div>
+        <div class="section-label" id="about-intro">About BitLogic Alpha</div>
         <div class="section-meta">Who We Are</div>
       </div>
       <div class="about-hero">
@@ -1996,7 +2035,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
     <div class="section">
       <div class="section-header">
-        <div class="section-label">What We Do</div>
+        <div class="section-label" id="about-what">What We Do</div>
         <div class="section-meta">Our Mission</div>
       </div>
       <div class="about-grid">
@@ -2020,7 +2059,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
     <div class="section">
       <div class="section-header">
-        <div class="section-label">How The Market State Works</div>
+        <div class="section-label" id="about-how">How The Market State Works</div>
         <div class="section-meta">Our Methodology</div>
       </div>
       <div class="about-methodology">
@@ -2039,7 +2078,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
     <div class="section">
       <div class="section-header">
-        <div class="section-label">Who Is This For</div>
+        <div class="section-label" id="about-who">Who Is This For</div>
         <div class="section-meta">Our Audience</div>
       </div>
       <div class="about-audience">
@@ -2081,6 +2120,23 @@ function toggleBtcSection(header){
   const toggle = header.querySelector('.btc-toggle');
   body.classList.toggle('open');
   toggle.classList.toggle('open');
+}
+
+function jumpTo(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  // Auto-expand if collapsed (btc sections, res sections)
+  const body = el.querySelector('.btc-section-body, .res-section-body');
+  const toggle = el.querySelector('.btc-toggle, .res-toggle-arrow');
+  if(body && !body.classList.contains('open')){
+    body.classList.add('open');
+    if(toggle) toggle.style.transform='rotate(180deg)';
+  }
+  setTimeout(()=>{
+    const navHeight = document.querySelector('.sticky-nav').offsetHeight;
+    const top = el.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+    window.scrollTo({top, behavior:'smooth'});
+  }, 50);
 }
 
 // ── TAB SWITCHING ─────────────────────────────────────────
