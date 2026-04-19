@@ -1,3 +1,2 @@
-status: Positive
-note: ETH holding constructively above $2,300 after Friday pullback. On-chain activity at record highs — network transactions hit 200M in Q1. Structure intact above key support.
-updated: 19 Apr 2026
+comment: Fear and Greed at 27 — Fear, recovering from the extreme lows of 12 three weeks ago. BTC broke $78K this week. Iran demanded Bitcoin to cross Hormuz. Goldman Sachs filed for a Bitcoin ETF. The next Fed Chair owned crypto. Sentiment says fear. The events say something very different.
+date: 19 Apr 2026
