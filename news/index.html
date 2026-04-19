@@ -157,6 +157,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <script>
 const BASE = 'https://bitlogicalpha.com';
 
+// Handle redirect from 404.html
+const redirectPath = sessionStorage.getItem('newsRedirect');
+if(redirectPath){
+  sessionStorage.removeItem('newsRedirect');
+  window.history.replaceState(null, '', redirectPath);
+}
+
 function slugify(title){
   return title.toLowerCase()
     .replace(/[^a-z0-9\s-]/g,'')
