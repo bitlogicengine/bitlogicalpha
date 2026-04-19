@@ -309,7 +309,8 @@ header{
 .week-post:last-child{border-bottom:none}
 .week-post:hover{background:var(--surface2)}
 .week-post-date{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;width:90px}
-.week-post-title{font-size:13px;color:var(--text);letter-spacing:0.3px;flex:1;line-height:1.4}
+.week-post-title{font-size:13px;color:var(--text);letter-spacing:0.3px;flex:1;line-height:1.4;text-decoration:none;transition:color 0.2s}
+.week-post-title:hover{color:var(--gold)}
 .week-post-arrow{font-size:12px;color:var(--gold);opacity:0.4;flex-shrink:0;transition:opacity 0.15s,transform 0.15s}
 .week-post:hover .week-post-arrow{opacity:1;transform:translateX(3px)}
 .week-post-expand{display:none;padding:0 24px 16px 130px}
@@ -336,6 +337,55 @@ header{
 /* TREND WIDGET */
 .trend-widget{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
 @media(max-width:800px){.trend-widget{grid-template-columns:1fr}}
+/* GOLD/BTC RATIO */
+.ratio-wrap{background:var(--surface);padding:28px 32px}
+.ratio-header{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:24px}
+@media(max-width:600px){.ratio-header{grid-template-columns:1fr}}
+.ratio-left,.ratio-right{background:var(--surface2);padding:20px}
+.ratio-label{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ratio-value{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px}
+.ratio-mult{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#c9a84c;line-height:1;margin-bottom:4px}
+.ratio-sub{font-size:11px;color:var(--text-muted);letter-spacing:1px}
+.ratio-bar-wrap{margin-bottom:20px}
+.ratio-bar-label{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ratio-track{display:flex;height:8px;border-radius:2px;overflow:hidden;gap:1px}
+.ratio-seg{transition:width 1.2s ease;display:flex;align-items:center;justify-content:center;position:relative;min-width:30px}
+.ratio-seg-label{font-size:8px;color:rgba(0,0,0,0.7);font-weight:700;letter-spacing:1px}
+.ratio-track-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:6px;letter-spacing:1px}
+.ratio-insight{font-size:12px;color:var(--text-muted);line-height:1.8;padding:14px 18px;background:var(--surface2);border-left:2px solid var(--gold)}
+
+/* TREND RIBBON */
+.trend-ribbon{
+  height:4px;
+  width:100%;
+  margin:10px 0;
+  border-radius:2px;
+  overflow:hidden;
+  background:var(--surface2);
+  position:relative;
+}
+.trend-ribbon-fill{
+  height:100%;
+  border-radius:2px;
+  transition:width 1.2s ease;
+  position:relative;
+}
+.trend-ribbon-fill::after{
+  content:'';
+  position:absolute;
+  right:0;top:50%;transform:translateY(-50%);
+  width:8px;height:8px;
+  border-radius:50%;
+  background:inherit;
+  box-shadow:0 0 6px currentColor;
+}
+.trend-ribbon-labels{
+  display:flex;justify-content:space-between;
+  font-size:8px;color:var(--text-dim);
+  letter-spacing:1px;text-transform:uppercase;
+  margin-top:3px;
+}
+
 .trend-card{
   background:var(--surface);
   padding:32px 28px;
@@ -429,6 +479,12 @@ header{
   font-family:'Playfair Display',serif;font-size:16px;font-weight:700;
   color:var(--text);line-height:1.4;padding:16px 0 8px;
 }
+.news-title-link{
+  display:block;
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.news-title-link:hover{color:var(--gold)}
 .news-preview-snippet{
   font-size:11px;color:var(--text-muted);line-height:1.7;
   letter-spacing:0.3px;padding-bottom:12px;
@@ -1206,6 +1262,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="jump-bar" style="margin-top:32px">
       <a class="jump-link" onclick="jumpTo('sec-fg')">Fear & Greed</a>
       <a class="jump-link" onclick="jumpTo('sec-btcgold')">BTC vs Gold</a>
+      <a class="jump-link" onclick="jumpTo('sec-goldbtc-ratio')">Gold/BTC Ratio</a>
       <a class="jump-link" onclick="jumpTo('sec-dominance')">Dominance</a>
       <a class="jump-link" onclick="jumpTo('sec-metrics')">Market Metrics</a>
       <a class="jump-link" onclick="jumpTo('sec-weekly')">Weekly Summary</a>
@@ -1253,6 +1310,43 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
       <div class="perf-wrap" id="perfWrap">
         <div class="loading">Loading performance data...</div>
+      </div>
+    </div>
+
+    <div class="section" id="sec-goldbtc-ratio">
+      <div class="section-header">
+        <div class="section-label">Gold / BTC Ratio</div>
+        <div class="section-meta">Live · Unique to BitLogic</div>
+      </div>
+      <div class="ratio-wrap" id="goldBtcRatioWrap">
+        <div class="ratio-header">
+          <div class="ratio-left">
+            <div class="ratio-label">How many BTC does 1 oz of Gold buy?</div>
+            <div class="ratio-value" id="goldBtcRatioVal">--</div>
+            <div class="ratio-sub" id="goldBtcRatioSub">Loading...</div>
+          </div>
+          <div class="ratio-right">
+            <div class="ratio-label">Gold Market Cap vs BTC Market Cap</div>
+            <div class="ratio-mult" id="goldBtcMult">--</div>
+            <div class="ratio-sub" id="goldBtcMultSub">Gold is -- larger than BTC</div>
+          </div>
+        </div>
+        <div class="ratio-bar-wrap">
+          <div class="ratio-bar-label">Relative size of Gold vs BTC</div>
+          <div class="ratio-track">
+            <div class="ratio-seg" id="ratioSegGold" style="background:#c9a84c;width:50%">
+              <span class="ratio-seg-label">Gold</span>
+            </div>
+            <div class="ratio-seg" id="ratioSegBtc" style="background:#f7931a;width:50%">
+              <span class="ratio-seg-label">BTC</span>
+            </div>
+          </div>
+          <div class="ratio-track-labels">
+            <span id="ratioGoldPct">--</span>
+            <span id="ratioBtcPct">--</span>
+          </div>
+        </div>
+        <div class="ratio-insight" id="goldBtcInsight"></div>
       </div>
     </div>
 
@@ -1339,7 +1433,6 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
   </div>
 
-  </div>
 
   <!-- ══════════════ BITCOIN VIEW ══════════════ -->
   <div class="view" id="view-bitcoin">
@@ -1626,17 +1719,17 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
 
     <div class="section">
-      <div class="res-section-header open" onclick="toggleResSection(this)">
+      <div class="res-section-header" onclick="toggleResSection(this)">
         <div class="res-section-left">
           <div class="res-section-title" id="res-networks">Blockchain Networks</div>
           <div class="res-section-subtitle">L1 · L2 · Infrastructure · 9 Networks</div>
         </div>
         <div class="res-toggle">
-          <span class="res-toggle-label">Collapse</span>
+          <span class="res-toggle-label">Expand</span>
           <div class="res-toggle-arrow">▼</div>
         </div>
       </div>
-      <div class="res-section-body open">
+      <div class="res-section-body">
       <div class="res-intro">
         Blockchain networks are the infrastructure that everything in crypto runs on. L1s are the base layer — secure and decentralised. L2s are faster, cheaper networks built on top of L1s. Understanding which network an asset runs on is fundamental to navigating the space.
       </div>
@@ -2252,6 +2345,16 @@ let insightsLoaded = false;
 let altsLoaded = false;
 let cachedMarketData = [];
 
+
+// ── SLUGIFY ───────────────────────────────────────────────
+function slugify(title){
+  return title.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g,'')
+    .replace(/\s+/g,'-')
+    .replace(/-+/g,'-')
+    .trim();
+}
+
 // ── CACHE HELPERS ─────────────────────────────────────────
 function saveCache(key, data){
   try{ localStorage.setItem(key, JSON.stringify({data, ts: Date.now()})); }catch(e){}
@@ -2356,6 +2459,7 @@ function switchTab(tab){
     fetchFearGreed();
     setTimeout(()=>fetchPerformance(), 800);
     setTimeout(()=>fetchDominance(), 1500);
+    setTimeout(()=>fetchGoldBtcRatio(), 2000);
     setTimeout(()=>fetchMetrics(), 2500);
     setTimeout(()=>fetchWeeklySummary(), 500);
   }
@@ -2543,6 +2647,8 @@ async function fetchTrend(){
     function buildCard(coin, label, data, price, change, symbol){
       const s = statusConfig[data.status] || statusConfig.neutral;
       const up = change >= 0;
+      // Ribbon: positive=80%, neutral=50%, negative=20%
+      const ribbonWidth = data.status==='positive'?80:data.status==='negative'?20:50;
       return `<div class="trend-card ${s.cls}">
         <div class="trend-coin-label">
           <span>${label}</span>
@@ -2551,8 +2657,12 @@ async function fetchTrend(){
             LIVE
           </span>
         </div>
-        <div class="chart-inner" style="margin:8px -1px 8px" id="tv-${coin}"></div>
-        <div class="trend-change ${up?'up':'down'}">${up?'↑':'↓'} ${Math.abs(change).toFixed(2)}% today</div>
+        <div class="trend-price">$${price}</div>
+        <div class="trend-ribbon">
+          <div class="trend-ribbon-fill" style="width:${ribbonWidth}%;background:${s.color};box-shadow:0 0 8px ${s.color}40"></div>
+        </div>
+        <div class="trend-ribbon-labels"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+        <div class="trend-change ${up?'up':'down'}" style="margin-top:8px">${up?'↑':'↓'} ${Math.abs(change).toFixed(2)}% today</div>
         <div class="trend-status-wrap">
           <div class="trend-status-icon" style="color:${s.color}">${s.icon}</div>
           <div class="trend-status-text" style="color:${s.color}">${s.label}</div>
@@ -2720,7 +2830,7 @@ async function fetchNews(){
       <div class="news-item">
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
         <div class="news-preview">
-          <div class="news-preview-title">${n.title||''}</div>
+          <a class="news-preview-title news-title-link" href="${BASE}/news/${slugify(n.title||'')}/" target="_blank">${n.title||''}</a>
           <div class="news-preview-snippet">${firstPara}</div>
         </div>
         <div class="news-full" id="newsFull">
@@ -2974,7 +3084,7 @@ async function fetchWeeklySummary(){
           ${posts.map(p=>`
             <div class="week-post" onclick="togglePost(this)">
               <div class="week-post-date">${p.date||''}</div>
-              <div class="week-post-title">${p.title||''}</div>
+              <a class="week-post-title" href="${BASE}/news/${slugify(p.title||'')}/" target="_blank" onclick="event.stopPropagation()">${p.title||''}</a>
               <div class="week-post-arrow">→</div>
             </div>
             <div class="week-post-expand">
@@ -3171,6 +3281,57 @@ function toggleGlossary(header){
 
 // ── INIT ──────────────────────────────────────────────────
 // Run news and calendar immediately — no API dependency
+async function fetchGoldBtcRatio(){
+  try{
+    // Get BTC and Gold prices from cached data or fetch
+    let prices = cachedMarketData;
+    if(!prices || !prices.length){
+      await new Promise(r=>setTimeout(r,2000));
+      prices = cachedMarketData;
+    }
+    if(!prices || !prices.length) throw new Error('No data');
+
+    const btc = prices.find(p=>p.id==='bitcoin');
+    const gold = prices.find(p=>p.id==='pax-gold');
+    if(!btc || !gold) throw new Error('Missing prices');
+
+    const btcPrice = btc.current_price;
+    const goldPrice = gold.current_price; // ~1 oz gold in USD
+    const ratio = (goldPrice / btcPrice).toFixed(6);
+    const btcMcap = btc.market_cap / 1e12;
+    const goldMcapT = 21; // ~$21T gold market cap
+    const mult = (goldMcapT / btcMcap).toFixed(1);
+    const totalM = goldMcapT + btcMcap;
+    const goldPct = ((goldMcapT / totalM) * 100).toFixed(1);
+    const btcPct = ((btcMcap / totalM) * 100).toFixed(1);
+
+    document.getElementById('goldBtcRatioVal').textContent = ratio + ' BTC';
+    document.getElementById('goldBtcRatioSub').textContent = `1 oz gold = ${ratio} BTC at current prices`;
+    document.getElementById('goldBtcMult').textContent = mult + 'x';
+    document.getElementById('goldBtcMultSub').textContent = `Gold is ${mult}x larger than BTC by market cap`;
+    document.getElementById('ratioSegGold').style.width = goldPct + '%';
+    document.getElementById('ratioSegBtc').style.width = btcPct + '%';
+    document.getElementById('ratioGoldPct').textContent = 'Gold ' + goldPct + '%';
+    document.getElementById('ratioBtcPct').textContent = 'BTC ' + btcPct + '%';
+
+    // Dynamic insight
+    let insight = '';
+    const ratioNum = parseFloat(ratio);
+    if(ratioNum < 0.02){
+      insight = `At ${ratio} BTC per oz of gold, Bitcoin is expensive relative to gold by historical standards. Gold is cheap in BTC terms. This ratio tends to compress during Bitcoin bull runs when BTC outpaces gold.`;
+    } else if(ratioNum < 0.05){
+      insight = `The Gold/BTC ratio of ${ratio} reflects a balanced relationship between the two assets. Neither is historically cheap or expensive relative to the other. Watch this ratio for early signals of capital rotation.`;
+    } else {
+      insight = `At ${ratio} BTC per oz of gold, gold is expensive in BTC terms. This is typical in bear markets or early accumulation phases when Bitcoin is underperforming. Historically, a high ratio has preceded significant BTC outperformance.`;
+    }
+    document.getElementById('goldBtcInsight').innerHTML = `<strong style="color:var(--gold)">BitLogic Analysis:</strong> ${insight}`;
+
+  }catch(e){
+    document.getElementById('goldBtcRatioVal').textContent = '--';
+    document.getElementById('goldBtcInsight').textContent = 'Data unavailable';
+  }
+}
+
 fetchNews();
 fetchCalendar();
 
