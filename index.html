@@ -913,6 +913,33 @@ header{
 .jump-link:last-child{border-right:none}
 .jump-link:hover{color:var(--gold);background:var(--gold-dim)}
 
+/* SKELETON LOADERS */
+@keyframes shimmer{
+  0%{background-position:-600px 0}
+  100%{background-position:600px 0}
+}
+.skeleton{
+  background:linear-gradient(90deg,var(--surface) 25%,var(--surface2) 50%,var(--surface) 75%);
+  background-size:600px 100%;
+  animation:shimmer 1.6s infinite linear;
+  border-radius:2px;
+}
+.skel-block{height:16px;margin-bottom:10px;}
+.skel-block.tall{height:48px;}
+.skel-block.short{height:10px;width:60%;}
+.skel-card{background:var(--surface);padding:20px;display:flex;flex-direction:column;gap:10px;}
+.skel-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px;}
+.skel-price{height:32px;width:120px;}
+.skel-label{height:10px;width:80px;}
+
+/* LAST UPDATED BADGE */
+.last-updated{
+  font-size:9px;color:var(--text-dim);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-top:8px;display:inline-block;
+}
+.last-updated.stale{color:var(--red);opacity:0.7;}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -994,7 +1021,9 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-meta">Updated Daily</div>
       </div>
       <div id="trendWidget" class="trend-widget">
-        <div class="loading">Loading trend status...</div>
+        <div class="skel-card skeleton" style="height:140px"></div>
+        <div class="skel-card skeleton" style="height:140px"></div>
+        <div class="skel-card skeleton" style="height:140px"></div>
       </div>
     </div>
 
@@ -1028,7 +1057,11 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
       <div id="marketGrid" class="market-grid">
-        <div class="loading" style="grid-column:1/-1">Loading...</div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
       </div>
     </div>
 
@@ -1044,7 +1077,13 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
       </div>
       <div id="newsList" class="news-list">
-        <div class="loading">Loading...</div>
+        <div style="background:var(--surface);padding:28px 32px;display:flex;flex-direction:column;gap:10px">
+          <div class="skeleton skel-block short"></div>
+          <div class="skeleton skel-block tall"></div>
+          <div class="skeleton skel-block" style="height:12px;width:90%"></div>
+          <div class="skeleton skel-block" style="height:12px;width:75%"></div>
+          <div class="skeleton skel-block" style="height:12px;width:60%"></div>
+        </div>
       </div>
     </div>
 
@@ -1090,7 +1129,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
             <circle class="fg-fill" id="fgArc" cx="80" cy="80" r="64" stroke-dasharray="402" stroke-dashoffset="402"/>
           </svg>
           <div class="fg-center-large">
-            <div class="fg-big-val" id="fgVal">--</div>
+            <div class="fg-big-val" id="fgVal"><span class="skeleton" style="display:inline-block;width:60px;height:40px;border-radius:2px"> </span></div>
             <div class="fg-big-lbl">/ 100</div>
           </div>
         </div>
@@ -1137,7 +1176,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
             <circle class="dom-btc" id="domBtc" cx="80" cy="80" r="62" stroke-dasharray="390" stroke-dashoffset="390"/>
           </svg>
           <div class="dom-center">
-            <div class="dom-btc-val" id="domBtcVal">--</div>
+            <div class="dom-btc-val" id="domBtcVal"><span class="skeleton" style="display:inline-block;width:50px;height:28px;border-radius:2px"> </span></div>
             <div class="dom-btc-lbl">BTC DOM</div>
           </div>
         </div>
@@ -1183,7 +1222,11 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-meta">Live · CoinGecko</div>
       </div>
       <div class="sentiment-grid" id="metricsGrid">
-        <div class="loading" style="grid-column:1/-1">Loading...</div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
+        <div class="skel-card skeleton" style="height:110px"></div>
       </div>
     </div>
 
@@ -1193,7 +1236,10 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-meta"></div>
       </div>
       <div id="weeklyList" class="week-list">
-        <div class="loading">Building summaries...</div>
+        <div style="background:var(--surface);padding:20px 28px;display:flex;flex-direction:column;gap:8px">
+          <div class="skeleton skel-block" style="width:40%;height:18px"></div>
+          <div class="skeleton skel-block short"></div>
+        </div>
       </div>
     </div>
 
@@ -2111,6 +2157,34 @@ let allCharts = { BTC: [], ETH: [] };
 let insightsLoaded = false;
 let altsLoaded = false;
 let cachedMarketData = [];
+
+// ── CACHE HELPERS ─────────────────────────────────────────
+function saveCache(key, data){
+  try{ localStorage.setItem(key, JSON.stringify({data, ts: Date.now()})); }catch(e){}
+}
+function loadCache(key, maxAgeMs=3600000){
+  try{
+    const raw = localStorage.getItem(key);
+    if(!raw) return null;
+    const {data, ts} = JSON.parse(raw);
+    return {data, ts, stale: Date.now()-ts > maxAgeMs};
+  }catch(e){ return null; }
+}
+function timeAgo(ts){
+  const mins = Math.round((Date.now()-ts)/60000);
+  if(mins < 2) return 'just now';
+  if(mins < 60) return `${mins}m ago`;
+  const hrs = Math.round(mins/60);
+  return `${hrs}h ago`;
+}
+function showLastUpdated(containerId, ts, stale=false){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  let badge = el.querySelector('.last-updated');
+  if(!badge){ badge = document.createElement('div'); badge.className='last-updated'; el.appendChild(badge); }
+  badge.className = 'last-updated' + (stale?' stale':'');
+  badge.textContent = (stale ? '⚠ Cached · ' : '✓ Updated · ') + timeAgo(ts);
+}
 let cachedGlobalData = null;
 
 document.getElementById('navDate').textContent = new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase();
@@ -2198,13 +2272,16 @@ function switchTab(tab){
 // ── ALTS TAB ──────────────────────────────────────────────
 async function fetchAlts(){
   try{
-    // Use cached master data — populated by fetchMarket on page load
-    let data = cachedMarketData.length ? cachedMarketData : null;
-    if(!data){
-      await new Promise(r=>setTimeout(r,1500));
+    // Fetch dedicated alts data with 90d — needs top 100 coins with all periods
+    let data;
+    try{
+      data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
+    }catch(e){
+      // fallback: wait for cached data if API fails
+      await new Promise(r=>setTimeout(r,2000));
       data = cachedMarketData.length ? cachedMarketData : null;
     }
-    if(!data) throw new Error('No market data');
+    if(!data || !data.length) throw new Error('No market data');
 
     // --- ALTCOIN SEASON INDEX ---
     const btc = data.find(c=>c.id==='bitcoin');
@@ -2406,6 +2483,9 @@ async function fetchTrend(){
       buildCard('ETH', 'ETH / USD', eth,  ethData?.current_price.toLocaleString()||'--', ethData?.price_change_percentage_24h||0, '$') +
       buildCard('GOLD','GOLD / USD', gold, goldPrice, goldChange, '$');
 
+    saveCache('bl_trend', el.innerHTML);
+    showLastUpdated('trendWidget', Date.now(), false);
+
     // Inject TradingView widgets after DOM is ready
     setTimeout(()=>{
       const tvMap = {
@@ -2444,29 +2524,36 @@ async function fetchTrend(){
     }, 100);
 
   }catch(e){
-    setTimeout(()=>fetchTrend(), 3000);
+    // Show cached trend on failure
+    const cached = loadCache('bl_trend', 86400000);
+    if(cached && cached.data){
+      el.innerHTML = cached.data;
+      showLastUpdated('trendWidget', cached.ts, true);
+    } else {
+      setTimeout(()=>fetchTrend(), 3000);
+    }
   }
 }
 
 async function fetchMarket(){
+  // Show cached data immediately while fetching
+  const cached = loadCache('bl_market', 3600000);
+  if(cached && cached.data && cached.data.length){
+    cachedMarketData = cached.data;
+    const top5c = cached.data.filter(c=>c.id!=='pax-gold').slice(0,5);
+    renderTop5(top5c);
+    updateTicker(top5c);
+    if(cached.stale) showLastUpdated('marketGrid', cached.ts, true);
+    else showLastUpdated('marketGrid', cached.ts, false);
+  }
   try{
-    // MASTER CALL — top 100 with all timeframes, feeds every function on the site
     const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
     cachedMarketData = data;
-
-    // Market Overview — top 5 excl PAXG
+    saveCache('bl_market', data);
     const top5 = data.filter(c=>c.id!=='pax-gold').slice(0,5);
-    document.getElementById('marketGrid').innerHTML=top5.map((c,i)=>{
-      const up=c.price_change_percentage_24h>=0;
-      return `<div class="coin-card">
-        <div class="coin-rank">0${i+1}</div>
-        <div class="coin-name">${c.name}</div>
-        <div class="coin-symbol">${c.symbol.toUpperCase()}</div>
-        <div class="coin-price">$${c.current_price.toLocaleString()}</div>
-        <div class="coin-change ${up?'up':'down'}">${up?'↑':'↓'} ${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</div>
-        <div class="coin-cap">$${(c.market_cap/1e9).toFixed(1)}B cap</div>
-      </div>`;
-    }).join('');
+    renderTop5(top5);
+    updateTicker(top5);
+    showLastUpdated('marketGrid', Date.now(), false);
 
     // ATH Banner
     const btc = data.find(c=>c.id==='bitcoin');
@@ -2479,12 +2566,25 @@ async function fetchMarket(){
       document.getElementById('athBar').style.width = barWidth + '%';
       document.getElementById('athBanner').style.display = 'flex';
     }
-
-    updateTicker(top5);
   }catch(e){
-    document.getElementById('marketGrid').innerHTML='<div class="loading" style="grid-column:1/-1">Market data unavailable</div>';
+    if(!cached) document.getElementById('marketGrid').innerHTML='<div class="loading" style="grid-column:1/-1">Market data unavailable</div>';
+    else showLastUpdated('marketGrid', cached.ts, true);
     setTimeout(()=>fetchMarket(), 5000);
   }
+}
+
+function renderTop5(top5){
+  document.getElementById('marketGrid').innerHTML=top5.map((c,i)=>{
+    const up=c.price_change_percentage_24h>=0;
+    return `<div class="coin-card">
+      <div class="coin-rank">0${i+1}</div>
+      <div class="coin-name">${c.name}</div>
+      <div class="coin-symbol">${c.symbol.toUpperCase()}</div>
+      <div class="coin-price">$${c.current_price.toLocaleString()}</div>
+      <div class="coin-change ${up?'up':'down'}">${up?'↑':'↓'} ${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</div>
+      <div class="coin-cap">$${(c.market_cap/1e9).toFixed(1)}B cap</div>
+    </div>`;
+  }).join('');
 }
 
 function updateTicker(data){
@@ -2497,6 +2597,9 @@ function updateTicker(data){
 
 async function fetchNews(){
   const el=document.getElementById('newsList');
+  // Show cached news immediately
+  const cached = loadCache('bl_news', 86400000);
+  if(cached && cached.data){ el.innerHTML = cached.data; if(cached.stale) showLastUpdated('newsList', cached.ts, true); }
   try{
     const res=await fetch(`${BASE}/news.json?t=${Date.now()}`);
     if(!res.ok) throw new Error();
@@ -2506,18 +2609,15 @@ async function fetchNews(){
     const shareText = encodeURIComponent(`${n.title}\n\nRead the full analysis 👇\nhttps://bitlogicalpha.com\n\n#Bitcoin #Crypto #Gold @QuantAlphaTrend`);
     const shareUrl = `https://x.com/intent/tweet?text=${shareText}`;
 
-    // Build body paragraphs
     const bodyHtml = n.body ? n.body.split('\n').filter(p=>p.trim()).map(p=>{
       const t=p.trim();
       if(/^[1-9]\d*\./.test(t)) return `<p class="news-list-item">${t}</p>`;
       if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
       return `<p>${t}</p>`;
     }).join('') : '';
-
-    // First paragraph for preview snippet
     const firstPara = n.body ? n.body.split('\n').filter(p=>p.trim())[0] || '' : '';
 
-    el.innerHTML = `
+    const html = `
       <div class="news-item">
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
         <div class="news-preview">
@@ -2535,7 +2635,13 @@ async function fetchNews(){
           </div>
         </div>
       </div>`;
-  }catch(e){el.innerHTML='<div class="empty-news">No analysis published yet.</div>'}
+    el.innerHTML = html;
+    saveCache('bl_news', html);
+    showLastUpdated('newsList', Date.now(), false);
+  }catch(e){
+    if(!cached) el.innerHTML='<div class="empty-news">No analysis published yet.</div>';
+    else showLastUpdated('newsList', cached.ts, true);
+  }
 }
 
 // ── INSIGHTS ──────────────────────────────────────────────
@@ -2548,28 +2654,17 @@ function fgColor(v){
 }
 
 async function fetchFearGreed(){
+  // Show cached immediately
+  const cached = loadCache('bl_fg', 3600000);
+  if(cached && cached.data){
+    applyFearGreedData(cached.data);
+    if(cached.stale) showLastUpdated('fgHistory', cached.ts, true);
+  }
   try{
     const data=await fetch('https://api.alternative.me/fng/?limit=10').then(r=>r.json());
-    const items=data.data;
-    const latest=items[0];
-    const value=parseInt(latest.value);
-    const color=fgColor(value);
-    document.getElementById('fgVal').textContent=value;
-    document.getElementById('fgVal').style.color=color;
-    document.getElementById('fgClass').textContent=latest.value_classification;
-    document.getElementById('fgClass').style.color=color;
-    document.getElementById('fgUpdated').textContent=`Last updated: ${new Date(latest.timestamp*1000).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}`;
-    const arc=document.getElementById('fgArc');
-    arc.style.stroke=color;
-    arc.style.strokeDashoffset=402-(value/100)*402;
-    const hist=document.getElementById('fgHistory');
-    hist.innerHTML=[...items].reverse().map(item=>{
-      const v=parseInt(item.value);
-      const c=fgColor(v);
-      const h=Math.max(8,(v/100)*48);
-      const d=new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-      return `<div class="fg-bar-item" style="background:${c};height:${h}px;opacity:0.7" data-tip="${d}: ${v}"></div>`;
-    }).join('');
+    applyFearGreedData(data.data);
+    saveCache('bl_fg', data.data);
+    showLastUpdated('fgHistory', Date.now(), false);
 
     // Load analyst comment
     try{
@@ -2588,7 +2683,31 @@ async function fetchFearGreed(){
         }
       }
     }catch(e){}
-  }catch(e){document.getElementById('fgClass').textContent='Unavailable'}
+  }catch(e){
+    if(!cached) document.getElementById('fgClass').textContent='Unavailable';
+  }
+}
+
+function applyFearGreedData(items){
+  const latest=items[0];
+  const value=parseInt(latest.value);
+  const color=fgColor(value);
+  document.getElementById('fgVal').textContent=value;
+  document.getElementById('fgVal').style.color=color;
+  document.getElementById('fgClass').textContent=latest.value_classification;
+  document.getElementById('fgClass').style.color=color;
+  document.getElementById('fgUpdated').textContent=`Last updated: ${new Date(latest.timestamp*1000).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}`;
+  const arc=document.getElementById('fgArc');
+  arc.style.stroke=color;
+  arc.style.strokeDashoffset=402-(value/100)*402;
+  const hist=document.getElementById('fgHistory');
+  hist.innerHTML=[...items].reverse().map(item=>{
+    const v=parseInt(item.value);
+    const c=fgColor(v);
+    const h=Math.max(8,(v/100)*48);
+    const d=new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    return `<div class="fg-bar-item" style="background:${c};height:${h}px;opacity:0.7" data-tip="${d}: ${v}"></div>`;
+  }).join('');
 }
 
 async function fetchGlobalData(){
@@ -2599,8 +2718,22 @@ async function fetchGlobalData(){
 }
 
 async function fetchDominance(){
+  const cached = loadCache('bl_dominance', 3600000);
+  if(cached && cached.data){
+    applyDominanceData(cached.data);
+    if(cached.stale) showLastUpdated('domLegend', cached.ts, true);
+  }
   try{
     const data = await fetchGlobalData();
+    applyDominanceData(data);
+    saveCache('bl_dominance', data);
+    showLastUpdated('domLegend', Date.now(), false);
+  }catch(e){
+    if(!cached) setTimeout(()=>fetchDominance(),5000);
+  }
+}
+
+function applyDominanceData(data){
     const mcp=data.data.market_cap_percentage;
     const btc=mcp.btc||0;
     const eth=mcp.eth||0;
@@ -2640,12 +2773,14 @@ async function fetchDominance(){
     document.getElementById('cryptoMcap').textContent='$'+cryptoMcapT.toFixed(1)+'T';
     document.getElementById('goldCompNote').innerHTML=`Gold's market cap is currently <strong>${ratio}x larger</strong> than the entire crypto market. If crypto were to reach just half of gold's market cap, it would represent a <strong>${((GOLD_MCAP_T/2)/cryptoMcapT).toFixed(1)}x increase</strong> from current levels.`;
     document.getElementById('goldComparison').style.display='block';
-  }catch(e){
-    setTimeout(()=>fetchDominance(),5000);
-  }
 }
 
 async function fetchMetrics(){
+  const cached = loadCache('bl_metrics', 3600000);
+  if(cached && cached.data){
+    document.getElementById('metricsGrid').innerHTML = cached.data;
+    if(cached.stale) showLastUpdated('metricsGrid', cached.ts, true);
+  }
   try{
     const [global, btcArr] = await Promise.all([
       fetchGlobalData(),
@@ -2661,15 +2796,19 @@ async function fetchMetrics(){
       {label:'BTC 24h Change',value:(up?'+':'')+b.price_change_percentage_24h.toFixed(2)+'%',sub:'$'+b.current_price.toLocaleString(),bar:Math.abs(b.price_change_percentage_24h)*5,color:up?'#4caf7d':'#e05555'},
       {label:'Active Cryptocurrencies',value:(g.active_cryptocurrencies||0).toLocaleString(),sub:'Listed on CoinGecko',bar:60},
     ];
-    document.getElementById('metricsGrid').innerHTML=metrics.map(m=>`
+    const html = metrics.map(m=>`
       <div class="sentiment-card">
         <div class="sc-label">${m.label}</div>
         <div class="sc-value" style="${m.color?'color:'+m.color:''}">${m.value}</div>
         <div class="sc-sub">${m.sub}</div>
         <div class="sc-bar"><div class="sc-bar-fill" style="width:${m.bar}%;background:${m.color||'var(--gold)'}"></div></div>
       </div>`).join('');
+    document.getElementById('metricsGrid').innerHTML = html;
+    saveCache('bl_metrics', html);
+    showLastUpdated('metricsGrid', Date.now(), false);
   }catch(e){
-    setTimeout(()=>fetchMetrics(),5000);
+    if(!cached) setTimeout(()=>fetchMetrics(),5000);
+    else showLastUpdated('metricsGrid', cached.ts, true);
   }
 }
 
