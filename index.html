@@ -893,7 +893,65 @@ header{
   line-height:1.8;letter-spacing:0.3px;
 }
 
-/* JUMP BAR */
+/* TABLE OF CONTENTS */
+.toc-nav{
+  background:var(--surface);
+  border:1px solid var(--text-dim);
+  border-left:3px solid var(--gold);
+  padding:20px 24px;
+  margin-bottom:40px;
+}
+.toc-label{
+  font-size:9px;color:var(--gold);
+  letter-spacing:4px;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.toc-links{
+  display:flex;
+  gap:2px;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding-bottom:2px;
+}
+.toc-links::-webkit-scrollbar{display:none}
+.toc-link{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 16px;
+  background:var(--surface2);
+  border:1px solid var(--text-dim);
+  text-decoration:none;
+  cursor:pointer;
+  transition:border-color 0.2s,background 0.2s;
+  flex-shrink:0;
+  min-width:140px;
+}
+.toc-link:hover{border-color:var(--gold);background:var(--gold-dim)}
+.toc-icon{font-size:18px;flex-shrink:0;line-height:1}
+.toc-text{display:flex;flex-direction:column;gap:2px}
+.toc-title{
+  font-family:'Playfair Display',serif;
+  font-size:13px;font-weight:700;
+  color:var(--text);letter-spacing:0.3px;
+}
+.toc-sub{font-size:9px;color:var(--text-muted);letter-spacing:1px}
+.toc-ext{font-size:12px;color:var(--gold);margin-left:auto;opacity:0.6;flex-shrink:0}
+.toc-link-learn{border-color:var(--gold-border)}
+
+/* Mobile — stack vertically below 600px */
+@media(max-width:600px){
+  .toc-links{
+    flex-direction:column;
+    overflow-x:visible;
+  }
+  .toc-link{
+    min-width:unset;
+    width:100%;
+  }
+}
+
+/* JUMP BAR — kept for other tabs */
 .jump-bar{
   display:flex;gap:0;flex-wrap:wrap;
   margin-bottom:32px;
@@ -1008,12 +1066,48 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <!-- HOME JUMP BAR -->
-    <div class="jump-bar">
-      <a class="jump-link" onclick="jumpTo('sec-market-state')">Daily Market State</a>
-      <a class="jump-link" onclick="jumpTo('sec-market-overview')">Market Overview</a>
-      <a class="jump-link" onclick="jumpTo('sec-latest-news')">Latest News</a>
-    </div>
+    <!-- HOME TABLE OF CONTENTS -->
+    <nav class="toc-nav" id="homeTOC">
+      <div class="toc-label">On This Page</div>
+      <div class="toc-links">
+        <a class="toc-link" href="#sec-market-state" onclick="tocJump(event,'sec-market-state')">
+          <span class="toc-icon">📊</span>
+          <span class="toc-text">
+            <span class="toc-title">Daily State</span>
+            <span class="toc-sub">BTC · ETH · Gold indicators</span>
+          </span>
+        </a>
+        <a class="toc-link" href="#sec-latest-news" onclick="tocJump(event,'sec-latest-news')">
+          <span class="toc-icon">📰</span>
+          <span class="toc-text">
+            <span class="toc-title">News Alerts</span>
+            <span class="toc-sub">Latest market headlines</span>
+          </span>
+        </a>
+        <a class="toc-link" href="#sec-market-overview" onclick="tocJump(event,'sec-market-overview')">
+          <span class="toc-icon">📈</span>
+          <span class="toc-text">
+            <span class="toc-title">Market Overview</span>
+            <span class="toc-sub">Top 5 · Halving · Performance</span>
+          </span>
+        </a>
+        <a class="toc-link" href="#sec-calendar" onclick="tocJump(event,'sec-calendar')">
+          <span class="toc-icon">📅</span>
+          <span class="toc-text">
+            <span class="toc-title">Calendar</span>
+            <span class="toc-sub">Key dates this week</span>
+          </span>
+        </a>
+        <a class="toc-link toc-link-learn" onclick="switchTab('bitcoin');setTimeout(()=>jumpTo('btc-protocol'),300)">
+          <span class="toc-icon">🧠</span>
+          <span class="toc-text">
+            <span class="toc-title">Learn · Alpha 101</span>
+            <span class="toc-sub">Concepts · Glossary</span>
+          </span>
+          <span class="toc-ext">↗</span>
+        </a>
+      </div>
+    </nav>
 
     <div class="section" id="sec-market-state">
       <div class="section-header">
@@ -1087,7 +1181,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="sec-calendar">
       <div class="section-toggle-header" onclick="toggleSection('cal')">
         <div class="stoggle-header-left">
           <div class="stoggle-label">Market Calendar</div>
@@ -2194,6 +2288,11 @@ function toggleBtcSection(header){
   const toggle = header.querySelector('.btc-toggle');
   body.classList.toggle('open');
   toggle.classList.toggle('open');
+}
+
+function tocJump(e, id){
+  e.preventDefault();
+  jumpTo(id);
 }
 
 function jumpTo(id){
