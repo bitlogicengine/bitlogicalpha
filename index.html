@@ -61,16 +61,42 @@ body::before{
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events:none;z-index:0;opacity:0.4;
 }
-.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 80px}
+.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:40px 24px 80px}
 
 /* HEADER */
 header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:32px 0 0;
-  margin-bottom:0;
+  padding:16px 0;
   animation:fadeUp 0.6s ease both;
 }
 .brand{display:flex;align-items:center;gap:14px;cursor:pointer}
+/* STICKY NAV */
+.sticky-nav{
+  position:sticky;
+  top:0;
+  z-index:500;
+  background:rgba(8,8,8,0.95);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--text-dim);
+}
+.sticky-nav header{
+  border-bottom:none;
+  margin-bottom:0;
+  padding:16px 24px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.sticky-nav .nav-tabs{
+  border-bottom:none;
+  margin-bottom:0;
+  margin-top:0;
+  padding:0 24px;
+  max-width:1100px;
+  margin:0 auto;
+  border-top:1px solid rgba(58,53,48,0.5);
+}
+
 .brand-mark{
   width:48px;height:48px;border-radius:50%;
   border:1.5px solid var(--gold);
@@ -867,6 +893,26 @@ header{
   line-height:1.8;letter-spacing:0.3px;
 }
 
+/* JUMP BAR */
+.jump-bar{
+  display:flex;gap:0;flex-wrap:wrap;
+  margin-bottom:32px;
+  border:1px solid var(--text-dim);
+  background:var(--surface);
+}
+.jump-link{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:10px 16px;
+  color:var(--text-muted);
+  cursor:pointer;
+  border-right:1px solid var(--text-dim);
+  transition:color 0.2s,background 0.2s;
+  white-space:nowrap;
+  text-decoration:none;
+}
+.jump-link:last-child{border-right:none}
+.jump-link:hover{color:var(--gold);background:var(--gold-dim)}
+
 .loading{padding:48px;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
 
 footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:40px}
@@ -900,9 +946,8 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <img id="lightboxImg" src="" alt="chart"/>
 </div>
 
-<div class="page">
-
-  <!-- HEADER -->
+<!-- STICKY NAV -->
+<div class="sticky-nav">
   <header>
     <div class="brand" onclick="switchTab('home')">
       <div class="brand-mark">
@@ -915,8 +960,6 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
     <div class="nav-date" id="navDate"></div>
   </header>
-
-  <!-- NAV TABS -->
   <div class="nav-tabs">
     <button class="nav-tab active" id="tab-home" onclick="switchTab('home')">Home</button>
     <button class="nav-tab" id="tab-insights" onclick="switchTab('insights')">Insights</button>
@@ -925,6 +968,9 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <button class="nav-tab" id="tab-resources" onclick="switchTab('resources')">Resources</button>
     <button class="nav-tab" id="tab-about" onclick="switchTab('about')">About</button>
   </div>
+</div>
+
+<div class="page">
 
   <!-- ══════════════ HOME VIEW ══════════════ -->
   <div class="view active" id="view-home">
@@ -935,7 +981,14 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <div class="section">
+    <!-- HOME JUMP BAR -->
+    <div class="jump-bar">
+      <a class="jump-link" onclick="jumpTo('sec-market-state')">Daily Market State</a>
+      <a class="jump-link" onclick="jumpTo('sec-market-overview')">Market Overview</a>
+      <a class="jump-link" onclick="jumpTo('sec-latest-news')">Latest News</a>
+    </div>
+
+    <div class="section" id="sec-market-state">
       <div class="section-header">
         <div class="section-label">Daily Market State</div>
         <div class="section-meta">Updated Daily</div>
@@ -945,9 +998,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-header">
-        <div class="section-label">Market Overview</div>
+    <div class="section" id="sec-market-overview">
         <div class="section-meta">Top 5 · Live</div>
       </div>
       <div id="athBanner" class="ath-banner" style="display:none">
@@ -979,7 +1030,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="sec-latest-news">
       <div class="section-toggle-header" onclick="toggleSection('news')">
         <div class="stoggle-header-left">
           <div class="stoggle-label">Latest News</div>
@@ -1016,7 +1067,16 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   <!-- ══════════════ INSIGHTS VIEW ══════════════ -->
   <div class="view" id="view-insights">
 
-    <div class="section">
+    <!-- INSIGHTS JUMP BAR -->
+    <div class="jump-bar" style="margin-top:32px">
+      <a class="jump-link" onclick="jumpTo('sec-fg')">Fear & Greed</a>
+      <a class="jump-link" onclick="jumpTo('sec-btcgold')">BTC vs Gold</a>
+      <a class="jump-link" onclick="jumpTo('sec-dominance')">Dominance</a>
+      <a class="jump-link" onclick="jumpTo('sec-metrics')">Market Metrics</a>
+      <a class="jump-link" onclick="jumpTo('sec-weekly')">Weekly Summary</a>
+    </div>
+
+    <div class="section" id="sec-fg">
       <div class="section-header">
         <div class="section-label">Crypto Fear & Greed</div>
         <div class="section-meta">Live · Updates Daily</div>
@@ -1051,7 +1111,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
 
     <!-- BTC VS GOLD PERFORMANCE -->
-    <div class="section">
+    <div class="section" id="sec-btcgold">
       <div class="section-header">
         <div class="section-label">BTC vs Gold Performance</div>
         <div class="section-meta">Live · CoinGecko</div>
@@ -1061,7 +1121,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="sec-dominance">
       <div class="section-header">
         <div class="section-label">Market Dominance</div>
         <div class="section-meta">Live · CoinGecko</div>
@@ -1115,7 +1175,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="sec-metrics">
       <div class="section-header">
         <div class="section-label">Market Metrics</div>
         <div class="section-meta">Live · CoinGecko</div>
@@ -1125,7 +1185,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="sec-weekly">
       <div class="section-header">
         <div class="section-label">Weekly Summary</div>
         <div class="section-meta"></div>
