@@ -354,6 +354,84 @@ header{
 .ratio-track-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:6px;letter-spacing:1px}
 .ratio-insight{font-size:12px;color:var(--text-muted);line-height:1.8;padding:14px 18px;background:var(--surface2);border-left:2px solid var(--gold)}
 
+
+/* 7-DAY SPARKLINE */
+.sparkline-wrap{
+  display:flex;align-items:center;gap:4px;
+  margin:10px 0 6px;
+}
+.sparkline-label{
+  font-size:8px;color:var(--text-dim);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-right:4px;flex-shrink:0;
+}
+.spark-dot{
+  width:22px;height:22px;
+  border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;
+  flex-shrink:0;
+  transition:transform 0.2s;
+  cursor:default;
+}
+.spark-dot:hover{transform:scale(1.2)}
+.spark-dot.positive{background:rgba(76,175,125,0.15);color:#4caf7d;border:1px solid rgba(76,175,125,0.3)}
+.spark-dot.negative{background:rgba(224,85,85,0.15);color:#e05555;border:1px solid rgba(224,85,85,0.3)}
+.spark-dot.neutral{background:rgba(201,168,76,0.1);color:#c9a84c;border:1px solid rgba(201,168,76,0.2)}
+.spark-dot.today{outline:2px solid var(--gold);outline-offset:1px}
+
+/* HALVING PROGRESS */
+.halving-progress-wrap{
+  background:var(--surface2);
+  padding:16px 28px;
+  border-top:1px solid var(--text-dim);
+  margin-top:0;
+}
+.halving-progress-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;
+}
+.halving-progress-title{
+  font-size:9px;color:var(--text-muted);
+  letter-spacing:3px;text-transform:uppercase;
+}
+.halving-progress-pct{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;color:var(--gold);
+}
+.halving-track{
+  width:100%;height:6px;
+  background:var(--surface);
+  border-radius:3px;overflow:visible;
+  position:relative;margin-bottom:8px;
+}
+.halving-fill{
+  height:100%;border-radius:3px;
+  background:linear-gradient(90deg,#f7931a,#c9a84c);
+  transition:width 1s ease;
+  position:relative;
+}
+.halving-fill::after{
+  content:'';
+  position:absolute;right:-4px;top:50%;
+  transform:translateY(-50%);
+  width:12px;height:12px;border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 8px rgba(201,168,76,0.6);
+}
+.halving-cycle-labels{
+  display:flex;justify-content:space-between;
+  font-size:8px;color:var(--text-dim);letter-spacing:1px;
+  margin-top:4px;
+}
+.halving-epoch{
+  display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;
+}
+.halving-epoch-item{
+  font-size:9px;color:var(--text-muted);letter-spacing:1px;
+}
+.halving-epoch-val{color:var(--text);font-size:10px;display:block;margin-top:1px}
+
 /* TREND RIBBON */
 .trend-ribbon{
   height:4px;
@@ -962,6 +1040,23 @@ header{
   letter-spacing:4px;text-transform:uppercase;
   margin-bottom:16px;
 }
+.toc-scroll-wrap{
+  position:relative;
+}
+.toc-arrow{
+  position:absolute;top:0;bottom:0;
+  width:32px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  font-size:14px;color:var(--text-muted);
+  transition:color 0.2s,opacity 0.2s;
+  z-index:2;
+  user-select:none;
+}
+.toc-arrow:hover{color:var(--gold)}
+.toc-arrow.left{left:0;background:linear-gradient(90deg,var(--surface) 60%,transparent)}
+.toc-arrow.right{right:0;background:linear-gradient(270deg,var(--surface) 60%,transparent)}
+.toc-arrow.hidden{opacity:0;pointer-events:none}
 .toc-links{
   display:flex;
   gap:2px;
@@ -970,6 +1065,7 @@ header{
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
   padding-bottom:2px;
+  scroll-behavior:smooth;
 }
 .toc-links::-webkit-scrollbar{display:none}
 .toc-link{
@@ -981,7 +1077,7 @@ header{
   cursor:pointer;
   transition:border-color 0.2s,background 0.2s;
   flex-shrink:0;
-  min-width:140px;
+  min-width:150px;
 }
 .toc-link:hover{border-color:var(--gold);background:var(--gold-dim)}
 .toc-icon{font-size:18px;flex-shrink:0;line-height:1}
@@ -995,16 +1091,11 @@ header{
 .toc-ext{font-size:12px;color:var(--gold);margin-left:auto;opacity:0.6;flex-shrink:0}
 .toc-link-learn{border-color:var(--gold-border)}
 
-/* Mobile — stack vertically below 600px */
+/* Mobile — keep horizontal scroll, smaller cards */
 @media(max-width:600px){
-  .toc-links{
-    flex-direction:column;
-    overflow-x:visible;
-  }
-  .toc-link{
-    min-width:unset;
-    width:100%;
-  }
+  .toc-link{min-width:130px;padding:10px 12px}
+  .toc-title{font-size:12px}
+  .toc-icon{font-size:15px}
 }
 
 /* JUMP BAR — kept for other tabs */
@@ -1125,43 +1216,47 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <!-- HOME TABLE OF CONTENTS -->
     <nav class="toc-nav" id="homeTOC">
       <div class="toc-label">On This Page</div>
-      <div class="toc-links">
-        <a class="toc-link" href="#sec-market-state" onclick="tocJump(event,'sec-market-state')">
-          <span class="toc-icon">📊</span>
-          <span class="toc-text">
-            <span class="toc-title">Daily State</span>
-            <span class="toc-sub">BTC · ETH · Gold indicators</span>
-          </span>
-        </a>
-        <a class="toc-link" href="#sec-latest-news" onclick="tocJump(event,'sec-latest-news')">
-          <span class="toc-icon">📰</span>
-          <span class="toc-text">
-            <span class="toc-title">News Alerts</span>
-            <span class="toc-sub">Latest market headlines</span>
-          </span>
-        </a>
-        <a class="toc-link" href="#sec-market-overview" onclick="tocJump(event,'sec-market-overview')">
-          <span class="toc-icon">📈</span>
-          <span class="toc-text">
-            <span class="toc-title">Market Overview</span>
-            <span class="toc-sub">Top 5 · Halving · Performance</span>
-          </span>
-        </a>
-        <a class="toc-link" href="#sec-calendar" onclick="tocJump(event,'sec-calendar')">
-          <span class="toc-icon">📅</span>
-          <span class="toc-text">
-            <span class="toc-title">Calendar</span>
-            <span class="toc-sub">Key dates this week</span>
-          </span>
-        </a>
-        <a class="toc-link toc-link-learn" onclick="switchTab('bitcoin');setTimeout(()=>jumpTo('btc-protocol'),300)">
-          <span class="toc-icon">🧠</span>
-          <span class="toc-text">
-            <span class="toc-title">Learn · Alpha 101</span>
-            <span class="toc-sub">Concepts · Glossary</span>
-          </span>
-          <span class="toc-ext">↗</span>
-        </a>
+      <div class="toc-scroll-wrap">
+        <div class="toc-arrow left hidden" id="tocArrowLeft" onclick="tocScroll(-1)">‹</div>
+        <div class="toc-links" id="tocLinks" onscroll="updateTocArrows()">
+          <a class="toc-link" href="#sec-market-state" onclick="tocJump(event,'sec-market-state')">
+            <span class="toc-icon">📊</span>
+            <span class="toc-text">
+              <span class="toc-title">Daily State</span>
+              <span class="toc-sub">BTC · ETH · Gold indicators</span>
+            </span>
+          </a>
+          <a class="toc-link" href="#sec-latest-news" onclick="tocJump(event,'sec-latest-news')">
+            <span class="toc-icon">📰</span>
+            <span class="toc-text">
+              <span class="toc-title">News Alerts</span>
+              <span class="toc-sub">Latest market headlines</span>
+            </span>
+          </a>
+          <a class="toc-link" href="#sec-market-overview" onclick="tocJump(event,'sec-market-overview')">
+            <span class="toc-icon">📈</span>
+            <span class="toc-text">
+              <span class="toc-title">Market Overview</span>
+              <span class="toc-sub">Top 5 · Halving · Performance</span>
+            </span>
+          </a>
+          <a class="toc-link" href="#sec-calendar" onclick="tocJump(event,'sec-calendar')">
+            <span class="toc-icon">📅</span>
+            <span class="toc-text">
+              <span class="toc-title">Calendar</span>
+              <span class="toc-sub">Key dates this week</span>
+            </span>
+          </a>
+          <a class="toc-link toc-link-learn" onclick="switchTab('bitcoin');setTimeout(()=>jumpTo('btc-protocol'),300)">
+            <span class="toc-icon">🧠</span>
+            <span class="toc-text">
+              <span class="toc-title">Learn · Alpha 101</span>
+              <span class="toc-sub">Concepts · Glossary</span>
+            </span>
+            <span class="toc-ext">↗</span>
+          </a>
+        </div>
+        <div class="toc-arrow right" id="tocArrowRight" onclick="tocScroll(1)">›</div>
       </div>
     </nav>
 
@@ -1204,6 +1299,27 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <div class="halving-unit"><span class="halving-num" id="halvHours">--</span><span class="halving-ulab">Hours</span></div>
           <div class="halving-unit"><span class="halving-num" id="halvMins">--</span><span class="halving-ulab">Mins</span></div>
           <div class="halving-unit"><span class="halving-num" id="halvSecs">--</span><span class="halving-ulab">Secs</span></div>
+        </div>
+      </div>
+      <!-- HALVING PROGRESS BAR -->
+      <div class="halving-progress-wrap">
+        <div class="halving-progress-header">
+          <span class="halving-progress-title">Cycle Progress — Halving #4 → #5</span>
+          <span class="halving-progress-pct" id="halvPct">--%</span>
+        </div>
+        <div class="halving-track">
+          <div class="halving-fill" id="halvFill" style="width:0%"></div>
+        </div>
+        <div class="halving-cycle-labels">
+          <span>Halving #4 · Apr 2024</span>
+          <span id="halvCyclePos">-- days in</span>
+          <span>Halving #5 · Apr 2028</span>
+        </div>
+        <div class="halving-epoch">
+          <div class="halving-epoch-item">Cycle length<span class="halving-epoch-val">~1,458 days</span></div>
+          <div class="halving-epoch-item">Days elapsed<span class="halving-epoch-val" id="halvElapsed">--</span></div>
+          <div class="halving-epoch-item">Days remaining<span class="halving-epoch-val" id="halvRemaining">--</span></div>
+          <div class="halving-epoch-item">Current reward<span class="halving-epoch-val" style="color:var(--gold)">3.125 BTC / block</span></div>
         </div>
       </div>
       <div id="marketGrid" class="market-grid">
@@ -2374,6 +2490,46 @@ function timeAgo(ts){
   const hrs = Math.round(mins/60);
   return `${hrs}h ago`;
 }
+// ── SPARKLINE HISTORY ──────────────────────────────────────
+function recordDailyState(coin, status){
+  try{
+    const key = 'bl_history_' + coin;
+    const today = new Date().toISOString().slice(0,10);
+    let history = JSON.parse(localStorage.getItem(key)||'[]');
+    // Only record once per day
+    if(history.length && history[history.length-1].d === today){
+      history[history.length-1].s = status; // update today's
+    } else {
+      history.push({d:today, s:status});
+    }
+    // Keep last 7 days only
+    if(history.length > 7) history = history.slice(-7);
+    localStorage.setItem(key, JSON.stringify(history));
+  }catch(e){}
+}
+
+function getSparkline(coin){
+  try{
+    const key = 'bl_history_' + coin;
+    return JSON.parse(localStorage.getItem(key)||'[]');
+  }catch(e){ return []; }
+}
+
+function renderSparkline(coin){
+  const history = getSparkline(coin);
+  if(!history.length) return '';
+  const today = new Date().toISOString().slice(0,10);
+  const icons = {positive:'+', negative:'−', neutral:'='};
+  const dots = history.map((h,i)=>{
+    const isToday = h.d === today;
+    return `<div class="spark-dot ${h.s}${isToday?' today':''}" title="${h.d}: ${h.s}">${icons[h.s]||'='}</div>`;
+  }).join('');
+  return `<div class="sparkline-wrap">
+    <span class="sparkline-label">7D</span>
+    ${dots}
+  </div>`;
+}
+
 function showLastUpdated(containerId, ts, stale=false){
   const el = document.getElementById(containerId);
   if(!el) return;
@@ -2397,6 +2553,24 @@ function tocJump(e, id){
   e.preventDefault();
   jumpTo(id);
 }
+
+function tocScroll(dir){
+  const el = document.getElementById('tocLinks');
+  if(!el) return;
+  el.scrollBy({left: dir * 200, behavior:'smooth'});
+}
+
+function updateTocArrows(){
+  const el = document.getElementById('tocLinks');
+  const left = document.getElementById('tocArrowLeft');
+  const right = document.getElementById('tocArrowRight');
+  if(!el || !left || !right) return;
+  left.classList.toggle('hidden', el.scrollLeft <= 4);
+  right.classList.toggle('hidden', el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
+}
+
+// Init arrows after page loads
+setTimeout(updateTocArrows, 500);
 
 function jumpTo(id){
   const el = document.getElementById(id);
@@ -2647,8 +2821,8 @@ async function fetchTrend(){
     function buildCard(coin, label, data, price, change, symbol){
       const s = statusConfig[data.status] || statusConfig.neutral;
       const up = change >= 0;
-      // Ribbon: positive=80%, neutral=50%, negative=20%
       const ribbonWidth = data.status==='positive'?80:data.status==='negative'?20:50;
+      const sparkline = renderSparkline(coin);
       return `<div class="trend-card ${s.cls}">
         <div class="trend-coin-label">
           <span>${label}</span>
@@ -2667,6 +2841,7 @@ async function fetchTrend(){
           <div class="trend-status-icon" style="color:${s.color}">${s.icon}</div>
           <div class="trend-status-text" style="color:${s.color}">${s.label}</div>
         </div>
+        ${sparkline}
         ${data.note?`<div class="trend-note">${data.note}</div>`:''}
         ${data.updated?`<div class="trend-updated">Updated: ${data.updated}</div>`:''}
       </div>`;
@@ -2694,6 +2869,10 @@ async function fetchTrend(){
 
     saveCache('bl_trend', el.innerHTML);
     showLastUpdated('trendWidget', Date.now(), false);
+    // Record today's state in 7-day history
+    recordDailyState('BTC', btc.status);
+    recordDailyState('ETH', eth.status);
+    recordDailyState('GOLD', gold.status);
 
     // Inject TradingView widgets after DOM is ready
     setTimeout(()=>{
@@ -3174,18 +3353,33 @@ async function fetchPerformance(){
 
 // ── HALVING COUNTDOWN ─────────────────────────────────────
 const HALVING_DATE = new Date('2028-04-17T00:00:00Z');
+const PREV_HALVING  = new Date('2024-04-20T00:00:00Z');
+
 function updateHalving(){
   const now = new Date();
   const diff = HALVING_DATE - now;
   if(diff <= 0){ document.querySelector('.halving-wrap').innerHTML='<div style="color:var(--gold);font-family:\'Playfair Display\',serif;font-size:18px">Halving complete — reward is now 1.5625 BTC</div>'; return; }
-  const days = Math.floor(diff / 86400000);
+  const days  = Math.floor(diff / 86400000);
   const hours = Math.floor((diff % 86400000) / 3600000);
-  const mins = Math.floor((diff % 3600000) / 60000);
-  const secs = Math.floor((diff % 60000) / 1000);
-  document.getElementById('halvDays').textContent = String(days).padStart(3,'0');
+  const mins  = Math.floor((diff % 3600000) / 60000);
+  const secs  = Math.floor((diff % 60000) / 1000);
+  document.getElementById('halvDays').textContent  = String(days).padStart(3,'0');
   document.getElementById('halvHours').textContent = String(hours).padStart(2,'0');
-  document.getElementById('halvMins').textContent = String(mins).padStart(2,'0');
-  document.getElementById('halvSecs').textContent = String(secs).padStart(2,'0');
+  document.getElementById('halvMins').textContent  = String(mins).padStart(2,'0');
+  document.getElementById('halvSecs').textContent  = String(secs).padStart(2,'0');
+  // Progress bar
+  const totalCycle = HALVING_DATE - PREV_HALVING;
+  const elapsed    = now - PREV_HALVING;
+  const pct        = Math.min(100, Math.max(0, (elapsed / totalCycle) * 100));
+  const elapsedDays = Math.floor(elapsed / 86400000);
+  const fillEl = document.getElementById('halvFill');
+  if(fillEl){
+    fillEl.style.width = pct.toFixed(1) + '%';
+    document.getElementById('halvPct').textContent       = pct.toFixed(1) + '%';
+    document.getElementById('halvElapsed').textContent   = elapsedDays.toLocaleString() + ' days';
+    document.getElementById('halvRemaining').textContent = days.toLocaleString() + ' days';
+    document.getElementById('halvCyclePos').textContent  = elapsedDays.toLocaleString() + ' days in';
+  }
 }
 updateHalving();
 setInterval(updateHalving, 1000);
