@@ -1,1 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BitLogic Alpha — News</title>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" id="canonicalTag" href="https://bitlogicalpha.com/news/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="BitLogic Alpha"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@QuantAlphaTrend"/>
+<!-- Dynamic OG tags filled by JS -->
+<meta id="ogTitle" property="og:title" content="BitLogic Alpha — News"/>
+<meta id="ogDesc" property="og:description" content="Crypto market analysis by BitLogic Alpha."/>
+<meta id="ogImage" property="og:image" content="https://bitlogicalpha.com/preview.png"/>
+<meta id="twTitle" name="twitter:title" content="BitLogic Alpha — News"/>
+<meta id="twDesc" name="twitter:description" content="Crypto market analysis by BitLogic Alpha."/>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DED8MMWG24"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DED8MMWG24');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;--surface:#0f0f0f;--surface2:#161616;
+  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.08);--gold-border:rgba(201,168,76,0.2);
+  --text:#f0ece4;--text-muted:#6b6560;--text-dim:#3a3530;
+  --red:#e05555;--green:#4caf7d;
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);font-family:'DM Mono',monospace;color:var(--text);line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
 
+/* NAV */
+.top-nav{
+  position:sticky;top:0;z-index:500;
+  background:rgba(8,8,8,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--text-dim);
+  padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-mark{
+  width:36px;height:36px;border-radius:50%;
+  border:1.5px solid var(--gold);
+  box-shadow:0 0 10px rgba(201,168,76,0.3);
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 40% 40%,#1a1400,#080808);
+  font-size:13px;font-weight:900;color:var(--gold);
+  font-family:'Playfair Display',serif;
+}
+.nav-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text);letter-spacing:2px}
+.nav-tag{font-size:8px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-top:1px}
+.nav-back{font-size:10px;color:var(--text-muted);letter-spacing:2px;text-decoration:none;transition:color 0.2s}
+.nav-back:hover{color:var(--gold)}
+
+/* PAGE */
+.page{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:48px 24px 80px}
+
+/* ARTICLE */
+.article-eyebrow{font-size:9px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
+.article-title{
+  font-family:'Playfair Display',serif;
+  font-size:32px;font-weight:900;
+  color:var(--text);line-height:1.25;
+  margin-bottom:20px;
+  letter-spacing:0.3px;
+}
+@media(max-width:600px){.article-title{font-size:24px}}
+.article-meta{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 0;
+  border-top:1px solid var(--text-dim);
+  border-bottom:1px solid var(--text-dim);
+  margin-bottom:36px;
+  flex-wrap:wrap;gap:12px;
+}
+.article-date{font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+.article-author{font-size:10px;color:var(--text-muted);letter-spacing:2px}
+.article-share{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-left:auto;
+  padding:6px 14px;
+  border:1px solid var(--gold-border);
+  color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s;
+}
+.article-share:hover{background:var(--gold-dim)}
+.article-share svg{width:12px;height:12px;fill:currentColor}
+
+/* BODY */
+.article-body{font-size:14px;color:var(--text-muted);line-height:1.9;letter-spacing:0.3px}
+.article-body p{margin-bottom:18px}
+.article-body p:last-child{margin-bottom:0}
+.article-body .news-list-item{
+  padding-left:18px;border-left:2px solid var(--gold);
+  margin:20px 0;color:var(--text);font-size:14px;font-weight:500;letter-spacing:0.3px;
+}
+.article-body .news-section-title{
+  font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;
+  margin:28px 0 8px;
+}
+
+/* FOOTER */
+.article-footer{
+  margin-top:48px;padding-top:32px;
+  border-top:1px solid var(--text-dim);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-brand{font-family:'Playfair Display',serif;font-size:13px;color:var(--text-muted);letter-spacing:1px}
+.footer-right{font-size:9px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+
+/* RELATED */
+.related-section{margin-top:48px;padding-top:32px;border-top:1px solid var(--text-dim)}
+.related-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:16px}
+.related-list{display:flex;flex-direction:column;gap:2px}
+.related-item{
+  background:var(--surface);padding:16px 20px;
+  border-left:2px solid transparent;
+  transition:border-color 0.2s,background 0.2s;
+  text-decoration:none;display:block;
+}
+.related-item:hover{border-left-color:var(--gold);background:var(--surface2)}
+.related-date{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.related-headline{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.4}
+
+/* NOT FOUND */
+.not-found{text-align:center;padding:80px 24px}
+.not-found-title{font-family:'Playfair Display',serif;font-size:32px;color:var(--text);margin-bottom:12px}
+.not-found-sub{font-size:12px;color:var(--text-muted);letter-spacing:1px}
+.not-found-link{display:inline-block;margin-top:24px;color:var(--gold);font-size:11px;letter-spacing:2px;text-decoration:none}
+
+/* LOADING */
+.article-loading{padding:80px 0;text-align:center;font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a class="nav-brand" href="https://bitlogicalpha.com">
+    <div class="nav-mark">₿L</div>
+    <div>
+      <div class="nav-name">BITLOGIC <span style="color:var(--gold)">ALPHA</span></div>
+      <div class="nav-tag">Crypto & Gold Market Intelligence</div>
+    </div>
+  </a>
+  <a class="nav-back" href="https://bitlogicalpha.com">← Back to Home</a>
+</nav>
+
+<div class="page" id="pageContent">
+  <div class="article-loading">Loading article...</div>
+</div>
+
+<script>
+const BASE = 'https://bitlogicalpha.com';
+
+function slugify(title){
+  return title.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g,'')
+    .replace(/\s+/g,'-')
+    .replace(/-+/g,'-')
+    .trim();
+}
+
+function parseBody(body){
+  if(!body) return '';
+  return body.split('\n').filter(p=>p.trim()).map(p=>{
+    const t = p.trim();
+    if(/^[1-9]\d*\./.test(t)) return `<p class="news-list-item">${t}</p>`;
+    if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
+    return `<p>${t}</p>`;
+  }).join('');
+}
+
+async function loadArticle(){
+  const path = window.location.pathname;
+  const slug = path.replace('/news/','').replace('/','').trim();
+
+  try{
+    const res = await fetch(`${BASE}/news.json?t=${Date.now()}`);
+    const items = await res.json();
+
+    // Find article by slug
+    const article = items.find(item => slugify(item.title) === slug);
+
+    if(!article){
+      document.getElementById('pageContent').innerHTML = `
+        <div class="not-found">
+          <div class="not-found-title">Article Not Found</div>
+          <div class="not-found-sub">This article may have been moved or removed.</div>
+          <a class="not-found-link" href="${BASE}">← Return to BitLogic Alpha</a>
+        </div>`;
+      return;
+    }
+
+    // Update meta tags for SEO and sharing
+    document.title = `${article.title} — BitLogic Alpha`;
+    const desc = article.body ? article.body.split('\n')[0].substring(0,160) : '';
+    document.getElementById('ogTitle').content = article.title;
+    document.getElementById('ogDesc').content = desc;
+    document.getElementById('twTitle').content = article.title;
+    document.getElementById('twDesc').content = desc;
+    document.getElementById('canonicalTag').href = `${BASE}/news/${slug}/`;
+
+    // Share URL
+    const shareText = encodeURIComponent(`${article.title}\n\n${BASE}/news/${slug}/\n\n#Bitcoin #Crypto @QuantAlphaTrend`);
+    const shareUrl = `https://x.com/intent/tweet?text=${shareText}`;
+
+    // Related articles (all except current)
+    const related = items.filter(i=>slugify(i.title)!==slug).slice(0,3);
+    const relatedHtml = related.length ? `
+      <div class="related-section">
+        <div class="related-title">More from BitLogic Alpha</div>
+        <div class="related-list">
+          ${related.map(r=>`
+            <a class="related-item" href="${BASE}/news/${slugify(r.title)}/">
+              <div class="related-date">${r.date||''}</div>
+              <div class="related-headline">${r.title}</div>
+            </a>`).join('')}
+        </div>
+      </div>` : '';
+
+    document.getElementById('pageContent').innerHTML = `
+      <div class="article-eyebrow">BitLogic Alpha · Analysis</div>
+      <h1 class="article-title">${article.title}</h1>
+      <div class="article-meta">
+        <span class="article-date">${article.date||''}</span>
+        <span class="article-author">By BitLogic Alpha</span>
+        <a class="article-share" href="${shareUrl}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Share on X
+        </a>
+      </div>
+      <div class="article-body">${parseBody(article.body)}</div>
+      ${relatedHtml}
+      <div class="article-footer">
+        <span class="footer-brand">BitLogic Alpha</span>
+        <span class="footer-right">© 2026 · bitlogicalpha.com</span>
+      </div>`;
+
+  }catch(e){
+    document.getElementById('pageContent').innerHTML = `
+      <div class="not-found">
+        <div class="not-found-title">Could Not Load Article</div>
+        <div class="not-found-sub">Please check your connection and try again.</div>
+        <a class="not-found-link" href="${BASE}">← Return to BitLogic Alpha</a>
+      </div>`;
+  }
+}
+
+loadArticle();
+</script>
+</body>
+</html>
