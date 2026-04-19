@@ -1,3 +1,3 @@
-status: Negative
-note: Gold closed at $4,800, testing a key resistance level. Safe-haven demand unwinding as ceasefire holds. A rejection here could see a further pullback.
-updated: 18 Apr 2026
+sstatus: Negative
+note: Gold remains under pressure as the ceasefire holds and safe-haven demand continues to unwind. Markets closed today. Watch price action when trading resumes Monday.
+updated: 19 Apr 2026
