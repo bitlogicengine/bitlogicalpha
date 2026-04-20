@@ -57,7 +57,13 @@ body{min-height:100vh;background:var(--bg);font-family:'DM Mono',monospace;color
 body::before{
   content:'';position:fixed;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0;opacity:0.4;
+  pointer-events:none;z-index:0;opacity:0.5;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;z-index:0;opacity:1;
 }
 .page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:40px 24px 80px}
 
@@ -249,21 +255,86 @@ header{
 .sc-bar{height:3px;background:var(--surface2);margin-top:16px;overflow:hidden}
 .sc-bar-fill{height:100%;transition:width 1s ease}
 
-.fg-large{background:var(--surface);padding:32px;display:flex;gap:40px;align-items:center;flex-wrap:wrap}
-.fg-gauge-large{position:relative;width:160px;height:160px;flex-shrink:0}
-.fg-gauge-large svg{transform:rotate(-90deg)}
-.fg-track{fill:none;stroke:var(--surface2);stroke-width:12}
-.fg-fill{fill:none;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease}
-.fg-center-large{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.fg-big-val{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1}
-.fg-big-lbl{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:4px}
-.fg-detail{flex:1}
-.fg-classification{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:8px}
-.fg-updated{font-size:10px;color:var(--text-muted);letter-spacing:2px;margin-bottom:20px}
+.fg-large{
+  background:var(--surface);
+  padding:32px;
+  display:flex;gap:40px;align-items:center;flex-wrap:wrap;
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow:inset 0 0 40px rgba(0,0,0,0.3);
+}
+.fg-gauge-large{position:relative;width:200px;height:200px;flex-shrink:0}
+.fg-gauge-large svg{display:block}
+.fg-track{fill:none;stroke:var(--surface2);stroke-width:14}
+.fg-fill{fill:none;stroke-width:14;stroke-linecap:round;transition:stroke-dashoffset 1.4s cubic-bezier(0.34,1.56,0.64,1);filter:url(#fgGlow)}
+.fg-center-large{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+.fg-bg-score{
+  position:absolute;
+  font-family:'Playfair Display',serif;
+  font-size:100px;font-weight:700;
+  color:var(--text);
+  opacity:0.04;
+  line-height:1;
+  user-select:none;
+  top:50%;left:50%;
+  transform:translate(-50%,-46%);
+}
+.fg-big-val{
+  font-family:'Playfair Display',serif;
+  font-size:44px;font-weight:700;line-height:1;
+  animation:scorebreath 3s ease-in-out infinite;
+  position:relative;z-index:1;
+}
+@keyframes scorebreath{
+  0%,100%{opacity:1}
+  50%{opacity:0.75}
+}
+.fg-big-lbl{font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-top:4px;position:relative;z-index:1}
+.fg-detail{flex:1;min-width:0}
+.fg-classification{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:700;margin-bottom:4px;
+}
+.fg-updated{
+  font-size:9px;color:#555;
+  letter-spacing:2px;margin-bottom:20px;
+}
 .fg-history{display:flex;gap:8px;align-items:flex-end;height:48px}
 .fg-bar-item{flex:1;border-radius:1px;min-height:4px;position:relative;cursor:default}
-.fg-bar-item:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--surface2);color:var(--text);font-size:9px;padding:3px 6px;white-space:nowrap;letter-spacing:1px;pointer-events:none;z-index:10}
+.fg-bar-item:hover::after{
+  content:attr(data-tip);position:absolute;
+  bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+  background:var(--surface2);color:var(--text);
+  font-size:9px;padding:3px 6px;white-space:nowrap;
+  letter-spacing:1px;pointer-events:none;z-index:10;
+}
 .fg-scale-row{display:flex;justify-content:space-between;margin-top:6px;font-size:8px;color:var(--text-dim);letter-spacing:1px}
+.fg-scale-wrap{margin-top:10px}
+.fg-scale-track{
+  display:flex;gap:2px;height:10px;border-radius:2px;overflow:hidden;
+  margin-bottom:4px;
+}
+.fg-scale-seg{
+  flex:1;border-radius:1px;
+  transition:opacity 0.3s,transform 0.3s;
+  opacity:0.35;
+}
+.fg-scale-seg.active{
+  opacity:1;
+  transform:scaleY(1.4);
+  transform-origin:center;
+  border-radius:2px;
+  box-shadow:0 0 8px currentColor;
+  position:relative;
+}
+.fg-scale-labels{
+  display:flex;justify-content:space-between;
+  font-size:8px;color:var(--text-dim);letter-spacing:1px;
+  margin-top:3px;
+}
 
 .dominance-wrap{background:var(--surface);padding:32px;display:flex;gap:40px;align-items:center;flex-wrap:wrap}
 .dom-donut{position:relative;width:160px;height:160px;flex-shrink:0}
@@ -483,7 +554,7 @@ header{
 .trend-card.neutral::before{background:#c9a84c}
 .trend-coin-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
 .trend-live{font-size:9px;letter-spacing:2px;display:flex;align-items:center;gap:5px}
-.trend-live-dot{width:5px;height:5px;border-radius:50%;animation:mspulse 2s ease infinite}
+.trend-live-dot{width:6px;height:6px;border-radius:50%;animation:livepulse 1.4s ease-in-out infinite;background:#e05555 !important;box-shadow:0 0 0 0 rgba(224,85,85,0.6)}
 .trend-price{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-0.5px}
 .trend-change{font-size:11px;letter-spacing:1px;margin-bottom:20px}
 .trend-status-wrap{display:flex;align-items:center;gap:12px;margin-bottom:12px}
@@ -1167,6 +1238,25 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 .footer-email:hover{color:var(--gold)}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes livepulse{
+  0%{box-shadow:0 0 0 0 rgba(224,85,85,0.7)}
+  50%{box-shadow:0 0 0 5px rgba(224,85,85,0)}
+  100%{box-shadow:0 0 0 0 rgba(224,85,85,0)}
+}
+@keyframes metapulse{
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+}
+.section-meta-live{
+  display:inline-flex;align-items:center;gap:5px;
+}
+.section-meta-live-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:#e05555;
+  animation:livepulse 1.4s ease-in-out infinite;
+  box-shadow:0 0 0 0 rgba(224,85,85,0.6);
+  flex-shrink:0;
+}
 </style>
 </head>
 <body>
@@ -1261,7 +1351,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section" id="sec-market-state">
       <div class="section-header">
         <div class="section-label">Daily Market State</div>
-        <div class="section-meta">Updated Daily</div>
+        <div class="section-meta section-meta-live"><span class="section-meta-live-dot"></span>Updated Daily</div>
       </div>
       <div id="trendWidget" class="trend-widget">
         <div class="skel-card skeleton" style="height:140px"></div>
@@ -1392,11 +1482,19 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
       <div class="fg-large">
         <div class="fg-gauge-large">
-          <svg width="160" height="160" viewBox="0 0 160 160">
-            <circle class="fg-track" cx="80" cy="80" r="64"/>
-            <circle class="fg-fill" id="fgArc" cx="80" cy="80" r="64" stroke-dasharray="402" stroke-dashoffset="402"/>
+          <svg id="fgSvg" width="200" height="200" viewBox="0 0 200 200">
+            <!-- Track -->
+            <circle class="fg-track" cx="100" cy="100" r="80"/>
+            <!-- Arc fill -->
+            <circle class="fg-fill" id="fgArc" cx="100" cy="100" r="80" stroke-dasharray="502" stroke-dashoffset="502"/>
+            <!-- Tick marks every 10 units -->
+            <g id="fgTicks" opacity="0.25"></g>
+            <!-- Needle -->
+            <line id="fgNeedle" x1="100" y1="100" x2="100" y2="28" stroke="#f0ece4" stroke-width="2" stroke-linecap="round" transform="rotate(0,100,100)" style="transition:transform 1.4s cubic-bezier(0.34,1.56,0.64,1)"/>
+            <circle cx="100" cy="100" r="5" fill="#f0ece4" opacity="0.9"/>
           </svg>
           <div class="fg-center-large">
+            <div class="fg-bg-score" id="fgBgScore"></div>
             <div class="fg-big-val" id="fgVal"><span class="skeleton" style="display:inline-block;width:60px;height:40px;border-radius:2px"> </span></div>
             <div class="fg-big-lbl">/ 100</div>
           </div>
@@ -1405,9 +1503,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <div class="fg-classification" id="fgClass">Loading...</div>
           <div class="fg-updated" id="fgUpdated">Fetching data...</div>
           <div class="fg-history" id="fgHistory"></div>
-          <div class="fg-scale-row">
-            <span>Extreme Fear</span><span>Fear</span><span>Neutral</span><span>Greed</span><span>Extreme Greed</span>
-          </div>
+          <div id="fgScaleWrap" class="fg-scale-wrap"></div>
         </div>
       </div>
       <div class="fg-comment-wrap" id="fgCommentWrap" style="display:none">
@@ -3078,25 +3174,100 @@ async function fetchFearGreed(){
 }
 
 function applyFearGreedData(items){
-  const latest=items[0];
-  const value=parseInt(latest.value);
-  const color=fgColor(value);
-  document.getElementById('fgVal').textContent=value;
-  document.getElementById('fgVal').style.color=color;
-  document.getElementById('fgClass').textContent=latest.value_classification;
-  document.getElementById('fgClass').style.color=color;
-  document.getElementById('fgUpdated').textContent=`Last updated: ${new Date(latest.timestamp*1000).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}`;
-  const arc=document.getElementById('fgArc');
-  arc.style.stroke=color;
-  arc.style.strokeDashoffset=402-(value/100)*402;
-  const hist=document.getElementById('fgHistory');
-  hist.innerHTML=[...items].reverse().map(item=>{
-    const v=parseInt(item.value);
-    const c=fgColor(v);
-    const h=Math.max(8,(v/100)*48);
-    const d=new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  const latest = items[0];
+  const value  = parseInt(latest.value);
+  const color  = fgColor(value);
+
+  // ── Score number + background ghost ──
+  document.getElementById('fgVal').textContent = value;
+  document.getElementById('fgVal').style.color = color;
+  document.getElementById('fgBgScore').textContent = value;
+  document.getElementById('fgClass').textContent = latest.value_classification;
+  document.getElementById('fgClass').style.color = color;
+  document.getElementById('fgUpdated').textContent =
+    `Updated: ${new Date(latest.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}`;
+
+  // ── SVG gauge: arc + glow filter + needle + ticks ──
+  const svg = document.getElementById('fgSvg');
+
+  // Inject glow filter if not present
+  if(!svg.querySelector('defs')){
+    const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+    defs.innerHTML = `
+      <filter id="fgGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="${color}" flood-opacity="0.7"/>
+      </filter>`;
+    svg.insertBefore(defs, svg.firstChild);
+  } else {
+    const shadow = svg.querySelector('feDropShadow');
+    if(shadow){ shadow.setAttribute('flood-color', color); }
+  }
+
+  // Arc — full circle, starts at top (rotate handled by needle math)
+  // circumference = 2π×80 = 502.65
+  const circ = 502;
+  const arc  = document.getElementById('fgArc');
+  arc.style.stroke = color;
+  // Arc goes from top, clockwise. We use strokeDashoffset to show value%
+  // SVG starts at 3 o'clock; we rotate the whole SVG -90deg via transform
+  arc.setAttribute('transform','rotate(-90,100,100)');
+  arc.style.strokeDasharray = circ;
+  setTimeout(()=>{ arc.style.strokeDashoffset = circ - (value/100)*circ; }, 50);
+
+  // Tick marks every 10 units
+  const tickGroup = document.getElementById('fgTicks');
+  tickGroup.innerHTML = '';
+  for(let t=0; t<=100; t+=10){
+    const angle = (t/100)*360 - 90; // -90 so 0 = top
+    const rad   = angle * Math.PI / 180;
+    const isMajor = t%50===0;
+    const r1 = isMajor ? 68 : 72;
+    const r2 = 80;
+    const x1 = 100 + r1*Math.cos(rad);
+    const y1 = 100 + r1*Math.sin(rad);
+    const x2 = 100 + r2*Math.cos(rad);
+    const y2 = 100 + r2*Math.sin(rad);
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',x1); line.setAttribute('y1',y1);
+    line.setAttribute('x2',x2); line.setAttribute('y2',y2);
+    line.setAttribute('stroke','#f0ece4');
+    line.setAttribute('stroke-width', isMajor ? '1.5' : '0.8');
+    tickGroup.appendChild(line);
+  }
+
+  // Needle rotation: 0 = top = 0 score, 360 = full = 100 score
+  const needleAngle = (value/100)*360;
+  const needle = document.getElementById('fgNeedle');
+  setTimeout(()=>{
+    needle.setAttribute('transform',`rotate(${needleAngle},100,100)`);
+    needle.style.stroke = color;
+  }, 50);
+
+  // ── History bars ──
+  const hist = document.getElementById('fgHistory');
+  hist.innerHTML = [...items].reverse().map(item=>{
+    const v = parseInt(item.value);
+    const c = fgColor(v);
+    const h = Math.max(8,(v/100)*48);
+    const d = new Date(item.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
     return `<div class="fg-bar-item" style="background:${c};height:${h}px;opacity:0.7" data-tip="${d}: ${v}"></div>`;
   }).join('');
+
+  // ── Gradient scale with position pointer ──
+  const scaleWrap = document.getElementById('fgScaleWrap');
+  if(scaleWrap){
+    // Pointer sits at value% across the bar
+    const pct = value; // 0-100
+    scaleWrap.innerHTML = `
+      <div style="position:relative;margin-bottom:16px">
+        <div style="position:absolute;left:${pct}%;transform:translateX(-50%);top:-14px;font-size:8px;color:${color};letter-spacing:1px;font-weight:700;white-space:nowrap">${value}</div>
+        <div style="position:absolute;left:${pct}%;transform:translateX(-50%);top:-5px;width:2px;height:8px;background:${color};border-radius:1px;box-shadow:0 0 4px ${color}"></div>
+        <div style="height:8px;border-radius:4px;background:linear-gradient(90deg,#e05555 0%,#e07755 25%,#c9a84c 45%,#7bc47f 65%,#4caf7d 100%);overflow:visible"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:5px;font-size:8px;color:var(--text-dim);letter-spacing:0.5px">
+          <span>Extreme Fear</span><span>Fear</span><span>Neutral</span><span>Greed</span><span>Extreme Greed</span>
+        </div>
+      </div>`;
+  }
 }
 
 async function fetchGlobalData(){
