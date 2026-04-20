@@ -91,10 +91,12 @@ header{
   border-bottom:none;
   margin-bottom:0;
   margin-top:0;
-  padding:0 24px;
-  max-width:1100px;
-  margin:0 auto;
+  padding:0 0 0 24px;
+  max-width:none;
   border-top:1px solid rgba(58,53,48,0.5);
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
 }
 
 .brand-mark{
@@ -114,7 +116,12 @@ header{
   border-bottom:1px solid var(--text-dim);
   margin-bottom:64px;
   margin-top:24px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  flex-wrap:nowrap;
 }
+.nav-tabs::-webkit-scrollbar{display:none}
 .nav-tab{
   padding:12px 28px;
   font-size:10px;letter-spacing:3px;text-transform:uppercase;
@@ -124,6 +131,15 @@ header{
   margin-bottom:-1px;
   background:transparent;border-top:none;border-left:none;border-right:none;
   font-family:'DM Mono',monospace;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+@media(max-width:600px){
+  .nav-tab{padding:11px 18px;font-size:9px;letter-spacing:2px}
+  .sticky-nav header{padding:12px 16px}
+  .brand-name{font-size:16px}
+  .nav-date{display:none}
+  .page{padding:24px 16px 60px}
 }
 .nav-tab:hover{color:var(--text)}
 .nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
