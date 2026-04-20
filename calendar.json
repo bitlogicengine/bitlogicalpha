@@ -1,44 +1,51 @@
 [
   {
-    "day": "13",
+    "day": "22",
+    "month": "Apr",
+    "type": "macro",
+    "title": "US Consumer Confidence (April)",
+    "desc": "Conference Board consumer confidence release. A weak reading adds to recession fears and pressures risk assets including BTC. Expected to remain soft given tariff uncertainty and the Iran conflict overhang."
+  },
+  {
+    "day": "23",
+    "month": "Apr",
+    "type": "macro",
+    "title": "US PMI Flash Estimates (April)",
+    "desc": "S&P Global Manufacturing and Services PMI for April. First major data snapshot of how the US economy is absorbing the 15% global tariff. A miss here could accelerate rate-cut expectations and lift risk appetite."
+  },
+  {
+    "day": "25",
+    "month": "Apr",
+    "type": "macro",
+    "title": "US PCE Inflation (March)",
+    "desc": "The Fed's preferred inflation gauge. Core PCE is the single number that determines whether rate cuts are on or off the table. A soft print is bullish for BTC \u2014 it removes one of the last reasons for the Fed to stay hawkish."
+  },
+  {
+    "day": "27",
     "month": "Apr",
     "type": "crypto",
-    "title": "CLARITY Act — Senate Resumes Markup Talks",
-    "desc": "US Senate returns from Easter recess on April 13. Banking Committee markup is targeted for late April. Senator Lummis confirmed end-of-April target. If it doesn't pass committee before May, the bill risks being pushed past the November 2026 midterms."
-  },
-  {
-    "day": "14",
-    "month": "Apr",
-    "type": "macro",
-    "title": "US Producer Price Index (PPI)",
-    "desc": "Key inflation indicator. A firm read keeps rate cut expectations pushed further out — bearish for risk assets. A soft print would boost sentiment across crypto and equities."
-  },
-  {
-    "day": "14",
-    "month": "Apr",
-    "type": "earnings",
-    "title": "BlackRock Q1 2026 Earnings",
-    "desc": "World's largest asset manager reports Q1 results. Watch for updates on Bitcoin and Ethereum ETF flows and tokenisation strategy. Key institutional signal for crypto."
-  },
-  {
-    "day": "16",
-    "month": "Apr",
-    "type": "macro",
-    "title": "US Retail Sales Data",
-    "desc": "Measures consumer spending strength. Weak retail sales signal economic slowdown — mixed for crypto. Strong data reduces rate cut expectations."
+    "title": "Bitcoin 2026 Conference \u2014 Las Vegas (Apr 27\u201329)",
+    "desc": "The world's largest Bitcoin conference returns to The Venetian. Historically a source of major announcements \u2014 corporate treasury commitments, protocol updates, sovereign adoption signals. Watch for surprise keynotes."
   },
   {
     "day": "28",
     "month": "Apr",
     "type": "macro",
-    "title": "FOMC Meeting — Fed Interest Rate Decision",
-    "desc": "Federal Reserve meets April 28-29. Rate decision on April 29. BTC has sold off after 8 of the last 9 FOMC meetings. May be Powell's final meeting as Fed Chair before Kevin Warsh takes over May 15."
+    "title": "FOMC Decision \u2014 Powell's Final Meeting",
+    "desc": "April 28\u201329 marks Jerome Powell's last FOMC meeting as Fed Chair before Kevin Warsh takes over on May 15. Rates expected on hold at 3.50\u20133.75%. The statement and press conference will be watched closely for any shift in tone under incoming hawkish leadership."
   },
   {
-    "day": "28",
+    "day": "29",
     "month": "Apr",
-    "type": "earnings",
-    "title": "Robinhood Q1 2026 Earnings",
-    "desc": "Key indicator of retail crypto demand. Focus on crypto trading volumes and digital asset revenue."
+    "type": "macro",
+    "title": "US GDP Q1 2026 (Advance Estimate)",
+    "desc": "First reading of Q1 GDP. Tariffs, the Iran shock and Q1 market volatility all hit during this period. The Atlanta Fed GDPNow model has been tracking weakly. A contraction would be a major market-moving event for both equities and crypto."
+  },
+  {
+    "day": "30",
+    "month": "Apr",
+    "type": "crypto",
+    "title": "CLARITY Act \u2014 Senate Banking Committee Markup Deadline",
+    "desc": "Late April is the stated window for the Senate Banking Committee markup of the CLARITY Act. If the session is confirmed this week, it signals the most significant crypto regulation vote in US history is imminent. Miss this window and the bill risks falling past the November midterms."
   }
 ]
