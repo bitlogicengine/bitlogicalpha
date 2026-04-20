@@ -13,9 +13,8 @@
 <meta name="author" content="BitLogic Alpha"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://bitlogicalpha.com/"/>
-<meta property="og:title" content="BitLogic Alpha — Crypto Market Intelligence"/>
-<meta property="og:description" content="Daily BTC and ETH chart analysis, live crypto market data, and expert insights."/>
 <meta property="og:title" content="BitLogic Alpha — Crypto &amp; Gold Market Intelligence"/>
+<!-- OG_DESCRIPTION_PLACEHOLDER -->
 <meta property="og:description" content="Daily BTC, ETH and Gold market state, live crypto data, Fear &amp; Greed Index and expert analysis. Updated every day."/>
 <meta property="og:url" content="https://bitlogicalpha.com/"/>
 <meta property="og:type" content="website"/>
@@ -27,10 +26,9 @@
 <meta name="twitter:site" content="@QuantAlphaTrend"/>
 <meta name="twitter:creator" content="@QuantAlphaTrend"/>
 <meta name="twitter:title" content="BitLogic Alpha — Crypto &amp; Gold Market Intelligence"/>
+<!-- TWITTER_DESCRIPTION_PLACEHOLDER -->
 <meta name="twitter:description" content="Daily BTC, ETH and Gold market state, live crypto data, Fear &amp; Greed Index and expert analysis. Updated every day."/>
 <meta name="twitter:image" content="https://i.postimg.cc/pmFKB7Rn/preview.png"/>
-<meta name="twitter:title" content="BitLogic Alpha — Crypto Market Intelligence"/>
-<meta name="twitter:description" content="Daily BTC and ETH chart analysis, live crypto market data, and expert insights."/>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DED8MMWG24"></script>
 <script>
@@ -91,12 +89,10 @@ header{
   border-bottom:none;
   margin-bottom:0;
   margin-top:0;
-  padding:0 0 0 24px;
-  max-width:none;
+  padding:0 24px;
+  max-width:1100px;
+  margin:0 auto;
   border-top:1px solid rgba(58,53,48,0.5);
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
 }
 
 .brand-mark{
@@ -116,12 +112,7 @@ header{
   border-bottom:1px solid var(--text-dim);
   margin-bottom:64px;
   margin-top:24px;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-  flex-wrap:nowrap;
 }
-.nav-tabs::-webkit-scrollbar{display:none}
 .nav-tab{
   padding:12px 28px;
   font-size:10px;letter-spacing:3px;text-transform:uppercase;
@@ -131,15 +122,6 @@ header{
   margin-bottom:-1px;
   background:transparent;border-top:none;border-left:none;border-right:none;
   font-family:'DM Mono',monospace;
-  white-space:nowrap;
-  flex-shrink:0;
-}
-@media(max-width:600px){
-  .nav-tab{padding:11px 18px;font-size:9px;letter-spacing:2px}
-  .sticky-nav header{padding:12px 16px}
-  .brand-name{font-size:16px}
-  .nav-date{display:none}
-  .page{padding:24px 16px 60px}
 }
 .nav-tab:hover{color:var(--text)}
 .nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
@@ -1285,6 +1267,9 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="skel-card skeleton" style="height:140px"></div>
         <div class="skel-card skeleton" style="height:140px"></div>
         <div class="skel-card skeleton" style="height:140px"></div>
+      </div>
+      <div style="margin-top:12px;font-size:9px;color:var(--text-dim);letter-spacing:1px;line-height:1.6">
+        Signals are informational only · Not financial advice · Always apply your own analysis and risk management before making any decision.
       </div>
     </div>
 
@@ -2889,6 +2874,7 @@ async function fetchTrend(){
     recordDailyState('BTC', btc.status);
     recordDailyState('ETH', eth.status);
     recordDailyState('GOLD', gold.status);
+
     // Inject TradingView widgets after DOM is ready
     setTimeout(()=>{
       const tvMap = {
@@ -3543,7 +3529,6 @@ async function fetchGoldBtcRatio(){
 
 fetchNews();
 fetchCalendar();
-
 
 // Fetch market data then immediately trigger trend — no extra delay
 fetchMarket().then(()=>fetchTrend());
