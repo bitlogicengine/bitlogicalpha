@@ -1,3 +1,3 @@
 status: Positive
-note: ETH holding constructively above $2,300 after Friday pullback. On-chain activity at record highs — network transactions hit 200M in Q1. Structure intact above key support.
-updated: 19 Apr 2026
+note: ETH returned to $2,300 support, mirroring BTC's pullback. Structure remains constructive — no breakdown, just consolidation at a key level. On-chain activity continues to justify the positive bias. Hold $2,250 is the line to watch.
+updated: 20 Apr 2026
