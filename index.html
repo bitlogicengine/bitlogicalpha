@@ -3999,7 +3999,8 @@ fetchNews();
 fetchCalendar();
 
 // Fetch market data then immediately trigger trend — no extra delay
-fetchMarket().then(()=>fetchTrend());
+fetchMarket();
+fetchTrend();
 
 window.addEventListener('scroll',()=>{
   const b=document.getElementById('backToTop');
