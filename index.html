@@ -1286,95 +1286,67 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
    MOBILE — single clean pass (max-width:600px)
    ======================================== */
 @media(max-width:600px){
-
-  /* Page */
   .page{padding:20px 14px 60px}
-
-  /* Header */
   .sticky-nav header{padding:10px 14px}
   .brand{gap:10px}
   .brand-mark{width:36px !important;height:36px !important}
   .brand-name{font-size:15px;letter-spacing:1px}
   .brand-tag{display:none}
   .nav-date{display:none}
-
-  /* Nav tabs — horizontal scroll */
-  .nav-tabs{
-    display:flex;
-    overflow-x:auto;
-    overflow-y:visible;
-    white-space:nowrap;
-    flex-wrap:nowrap;
-    padding:0;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-  }
+  .nav-tabs{display:flex;overflow-x:auto;overflow-y:visible;white-space:nowrap;flex-wrap:nowrap;padding:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .nav-tabs::-webkit-scrollbar{display:none}
-  .nav-tab{
-    flex-shrink:0;
-    padding:10px 16px;
-    font-size:9px;
-    letter-spacing:1px;
-  }
-
-  /* Jump bars — horizontal scroll */
-  .jump-bar{
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-  }
+  .nav-tab{flex-shrink:0;padding:10px 16px;font-size:9px;letter-spacing:1px}
+  .jump-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .jump-bar::-webkit-scrollbar{display:none}
   .jump-link{flex-shrink:0}
-
-  /* Trend cards — stack */
   .trend-widget{grid-template-columns:1fr !important}
-
-  /* Market grid — 2 cols is fine */
   .market-grid{grid-template-columns:1fr 1fr !important}
-
-  /* FG gauge — stack vertically */
   .fg-large{flex-direction:column;padding:20px 16px;gap:20px}
   .fg-gauge-large{align-self:center}
   .fg-detail{width:100%}
-
-  /* Dominance */
   .dominance-wrap{flex-direction:column;padding:20px 16px}
-
-  /* Halving — 2x2 grid */
   .halving-right{display:grid !important;grid-template-columns:1fr 1fr !important;gap:2px}
   .halving-sep{display:none !important}
-
-  /* ETH/BTC widget */
   #ethBtcWidget > div:first-child{grid-template-columns:1fr !important}
-
-  /* Four-phase bar labels */
-  .alt-season-labels{font-size:8px}
-
-  /* Performance grid */
   .perf-grid{grid-template-columns:1fr !important}
-
-  /* Bitcoin section */
   .btc-hero{padding:20px 16px;gap:12px}
   .btc-hero-title{font-size:22px}
   .btc-card-grid{grid-template-columns:1fr !important}
-
-  /* News */
   .news-title{font-size:16px}
-  .news-body{font-size:13px;line-height:1.7}
-
-  /* Section headers */
+  .news-body{font-size:13px !important;line-height:1.85 !important}
   .section-label{font-size:16px}
-
-  /* Modal */
   .alpha-modal-inner{padding:16px}
   .alpha-modal-actions{flex-direction:column}
-
-  /* About / learn / resources */
   .about-grid{grid-template-columns:1fr !important}
   .learn-grid{grid-template-columns:1fr !important}
   .res-grid{grid-template-columns:1fr !important}
 }
+
+/* Jump bar fade cue */
+.jump-bar{position:relative}
+.jump-bar-fade{
+  position:sticky;right:0;top:0;bottom:0;
+  width:32px;flex-shrink:0;
+  background:linear-gradient(to right,transparent,var(--bg));
+  pointer-events:none;
+}
+
+/* Back to top */
+.back-to-top{
+  position:fixed;bottom:28px;right:20px;
+  width:40px;height:40px;
+  background:var(--surface2);
+  border:1px solid var(--text-dim);
+  color:var(--text-muted);
+  font-size:16px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  opacity:0;transform:translateY(10px);
+  transition:opacity 0.3s,transform 0.3s,border-color 0.2s,color 0.2s;
+  z-index:400;border-radius:2px;pointer-events:none;
+}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{border-color:var(--gold);color:var(--gold)}
 </style>
 </head>
 <body>
@@ -3759,20 +3731,20 @@ function buildPerfCard(name, color, price, rows, winners){
   const perfBar   = v => v==null ? 0 : Math.min(100, Math.abs(v)*3);
   const rowsHtml  = rows.map((r,i) => {
     const isWinner = winners[i] === name;
-    return `<div class="perf-row">
-      <div class="perf-period">${r.label}${isWinner?' ★':''}</div>
-      <div class="perf-bar-wrap"><div class="perf-bar-inner" style="width:${perfBar(r.val)}%;background:${perfColor(r.val)}"></div></div>
-      <div class="perf-val" style="color:${perfColor(r.val)}">${fmt(r.val)}</div>
-    </div>`;
+    return '<div class="perf-row">'
+      +'<div class="perf-period">'+r.label+(isWinner?' ★':'')+'</div>'
+      +'<div class="perf-bar-wrap"><div class="perf-bar-inner" style="width:'+perfBar(r.val)+'%;background:'+perfColor(r.val)+'"></div></div>'
+      +'<div class="perf-val" style="color:'+perfColor(r.val)+'">'+fmt(r.val)+'</div>'
+      +'</div>';
   }).join('');
-  return `<div class="perf-card">
-    <div class="perf-card-header">
-      <div class="perf-dot" style="background:${color}"></div>
-      <div class="perf-name">${name}</div>
-    </div>
-    <div class="perf-price">$${price.toLocaleString()}</div>
-    <div class="perf-rows">${rowsHtml}</div>
-  </div>`;
+  return '<div class="perf-card">'
+    +'<div class="perf-card-header">'
+    +'<div class="perf-dot" style="background:'+color+'"></div>'
+    +'<div class="perf-name">'+name+'</div>'
+    +'</div>'
+    +'<div class="perf-price">$'+price.toLocaleString()+'</div>'
+    +'<div class="perf-rows">'+rowsHtml+'</div>'
+    +'</div>';
 }
 
 async function fetchPerformance(){
@@ -3780,35 +3752,49 @@ async function fetchPerformance(){
   try{
     let prices = cachedMarketData;
     let attempts = 0;
-    while((!prices || !prices.length || !prices.find(p=>p.id==='pax-gold')) && attempts < 10){
+    while((!prices||!prices.length||!prices.find(p=>p.id==='pax-gold'))&&attempts<10){
       await new Promise(r=>setTimeout(r,500));
       prices = cachedMarketData;
       attempts++;
     }
-    if(!prices || !prices.length) throw new Error('No market data');
+    if(!prices||!prices.length) throw new Error('No market data');
     const btc  = prices.find(d=>d.id==='bitcoin');
     const gold = prices.find(d=>d.id==='pax-gold');
     if(!btc||!gold){ el.innerHTML='<div class="loading">Data unavailable</div>'; return; }
 
+    function perfColor(v){ return v>=0?'#4caf7d':'#e05555'; }
+    function perfBar(v){ return Math.min(100, Math.abs(v)*3); }
+    function fmt(v){ if(v==null) return '--'; return (v>=0?'+':'')+v.toFixed(2)+'%'; }
+
     const periods = [
-      {label:'24h',  btcVal:btc.price_change_percentage_24h,               goldVal:gold.price_change_percentage_24h},
-      {label:'7d',   btcVal:btc.price_change_percentage_7d_in_currency,    goldVal:gold.price_change_percentage_7d_in_currency},
-      {label:'30d',  btcVal:btc.price_change_percentage_30d_in_currency,   goldVal:gold.price_change_percentage_30d_in_currency},
-      {label:'1y',   btcVal:btc.price_change_percentage_1y_in_currency,    goldVal:gold.price_change_percentage_1y_in_currency},
+      { label:'24h',  btcVal: btc.price_change_percentage_24h,  goldVal: gold.price_change_percentage_24h },
+      { label:'7d',   btcVal: btc.price_change_percentage_7d_in_currency,  goldVal: gold.price_change_percentage_7d_in_currency },
+      { label:'30d',  btcVal: btc.price_change_percentage_30d_in_currency, goldVal: gold.price_change_percentage_30d_in_currency },
+      { label:'1y',   btcVal: btc.price_change_percentage_1y_in_currency,  goldVal: gold.price_change_percentage_1y_in_currency },
     ];
-    const winners  = periods.map(p=>p.btcVal!=null&&p.goldVal!=null ? (p.btcVal>p.goldVal?'BTC':'GOLD') : null);
+
+    // Determine winner for each period
+    const winners = periods.map(p=>{
+      if(p.btcVal==null||p.goldVal==null) return null;
+      return p.btcVal > p.goldVal ? 'BTC' : 'GOLD';
+    });
+
+    
+
     const btcRows  = periods.map(p=>({label:p.label, val:p.btcVal}));
     const goldRows = periods.map(p=>({label:p.label, val:p.goldVal}));
+
     const btcWins  = winners.filter(w=>w==='BTC').length;
     const goldWins = winners.filter(w=>w==='GOLD').length;
-    const winnerText = btcWins>goldWins
+    const winnerText = btcWins > goldWins
       ? `<strong>BTC</strong> is outperforming Gold in ${btcWins} of 4 timeframes`
-      : goldWins>btcWins
+      : goldWins > btcWins
       ? `<strong>Gold</strong> is outperforming BTC in ${goldWins} of 4 timeframes — risk-off environment`
       : `<strong>BTC and Gold</strong> are evenly matched across timeframes`;
+
     el.innerHTML = `
       <div class="perf-grid">
-        ${buildPerfCard('BTC',  '#f7931a', btc.current_price,  btcRows,  winners)}
+        ${buildPerfCard('BTC', '#f7931a', btc.current_price, btcRows, winners)}
         ${buildPerfCard('GOLD', '#c9a84c', gold.current_price, goldRows, winners)}
       </div>
       <div class="perf-winner">★ = outperformer for that period · ${winnerText}</div>`;
@@ -3999,6 +3985,11 @@ fetchCalendar();
 // Fetch market data then immediately trigger trend — no extra delay
 fetchMarket().then(()=>fetchTrend());
 
+window.addEventListener('scroll',()=>{
+  const b=document.getElementById('backToTop');
+  if(b) b.classList.toggle('visible',window.scrollY>window.innerHeight*0.5);
+},{passive:true});
+
 // Refresh intervals
 setInterval(fetchMarket, 60000);
 setInterval(fetchTrend, 300000);
@@ -4008,5 +3999,7 @@ renderGlossary();
 const em = document.getElementById('footerEmail');
 if(em){ const e='bitlogic.engine'+'@'+'gmail.com'; em.href='mailto:'+e; em.textContent=e; }
 </script>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 </html>
