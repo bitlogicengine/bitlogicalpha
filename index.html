@@ -572,7 +572,8 @@ header{
 .trend-coin-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
 .trend-live{font-size:9px;letter-spacing:2px;display:flex;align-items:center;gap:5px}
 .trend-live-dot{width:6px;height:6px;border-radius:50%;animation:livepulse 1.4s ease-in-out infinite;background:#e05555 !important;box-shadow:0 0 0 0 rgba(224,85,85,0.6)}
-.trend-price{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-0.5px}
+.trend-price-loading{opacity:0.3;letter-spacing:4px}
+.trend-price{transition:opacity 0.4s}font-size:28px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-0.5px}
 .trend-change{font-size:11px;letter-spacing:1px;margin-bottom:20px}
 .trend-status-wrap{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .trend-status-icon{font-size:32px;line-height:1;font-weight:700}
@@ -3189,13 +3190,12 @@ async function fetchTrend(){
       neutral:  {label:'Neutral',  icon:'→', color:'#c9a84c', cls:'neutral'},
     };
 
-    const tvSymbols = {BTC:'COINBASE:BTCUSD', ETH:'COINBASE:ETHUSD', GOLD:'OANDA:XAUUSD'};
-
-    function buildCard(coin, label, data, price, change, symbol){
+    function buildCard(coin, label, data, price, change){
       const s = statusConfig[data.status] || statusConfig.neutral;
       const up = change >= 0;
       const ribbonWidth = data.status==='positive'?80:data.status==='negative'?20:50;
       const sparkline = renderSparkline(coin);
+      const priceLoading = price === '---';
       return `<div class="trend-card ${s.cls}">
         <div class="trend-coin-label">
           <span>${label}</span>
@@ -3204,12 +3204,12 @@ async function fetchTrend(){
             LIVE
           </span>
         </div>
-        <div class="trend-price">$${price}</div>
+        <div class="trend-price" id="trend-price-${coin}">${priceLoading ? '<span class="trend-price-loading">---</span>' : '$'+price}</div>
         <div class="trend-ribbon">
           <div class="trend-ribbon-fill" style="width:${ribbonWidth}%;background:${s.color};box-shadow:0 0 8px ${s.color}40"></div>
         </div>
         <div class="trend-ribbon-labels"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
-        <div class="trend-change ${up?'up':'down'}" style="margin-top:8px">${up?'↑':'↓'} ${Math.abs(change).toFixed(2)}% today</div>
+        <div class="trend-change ${up?'up':'down'}" id="trend-change-${coin}" style="margin-top:8px">${priceLoading ? '' : (up?'↑':'↓')+' '+Math.abs(change).toFixed(2)+'% today'}</div>
         <div class="trend-status-wrap">
           <div class="trend-status-icon" style="color:${s.color}">${s.icon}</div>
           <div class="trend-status-text" style="color:${s.color}">${s.label}</div>
@@ -3220,34 +3220,57 @@ async function fetchTrend(){
       </div>`;
     }
 
-    // Always use cached market data — populated by fetchMarket on page load
-    let prices = cachedMarketData;
-    if(!prices || !prices.length){
-      await new Promise(r=>setTimeout(r,2000));
-      prices = cachedMarketData;
-    }
-    if(!prices || !prices.length) throw new Error('No market data');
-    const btcData  = prices.find(p=>p.id==='bitcoin');
-    const ethData  = prices.find(p=>p.id==='ethereum');
-    const goldData = prices.find(p=>p.id==='pax-gold');
-
-    // Gold price from same cached call
-    const goldPrice  = goldData?.current_price.toLocaleString() || '--';
-    const goldChange = goldData?.price_change_percentage_24h || 0;
-
+    // ── Step 1: Render immediately with manifest data, prices as placeholders ──
     el.innerHTML =
-      buildCard('BTC', 'BTC / USD', btc,  btcData?.current_price.toLocaleString()||'--', btcData?.price_change_percentage_24h||0, '$') +
-      buildCard('ETH', 'ETH / USD', eth,  ethData?.current_price.toLocaleString()||'--', ethData?.price_change_percentage_24h||0, '$') +
-      buildCard('GOLD','GOLD / USD', gold, goldPrice, goldChange, '$');
+      buildCard('BTC',  'BTC / USD',  btc,  '---', 0) +
+      buildCard('ETH',  'ETH / USD',  eth,  '---', 0) +
+      buildCard('GOLD', 'GOLD / USD', gold, '---', 0);
 
-    saveCache('bl_trend', el.innerHTML);
-    showLastUpdated('trendWidget', Date.now(), false);
-    // Record today's state in 7-day history
-    recordDailyState('BTC', btc.status);
-    recordDailyState('ETH', eth.status);
+    recordDailyState('BTC',  btc.status);
+    recordDailyState('ETH',  eth.status);
     recordDailyState('GOLD', gold.status);
 
-    // Inject TradingView widgets after DOM is ready
+    // ── Step 2: Inject prices as soon as cachedMarketData is ready ──
+    function injectPrices(prices){
+      const btcData  = prices.find(p=>p.id==='bitcoin');
+      const ethData  = prices.find(p=>p.id==='ethereum');
+      const goldData = prices.find(p=>p.id==='pax-gold');
+      const pairs = [
+        {coin:'BTC',  data:btcData},
+        {coin:'ETH',  data:ethData},
+        {coin:'GOLD', data:goldData},
+      ];
+      pairs.forEach(({coin, data})=>{
+        if(!data) return;
+        const priceEl  = document.getElementById('trend-price-'+coin);
+        const changeEl = document.getElementById('trend-change-'+coin);
+        if(priceEl)  priceEl.textContent  = '$'+data.current_price.toLocaleString();
+        if(changeEl){
+          const chg = data.price_change_percentage_24h || 0;
+          const up  = chg >= 0;
+          changeEl.className = 'trend-change '+(up?'up':'down');
+          changeEl.textContent = (up?'↑':'↓')+' '+Math.abs(chg).toFixed(2)+'% today';
+        }
+      });
+      showLastUpdated('trendWidget', Date.now(), false);
+      saveCache('bl_trend', el.innerHTML);
+    }
+
+    if(cachedMarketData && cachedMarketData.length){
+      injectPrices(cachedMarketData);
+    } else {
+      // Poll until fetchMarket populates cachedMarketData
+      const poll = setInterval(()=>{
+        if(cachedMarketData && cachedMarketData.length){
+          clearInterval(poll);
+          injectPrices(cachedMarketData);
+        }
+      }, 300);
+      // Give up after 10s
+      setTimeout(()=>clearInterval(poll), 10000);
+    }
+
+    // ── Step 3: TradingView widgets ──
     setTimeout(()=>{
       const tvMap = {
         BTC:  {sym:'COINBASE:BTCUSD',  url:'https://www.tradingview.com/symbols/BTCUSD/'},
@@ -3268,16 +3291,10 @@ async function fetchTrend(){
         script.async = true;
         script.innerHTML = JSON.stringify({
           symbol: cfg.sym,
-          width: '100%',
-          height: '140',
-          locale: 'en',
-          dateRange: '1D',
-          colorTheme: 'dark',
-          isTransparent: true,
-          autosize: true,
-          largeChartUrl: cfg.url,
-          noTimeScale: false,
-          chartOnly: false
+          width: '100%', height: '140', locale: 'en',
+          dateRange: '1D', colorTheme: 'dark',
+          isTransparent: true, autosize: true,
+          largeChartUrl: cfg.url, noTimeScale: false, chartOnly: false
         });
         wrap.appendChild(script);
         container.appendChild(wrap);
@@ -3285,7 +3302,6 @@ async function fetchTrend(){
     }, 100);
 
   }catch(e){
-    // Show cached trend on failure
     const cached = loadCache('bl_trend', 86400000);
     if(cached && cached.data){
       el.innerHTML = cached.data;
