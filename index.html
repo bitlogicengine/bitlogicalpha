@@ -1674,7 +1674,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
         <div class="dom-detail">
           <div class="dom-title">Global Market Share</div>
-          <div class="dom-legend" id="domLegend"><div class="loading" style="padding:0">Loading...</div></div>
+          <div class="dom-legend" id="domLegend"><div style="display:flex;flex-direction:column;gap:4px"><div class="skeleton skel-block short"></div><div class="skeleton skel-block short"></div><div class="skeleton skel-block short"></div></div></div>
         </div>
       </div>
       <div class="gold-comparison" id="goldComparison" style="display:none">
@@ -2511,7 +2511,11 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-meta">The Alt-Engine Signal</div>
       </div>
       <div id="ethBtcWidget" class="ethbtc-wrap">
-        <div class="loading">Loading...</div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
+          <div class="skeleton skel-block tall"></div>
+          <div class="skeleton skel-block"></div>
+          <div class="skeleton skel-block short"></div>
+        </div>
       </div>
     </div>
 
@@ -2522,7 +2526,11 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-meta">Live · BTC Dominance</div>
       </div>
       <div id="altSeasonWidget" class="alt-season-wrap">
-        <div class="loading">Loading...</div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
+          <div class="skeleton skel-block" style="height:24px;width:40%"></div>
+          <div class="skeleton skel-block tall"></div>
+          <div class="skeleton skel-block short"></div>
+        </div>
       </div>
     </div>
 
@@ -2535,11 +2543,11 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       <div class="performers-grid">
         <div class="performers-col">
           <div class="performers-col-title gainers-title">▲ Top 5 Gainers</div>
-          <div id="gainersWidget"><div class="loading">Loading...</div></div>
+          <div id="gainersWidget"><div style="display:flex;flex-direction:column;gap:6px;padding:8px 0"><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div></div></div>
         </div>
         <div class="performers-col">
           <div class="performers-col-title losers-title">▼ Top 5 Losers</div>
-          <div id="losersWidget"><div class="loading">Loading...</div></div>
+          <div id="losersWidget"><div style="display:flex;flex-direction:column;gap:6px;padding:8px 0"><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div></div></div>
         </div>
       </div>
     </div>
@@ -2550,7 +2558,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-label" id="alts-top20">Top 20 by Market Cap</div>
         <div class="section-meta">Live · CoinGecko</div>
       </div>
-      <div id="altsTableWidget"><div class="loading">Loading...</div></div>
+      <div id="altsTableWidget"><div style="display:flex;flex-direction:column;gap:6px;padding:8px 0"><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div><div class="skeleton skel-block"></div></div></div>
     </div>
 
   </div>
@@ -2996,6 +3004,19 @@ function renderEthBtcRatio(eth, btc, btcDom){
 
 // ── ALTS TAB ──────────────────────────────────────────────
 async function fetchAlts(){
+  const cachedAlts = loadCache('bl_alts', 300000);
+  if(cachedAlts && cachedAlts.data){
+    const w=document.getElementById('altSeasonWidget');
+    const g=document.getElementById('gainersWidget');
+    const l=document.getElementById('losersWidget');
+    const t=document.getElementById('altsTableWidget');
+    const e=document.getElementById('ethBtcWidget');
+    if(w&&cachedAlts.data.season)  w.innerHTML=cachedAlts.data.season;
+    if(g&&cachedAlts.data.gainers) g.innerHTML=cachedAlts.data.gainers;
+    if(l&&cachedAlts.data.losers)  l.innerHTML=cachedAlts.data.losers;
+    if(t&&cachedAlts.data.table)   t.innerHTML=cachedAlts.data.table;
+    if(e&&cachedAlts.data.ethbtc)  e.innerHTML=cachedAlts.data.ethbtc;
+  }
   try{
     // Fetch dedicated alts data with 90d — needs top 100 coins with all periods
     let data;
@@ -3013,6 +3034,14 @@ async function fetchAlts(){
     const btcCoin = data.find(c=>c.id==='bitcoin');
     const btcDom = cachedGlobalData?.data?.market_cap_percentage?.btc || null;
     if(ethCoin && btcCoin) renderEthBtcRatio(ethCoin, btcCoin, btcDom);
+    // Save alts cache
+    saveCache('bl_alts', {data:{
+      season:  document.getElementById('altSeasonWidget')?.innerHTML||'',
+      gainers: document.getElementById('gainersWidget')?.innerHTML||'',
+      losers:  document.getElementById('losersWidget')?.innerHTML||'',
+      table:   document.getElementById('altsTableWidget')?.innerHTML||'',
+      ethbtc:  document.getElementById('ethBtcWidget')?.innerHTML||'',
+    }});
 
     // --- ALTCOIN SEASON INDEX ---
     const btc = data.find(c=>c.id==='bitcoin');
@@ -3692,6 +3721,8 @@ function togglePost(el){
 
 async function fetchWeeklySummary(){
   const el=document.getElementById('weeklyList');
+  const cachedWS = loadCache('bl_weekly', 3600000);
+  if(cachedWS && cachedWS.data) el.innerHTML = cachedWS.data;
   try{
     const res=await fetch(`${BASE}/news.json?t=${Date.now()}`);
     if(!res.ok) throw new Error();
@@ -3727,7 +3758,8 @@ async function fetchWeeklySummary(){
             </div>`).join('')}
         </div>
       </div>`).join('');
-  }catch(e){el.innerHTML='<div class="empty-week">No posts yet.</div>'}
+    saveCache('bl_weekly', {data: el.innerHTML});
+  }catch(e){if(!cachedWS) el.innerHTML='<div class="empty-week">No posts yet.</div>'}
 }
 
 function buildPerfCard(name, color, price, rows, winners){
@@ -3754,6 +3786,8 @@ function buildPerfCard(name, color, price, rows, winners){
 
 async function fetchPerformance(){
   const el = document.getElementById('perfWrap');
+  const cachedPerf = loadCache('bl_perf', 3600000);
+  if(cachedPerf && cachedPerf.data && cachedPerf.data.html) el.innerHTML = cachedPerf.data.html;
   try{
     let prices = cachedMarketData;
     let attempts = 0;
@@ -3845,12 +3879,8 @@ setInterval(updateHalving, 1000);
 // ── MARKET CALENDAR ────────────────────────────────────────
 async function fetchCalendar(){
   const el = document.getElementById('calWrap');
-  try{
-    const res = await fetch(`${BASE}/calendar.json?t=${Date.now()}`);
-    if(!res.ok) throw new Error();
-    const events = await res.json();
+  function renderCalendar(events){
     if(!events.length){ el.innerHTML='<div class="cal-empty">No events scheduled this week.</div>'; return; }
-
     function renderEvent(e){
       return `<div class="cal-event">
         <div class="cal-date">
@@ -3864,16 +3894,23 @@ async function fetchCalendar(){
         </div>
       </div>`;
     }
-
     const preview = renderEvent(events[0]);
     const rest = events.slice(1).map(renderEvent).join('');
-
-    el.innerHTML = `
-      <div class="cal-preview">${preview}</div>
-      ${rest ? `<div class="cal-full" id="calFull">${rest}</div>` : ''}`;
+    el.innerHTML = `<div class="cal-preview">${preview}</div>${rest?`<div class="cal-full" id="calFull">${rest}</div>`:''}`;
+  }
+  // Render from cache immediately
+  const cached = loadCache('bl_cal', 3600000);
+  if(cached && cached.data) renderCalendar(cached.data);
+  try{
+    const res = await fetch(`${BASE}/calendar.json?t=${Date.now()}`);
+    if(!res.ok) throw new Error();
+    const events = await res.json();
+    renderCalendar(events);
+    saveCache('bl_cal', events);
+    if(!events.length){ el.innerHTML='<div class="cal-empty">No events scheduled this week.</div>'; return; }
 
   }catch(e){
-    el.innerHTML='<div class="cal-empty">Calendar unavailable</div>';
+    if(!cached) el.innerHTML='<div class="cal-empty">Calendar unavailable</div>';
   }
 }
 
@@ -3984,12 +4021,12 @@ async function fetchGoldBtcRatio(){
   }
 }
 
-fetchNews();
-fetchCalendar();
-
-// Fetch market data then immediately trigger trend — no extra delay
+// Initialization — see parallel block below
+// Start everything in parallel
 fetchMarket();
 fetchTrend();
+fetchNews();
+fetchCalendar();
 
 window.addEventListener('scroll',()=>{
   const b=document.getElementById('backToTop');
