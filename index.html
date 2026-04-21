@@ -3160,6 +3160,31 @@ async function fetchAlts(){
 }
 
 // ── TREND WIDGET ──────────────────────────────────────────
+// Inject live prices into trend cards — called by fetchMarket after CoinGecko loads
+function injectPrices(prices){
+  if(!prices || !prices.length) return;
+  const coins = [
+    {coin:'BTC',  id:'bitcoin'},
+    {coin:'ETH',  id:'ethereum'},
+    {coin:'GOLD', id:'pax-gold'},
+  ];
+  coins.forEach(({coin, id})=>{
+    const data     = prices.find(p=>p.id===id);
+    const priceEl  = document.getElementById('trend-price-'+coin);
+    const changeEl = document.getElementById('trend-change-'+coin);
+    if(!data || !priceEl) return;
+    priceEl.textContent = '$'+data.current_price.toLocaleString();
+    if(changeEl){
+      const chg = data.price_change_percentage_24h || 0;
+      const up  = chg >= 0;
+      changeEl.className   = 'trend-change '+(up?'up':'down');
+      changeEl.textContent = (up?'↑':'↓')+' '+Math.abs(chg).toFixed(2)+'% today';
+    }
+  });
+  const el = document.getElementById('trendWidget');
+  if(el) showLastUpdated('trendWidget', Date.now(), false);
+}
+
 async function fetchTrend(){
   const el = document.getElementById('trendWidget');
   try{
@@ -3230,45 +3255,8 @@ async function fetchTrend(){
     recordDailyState('ETH',  eth.status);
     recordDailyState('GOLD', gold.status);
 
-    // ── Step 2: Inject prices as soon as cachedMarketData is ready ──
-    function injectPrices(prices){
-      const btcData  = prices.find(p=>p.id==='bitcoin');
-      const ethData  = prices.find(p=>p.id==='ethereum');
-      const goldData = prices.find(p=>p.id==='pax-gold');
-      const pairs = [
-        {coin:'BTC',  data:btcData},
-        {coin:'ETH',  data:ethData},
-        {coin:'GOLD', data:goldData},
-      ];
-      pairs.forEach(({coin, data})=>{
-        if(!data) return;
-        const priceEl  = document.getElementById('trend-price-'+coin);
-        const changeEl = document.getElementById('trend-change-'+coin);
-        if(priceEl)  priceEl.textContent  = '$'+data.current_price.toLocaleString();
-        if(changeEl){
-          const chg = data.price_change_percentage_24h || 0;
-          const up  = chg >= 0;
-          changeEl.className = 'trend-change '+(up?'up':'down');
-          changeEl.textContent = (up?'↑':'↓')+' '+Math.abs(chg).toFixed(2)+'% today';
-        }
-      });
-      showLastUpdated('trendWidget', Date.now(), false);
-      saveCache('bl_trend', el.innerHTML);
-    }
-
-    if(cachedMarketData && cachedMarketData.length){
-      injectPrices(cachedMarketData);
-    } else {
-      // Poll until fetchMarket populates cachedMarketData
-      const poll = setInterval(()=>{
-        if(cachedMarketData && cachedMarketData.length){
-          clearInterval(poll);
-          injectPrices(cachedMarketData);
-        }
-      }, 300);
-      // Give up after 10s
-      setTimeout(()=>clearInterval(poll), 10000);
-    }
+    // ── Step 2: Inject prices — injectPrices() is global, called by fetchMarket too ──
+    injectPrices(cachedMarketData);
 
     // ── Step 3: TradingView widgets ──
     setTimeout(()=>{
@@ -3327,6 +3315,7 @@ async function fetchMarket(){
     const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
     cachedMarketData = data;
     saveCache('bl_market', data);
+    injectPrices(data); // inject prices into trend cards immediately
     const top5 = data.filter(c=>c.id!=='pax-gold').slice(0,5);
     renderTop5(top5);
     updateTicker(top5);
