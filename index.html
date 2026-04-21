@@ -1281,6 +1281,100 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   box-shadow:0 0 0 0 rgba(224,85,85,0.6);
   flex-shrink:0;
 }
+
+/* ========================================
+   MOBILE — single clean pass (max-width:600px)
+   ======================================== */
+@media(max-width:600px){
+
+  /* Page */
+  .page{padding:20px 14px 60px}
+
+  /* Header */
+  .sticky-nav header{padding:10px 14px}
+  .brand{gap:10px}
+  .brand-mark{width:36px !important;height:36px !important}
+  .brand-name{font-size:15px;letter-spacing:1px}
+  .brand-tag{display:none}
+  .nav-date{display:none}
+
+  /* Nav tabs — horizontal scroll */
+  .nav-tabs{
+    display:flex;
+    overflow-x:auto;
+    overflow-y:visible;
+    white-space:nowrap;
+    flex-wrap:nowrap;
+    padding:0;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .nav-tabs::-webkit-scrollbar{display:none}
+  .nav-tab{
+    flex-shrink:0;
+    padding:10px 16px;
+    font-size:9px;
+    letter-spacing:1px;
+  }
+
+  /* Jump bars — horizontal scroll */
+  .jump-bar{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .jump-bar::-webkit-scrollbar{display:none}
+  .jump-link{flex-shrink:0}
+
+  /* Trend cards — stack */
+  .trend-widget{grid-template-columns:1fr !important}
+
+  /* Market grid — 2 cols is fine */
+  .market-grid{grid-template-columns:1fr 1fr !important}
+
+  /* FG gauge — stack vertically */
+  .fg-large{flex-direction:column;padding:20px 16px;gap:20px}
+  .fg-gauge-large{align-self:center}
+  .fg-detail{width:100%}
+
+  /* Dominance */
+  .dominance-wrap{flex-direction:column;padding:20px 16px}
+
+  /* Halving — 2x2 grid */
+  .halving-right{display:grid !important;grid-template-columns:1fr 1fr !important;gap:2px}
+  .halving-sep{display:none !important}
+
+  /* ETH/BTC widget */
+  #ethBtcWidget > div:first-child{grid-template-columns:1fr !important}
+
+  /* Four-phase bar labels */
+  .alt-season-labels{font-size:8px}
+
+  /* Performance grid */
+  .perf-grid{grid-template-columns:1fr !important}
+
+  /* Bitcoin section */
+  .btc-hero{padding:20px 16px;gap:12px}
+  .btc-hero-title{font-size:22px}
+  .btc-card-grid{grid-template-columns:1fr !important}
+
+  /* News */
+  .news-title{font-size:16px}
+  .news-body{font-size:13px;line-height:1.7}
+
+  /* Section headers */
+  .section-label{font-size:16px}
+
+  /* Modal */
+  .alpha-modal-inner{padding:16px}
+  .alpha-modal-actions{flex-direction:column}
+
+  /* About / learn / resources */
+  .about-grid{grid-template-columns:1fr !important}
+  .learn-grid{grid-template-columns:1fr !important}
+  .res-grid{grid-template-columns:1fr !important}
+}
 </style>
 </head>
 <body>
