@@ -2933,7 +2933,7 @@ async function fetchAlts(){
     // Fetch dedicated alts data with 90d — needs top 100 coins with all periods
     let data;
     try{
-      data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
+      data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
     }catch(e){
       // fallback: wait for cached data if API fails
       await new Promise(r=>setTimeout(r,2000));
@@ -3233,7 +3233,7 @@ async function fetchTrend(){
 async function fetchMarket(){
   // Show cached data immediately while fetching
   const cached = loadCache('bl_market', 3600000);
-  if(cached && cached.data && cached.data.length){
+  if(cached && cached.data && cached.data.length && cached.data.find(c=>c.id==='pax-gold')){
     cachedMarketData = cached.data;
     const top5c = cached.data.filter(c=>c.id!=='pax-gold').slice(0,5);
     renderTop5(top5c);
@@ -3242,7 +3242,7 @@ async function fetchMarket(){
     else showLastUpdated('marketGrid', cached.ts, false);
   }
   try{
-    const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
+    const data = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=24h,7d,30d,1y').then(r=>r.json());
     cachedMarketData = data;
     saveCache('bl_market', data);
     const top5 = data.filter(c=>c.id!=='pax-gold').slice(0,5);
@@ -3662,16 +3662,22 @@ async function fetchWeeklySummary(){
 async function fetchPerformance(){
   const el = document.getElementById('perfWrap');
   try{
-    // Always use cached market data — populated by fetchMarket on page load
-    let data = cachedMarketData.length ? cachedMarketData : null;
-    if(!data){
-      await new Promise(r=>setTimeout(r,1000));
-      data = cachedMarketData.length ? cachedMarketData : null;
+    let prices = cachedMarketData;
+    let attempts = 0;
+    while((!prices || !prices.length || !prices.find(p=>p.id==='pax-gold')) && attempts < 10){
+      await new Promise(r=>setTimeout(r,500));
+      prices = cachedMarketData;
+      attempts++;
     }
-    if(!data) throw new Error('No market data');
-    const btc  = data.find(d=>d.id==='bitcoin');
-    const gold = data.find(d=>d.id==='pax-gold');
-    if(!btc||!gold){ el.innerHTML='<div class="loading">Data unavailable</div>'; return; }
+    if(!prices || !prices.length) throw new Error('No market data');
+    const btc  = prices.find(d=>d.id==='bitcoin');
+    const gold = prices.find(d=>d.id==='pax-gold');
+    // DEBUG — remove after fix confirmed
+    el.innerHTML = `<div class="loading" style="font-size:10px;color:var(--gold)">
+      DEBUG: coins loaded=${prices.length} | btc=${btc?'✓':'✗'} | gold=${gold?'✓':'✗'} | attempts=${attempts}<br>
+      ${!gold ? 'Top 10 IDs: '+prices.slice(0,10).map(p=>p.id).join(', ') : 'gold price=$'+gold.current_price}
+    </div>`;
+    if(!btc||!gold){ return; }
 
     function perfColor(v){ return v>=0?'#4caf7d':'#e05555'; }
     function perfBar(v){ return Math.min(100, Math.abs(v)*3); }
