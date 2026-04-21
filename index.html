@@ -3659,6 +3659,28 @@ async function fetchWeeklySummary(){
   }catch(e){el.innerHTML='<div class="empty-week">No posts yet.</div>'}
 }
 
+function buildPerfCard(name, color, price, rows, winners){
+  const fmt = v => v==null||isNaN(v) ? '--' : (v>=0?'+':'')+v.toFixed(2)+'%';
+  const perfColor = v => v==null ? 'var(--text-dim)' : v>=0 ? '#4caf7d' : '#e05555';
+  const perfBar   = v => v==null ? 0 : Math.min(100, Math.abs(v)*3);
+  const rowsHtml  = rows.map((r,i) => {
+    const isWinner = winners[i] === name;
+    return `<div class="perf-row">
+      <div class="perf-period">${r.label}${isWinner?' ★':''}</div>
+      <div class="perf-bar-wrap"><div class="perf-bar-inner" style="width:${perfBar(r.val)}%;background:${perfColor(r.val)}"></div></div>
+      <div class="perf-val" style="color:${perfColor(r.val)}">${fmt(r.val)}</div>
+    </div>`;
+  }).join('');
+  return `<div class="perf-card">
+    <div class="perf-card-header">
+      <div class="perf-dot" style="background:${color}"></div>
+      <div class="perf-name">${name}</div>
+    </div>
+    <div class="perf-price">$${price.toLocaleString()}</div>
+    <div class="perf-rows">${rowsHtml}</div>
+  </div>`;
+}
+
 async function fetchPerformance(){
   const el = document.getElementById('perfWrap');
   try{
@@ -3672,52 +3694,33 @@ async function fetchPerformance(){
     if(!prices || !prices.length) throw new Error('No market data');
     const btc  = prices.find(d=>d.id==='bitcoin');
     const gold = prices.find(d=>d.id==='pax-gold');
-    // DEBUG — remove after fix confirmed
-    el.innerHTML = `<div class="loading" style="font-size:10px;color:var(--gold)">
-      DEBUG: coins loaded=${prices.length} | btc=${btc?'✓':'✗'} | gold=${gold?'✓':'✗'} | attempts=${attempts}<br>
-      ${!gold ? 'Top 10 IDs: '+prices.slice(0,10).map(p=>p.id).join(', ') : 'gold price=$'+gold.current_price}
-    </div>`;
-    if(!btc||!gold){ return; }
-
-    function perfColor(v){ return v>=0?'#4caf7d':'#e05555'; }
-    function perfBar(v){ return Math.min(100, Math.abs(v)*3); }
-    function fmt(v){ if(v==null) return '--'; return (v>=0?'+':'')+v.toFixed(2)+'%'; }
+    if(!btc||!gold){ el.innerHTML='<div class="loading">Data unavailable</div>'; return; }
 
     const periods = [
-      { label:'24h',  btcVal: btc.price_change_percentage_24h,  goldVal: gold.price_change_percentage_24h },
-      { label:'7d',   btcVal: btc.price_change_percentage_7d_in_currency,  goldVal: gold.price_change_percentage_7d_in_currency },
-      { label:'30d',  btcVal: btc.price_change_percentage_30d_in_currency, goldVal: gold.price_change_percentage_30d_in_currency },
-      { label:'1y',   btcVal: btc.price_change_percentage_1y_in_currency,  goldVal: gold.price_change_percentage_1y_in_currency },
+      {label:'24h',  btcVal:btc.price_change_percentage_24h,               goldVal:gold.price_change_percentage_24h},
+      {label:'7d',   btcVal:btc.price_change_percentage_7d_in_currency,    goldVal:gold.price_change_percentage_7d_in_currency},
+      {label:'30d',  btcVal:btc.price_change_percentage_30d_in_currency,   goldVal:gold.price_change_percentage_30d_in_currency},
+      {label:'1y',   btcVal:btc.price_change_percentage_1y_in_currency,    goldVal:gold.price_change_percentage_1y_in_currency},
     ];
-
-    // Determine winner for each period
-    const winners = periods.map(p=>{
-      if(p.btcVal==null||p.goldVal==null) return null;
-      return p.btcVal > p.goldVal ? 'BTC' : 'GOLD';
-    });
-
-    
-
+    const winners  = periods.map(p=>p.btcVal!=null&&p.goldVal!=null ? (p.btcVal>p.goldVal?'BTC':'GOLD') : null);
     const btcRows  = periods.map(p=>({label:p.label, val:p.btcVal}));
     const goldRows = periods.map(p=>({label:p.label, val:p.goldVal}));
-
     const btcWins  = winners.filter(w=>w==='BTC').length;
     const goldWins = winners.filter(w=>w==='GOLD').length;
-    const winnerText = btcWins > goldWins
+    const winnerText = btcWins>goldWins
       ? `<strong>BTC</strong> is outperforming Gold in ${btcWins} of 4 timeframes`
-      : goldWins > btcWins
+      : goldWins>btcWins
       ? `<strong>Gold</strong> is outperforming BTC in ${goldWins} of 4 timeframes — risk-off environment`
       : `<strong>BTC and Gold</strong> are evenly matched across timeframes`;
-
     el.innerHTML = `
       <div class="perf-grid">
-        ${buildCard('BTC', '#f7931a', btc.current_price, btcRows, winners)}
-        ${buildCard('GOLD', '#c9a84c', gold.current_price, goldRows, winners)}
+        ${buildPerfCard('BTC',  '#f7931a', btc.current_price,  btcRows,  winners)}
+        ${buildPerfCard('GOLD', '#c9a84c', gold.current_price, goldRows, winners)}
       </div>
       <div class="perf-winner">★ = outperformer for that period · ${winnerText}</div>`;
 
   }catch(e){
-    el.innerHTML='<div class="loading">Performance data unavailable — error: '+e.message+'</div>';
+    el.innerHTML='<div class="loading">Performance data unavailable</div>';
   }
 }
 
