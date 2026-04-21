@@ -407,6 +407,23 @@ header{
 .trend-widget{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
 @media(max-width:800px){.trend-widget{grid-template-columns:1fr}}
 /* GOLD/BTC RATIO */
+/* ETH/BTC RATIO WIDGET */
+.ethbtc-wrap{background:var(--surface)}
+.ethbtc-main{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:0}
+@media(max-width:600px){.ethbtc-main{grid-template-columns:1fr}}
+.ethbtc-card{background:var(--surface2);padding:24px 28px}
+.ethbtc-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.ethbtc-value{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--text);line-height:1;margin-bottom:6px;letter-spacing:-1px}
+.ethbtc-sub{font-size:10px;color:var(--text-muted);letter-spacing:1px}
+.ethbtc-change{font-size:13px;font-weight:600;letter-spacing:1px;margin-top:8px}
+.ethbtc-regime{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;background:var(--surface)}
+.ethbtc-regime-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
+.ethbtc-regime-val{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;letter-spacing:1px}
+.ethbtc-insight{padding:16px 28px;font-size:11px;color:var(--text-muted);line-height:1.8;letter-spacing:0.3px;border-top:1px solid var(--text-dim);border-left:3px solid var(--gold);background:var(--surface2)}
+.ethbtc-sparkline{display:flex;align-items:flex-end;gap:3px;height:36px;margin-top:14px}
+.ethbtc-spark-bar{flex:1;border-radius:1px;min-height:3px;opacity:0.7}
+
+/* GOLD/BTC RATIO */
 .ratio-wrap{background:var(--surface);padding:28px 32px}
 .ratio-header{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:24px}
 @media(max-width:600px){.ratio-header{grid-template-columns:1fr}}
@@ -2381,6 +2398,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <!-- ALTS JUMP BAR -->
     <div class="jump-bar" style="margin-top:32px">
       <a class="jump-link" onclick="jumpTo('alts-what')">What Are Altcoins?</a>
+      <a class="jump-link" onclick="jumpTo('alts-ethbtc')">ETH/BTC Ratio</a>
       <a class="jump-link" onclick="jumpTo('alts-season')">Altcoin Season</a>
       <a class="jump-link" onclick="jumpTo('alts-performers')">Top Performers</a>
       <a class="jump-link" onclick="jumpTo('alts-top20')">Top 20</a>
@@ -2409,6 +2427,17 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <span class="alts-tag">Liquidity Varies</span>
           <span class="alts-tag">DYOR Always</span>
         </div>
+      </div>
+    </div>
+
+    <!-- ETH/BTC RATIO -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" id="alts-ethbtc">ETH / BTC Ratio</div>
+        <div class="section-meta">The Alt-Engine Signal</div>
+      </div>
+      <div id="ethBtcWidget" class="ethbtc-wrap">
+        <div class="loading">Loading...</div>
       </div>
     </div>
 
@@ -2743,6 +2772,146 @@ function switchTab(tab){
   }
 }
 
+function renderEthBtcRatio(eth, btc){
+  const el = document.getElementById('ethBtcWidget');
+  if(!el) return;
+
+  const ratio    = eth.current_price / btc.current_price;
+  const ratio24h = (eth.price_change_percentage_24h||0) - (btc.price_change_percentage_24h||0);
+  const ratio7d  = (eth.price_change_percentage_7d_in_currency||0) - (btc.price_change_percentage_7d_in_currency||0);
+  const ratio30d = (eth.price_change_percentage_30d_in_currency||0) - (btc.price_change_percentage_30d_in_currency||0);
+
+  let regime, regimeColor, regimeIcon, insight;
+  if(ratio24h > 0.5){
+    regime = 'ALTCOIN VELOCITY INCREASING'; regimeColor = '#4caf7d'; regimeIcon = '🚀';
+    insight = 'ETH is outperforming BTC. Capital is beginning to rotate down the risk curve — from Bitcoin into the broader altcoin ecosystem. Watch for sustained ETH dominance over 3-5 days before calling a full alt season rotation.';
+  } else if(ratio24h < -0.5){
+    regime = 'BITCOIN DOMINANCE REGIME'; regimeColor = '#f7931a'; regimeIcon = '🛡️';
+    insight = 'BTC is outperforming ETH. Capital is concentrating in Bitcoin — the flight-to-quality trade within crypto. Alts tend to underperform until ETH reclaims relative strength.';
+  } else {
+    regime = 'ABSORPTION PHASE'; regimeColor = '#c9a84c'; regimeIcon = '📊';
+    insight = 'ETH and BTC are moving in lockstep. The market is digesting recent price action. A breakout in the ETH/BTC ratio in either direction will define the next leg.';
+  }
+
+  const sign = v => v >= 0 ? '+' : '';
+  const col  = v => v >= 0 ? '#4caf7d' : '#e05555';
+  const arr  = v => v >= 0 ? '▲' : '▼';
+
+  // Arc gauge — ratio mapped 0.02 (bear extreme) to 0.08 (bull extreme)
+  const gaugeMin = 0.02, gaugeMax = 0.08;
+  const gaugePct = Math.min(100, Math.max(0, ((ratio - gaugeMin) / (gaugeMax - gaugeMin)) * 100));
+  const circ = 251; // 2π×40
+  const arcOffset = circ - (gaugePct / 100) * circ;
+  // Gauge color: red at low end, gold at mid, green at high
+  const gaugeColor = ratio < 0.035 ? '#e05555' : ratio < 0.055 ? '#c9a84c' : '#4caf7d';
+
+  // Perf bars
+  const periods = [
+    {label:'30D', val: ratio30d},
+    {label:'7D',  val: ratio7d},
+    {label:'24H', val: ratio24h},
+  ];
+  const maxAbs = Math.max(...periods.map(p => Math.abs(p.val)), 1);
+  const perfBars = periods.map(p => {
+    const w = Math.min(100, (Math.abs(p.val) / maxAbs) * 100);
+    return `
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="font-size:9px;color:var(--text-dim);letter-spacing:2px;width:28px;flex-shrink:0">${p.label}</span>
+        <div style="flex:1;height:6px;background:var(--surface);border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:${w}%;background:${col(p.val)};border-radius:3px;transition:width 1.2s ease;box-shadow:0 0 6px ${col(p.val)}60"></div>
+        </div>
+        <span style="font-size:11px;font-weight:600;color:${col(p.val)};width:52px;text-align:right;letter-spacing:0.5px">${arr(p.val)} ${Math.abs(p.val).toFixed(2)}%</span>
+      </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:2px">
+
+      <!-- LEFT: Gauge + hero number -->
+      <div style="background:var(--surface2);padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;align-self:flex-start">ETH / BTC</div>
+
+        <!-- SVG Arc Gauge -->
+        <div style="position:relative;width:140px;height:140px;margin-bottom:16px">
+          <svg width="140" height="140" viewBox="0 0 100 100">
+            <defs>
+              <filter id="ethbtcGlow">
+                <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="${gaugeColor}" flood-opacity="0.8"/>
+              </filter>
+            </defs>
+            <!-- Track -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="var(--surface)" stroke-width="8"/>
+            <!-- Arc -->
+            <circle cx="50" cy="50" r="40" fill="none"
+              stroke="${gaugeColor}" stroke-width="8" stroke-linecap="round"
+              stroke-dasharray="${circ}" stroke-dashoffset="${arcOffset}"
+              transform="rotate(-90,50,50)"
+              filter="url(#ethbtcGlow)"
+              style="transition:stroke-dashoffset 1.4s cubic-bezier(0.34,1.56,0.64,1),stroke 0.6s ease"/>
+            <!-- Zone labels -->
+            <text x="8" y="58" font-size="6" fill="#6b6560" font-family="monospace">BEAR</text>
+            <text x="72" y="58" font-size="6" fill="#6b6560" font-family="monospace">BULL</text>
+          </svg>
+          <!-- Hero number overlay -->
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:${gaugeColor};line-height:1;letter-spacing:-1px">${ratio.toFixed(4)}</div>
+            <div style="font-size:8px;color:var(--text-dim);letter-spacing:1px;margin-top:4px">RATIO</div>
+          </div>
+        </div>
+
+        <!-- 24H change badge -->
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid ${col(ratio24h)}40;background:${col(ratio24h)}10;border-radius:2px">
+          <span style="font-size:11px;color:${col(ratio24h)};font-weight:700;letter-spacing:1px">${arr(ratio24h)} ${Math.abs(ratio24h).toFixed(2)}% · 24H</span>
+        </div>
+
+        <!-- Ghost BG number -->
+        <div style="position:absolute;bottom:-10px;right:-8px;font-family:'Playfair Display',serif;font-size:80px;font-weight:700;color:var(--text);opacity:0.03;line-height:1;pointer-events:none">${ratio.toFixed(3)}</div>
+      </div>
+
+      <!-- RIGHT: Regime + perf bars + insight -->
+      <div style="display:flex;flex-direction:column;gap:2px">
+
+        <!-- Regime banner -->
+        <div style="background:var(--surface2);padding:20px 24px;border-left:3px solid ${regimeColor}">
+          <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">Current Regime</div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-size:28px;line-height:1">${regimeIcon}</span>
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:${regimeColor};letter-spacing:1px;line-height:1.2">${regime}</div>
+              <div style="font-size:9px;color:var(--text-muted);letter-spacing:1px;margin-top:4px">Based on 24H relative performance</div>
+            </div>
+          </div>
+          <!-- Signal strength bar -->
+          <div style="margin-top:14px;height:3px;background:var(--surface);border-radius:2px;overflow:hidden">
+            <div style="height:100%;width:${Math.min(100,Math.abs(ratio24h)*20+5)}%;background:${regimeColor};box-shadow:0 0 6px ${regimeColor};transition:width 1.2s ease"></div>
+          </div>
+          <div style="font-size:8px;color:var(--text-dim);letter-spacing:1px;margin-top:4px">Signal strength</div>
+        </div>
+
+        <!-- Perf bars -->
+        <div style="background:var(--surface2);padding:20px 24px;flex:1">
+          <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px">Relative Performance (ETH − BTC)</div>
+          ${perfBars}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Insight footer -->
+    <div style="background:var(--surface2);border-left:3px solid var(--gold);padding:18px 24px;margin-top:2px">
+      <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">BitLogic Analysis · ETH/BTC</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.8;letter-spacing:0.3px">${insight}</div>
+      <div style="font-size:11px;color:var(--text-muted);line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px solid var(--text-dim)">The ETH/BTC ratio measures the relative strength of the smart-contract ecosystem against the macro store of value. A sustained breakout above recent highs is the primary lead indicator for altcoin season.</div>
+    </div>`;
+
+  // Add @media mobile collapse
+  el.style.overflow = 'hidden';
+  const grid = el.querySelector('[style*="grid-template-columns:220px"]');
+  if(grid && window.innerWidth < 700){
+    grid.style.gridTemplateColumns = '1fr';
+  }
+}
+
 // ── ALTS TAB ──────────────────────────────────────────────
 async function fetchAlts(){
   try{
@@ -2756,6 +2925,11 @@ async function fetchAlts(){
       data = cachedMarketData.length ? cachedMarketData : null;
     }
     if(!data || !data.length) throw new Error('No market data');
+
+    // ── ETH/BTC RATIO ──
+    const ethCoin = data.find(c=>c.id==='ethereum');
+    const btcCoin = data.find(c=>c.id==='bitcoin');
+    if(ethCoin && btcCoin) renderEthBtcRatio(ethCoin, btcCoin);
 
     // --- ALTCOIN SEASON INDEX ---
     const btc = data.find(c=>c.id==='bitcoin');
