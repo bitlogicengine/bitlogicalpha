@@ -3717,7 +3717,7 @@ async function fetchPerformance(){
       <div class="perf-winner">★ = outperformer for that period · ${winnerText}</div>`;
 
   }catch(e){
-    el.innerHTML='<div class="loading">Performance data unavailable</div>';
+    el.innerHTML='<div class="loading">Performance data unavailable — error: '+e.message+'</div>';
   }
 }
 
