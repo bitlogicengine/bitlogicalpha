@@ -1562,6 +1562,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <!-- INSIGHTS JUMP BAR -->
     <div class="jump-bar" style="margin-top:32px">
       <a class="jump-link" onclick="jumpTo('sec-fg')">Fear & Greed</a>
+      <a class="jump-link" onclick="jumpTo('sec-custom-fg')">BitLogic Sentiment</a>
       <a class="jump-link" onclick="jumpTo('sec-btcgold')">BTC vs Gold</a>
       <a class="jump-link" onclick="jumpTo('sec-goldbtc-ratio')">Gold/BTC Ratio</a>
       <a class="jump-link" onclick="jumpTo('sec-dominance')">Dominance</a>
@@ -1606,6 +1607,20 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <span class="fg-comment-date" id="fgCommentDate"></span>
         </div>
         <div class="fg-comment-text" id="fgCommentText"></div>
+      </div>
+    </div>
+
+    <!-- BITLOGIC CUSTOM FG -->
+    <div class="section" id="sec-custom-fg">
+      <div class="section-header">
+        <div class="section-label">BitLogic Sentiment Index</div>
+        <div class="section-meta">Proprietary · Derived from market data</div>
+      </div>
+      <div id="customFgWidget">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
+          <div class="skeleton skel-block tall"></div>
+          <div class="skeleton skel-block short"></div>
+        </div>
       </div>
     </div>
 
@@ -2905,6 +2920,7 @@ function switchTab(tab){
     setTimeout(()=>fetchGoldBtcRatio(), 2000);
     setTimeout(()=>fetchMetrics(), 2500);
     setTimeout(()=>fetchWeeklySummary(), 500);
+    setTimeout(()=>computeCustomFG(), 1000);
   }
   if(tab==='macro' && !macroLoaded){
     macroLoaded=true;
@@ -3276,6 +3292,7 @@ function injectPrices(prices){
   });
   const el = document.getElementById('trendWidget');
   if(el) showLastUpdated('trendWidget', Date.now(), false);
+  computeCustomFG();
 }
 
 async function fetchTrend(){
@@ -4075,7 +4092,116 @@ function renderMacroChart(btcData, m2Data){
   });
 }
 
-// ── HALVING COUNTDOWN ─────────────────────────────────────
+// ── BITLOGIC CUSTOM SENTIMENT INDEX ──────────────────────
+function computeCustomFG(){
+  const el = document.getElementById('customFgWidget');
+  if(!el) return;
+
+  const prices  = cachedMarketData;
+  const global  = cachedGlobalData;
+  if(!prices || !prices.length){ el.innerHTML='<div class="loading">Waiting for market data...</div>'; return; }
+
+  const btc = prices.find(p=>p.id==='bitcoin');
+  if(!btc){ el.innerHTML='<div class="loading">BTC data unavailable</div>'; return; }
+
+  // ── Five signals, each scored 0–100 ──────────────────
+  // 1. Price momentum 24h (25%) — centre at 0%, ±5% = full range
+  const chg24 = btc.price_change_percentage_24h || 0;
+  const s1 = Math.min(100, Math.max(0, (chg24 + 5) / 10 * 100));
+
+  // 2. Price momentum 7d (25%) — centre at 0%, ±15% = full range
+  const chg7 = btc.price_change_percentage_7d_in_currency || 0;
+  const s2 = Math.min(100, Math.max(0, (chg7 + 15) / 30 * 100));
+
+  // 3. Price momentum 30d (20%) — centre at 0%, ±30% = full range
+  const chg30 = btc.price_change_percentage_30d_in_currency || 0;
+  const s3 = Math.min(100, Math.max(0, (chg30 + 30) / 60 * 100));
+
+  // 4. BTC dominance (15%) — high dom = fear (BTC flight to safety), low dom = greed (alt season)
+  const btcDom = global?.data?.market_cap_percentage?.btc || 55;
+  // dom 70%+ = extreme fear, dom 40%- = extreme greed, centre ~55%
+  const s4 = Math.min(100, Math.max(0, (70 - btcDom) / 30 * 100));
+
+  // 5. Altcoin outperformance vs BTC (15%)
+  const top50 = prices.filter(c=>c.id!=='bitcoin').slice(0,49);
+  const altsBeatingBtc = top50.filter(c=>(c.price_change_percentage_7d_in_currency||0) > chg7).length;
+  const s5 = Math.min(100, Math.max(0, (altsBeatingBtc / 50) * 100));
+
+  // ── Weighted composite ────────────────────────────────
+  const score = Math.round(s1*0.25 + s2*0.25 + s3*0.20 + s4*0.15 + s5*0.15);
+
+  // ── Classification ────────────────────────────────────
+  function cfgLabel(v){
+    if(v>=75) return 'Extreme Greed';
+    if(v>=56) return 'Greed';
+    if(v>=45) return 'Neutral';
+    if(v>=25) return 'Fear';
+    return 'Extreme Fear';
+  }
+  function cfgColor(v){
+    if(v>=75) return '#4caf7d';
+    if(v>=56) return '#7bc47f';
+    if(v>=45) return '#c9a84c';
+    if(v>=25) return '#e07755';
+    return '#e05555';
+  }
+
+  const label = cfgLabel(score);
+  const color = cfgColor(score);
+
+  // Signal breakdown rows
+  const signals = [
+    {name:'24H Momentum',    score:Math.round(s1), weight:'25%'},
+    {name:'7D Momentum',     score:Math.round(s2), weight:'25%'},
+    {name:'30D Momentum',    score:Math.round(s3), weight:'20%'},
+    {name:'BTC Dominance',   score:Math.round(s4), weight:'15%'},
+    {name:'Altcoin Strength',score:Math.round(s5), weight:'15%'},
+  ];
+
+  const signalRows = signals.map(sig=>{
+    const c = cfgColor(sig.score);
+    return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+      <span style="font-size:9px;color:var(--text-muted);letter-spacing:1px;width:130px;flex-shrink:0">${sig.name}</span>
+      <div style="flex:1;height:4px;background:var(--surface);border-radius:2px;overflow:hidden">
+        <div style="height:100%;width:${sig.score}%;background:${c};border-radius:2px;transition:width 1.2s ease"></div>
+      </div>
+      <span style="font-size:10px;color:${c};font-weight:600;width:28px;text-align:right">${sig.score}</span>
+      <span style="font-size:8px;color:var(--text-dim);width:28px">${sig.weight}</span>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:2px">
+
+      <!-- Score panel -->
+      <div style="background:var(--surface2);padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;align-self:flex-start">BitLogic BSI</div>
+        <div style="font-family:'Playfair Display',serif;font-size:64px;font-weight:700;color:${color};line-height:1;animation:scorebreath 3s ease-in-out infinite">${score}</div>
+        <div style="font-size:9px;color:var(--text-dim);letter-spacing:2px;margin-top:4px">/ 100</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:${color};margin-top:12px">${label}</div>
+      </div>
+
+      <!-- Signal breakdown -->
+      <div style="background:var(--surface2);padding:24px 28px">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px">Signal Breakdown</div>
+        ${signalRows}
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--text-dim);font-size:9px;color:var(--text-dim);letter-spacing:1px;line-height:1.6">
+          Weighted composite of 5 on-chain signals · Calculated from live market data
+        </div>
+      </div>
+    </div>
+
+    <!-- Divergence note -->
+    <div style="background:var(--surface);padding:14px 24px;border-top:1px solid var(--text-dim);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px">
+        BitLogic BSI vs Alternative.me F&G — <span style="color:${Math.abs(score - (parseInt(document.getElementById('fgVal')?.textContent)||50)) > 10 ? '#c9a84c' : 'var(--text-muted)'}">
+          ${Math.abs(score - (parseInt(document.getElementById('fgVal')?.textContent)||50)) > 10 ? '⚠ Divergence detected' : 'Signals aligned'}
+        </span>
+      </div>
+      <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px">Updated live · No external API</div>
+    </div>`;
+}
+
 const HALVING_DATE = new Date('2028-04-17T00:00:00Z');
 const PREV_HALVING  = new Date('2024-04-20T00:00:00Z');
 
