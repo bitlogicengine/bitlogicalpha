@@ -1350,6 +1350,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 .back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .back-to-top:hover{border-color:var(--gold);color:var(--gold)}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -1377,6 +1378,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <button class="nav-tab" id="tab-insights" onclick="switchTab('insights')">Insights</button>
     <button class="nav-tab" id="tab-bitcoin" onclick="switchTab('bitcoin')">Bitcoin</button>
     <button class="nav-tab" id="tab-alts" onclick="switchTab('alts')">Alts</button>
+    <button class="nav-tab" id="tab-macro" onclick="switchTab('macro')">Macro</button>
     <button class="nav-tab" id="tab-resources" onclick="switchTab('resources')">Resources</button>
     <button class="nav-tab" id="tab-about" onclick="switchTab('about')">About</button>
   </div>
@@ -1938,6 +1940,69 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
     </div>
   </div>
+
+
+  <!-- ══════════════ MACRO VIEW ══════════════ -->
+  <div class="view" id="view-macro">
+
+    <div class="section-header" style="margin-top:32px">
+      <div class="section-label">Macro</div>
+      <div class="section-meta">Bitcoin vs Global M2 Money Supply</div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" style="font-size:14px">BTC Price vs Global M2</div>
+        <div class="section-meta">Last 2 years · Log scale</div>
+      </div>
+      <div style="background:var(--surface2);padding:28px 24px">
+        <canvas id="macroChart" style="width:100%;height:420px;max-height:420px"></canvas>
+      </div>
+      <div style="background:var(--surface);padding:16px 24px;border-top:1px solid var(--text-dim);display:flex;gap:32px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:24px;height:3px;background:#f7931a;border-radius:2px"></div>
+          <span style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">Bitcoin Price (USD)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:24px;height:3px;background:#4caf7d;border-radius:2px"></div>
+          <span style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">Global M2 (USD Trillions)</span>
+        </div>
+        <div style="margin-left:auto;font-size:9px;color:var(--text-dim);letter-spacing:1px" id="macroLastUpdated">—</div>
+      </div>
+    </div>
+
+    <!-- BitLogic Analysis -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" style="font-size:14px">The M2 Signal</div>
+      </div>
+      <div style="background:var(--surface2);border-left:3px solid var(--gold);padding:20px 24px">
+        <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">BitLogic Analysis · Macro</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.85;letter-spacing:0.3px">
+          Global M2 money supply is the total amount of money in circulation across the world's major economies. When central banks expand M2 — through rate cuts, QE, or fiscal stimulus — liquidity flows into risk assets. Bitcoin has historically tracked global M2 with a 3–6 month lag. When M2 rises, capital eventually reaches crypto. When M2 contracts, it is typically followed by a risk-off environment that pressures BTC. The current M2 trend is one of the most important macro variables for the medium-term Bitcoin outlook.
+        </div>
+      </div>
+    </div>
+
+    <!-- Data update info -->
+    <div class="section">
+      <div style="background:var(--surface);border:1px solid var(--text-dim);padding:20px 24px">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Data Sources</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:11px;color:var(--text-muted)">BTC Price</span>
+            <span style="font-size:9px;color:var(--text-dim);letter-spacing:1px">Updated daily · CoinGecko</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:11px;color:var(--text-muted)">Global M2</span>
+            <span style="font-size:9px;color:var(--text-dim);letter-spacing:1px">Updated monthly · Manual</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end view-macro -->
 
   <!-- ══════════════ RESOURCES VIEW ══════════════ -->
   <div class="view" id="view-resources">
@@ -2668,6 +2733,7 @@ let viewCoin = 'BTC';
 let allCharts = { BTC: [], ETH: [] };
 let insightsLoaded = false;
 let altsLoaded = false;
+let macroLoaded = false;
 let cachedMarketData = [];
 
 
@@ -2845,6 +2911,10 @@ function switchTab(tab){
     setTimeout(()=>fetchGoldBtcRatio(), 2000);
     setTimeout(()=>fetchMetrics(), 2500);
     setTimeout(()=>fetchWeeklySummary(), 500);
+  }
+  if(tab==='macro' && !macroLoaded){
+    macroLoaded=true;
+    fetchMacro();
   }
   if(tab==='alts' && !altsLoaded){
     altsLoaded=true;
@@ -3821,6 +3891,144 @@ async function fetchPerformance(){
   }catch(e){
     el.innerHTML='<div class="loading">Performance data unavailable</div>';
   }
+}
+
+// ── MACRO TAB ─────────────────────────────────────────────
+async function fetchMacro(){
+  try{
+    // Load BTC daily data and M2 monthly data from JSON files in repo
+    const [btcRes, m2Res] = await Promise.all([
+      fetch(`${BASE}/data/btc-daily.json?t=${Date.now()}`).then(r=>r.ok?r.json():null),
+      fetch(`${BASE}/data/m2-monthly.json?t=${Date.now()}`).then(r=>r.ok?r.json():null),
+    ]);
+    if(!btcRes || !m2Res) throw new Error('Data unavailable');
+    renderMacroChart(btcRes, m2Res);
+    const el = document.getElementById('macroLastUpdated');
+    if(el) el.textContent = 'BTC updated daily · M2 updated monthly';
+  }catch(e){
+    const canvas = document.getElementById('macroChart');
+    if(canvas){
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'rgba(255,255,255,0.1)';
+      ctx.font = '12px DM Mono, monospace';
+      ctx.fillText('Data unavailable — check back shortly', 20, canvas.height/2);
+    }
+  }
+}
+
+function renderMacroChart(btcData, m2Data){
+  const canvas = document.getElementById('macroChart');
+  if(!canvas) return;
+
+  // Destroy existing chart if any
+  if(window._macroChartInstance) window._macroChartInstance.destroy();
+
+  // BTC: array of {date: "YYYY-MM-DD", price: number}
+  // M2:  array of {date: "YYYY-MM", value: number} (trillions USD)
+
+  const btcLabels = btcData.map(d=>d.date);
+  const btcPrices = btcData.map(d=>d.price);
+
+  // Interpolate M2 monthly to daily dates for smooth overlay
+  const m2Map = {};
+  m2Data.forEach(d=>{ m2Map[d.date] = d.value; });
+
+  // For each BTC date, find closest M2 month
+  const m2Interpolated = btcLabels.map(date=>{
+    const month = date.substring(0,7);
+    if(m2Map[month]) return m2Map[month];
+    // try previous month
+    const d = new Date(date);
+    d.setMonth(d.getMonth()-1);
+    const prevMonth = d.toISOString().substring(0,7);
+    return m2Map[prevMonth] || null;
+  });
+
+  const ctx = canvas.getContext('2d');
+  window._macroChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: btcLabels,
+      datasets: [
+        {
+          label: 'BTC Price (USD)',
+          data: btcPrices,
+          borderColor: '#f7931a',
+          backgroundColor: 'rgba(247,147,26,0.08)',
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          fill: true,
+          tension: 0.3,
+          yAxisID: 'yBTC',
+        },
+        {
+          label: 'Global M2 (Trillions USD)',
+          data: m2Interpolated,
+          borderColor: '#4caf7d',
+          backgroundColor: 'rgba(76,175,125,0.06)',
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          fill: false,
+          tension: 0.3,
+          yAxisID: 'yM2',
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a1a1a',
+          borderColor: '#3a3530',
+          borderWidth: 1,
+          titleColor: '#c9a84c',
+          bodyColor: '#a89880',
+          titleFont: { family: 'DM Mono, monospace', size: 11 },
+          bodyFont:  { family: 'DM Mono, monospace', size: 11 },
+          callbacks: {
+            label: ctx => {
+              if(ctx.datasetIndex===0) return ' BTC: $'+ctx.parsed.y.toLocaleString();
+              return ctx.parsed.y ? ' M2: $'+ctx.parsed.y.toFixed(1)+'T' : ' M2: —';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid:  { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#6b6560', font: { family: 'DM Mono, monospace', size: 9 }, maxTicksLimit: 10, maxRotation: 0 },
+          border:{ color: '#3a3530' }
+        },
+        yBTC: {
+          type: 'logarithmic',
+          position: 'left',
+          grid:  { color: 'rgba(255,255,255,0.04)' },
+          ticks: {
+            color: '#f7931a',
+            font:  { family: 'DM Mono, monospace', size: 9 },
+            callback: v => '$'+v.toLocaleString()
+          },
+          border: { color: '#3a3530' }
+        },
+        yM2: {
+          type: 'linear',
+          position: 'right',
+          grid:  { drawOnChartArea: false },
+          ticks: {
+            color: '#4caf7d',
+            font:  { family: 'DM Mono, monospace', size: 9 },
+            callback: v => '$'+v.toFixed(0)+'T'
+          },
+          border: { color: '#3a3530' }
+        }
+      }
+    }
+  });
 }
 
 // ── HALVING COUNTDOWN ─────────────────────────────────────
