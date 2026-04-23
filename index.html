@@ -1972,6 +1972,17 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
+    <!-- Fed Net Liquidity -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" style="font-size:14px">Fed Net Liquidity</div>
+        <div class="section-meta">Balance Sheet − TGA − RRP</div>
+      </div>
+      <div id="fedLiquidityWidget">
+        <div class="skeleton skel-block tall" style="margin:0"></div>
+      </div>
+    </div>
+
     <!-- BitLogic Analysis -->
     <div class="section">
       <div class="section-header">
@@ -3879,15 +3890,16 @@ async function fetchPerformance(){
 // ── MACRO TAB ─────────────────────────────────────────────
 async function fetchMacro(){
   try{
-    // Load BTC daily data and M2 monthly data from JSON files in repo
-    const [btcRes, m2Res] = await Promise.all([
+    const [btcRes, m2Res, fedRes] = await Promise.all([
       fetch(`${BASE}/data/btc-daily.json?t=${Date.now()}`).then(r=>r.ok?r.json():null),
       fetch(`${BASE}/data/m2-monthly.json?t=${Date.now()}`).then(r=>r.ok?r.json():null),
+      fetch(`${BASE}/data/fed-liquidity.json?t=${Date.now()}`).then(r=>r.ok?r.json():null),
     ]);
     if(!btcRes || !m2Res) throw new Error('Data unavailable');
     renderMacroChart(btcRes, m2Res);
+    if(fedRes) renderFedLiquidity(fedRes);
     const el = document.getElementById('macroLastUpdated');
-    if(el) el.textContent = 'BTC updated daily · M2 updated monthly';
+    if(el) el.textContent = 'BTC updated daily · M2 & Fed updated manually';
   }catch(e){
     const canvas = document.getElementById('macroChart');
     if(canvas){
@@ -3897,6 +3909,55 @@ async function fetchMacro(){
       ctx.fillText('Data unavailable — check back shortly', 20, canvas.height/2);
     }
   }
+}
+
+function renderFedLiquidity(data){
+  const el = document.getElementById('fedLiquidityWidget');
+  if(!el || !data.length) return;
+
+  const latest  = data[data.length - 1];
+  const prev    = data[data.length - 2] || latest;
+  const netLiq  = latest.balance_sheet - latest.tga - latest.rrp;
+  const prevLiq = prev.balance_sheet - prev.tga - prev.rrp;
+  const change  = netLiq - prevLiq;
+  const isExpanding = change >= 0;
+  const regime  = isExpanding ? 'EXPANSION' : 'CONTRACTION';
+  const color   = isExpanding ? '#4caf7d' : '#e05555';
+  const icon    = isExpanding ? '▲' : '▼';
+  const signal  = isExpanding ? 'BULLISH BACKDROP' : 'BEARISH BACKDROP';
+
+  // Bar fill: map net liquidity between reasonable range
+  // typical range ~$4T to $7T
+  const minL = 4000, maxL = 7500;
+  const fillPct = Math.min(100, Math.max(5, ((netLiq - minL) / (maxL - minL)) * 100));
+
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
+      <div style="background:var(--surface2);padding:24px 20px">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Net Liquidity</div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${color};line-height:1">${(netLiq/1000).toFixed(2)}T</div>
+        <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">USD · Balance Sheet − TGA − RRP</div>
+      </div>
+      <div style="background:var(--surface2);padding:24px 20px">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Week-on-Week</div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${color};line-height:1">${icon} ${Math.abs(change/1000).toFixed(2)}T</div>
+        <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">vs prev week · ${latest.date}</div>
+      </div>
+      <div style="background:var(--surface2);padding:24px 20px;border-left:3px solid ${color}">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Regime</div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:${color};line-height:1.2">${regime}</div>
+        <div style="font-size:9px;color:${color};letter-spacing:2px;margin-top:6px">${signal}</div>
+      </div>
+    </div>
+    <div style="background:var(--surface);padding:16px 20px;border-top:1px solid var(--text-dim)">
+      <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-bottom:8px">LIQUIDITY LEVEL</div>
+      <div style="height:6px;background:var(--surface2);border-radius:3px;overflow:hidden">
+        <div style="height:100%;width:${fillPct}%;background:${color};border-radius:3px;box-shadow:0 0 8px ${color}60;transition:width 1.2s ease"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--text-dim);letter-spacing:1px">
+        <span>$4T Contracted</span><span>$7.5T Expanded</span>
+      </div>
+    </div>`;
 }
 
 function renderMacroChart(btcData, m2Data){
