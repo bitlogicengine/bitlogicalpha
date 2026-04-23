@@ -1,3 +1,3 @@
 status: Negative
-note: Gold facing resistance as safe-haven unwind continues. The market's base case remains diplomatic resolution — capital rotating back into risk assets. If the ceasefire collapses today, gold reprices sharply higher overnight. For now, structure is negative while the relief trade holds.
-updated: 22 Apr 2026
+note: Gold suffered a sharp rejection from key resistance (near $4,800) as capital continues to rotate back into risk assets. The extension of the diplomatic window has removed the immediate safe-haven premium, allowing sellers to regain short-term control. The structure remains weak as long as price stays below $4,750. A test of support in the $4,680 region is likely.
+updated: 23 Apr 2026
