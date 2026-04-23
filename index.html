@@ -3458,11 +3458,21 @@ function applyFearGreedData(items){
   const value  = parseInt(latest.value);
   const color  = fgColor(value);
 
+  // BitLogic classification — overrides API label
+  function blLabel(v){
+    if(v>=75) return 'Extreme Greed';
+    if(v>=56) return 'Greed';
+    if(v>=45) return 'Neutral';
+    if(v>=25) return 'Fear';
+    return 'Extreme Fear';
+  }
+  const classification = blLabel(value);
+
   // ── Score number + background ghost ──
   document.getElementById('fgVal').textContent = value;
   document.getElementById('fgVal').style.color = color;
   document.getElementById('fgBgScore').textContent = value;
-  document.getElementById('fgClass').textContent = latest.value_classification;
+  document.getElementById('fgClass').textContent = classification;
   document.getElementById('fgClass').style.color = color;
   document.getElementById('fgUpdated').textContent =
     `Updated: ${new Date(latest.timestamp*1000).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}`;
