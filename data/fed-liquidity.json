@@ -1,0 +1,18 @@
+[
+  { "date": "2026-01-08", "balance_sheet": 6802.4, "tga": 725.1, "rrp": 445.2 },
+  { "date": "2026-01-15", "balance_sheet": 6788.1, "tga": 710.4, "rrp": 438.7 },
+  { "date": "2026-01-22", "balance_sheet": 6772.5, "tga": 698.2, "rrp": 431.5 },
+  { "date": "2026-01-29", "balance_sheet": 6755.9, "tga": 715.6, "rrp": 422.1 },
+  { "date": "2026-02-05", "balance_sheet": 6741.3, "tga": 742.8, "rrp": 415.8 },
+  { "date": "2026-02-12", "balance_sheet": 6724.7, "tga": 765.2, "rrp": 408.2 },
+  { "date": "2026-02-19", "balance_sheet": 6708.2, "tga": 732.5, "rrp": 401.9 },
+  { "date": "2026-02-26", "balance_sheet": 6692.6, "tga": 695.1, "rrp": 395.4 },
+  { "date": "2026-03-05", "balance_sheet": 6675.4, "tga": 672.4, "rrp": 388.1 },
+  { "date": "2026-03-12", "balance_sheet": 6659.8, "tga": 645.9, "rrp": 382.6 },
+  { "date": "2026-03-19", "balance_sheet": 6644.1, "tga": 618.3, "rrp": 375.2 },
+  { "date": "2026-03-26", "balance_sheet": 6628.5, "tga": 592.7, "rrp": 368.9 },
+  { "date": "2026-04-02", "balance_sheet": 6614.2, "tga": 625.4, "rrp": 362.4 },
+  { "date": "2026-04-09", "balance_sheet": 6598.7, "tga": 685.2, "rrp": 355.8 },
+  { "date": "2026-04-16", "balance_sheet": 6585.3, "tga": 842.1, "rrp": 348.2 },
+  { "date": "2026-04-23", "balance_sheet": 6572.8, "tga": 748.2, "rrp": 341.5 }
+]
