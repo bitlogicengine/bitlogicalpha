@@ -4099,7 +4099,21 @@ function computeCustomFG(){
 
   const prices  = cachedMarketData;
   const global  = cachedGlobalData;
-  if(!prices || !prices.length){ el.innerHTML='<div class="loading">Waiting for market data...</div>'; return; }
+  if(!prices || !prices.length){
+    // Retry up to 20 times every 500ms
+    let attempts = 0;
+    const retry = setInterval(()=>{
+      attempts++;
+      if(cachedMarketData && cachedMarketData.length){
+        clearInterval(retry);
+        computeCustomFG();
+      } else if(attempts >= 20){
+        clearInterval(retry);
+        el.innerHTML='<div class="loading">Market data unavailable</div>';
+      }
+    }, 500);
+    return;
+  }
 
   const btc = prices.find(p=>p.id==='bitcoin');
   if(!btc){ el.innerHTML='<div class="loading">BTC data unavailable</div>'; return; }
