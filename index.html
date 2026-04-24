@@ -19,7 +19,7 @@
 <meta property="og:description" content="Daily BTC, ETH and Gold market state, live crypto data, Fear &amp; Greed Index and expert analysis. Updated every day."/>
 <meta property="og:url" content="https://bitlogicalpha.com/"/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="/preview.png"/>
+<meta property="og:image" content="https://bitlogicalpha.com/preview.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:type" content="image/png"/>
@@ -29,7 +29,7 @@
 <meta name="twitter:title" content="BitLogic Alpha — Crypto &amp; Gold Market Intelligence"/>
 <!-- TWITTER_DESCRIPTION_PLACEHOLDER -->
 <meta name="twitter:description" content="Daily BTC, ETH and Gold market state, live crypto data, Fear &amp; Greed Index and expert analysis. Updated every day."/>
-<meta name="twitter:image" content="/preview.png"/>
+<meta name="twitter:image" content="https://bitlogicalpha.com/preview.png"/>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DED8MMWG24"></script>
 <script>
@@ -4213,8 +4213,8 @@ function computeCustomFG(){
     <!-- Divergence note -->
     <div style="background:var(--surface);padding:14px 24px;border-top:1px solid var(--text-dim);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
       <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px">
-        BitLogic BSI vs Alternative.me F&G — <span style="color:${Math.abs(score - (parseInt(document.getElementById('fgVal')?.textContent)||50)) > 10 ? '#c9a84c' : 'var(--text-muted)'}">
-          ${Math.abs(score - (parseInt(document.getElementById('fgVal')?.textContent)||50)) > 10 ? '⚠ Divergence detected' : 'Signals aligned'}
+        BitLogic BSI vs Alternative.me F&G — <span style="color:${Math.abs(score - (parseInt(document.getElementById('fgVal')?.textContent)||50)) >= 10 ? '#c9a84c' : 'var(--text-muted)'}">
+          ${Math.abs(score - (parseInt(document.getElementById('fgVal')?.textContent)||50)) >= 10 ? '⚠ Divergence detected' : 'Signals aligned'}
         </span>
       </div>
       <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px">Updated live · No external API</div>
