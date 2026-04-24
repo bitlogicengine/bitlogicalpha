@@ -4218,7 +4218,7 @@ function computeCustomFG(){
   }).join('');
 
   el.innerHTML = `
-    <div style="display:grid;grid-template-columns:200px 1fr;gap:2px">
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:2px" id="bsiGrid">
 
       <!-- Score panel -->
       <div style="background:var(--surface2);padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden">
@@ -4247,6 +4247,12 @@ function computeCustomFG(){
       </div>
       <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px">Updated live · No external API</div>
     </div>`;
+
+  // Mobile: stack vertically
+  if(window.innerWidth < 600){
+    const grid = document.getElementById('bsiGrid');
+    if(grid) grid.style.gridTemplateColumns = '1fr';
+  }
 }
 
 const HALVING_DATE = new Date('2028-04-17T00:00:00Z');
