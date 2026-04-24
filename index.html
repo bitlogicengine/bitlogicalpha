@@ -3292,7 +3292,6 @@ function injectPrices(prices){
   });
   const el = document.getElementById('trendWidget');
   if(el) showLastUpdated('trendWidget', Date.now(), false);
-  computeCustomFG();
 }
 
 async function fetchTrend(){
@@ -4097,19 +4096,25 @@ function computeCustomFG(){
   const el = document.getElementById('customFgWidget');
   if(!el) return;
 
-  const prices  = cachedMarketData;
-  const global  = cachedGlobalData;
-  if(!prices || !prices.length){
-    // Retry up to 20 times every 500ms
+  const prices = cachedMarketData;
+  const global = cachedGlobalData;
+
+  // Wait until both market data AND global data are ready
+  if(!prices || !prices.length || !global){
     let attempts = 0;
     const retry = setInterval(()=>{
       attempts++;
-      if(cachedMarketData && cachedMarketData.length){
+      if(cachedMarketData && cachedMarketData.length && cachedGlobalData){
         clearInterval(retry);
         computeCustomFG();
       } else if(attempts >= 20){
         clearInterval(retry);
-        el.innerHTML='<div class="loading">Market data unavailable</div>';
+        if(cachedMarketData && cachedMarketData.length){
+          // Global data never arrived — compute without it
+          computeCustomFG();
+        } else {
+          el.innerHTML='<div class="loading">Market data unavailable</div>';
+        }
       }
     }, 500);
     return;
