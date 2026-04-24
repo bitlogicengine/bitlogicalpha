@@ -3980,64 +3980,63 @@ function renderMacroChart(btcData, m2Data){
   const canvas = document.getElementById('macroChart');
   if(!canvas) return;
 
-  // Destroy existing chart if any
   if(window._macroChartInstance) window._macroChartInstance.destroy();
 
-  // BTC: array of {date: "YYYY-MM-DD", price: number}
-  // M2:  array of {date: "YYYY-MM", value: number} (trillions USD)
+  // Sort both datasets by date ascending
+  btcData = [...btcData].sort((a,b) => new Date(a.date) - new Date(b.date));
+  m2Data  = [...m2Data].sort((a,b)  => new Date(a.date+'-01') - new Date(b.date+'-01'));
 
-  const btcLabels = btcData.map(d=>d.date);
-  const btcPrices = btcData.map(d=>d.price);
+  const btcPoints = btcData.map(d => ({ x: d.date, y: d.price }));
 
-  // Smoothly interpolate M2 monthly to daily using linear interpolation between months
+  // Smooth linear interpolation of M2 monthly → daily
   const m2Entries = m2Data.map(d => ({
     date: new Date(d.date + '-01'),
     value: d.value
-  })).sort((a,b) => a.date - b.date);
+  }));
 
-  const m2Interpolated = btcLabels.map(dateStr => {
-    const d = new Date(dateStr);
-    // Find surrounding monthly points
+  const m2Points = btcData.map(d => {
+    const day = new Date(d.date);
     let before = null, after = null;
     for(let i = 0; i < m2Entries.length; i++){
-      if(m2Entries[i].date <= d) before = m2Entries[i];
-      if(m2Entries[i].date > d && !after) after = m2Entries[i];
+      if(m2Entries[i].date <= day) before = m2Entries[i];
+      if(m2Entries[i].date > day && !after) after = m2Entries[i];
     }
-    if(!before) return after ? after.value : null;
-    if(!after)  return before.value;
-    // Linear interpolation between before and after
-    const t = (d - before.date) / (after.date - before.date);
-    return before.value + (after.value - before.value) * t;
+    let val = null;
+    if(before && after){
+      const t = (day - before.date) / (after.date - before.date);
+      val = before.value + (after.value - before.value) * t;
+    } else if(before) val = before.value;
+    else if(after)    val = after.value;
+    return { x: d.date, y: val };
   });
 
   const ctx = canvas.getContext('2d');
   window._macroChartInstance = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: btcLabels,
       datasets: [
         {
           label: 'BTC Price (USD)',
-          data: btcPrices,
+          data: btcPoints,
           borderColor: '#f7931a',
           backgroundColor: 'rgba(247,147,26,0.08)',
-          borderWidth: 2,
+          borderWidth: 1.5,
           pointRadius: 0,
           pointHoverRadius: 4,
           fill: true,
-          tension: 0.3,
+          tension: 0.2,
           yAxisID: 'yBTC',
         },
         {
           label: 'Global M2 (Trillions USD)',
-          data: m2Interpolated,
+          data: m2Points,
           borderColor: '#4caf7d',
           backgroundColor: 'rgba(76,175,125,0.06)',
           borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 4,
           fill: false,
-          tension: 0.3,
+          tension: 0.4,
           yAxisID: 'yM2',
         }
       ]
@@ -4057,40 +4056,63 @@ function renderMacroChart(btcData, m2Data){
           titleFont: { family: 'DM Mono, monospace', size: 11 },
           bodyFont:  { family: 'DM Mono, monospace', size: 11 },
           callbacks: {
-            label: ctx => {
-              if(ctx.datasetIndex===0) return ' BTC: $'+ctx.parsed.y.toLocaleString();
-              return ctx.parsed.y ? ' M2: $'+ctx.parsed.y.toFixed(1)+'T' : ' M2: —';
+            title: items => items[0]?.label || '',
+            label: item => {
+              if(item.datasetIndex===0) return ' BTC: $'+Math.round(item.parsed.y).toLocaleString();
+              return item.parsed.y ? ' M2: $'+item.parsed.y.toFixed(1)+'T' : ' M2: —';
             }
           }
         }
       },
       scales: {
         x: {
+          type: 'category',
           grid:  { color: 'rgba(255,255,255,0.04)' },
-          ticks: { color: '#6b6560', font: { family: 'DM Mono, monospace', size: 9 }, maxTicksLimit: 10, maxRotation: 0 },
-          border:{ color: '#3a3530' }
+          border:{ color: '#3a3530' },
+          ticks: {
+            color: '#6b6560',
+            font:  { family: 'DM Mono, monospace', size: 9 },
+            maxRotation: 0,
+            maxTicksLimit: 10,
+            // Show only Jan 1 of each year as label
+            callback: function(val, index){
+              const label = this.getLabelForValue(val);
+              if(label && label.endsWith('-01-01')) return label.substring(0,4);
+              if(label && label.substring(5) === '01-01') return label.substring(0,4);
+              // fallback: show every ~365th point
+              const total = this.chart.data.datasets[0].data.length;
+              const step  = Math.max(1, Math.floor(total / 10));
+              return index % step === 0 ? label.substring(0,7) : '';
+            }
+          }
         },
         yBTC: {
           type: 'logarithmic',
           position: 'left',
           grid:  { color: 'rgba(255,255,255,0.04)' },
+          border:{ color: '#3a3530' },
           ticks: {
             color: '#f7931a',
             font:  { family: 'DM Mono, monospace', size: 9 },
-            callback: v => '$'+v.toLocaleString()
-          },
-          border: { color: '#3a3530' }
+            maxTicksLimit: 8,
+            callback: v => {
+              if(v >= 1000000) return '$'+Math.round(v/1000)+'K';
+              if(v >= 1000)    return '$'+Math.round(v/1000)+'K';
+              return '$'+v;
+            }
+          }
         },
         yM2: {
           type: 'linear',
           position: 'right',
           grid:  { drawOnChartArea: false },
+          border:{ color: '#3a3530' },
           ticks: {
             color: '#4caf7d',
             font:  { family: 'DM Mono, monospace', size: 9 },
+            maxTicksLimit: 6,
             callback: v => '$'+v.toFixed(0)+'T'
-          },
-          border: { color: '#3a3530' }
+          }
         }
       }
     }
