@@ -1,4 +1,25 @@
 [
+  /* --- CICLO PRE-COVID (Crescita costante) --- */
+  { "date": "2018-01", "value": 79.2 },
+  { "date": "2018-07", "value": 80.5 },
+  { "date": "2019-01", "value": 81.8 },
+  { "date": "2019-07", "value": 83.1 },
+  { "date": "2020-01", "value": 84.5 },
+
+  /* --- L'ESPLOSIONE MONETARIA (Risposta al Covid) --- */
+  { "date": "2020-03", "value": 86.2 },
+  { "date": "2020-06", "value": 91.8 }, // Il "bazooka" delle banche centrali
+  { "date": "2021-01", "value": 94.5 },
+  { "date": "2021-07", "value": 98.2 },
+
+  /* --- IL PICCO E LA CONTRAZIONE (QT e Dollaro forte) --- */
+  { "date": "2022-01", "value": 101.5 }, // Massimo storico precedente
+  { "date": "2022-07", "value": 99.8 },
+  { "date": "2023-01", "value": 97.4 }, // Inizio della contrazione reale
+  { "date": "2023-07", "value": 95.1 },
+  { "date": "2024-01", "value": 93.2 },
+
+  /* --- I TUOI DATI (Agganciati perfettamente) --- */
   { "date": "2024-04", "value": 92.1 },
   { "date": "2024-05", "value": 92.4 },
   { "date": "2024-06", "value": 92.8 },
