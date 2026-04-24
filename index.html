@@ -3989,19 +3989,25 @@ function renderMacroChart(btcData, m2Data){
   const btcLabels = btcData.map(d=>d.date);
   const btcPrices = btcData.map(d=>d.price);
 
-  // Interpolate M2 monthly to daily dates for smooth overlay
-  const m2Map = {};
-  m2Data.forEach(d=>{ m2Map[d.date] = d.value; });
+  // Smoothly interpolate M2 monthly to daily using linear interpolation between months
+  const m2Entries = m2Data.map(d => ({
+    date: new Date(d.date + '-01'),
+    value: d.value
+  })).sort((a,b) => a.date - b.date);
 
-  // For each BTC date, find closest M2 month
-  const m2Interpolated = btcLabels.map(date=>{
-    const month = date.substring(0,7);
-    if(m2Map[month]) return m2Map[month];
-    // try previous month
-    const d = new Date(date);
-    d.setMonth(d.getMonth()-1);
-    const prevMonth = d.toISOString().substring(0,7);
-    return m2Map[prevMonth] || null;
+  const m2Interpolated = btcLabels.map(dateStr => {
+    const d = new Date(dateStr);
+    // Find surrounding monthly points
+    let before = null, after = null;
+    for(let i = 0; i < m2Entries.length; i++){
+      if(m2Entries[i].date <= d) before = m2Entries[i];
+      if(m2Entries[i].date > d && !after) after = m2Entries[i];
+    }
+    if(!before) return after ? after.value : null;
+    if(!after)  return before.value;
+    // Linear interpolation between before and after
+    const t = (d - before.date) / (after.date - before.date);
+    return before.value + (after.value - before.value) * t;
   });
 
   const ctx = canvas.getContext('2d');
