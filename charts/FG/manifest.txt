@@ -1,2 +1,2 @@
-comment: Index rose to 46 — in a Neutral zone. The jump from 32 to 46 reflects renewed confidence following Bitcoin’s $78K close. While sentiment has improved, we are not yet in euphoria territory, leaving significant "sideline cash" as potential fuel for further price expansion. The market is shifting from "fear of collapse" to a rational evaluation of the new bullish structure.
-date: 23 Apr 2026
+comment: Index dropped to 39 — back into Fear. In a classic "Bullish Divergence," sentiment has soured despite Bitcoin’s $78K close. This reflects deep-seated retail skepticism and a "fear of a bull trap." From a contrarian standpoint, this is highly constructive; the "wall of worry" provides the necessary fuel for further expansion, as significant sidelined capital has yet to FOMO back into the new bullish structure.
+date: 24 Apr 2026
