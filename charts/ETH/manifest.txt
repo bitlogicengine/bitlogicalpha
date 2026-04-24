@@ -1,3 +1,3 @@
 status: Positive
-note: ETH is following Bitcoin’s lead but at a slower velocity, managing to consolidate a close above $2,300. The relative lag compared to BTC suggests the capital rotation hasn't hit its hyperbolic phase yet. As long as it holds $2,250, the bias remains positive with a target of $2,400. ETF inflows remain in positive territory but are less aggressive than in previous sessions.
-updated: 23 Apr 2026
+note: ETH has managed to secure a daily close above $2,300, successfully following Bitcoin’s lead. While it remains a relative "laggard" in terms of velocity, this consolidation is a vital bullish prerequisite for the next leg up. As long as it holds the $2,250 level, the bias remains firmly positive with a short-term target of $2,400. Capital rotation into Ethereum is beginning to stabilize as ETF inflows remain consistent.
+updated: 24 Apr 2026
