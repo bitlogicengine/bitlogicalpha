@@ -2647,6 +2647,8 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       <a class="jump-link" onclick="jumpTo('about-intro')">About</a>
       <a class="jump-link" onclick="jumpTo('about-what')">What We Do</a>
       <a class="jump-link" onclick="jumpTo('about-how')">How It Works</a>
+      <a class="jump-link" onclick="jumpTo('about-bsi')">BitLogic BSI</a>
+      <a class="jump-link" onclick="jumpTo('about-macro')">Macro Tools</a>
       <a class="jump-link" onclick="jumpTo('about-who')">Who Is This For</a>
     </div>
 
@@ -2661,7 +2663,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
         <div class="about-hero-text">
           <div class="about-title">Clarity in a noisy market</div>
-          <div class="about-subtitle">BitLogic Alpha is a daily market intelligence platform built to give anyone — regardless of experience — an immediate, clear understanding of what is happening in crypto and gold markets right now.</div>
+          <div class="about-subtitle">BitLogic Alpha is a daily market intelligence platform built to give anyone — regardless of experience — an immediate, clear understanding of what is happening in crypto, gold and macro markets right now.</div>
         </div>
       </div>
     </div>
@@ -2669,23 +2671,38 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="section-header">
         <div class="section-label" id="about-what">What We Do</div>
-        <div class="section-meta">Our Mission</div>
+        <div class="section-meta">Our Tools</div>
       </div>
       <div class="about-grid">
         <div class="about-card">
           <div class="about-card-icon">📊</div>
           <div class="about-card-title">Daily Market State</div>
-          <div class="about-card-text">Every day we publish the market state for BTC, ETH and Gold — Positive, Neutral or Negative. No complex charts to interpret. Just a clear signal backed by real analysis.</div>
+          <div class="about-card-text">Every day we publish the market state for BTC, ETH and Gold — Positive, Neutral or Negative. No complex charts to interpret. Just a clear signal backed by real analysis, updated every 24 hours.</div>
         </div>
         <div class="about-card">
           <div class="about-card-icon">📰</div>
           <div class="about-card-title">Market News & Commentary</div>
-          <div class="about-card-text">We track the macro events, regulatory developments and geopolitical factors that move markets. Every article is written to explain not just what happened — but why it matters for your assets.</div>
+          <div class="about-card-text">We track the macro events, regulatory developments and geopolitical factors that move markets. Every article explains not just what happened — but why it matters for your assets.</div>
         </div>
         <div class="about-card">
           <div class="about-card-icon">📈</div>
           <div class="about-card-title">Live Market Data</div>
           <div class="about-card-text">Real-time prices, market dominance, Fear & Greed Index and market metrics — all in one place, updated continuously so you always have the full picture at a glance.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🔄</div>
+          <div class="about-card-title">Altcoin Season Index</div>
+          <div class="about-card-text">A live score tracking how many of the top 50 altcoins are outperforming Bitcoin. Includes the ETH/BTC ratio gauge, regime detection and BTC dominance confirmation signals.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🌍</div>
+          <div class="about-card-title">Macro Intelligence</div>
+          <div class="about-card-text">Bitcoin vs Global M2 money supply chart with 4 years of history, Fed Net Liquidity tracker (Balance Sheet − TGA − RRP), and regime signals for macro-aware investors.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🧠</div>
+          <div class="about-card-title">BitLogic Sentiment Index</div>
+          <div class="about-card-text">Our proprietary sentiment indicator — the BSI — calculated entirely from live market data with no external API. Five weighted signals combined into a single 0–100 score with divergence detection vs the official Fear & Greed Index.</div>
         </div>
       </div>
     </div>
@@ -2704,7 +2721,64 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         </div>
         <div class="about-why-gold">
           <div class="about-why-title">Why Gold?</div>
-          <div class="about-method-text">Bitcoin and Gold are inversely correlated. In a risk-on environment — when confidence is high and appetite for growth assets is strong — Bitcoin tends to outperform. In a risk-off or safe-haven environment — when uncertainty rises — Gold is typically the stronger performer. Tracking both gives you a more complete picture of where the market is in the cycle and which asset is likely leading.</div>
+          <div class="about-method-text">Bitcoin and Gold are inversely correlated in risk appetite. In a risk-on environment, Bitcoin tends to outperform. In a risk-off environment, Gold is typically the stronger asset. Tracking both gives you a more complete picture of where the market is in the cycle and which asset is leading capital flows.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" id="about-bsi">BitLogic Sentiment Index (BSI)</div>
+        <div class="section-meta">Proprietary Indicator</div>
+      </div>
+      <div class="about-methodology">
+        <div class="about-method-text">
+          The BSI is our proprietary sentiment score calculated entirely from live CoinGecko market data — no external sentiment API required. It combines five weighted signals into a single 0–100 composite score using the same classification thresholds as our market state model.
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin:20px 0">
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 16px;background:var(--surface2)">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:2px;font-weight:700;width:40px;flex-shrink:0;margin-top:2px">25%</div>
+            <div><div style="font-size:11px;color:var(--text);letter-spacing:1px;margin-bottom:3px">24H Momentum</div><div style="font-size:10px;color:var(--text-muted);line-height:1.6">BTC 24h price change, centred at 0%, ±5% range</div></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 16px;background:var(--surface2)">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:2px;font-weight:700;width:40px;flex-shrink:0;margin-top:2px">25%</div>
+            <div><div style="font-size:11px;color:var(--text);letter-spacing:1px;margin-bottom:3px">7D Momentum</div><div style="font-size:10px;color:var(--text-muted);line-height:1.6">BTC 7-day change, ±15% range — captures the weekly trend</div></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 16px;background:var(--surface2)">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:2px;font-weight:700;width:40px;flex-shrink:0;margin-top:2px">20%</div>
+            <div><div style="font-size:11px;color:var(--text);letter-spacing:1px;margin-bottom:3px">30D Momentum</div><div style="font-size:10px;color:var(--text-muted);line-height:1.6">BTC 30-day change, ±30% range — the structural trend</div></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 16px;background:var(--surface2)">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:2px;font-weight:700;width:40px;flex-shrink:0;margin-top:2px">15%</div>
+            <div><div style="font-size:11px;color:var(--text);letter-spacing:1px;margin-bottom:3px">BTC Dominance</div><div style="font-size:10px;color:var(--text-muted);line-height:1.6">High dominance = fear (capital in BTC); low = greed (alts)</div></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:12px 16px;background:var(--surface2)">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:2px;font-weight:700;width:40px;flex-shrink:0;margin-top:2px">15%</div>
+            <div><div style="font-size:11px;color:var(--text);letter-spacing:1px;margin-bottom:3px">Altcoin Strength</div><div style="font-size:10px;color:var(--text-muted);line-height:1.6">% of top 50 alts beating BTC on a 7-day basis</div></div>
+          </div>
+        </div>
+        <div class="about-method-text">
+          The BSI is compared against the official Alternative.me Fear & Greed Index in real time. When the two diverge by 10 points or more, a divergence flag is shown — which can signal a positioning opportunity.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" id="about-macro">Macro Tools</div>
+        <div class="section-meta">Bitcoin & Global Liquidity</div>
+      </div>
+      <div class="about-methodology">
+        <div class="about-method-text">
+          The Macro tab tracks the relationship between Bitcoin and global liquidity — the two most important macro variables for the medium-term BTC outlook.
+        </div>
+        <div class="about-why-gold" style="margin-top:16px">
+          <div class="about-why-title">BTC vs Global M2</div>
+          <div class="about-method-text">Global M2 is the total money supply across the world's major economies. When central banks expand M2 through rate cuts or QE, liquidity flows into risk assets. Bitcoin has historically tracked global M2 with a 3–6 month lag. The chart plots BTC price on a log scale against M2 in trillions USD from 2020 to present.</div>
+        </div>
+        <div class="about-why-gold" style="margin-top:16px">
+          <div class="about-why-title">Fed Net Liquidity</div>
+          <div class="about-method-text">Net Liquidity = Fed Balance Sheet − Treasury General Account (TGA) − Reverse Repo (RRP). This is the money actually available to flow into markets. When net liquidity expands, risk assets tend to rally. When it contracts, pressure builds. Updated weekly from FRED data.</div>
         </div>
       </div>
     </div>
@@ -2715,7 +2789,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div class="section-meta">Our Audience</div>
       </div>
       <div class="about-audience">
-        <div class="about-audience-text">BitLogic Alpha is built for everyone who wants useful, honest information about crypto and gold — whether you are just starting out or have been trading for years. We believe that good market intelligence should not require a finance degree to understand. Our goal is to cut through the noise and give you what actually matters, every single day.</div>
+        <div class="about-audience-text">BitLogic Alpha is built for everyone who wants useful, honest information about crypto and macro markets — whether you are just starting out or have been trading for years. We believe good market intelligence should not require a finance degree to understand. Our goal is to cut through the noise and give you what actually matters, every single day.</div>
         <a class="about-x-cta" href="https://x.com/QuantAlphaTrend" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           Follow us on X @QuantAlphaTrend
