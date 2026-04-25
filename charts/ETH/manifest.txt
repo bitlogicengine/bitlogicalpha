@@ -1,3 +1,3 @@
 status: Positive
-note: ETH has managed to secure a daily close above $2,300, successfully following Bitcoin’s lead. While it remains a relative "laggard" in terms of velocity, this consolidation is a vital bullish prerequisite for the next leg up. As long as it holds the $2,250 level, the bias remains firmly positive with a short-term target of $2,400. Capital rotation into Ethereum is beginning to stabilize as ETF inflows remain consistent.
-updated: 24 Apr 2026
+note: ETH continues to grind higher, securing its position slightly above the $2,300 handle. While the ETH/BTC pair still shows signs of compression, the flat consolidation above key support is a constructive signal. This stability suggests that the "smart money" is positioning for a catch-up trade. As long as ETH remains above $2,280, the path toward the $2,450 resistance remains the primary path of least resistance.
+updated: 25 Apr 2026
