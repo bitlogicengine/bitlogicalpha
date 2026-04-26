@@ -1,3 +1,2 @@
-status: Negative
-note: Gold remains under significant pressure, closing right at the $4,700 mark. The technical outlook has shifted to bearish as the metal fails to attract buyers despite the drop in price. The continued outflow from defensive assets into high-beta risk-on plays is accelerating. A failure to reclaim $4,720 immediately could open the doors for a rapid descent toward the $4,650 support zone.
-updated: 25 Apr 2026
+note: Gold markets are closed for the Sunday session, but the sentiment remains decisively bearish following Friday’s close at $4,700. The technical breakdown of the $4,720 support has not yet attracted "buy-the-dip" interest, as the geopolitical risk premium continues to deflate. Expect high volatility at the Sunday night futures open (Globex); if $4,700 fails to hold upon reopening, the next technical target lies at the $4,650 support level.
+updated: 26 Apr 2026
