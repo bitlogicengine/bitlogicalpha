@@ -1324,6 +1324,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   .learn-grid{grid-template-columns:1fr !important}
   .res-grid{grid-template-columns:1fr !important}
   #simOutputGrid{grid-template-columns:1fr !important}
+  #fedLiqGrid{grid-template-columns:1fr !important}
 }
 
 /* Jump bar fade cue */
@@ -4276,7 +4277,7 @@ function renderFedLiquidity(data){
   const fillPct = Math.min(100, Math.max(5, ((netLiq - minL) / (maxL - minL)) * 100));
 
   el.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
+    <div id="fedLiqGrid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
       <div style="background:var(--surface2);padding:24px 20px">
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Net Liquidity</div>
         <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${color};line-height:1">${(netLiq/1000).toFixed(2)}T</div>
