@@ -1336,7 +1336,19 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 }
 
 /* Back to top */
-.back-to-top{
+.macro-range-btn{
+  background:none;
+  border:1px solid var(--text-dim);
+  color:var(--text-muted);
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:1px;
+  padding:4px 8px;cursor:pointer;
+  transition:border-color 0.2s,color 0.2s;
+}
+.macro-range-btn:hover,.macro-range-btn.active{
+  border-color:var(--gold);
+  color:var(--gold);
+}
   position:fixed;bottom:28px;right:20px;
   width:40px;height:40px;
   background:var(--surface2);
@@ -1971,12 +1983,13 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <div class="section">
       <div class="section-header">
         <div class="section-label" style="font-size:14px">BTC Price vs Global M2</div>
-        <div class="section-meta">Jan 2020 – Present · Log scale</div>
+        <div class="section-meta">Log scale</div>
       </div>
       <div style="background:var(--surface2);padding:28px 24px">
         <canvas id="macroChart" style="width:100%;height:420px;max-height:420px"></canvas>
       </div>
-      <div style="background:var(--surface);padding:16px 24px;border-top:1px solid var(--text-dim);display:flex;gap:32px;flex-wrap:wrap">
+      <!-- Legend -->
+      <div style="background:var(--surface);padding:12px 24px;border-top:1px solid var(--text-dim);display:flex;gap:24px;flex-wrap:wrap;align-items:center">
         <div style="display:flex;align-items:center;gap:8px">
           <div style="width:24px;height:3px;background:#f7931a;border-radius:2px"></div>
           <span style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">Bitcoin Price (USD)</span>
@@ -1986,6 +1999,32 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <span style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">Global M2 (USD Trillions)</span>
         </div>
         <div style="margin-left:auto;font-size:9px;color:var(--text-dim);letter-spacing:1px" id="macroLastUpdated">—</div>
+      </div>
+      <!-- Year range selector -->
+      <div style="background:var(--surface);padding:16px 24px;border-top:1px solid var(--text-dim);display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">From</span>
+          <select id="macroYearFrom" onchange="applyMacroYearRange()" style="background:var(--surface2);color:var(--text);border:1px solid var(--text-dim);font-family:'DM Mono',monospace;font-size:10px;padding:4px 8px;cursor:pointer">
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">To</span>
+          <select id="macroYearTo" onchange="applyMacroYearRange()" style="background:var(--surface2);color:var(--text);border:1px solid var(--text-dim);font-family:'DM Mono',monospace;font-size:10px;padding:4px 8px;cursor:pointer">
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026" selected>2026</option>
+          </select>
+        </div>
+        <button onclick="applyMacroYearRange(true)" style="background:none;border:1px solid var(--text-dim);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;padding:4px 10px;cursor:pointer" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--text-dim)';this.style.color='var(--text-muted)'">RESET</button>
       </div>
     </div>
 
@@ -4265,48 +4304,78 @@ function renderFedLiquidity(data){
     </div>`;
 }
 
+function applyMacroYearRange(reset){
+  if(!window._macroBtcData || !window._macroM2Data) return;
+  const fromSel = document.getElementById('macroYearFrom');
+  const toSel   = document.getElementById('macroYearTo');
+  if(reset){ fromSel.value='2020'; toSel.value='2026'; }
+  const fromStr = fromSel.value + '-01-01';
+  const toStr   = toSel.value   + '-12-31';
+  const btcFiltered = window._macroBtcData.filter(d => d.date >= fromStr && d.date <= toStr);
+  const m2Filtered  = window._macroM2Data.filter(d => (d.date+'-01') >= fromStr && (d.date+'-01') <= toStr);
+  buildMacroChart(btcFiltered.length ? btcFiltered : window._macroBtcData,
+                  m2Filtered.length  ? m2Filtered  : window._macroM2Data);
+}
+
 function renderMacroChart(btcData, m2Data){
   const canvas = document.getElementById('macroChart');
   if(!canvas) return;
-
   if(window._macroChartInstance) window._macroChartInstance.destroy();
 
-  // Sort both datasets by date ascending
   btcData = [...btcData].sort((a,b) => new Date(a.date) - new Date(b.date));
   m2Data  = [...m2Data].sort((a,b)  => new Date(a.date+'-01') - new Date(b.date+'-01'));
 
-  const btcPoints = btcData.map(d => ({ x: d.date, y: d.price }));
+  // Normalize to weekly points so pre-2023 sparse and post-2023 daily data
+  // are displayed with consistent visual spacing
+  const weekly = [];
+  let lastDate = null;
+  for(const d of btcData){
+    if(!lastDate || (new Date(d.date) - new Date(lastDate)) >= 6 * 24 * 3600 * 1000){
+      weekly.push(d);
+      lastDate = d.date;
+    }
+  }
 
-  // Smooth linear interpolation of M2 monthly → daily
-  const m2Entries = m2Data.map(d => ({
-    date: new Date(d.date + '-01'),
-    value: d.value
-  }));
+  window._macroBtcData = weekly;
+  window._macroM2Data  = m2Data;
+  buildMacroChart(weekly, m2Data);
+}
 
-  const m2Points = btcData.map(d => {
+function buildM2Points(btcData, m2Data){
+  const m2Entries = m2Data.map(d => ({ date: new Date(d.date+'-01'), value: d.value }));
+  return btcData.map(d => {
     const day = new Date(d.date);
     let before = null, after = null;
     for(let i = 0; i < m2Entries.length; i++){
       if(m2Entries[i].date <= day) before = m2Entries[i];
       if(m2Entries[i].date > day && !after) after = m2Entries[i];
     }
-    let val = null;
     if(before && after){
       const t = (day - before.date) / (after.date - before.date);
-      val = before.value + (after.value - before.value) * t;
-    } else if(before) val = before.value;
-    else if(after)    val = after.value;
-    return { x: d.date, y: val };
+      return before.value + (after.value - before.value) * t;
+    }
+    return before ? before.value : (after ? after.value : null);
   });
+}
+
+function buildMacroChart(btcData, m2Data){
+  const canvas = document.getElementById('macroChart');
+  if(!canvas) return;
+  if(window._macroChartInstance) window._macroChartInstance.destroy();
+
+  const labels    = btcData.map(d => d.date);
+  const btcPrices = btcData.map(d => d.price);
+  const m2Prices  = buildM2Points(btcData, m2Data);
 
   const ctx = canvas.getContext('2d');
   window._macroChartInstance = new Chart(ctx, {
     type: 'line',
     data: {
+      labels: labels,
       datasets: [
         {
           label: 'BTC Price (USD)',
-          data: btcPoints,
+          data: btcPrices,
           borderColor: '#f7931a',
           backgroundColor: 'rgba(247,147,26,0.08)',
           borderWidth: 1.5,
@@ -4318,7 +4387,7 @@ function renderMacroChart(btcData, m2Data){
         },
         {
           label: 'Global M2 (Trillions USD)',
-          data: m2Points,
+          data: m2Prices,
           borderColor: '#4caf7d',
           backgroundColor: 'rgba(76,175,125,0.06)',
           borderWidth: 2,
@@ -4345,7 +4414,6 @@ function renderMacroChart(btcData, m2Data){
           titleFont: { family: 'DM Mono, monospace', size: 11 },
           bodyFont:  { family: 'DM Mono, monospace', size: 11 },
           callbacks: {
-            title: items => items[0]?.label || '',
             label: item => {
               if(item.datasetIndex===0) return ' BTC: $'+Math.round(item.parsed.y).toLocaleString();
               return item.parsed.y ? ' M2: $'+item.parsed.y.toFixed(1)+'T' : ' M2: —';
@@ -4355,7 +4423,6 @@ function renderMacroChart(btcData, m2Data){
       },
       scales: {
         x: {
-          type: 'category',
           grid:  { color: 'rgba(255,255,255,0.04)' },
           border:{ color: '#3a3530' },
           ticks: {
@@ -4363,13 +4430,10 @@ function renderMacroChart(btcData, m2Data){
             font:  { family: 'DM Mono, monospace', size: 9 },
             maxRotation: 0,
             maxTicksLimit: 10,
-            // Show only Jan 1 of each year as label
             callback: function(val, index){
               const label = this.getLabelForValue(val);
-              if(label && label.endsWith('-01-01')) return label.substring(0,4);
               if(label && label.substring(5) === '01-01') return label.substring(0,4);
-              // fallback: show every ~365th point
-              const total = this.chart.data.datasets[0].data.length;
+              const total = this.chart.data.labels.length;
               const step  = Math.max(1, Math.floor(total / 10));
               return index % step === 0 ? label.substring(0,7) : '';
             }
@@ -4384,11 +4448,7 @@ function renderMacroChart(btcData, m2Data){
             color: '#f7931a',
             font:  { family: 'DM Mono, monospace', size: 9 },
             maxTicksLimit: 8,
-            callback: v => {
-              if(v >= 1000000) return '$'+Math.round(v/1000)+'K';
-              if(v >= 1000)    return '$'+Math.round(v/1000)+'K';
-              return '$'+v;
-            }
+            callback: v => '$'+(v>=1000 ? Math.round(v/1000)+'K' : v)
           }
         },
         yM2: {
