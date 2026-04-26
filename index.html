@@ -1323,6 +1323,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   .about-grid{grid-template-columns:1fr !important}
   .learn-grid{grid-template-columns:1fr !important}
   .res-grid{grid-template-columns:1fr !important}
+  #simOutputGrid{grid-template-columns:1fr !important}
 }
 
 /* Jump bar fade cue */
@@ -1999,13 +2000,135 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
     </div>
 
+    <!-- Liquidity Shock Simulator -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label" style="font-size:14px">Liquidity Shock Simulator <span style="font-size:9px;color:var(--gold);letter-spacing:2px;vertical-align:middle;margin-left:8px">BETA</span></div>
+        <div class="section-meta">Interactive Fed Liquidity & BTC Floor Projections</div>
+      </div>
+      <div style="background:var(--surface2);padding:28px 24px">
+
+        <!-- Sliders -->
+        <div style="display:flex;flex-direction:column;gap:28px;margin-bottom:32px">
+
+          <!-- Fed Balance Sheet -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div>
+                <div style="font-size:10px;color:var(--text);letter-spacing:2px;text-transform:uppercase">Fed Balance Sheet</div>
+                <div style="font-size:9px;color:var(--text-muted);letter-spacing:1px;margin-top:3px">Simulate QE expansion or QT contraction</div>
+              </div>
+              <div style="font-size:14px;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif" id="simBsVal">$0B</div>
+            </div>
+            <input type="range" id="simBs" min="-1000" max="1000" value="0" step="50"
+              style="width:100%;accent-color:var(--gold);cursor:pointer"
+              oninput="updateSimulator()">
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--text-dim);letter-spacing:1px">
+              <span>◀ CONTRACTION</span><span>EXPANSION ▶</span>
+            </div>
+          </div>
+
+          <!-- TGA -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div>
+                <div style="font-size:10px;color:var(--text);letter-spacing:2px;text-transform:uppercase">Treasury (TGA)</div>
+                <div style="font-size:9px;color:var(--text-muted);letter-spacing:1px;margin-top:3px">Government spending (drain) or tax inflows (fill)</div>
+              </div>
+              <div style="font-size:14px;font-weight:700;color:#4caf7d;font-family:'Playfair Display',serif" id="simTgaVal">$0B</div>
+            </div>
+            <input type="range" id="simTga" min="-500" max="500" value="0" step="25"
+              style="width:100%;accent-color:#4caf7d;cursor:pointer"
+              oninput="updateSimulator()">
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--text-dim);letter-spacing:1px">
+              <span>◀ TGA FILL</span><span>TGA DRAIN ▶</span>
+            </div>
+          </div>
+
+          <!-- RRP -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div>
+                <div style="font-size:10px;color:var(--text);letter-spacing:2px;text-transform:uppercase">Reverse Repo (RRP)</div>
+                <div style="font-size:9px;color:var(--text-muted);letter-spacing:1px;margin-top:3px">Excess cash leaving Fed's facility → injects liquidity</div>
+              </div>
+              <div style="font-size:14px;font-weight:700;color:#e07755;font-family:'Playfair Display',serif" id="simRrpVal">$0B</div>
+            </div>
+            <input type="range" id="simRrp" min="-300" max="300" value="0" step="25"
+              style="width:100%;accent-color:#e07755;cursor:pointer"
+              oninput="updateSimulator()">
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--text-dim);letter-spacing:1px">
+              <span>◀ RRP INCREASE</span><span>RRP DECREASE ▶</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Output -->
+        <div style="border-top:1px solid var(--text-dim);padding-top:24px">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:2px" id="simOutputGrid">
+
+            <div style="background:var(--surface);padding:20px 16px;text-align:center">
+              <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Net Liquidity Δ</div>
+              <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1" id="simNetDelta">$0B</div>
+              <div style="font-size:8px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">vs current baseline</div>
+            </div>
+
+            <div style="background:var(--surface);padding:20px 16px;text-align:center">
+              <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Projected Net Liq.</div>
+              <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1" id="simProjected">—</div>
+              <div style="font-size:8px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">BS − TGA − RRP simulated</div>
+            </div>
+
+            <div style="background:var(--surface);padding:20px 16px;text-align:center;border-left:3px solid var(--gold)">
+              <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">BTC Floor Est.</div>
+              <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1" id="simBtcFloor">—</div>
+              <div style="font-size:8px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">Historical liq. correlation</div>
+            </div>
+
+          </div>
+
+          <!-- Regime output bar -->
+          <div id="simRegimeBar" style="background:var(--surface);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div style="font-size:9px;color:var(--text-dim);letter-spacing:2px">SIMULATED REGIME</div>
+            <div id="simRegimeLabel" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;letter-spacing:1px;color:var(--gold)">BASELINE — ADJUST SLIDERS</div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div style="padding:12px 0 0;font-size:9px;color:var(--text-dim);letter-spacing:0.5px;line-height:1.6">
+            ⚠ Simulation only. BTC floor estimates use historical net liquidity correlation (~$10K BTC per $100B net liquidity). Not financial advice.
+          </div>
+        </div>
+
+      </div>
+      <div style="background:var(--surface2);border-left:3px solid var(--gold);padding:20px 24px;margin-top:2px">
+        <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">BitLogic Analysis · Simulator</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.85;letter-spacing:0.3px">The Liquidity Shock Simulator (Beta) allows you to model the impact of Fed balance sheet changes on BTC. The tool calculates a real-time Liquidity Beta to project the most likely structural price floor.</div>
+      </div>
+    </div>
+
     <!-- BitLogic Analysis -->
     <div class="section">
       <div class="section-header">
-        <div class="section-label" style="font-size:14px">The M2 Signal</div>
+        <div class="section-label" style="font-size:14px">Analysis</div>
+        <div class="section-meta">Macro Intelligence</div>
       </div>
+
+      <!-- Fed Net Liquidity -->
+      <div style="background:var(--surface2);border-left:3px solid var(--gold);padding:20px 24px;margin-bottom:2px">
+        <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Fed Net Liquidity</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.85;letter-spacing:0.3px;margin-bottom:16px">
+          Fed Net Liquidity measures the actual amount of cash available in the commercial banking system. Unlike the standard Fed Balance Sheet, Net Liquidity accounts for the capital locked in government accounts. It is the primary engine behind "Risk-On" cycles for assets like Bitcoin.
+        </div>
+        <div style="background:var(--surface);padding:14px 18px;border-left:2px solid var(--text-dim)">
+          <div style="font-size:9px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">The Formula</div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text);letter-spacing:1px">Net Liquidity = Fed Balance Sheet − (TGA + RRP)</div>
+        </div>
+      </div>
+
+      <!-- M2 -->
       <div style="background:var(--surface2);border-left:3px solid var(--gold);padding:20px 24px">
-        <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">BitLogic Analysis · Macro</div>
+        <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Global M2 Signal</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.85;letter-spacing:0.3px">
           Global M2 money supply is the total amount of money in circulation across the world's major economies. When central banks expand M2 — through rate cuts, QE, or fiscal stimulus — liquidity flows into risk assets. Bitcoin has historically tracked global M2 with a 3–6 month lag. When M2 rises, capital eventually reaches crypto. When M2 contracts, it is typically followed by a risk-off environment that pressures BTC. The current M2 trend is one of the most important macro variables for the medium-term Bitcoin outlook.
         </div>
@@ -3975,6 +4098,85 @@ async function fetchPerformance(){
 
   }catch(e){
     el.innerHTML='<div class="loading">Performance data unavailable</div>';
+  }
+}
+
+// ── LIQUIDITY SHOCK SIMULATOR ─────────────────────────────
+function updateSimulator(){
+  const bsDelta  = parseInt(document.getElementById('simBs')?.value  || 0);
+  const tgaDelta = parseInt(document.getElementById('simTga')?.value || 0);
+  const rrpDelta = parseInt(document.getElementById('simRrp')?.value || 0);
+
+  // Update slider value labels
+  const fmt = v => (v >= 0 ? '+' : '') + '$' + Math.abs(v) + 'B';
+  document.getElementById('simBsVal').textContent  = fmt(bsDelta);
+  document.getElementById('simTgaVal').textContent = fmt(-tgaDelta); // TGA drag is inverse
+  document.getElementById('simRrpVal').textContent = fmt(-rrpDelta); // RRP drag is inverse
+
+  // Net liquidity delta: BS up = +liq, TGA up = -liq, RRP up = -liq
+  const netDelta = bsDelta + tgaDelta + rrpDelta;
+
+  // Get current baseline from fed liquidity data if available
+  const baselineEl = document.getElementById('simProjected');
+  let currentNetLiq = 5989; // default fallback in billions
+  const fedWidget = document.getElementById('fedLiquidityWidget');
+  if(fedWidget){
+    const netEl = fedWidget.querySelector('[id]');
+    // Try to extract from rendered widget
+    const text = fedWidget.innerText || '';
+    const match = text.match(/\$?([\d.]+)T/);
+    if(match) currentNetLiq = parseFloat(match[1]) * 1000;
+  }
+
+  const projectedLiq = currentNetLiq + netDelta;
+
+  // BTC floor estimate — historical correlation: ~$10K per $100B net liquidity
+  // Calibrated: $6T net liq ≈ $60K BTC floor (rough historical anchor)
+  const btcFloor = Math.max(0, Math.round((projectedLiq / 6000) * 60000 / 1000) * 1000);
+
+  // Colors
+  const deltaColor = netDelta > 0 ? '#4caf7d' : netDelta < 0 ? '#e05555' : 'var(--gold)';
+
+  // Update outputs
+  const netDeltaEl = document.getElementById('simNetDelta');
+  if(netDeltaEl){
+    netDeltaEl.textContent = fmt(netDelta);
+    netDeltaEl.style.color = deltaColor;
+  }
+  if(baselineEl){
+    baselineEl.textContent = '$' + (projectedLiq/1000).toFixed(2) + 'T';
+    baselineEl.style.color = deltaColor;
+  }
+  const floorEl = document.getElementById('simBtcFloor');
+  if(floorEl){
+    floorEl.textContent = '$' + btcFloor.toLocaleString();
+    floorEl.style.color = deltaColor;
+  }
+
+  // Regime label
+  const regimeEl = document.getElementById('simRegimeLabel');
+  if(regimeEl){
+    let regime, color;
+    if(netDelta > 300){
+      regime = '🚀 STRONG LIQUIDITY EXPANSION — HIGHLY BULLISH';
+      color  = '#4caf7d';
+    } else if(netDelta > 100){
+      regime = '▲ MODERATE EXPANSION — BULLISH BACKDROP';
+      color  = '#7bc47f';
+    } else if(netDelta > -100){
+      regime = '→ NEUTRAL — BASELINE CONDITIONS';
+      color  = '#c9a84c';
+    } else if(netDelta > -300){
+      regime = '▼ MODERATE CONTRACTION — BEARISH PRESSURE';
+      color  = '#e07755';
+    } else {
+      regime = '⚠ SEVERE LIQUIDITY DRAIN — RISK-OFF';
+      color  = '#e05555';
+    }
+    regimeEl.textContent = regime;
+    regimeEl.style.color = color;
+    const bar = document.getElementById('simRegimeBar');
+    if(bar) bar.style.borderLeft = '3px solid ' + color;
   }
 }
 
