@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index has plummeted to 31 (Fear), even as Bitcoin maintains its $77K high-ground. We are witnessing an extreme "Bullish Divergence": retail traders are increasingly convinced of a "double top" or a trap, while on-chain data and Net Liquidity ($5.68T) suggest a structural expansion. This climate of fear is historically the most fertile ground for a continuation higher, as it prevents the market from becoming over-leveraged and creates a "pain trade" for those waiting on the sidelines.
-date: 25 Apr 2026
+comment: The Index has ticked up slightly to 33, but remains firmly in the "Fear" zone. The market is currently in a state of "Disbelief" — a phase where prices rise while retail participants remain convinced of an impending crash. This is the definition of climbing the Wall of Worry. With the Net Liquidity floor steady at $5.68T, the lack of retail euphoria is the best indicator that the cyclical top is not yet in sight.
+date: 26 Apr 2026
