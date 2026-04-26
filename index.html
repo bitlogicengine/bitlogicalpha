@@ -2024,7 +2024,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
               style="width:100%;accent-color:var(--gold);cursor:pointer"
               oninput="updateSimulator()">
             <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--text-dim);letter-spacing:1px">
-              <span>◀ CONTRACTION</span><span>EXPANSION ▶</span>
+              <span>◀ TIGHTENING</span><span>PRINTING ▶</span>
             </div>
           </div>
 
@@ -2041,7 +2041,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
               style="width:100%;accent-color:#4caf7d;cursor:pointer"
               oninput="updateSimulator()">
             <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--text-dim);letter-spacing:1px">
-              <span>◀ TGA FILL</span><span>TGA DRAIN ▶</span>
+              <span>◀ TAX COLLECTION (DRAIN)</span><span>GOV SPENDING (INJECTION) ▶</span>
             </div>
           </div>
 
@@ -2058,7 +2058,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
               style="width:100%;accent-color:#e07755;cursor:pointer"
               oninput="updateSimulator()">
             <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--text-dim);letter-spacing:1px">
-              <span>◀ RRP INCREASE</span><span>RRP DECREASE ▶</span>
+              <span>◀ MONEY PARKING</span><span>MONEY CIRCULATING ▶</span>
             </div>
           </div>
 
@@ -4103,75 +4103,84 @@ async function fetchPerformance(){
 
 // ── LIQUIDITY SHOCK SIMULATOR ─────────────────────────────
 function updateSimulator(){
-  const bsDelta  = parseInt(document.getElementById('simBs')?.value  || 0);
-  const tgaDelta = parseInt(document.getElementById('simTga')?.value || 0);
-  const rrpDelta = parseInt(document.getElementById('simRrp')?.value || 0);
+  // ── Read slider values (deltas in billions) ───────────────
+  const deltaBS  = parseInt(document.getElementById('simBs')?.value  || 0);
+  const deltaTGA = parseInt(document.getElementById('simTga')?.value || 0);
+  const deltaRRP = parseInt(document.getElementById('simRrp')?.value || 0);
 
-  // Update slider value labels
-  const fmt = v => (v >= 0 ? '+' : '') + '$' + Math.abs(v) + 'B';
-  document.getElementById('simBsVal').textContent  = fmt(bsDelta);
-  document.getElementById('simTgaVal').textContent = fmt(-tgaDelta); // TGA drag is inverse
-  document.getElementById('simRrpVal').textContent = fmt(-rrpDelta); // RRP drag is inverse
+  // ── Update slider labels ──────────────────────────────────
+  const fmt  = v => (v >= 0 ? '+' : '') + '$' + Math.abs(v) + 'B';
+  const fmtT = v => (v >= 0 ? '+' : '-') + '$' + (Math.abs(v)/1000).toFixed(2) + 'T';
+  document.getElementById('simBsVal').textContent  = fmt(deltaBS);
+  document.getElementById('simTgaVal').textContent = fmt(deltaTGA);
+  document.getElementById('simRrpVal').textContent = fmt(deltaRRP);
 
-  // Net liquidity delta: BS up = +liq, TGA up = -liq, RRP up = -liq
-  const netDelta = bsDelta + tgaDelta + rrpDelta;
+  // ── Get baseline values ───────────────────────────────────
+  // Try to extract from rendered fed liquidity widget
+  let currentBS  = 6582; // defaults in billions
+  let currentTGA = 525;
+  let currentRRP = 68;
 
-  // Get current baseline from fed liquidity data if available
-  const baselineEl = document.getElementById('simProjected');
-  let currentNetLiq = 5989; // default fallback in billions
-  const fedWidget = document.getElementById('fedLiquidityWidget');
-  if(fedWidget){
-    const netEl = fedWidget.querySelector('[id]');
-    // Try to extract from rendered widget
-    const text = fedWidget.innerText || '';
-    const match = text.match(/\$?([\d.]+)T/);
-    if(match) currentNetLiq = parseFloat(match[1]) * 1000;
+  // Try to read from cachedFedData if available
+  if(window._fedLiqData && window._fedLiqData.length){
+    const latest = window._fedLiqData[window._fedLiqData.length - 1];
+    currentBS  = latest.balance_sheet;
+    currentTGA = latest.tga;
+    currentRRP = latest.rrp;
   }
 
-  const projectedLiq = currentNetLiq + netDelta;
+  const currentNetLiq = currentBS - currentTGA - currentRRP;
 
-  // BTC floor estimate — historical correlation: ~$10K per $100B net liquidity
-  // Calibrated: $6T net liq ≈ $60K BTC floor (rough historical anchor)
-  const btcFloor = Math.max(0, Math.round((projectedLiq / 6000) * 60000 / 1000) * 1000);
+  // ── Simulated values ──────────────────────────────────────
+  const simulatedBS  = currentBS  + deltaBS;
+  const simulatedTGA = currentTGA + deltaTGA;
+  const simulatedRRP = currentRRP + deltaRRP;
+  const projectedNetLiq = simulatedBS - simulatedTGA - simulatedRRP;
 
-  // Colors
-  const deltaColor = netDelta > 0 ? '#4caf7d' : netDelta < 0 ? '#e05555' : 'var(--gold)';
+  // ── Liquidity Impulse = BS↑ is good, TGA↑ is bad, RRP↑ is bad ──
+  const liquidityImpulse = deltaBS - deltaTGA - deltaRRP;
 
-  // Update outputs
+  // ── BTC Projected Price using Liquidity Beta ──────────────
+  const currentBTC = cachedMarketData?.find(c=>c.id==='bitcoin')?.current_price || 78000;
+  const liquidityBeta = 4.0;
+  const percentChange = (liquidityImpulse / currentNetLiq) * liquidityBeta;
+  const projectedBTC  = Math.max(0, Math.round(currentBTC * (1 + percentChange) / 100) * 100);
+
+  // ── Colors ────────────────────────────────────────────────
+  const impulseColor = liquidityImpulse > 0 ? '#4caf7d' : liquidityImpulse < 0 ? '#e05555' : 'var(--gold)';
+
+  // ── Update output cards ───────────────────────────────────
   const netDeltaEl = document.getElementById('simNetDelta');
   if(netDeltaEl){
-    netDeltaEl.textContent = fmt(netDelta);
-    netDeltaEl.style.color = deltaColor;
+    netDeltaEl.textContent = fmt(liquidityImpulse);
+    netDeltaEl.style.color = impulseColor;
   }
-  if(baselineEl){
-    baselineEl.textContent = '$' + (projectedLiq/1000).toFixed(2) + 'T';
-    baselineEl.style.color = deltaColor;
+  const projectedEl = document.getElementById('simProjected');
+  if(projectedEl){
+    projectedEl.textContent = '$' + (projectedNetLiq/1000).toFixed(2) + 'T';
+    projectedEl.style.color = impulseColor;
   }
   const floorEl = document.getElementById('simBtcFloor');
   if(floorEl){
-    floorEl.textContent = '$' + btcFloor.toLocaleString();
-    floorEl.style.color = deltaColor;
+    floorEl.textContent = '$' + projectedBTC.toLocaleString();
+    floorEl.style.color = impulseColor;
   }
 
-  // Regime label
+  // ── Regime label ──────────────────────────────────────────
   const regimeEl = document.getElementById('simRegimeLabel');
   if(regimeEl){
     let regime, color;
-    if(netDelta > 300){
-      regime = '🚀 STRONG LIQUIDITY EXPANSION — HIGHLY BULLISH';
-      color  = '#4caf7d';
-    } else if(netDelta > 100){
-      regime = '▲ MODERATE EXPANSION — BULLISH BACKDROP';
-      color  = '#7bc47f';
-    } else if(netDelta > -100){
-      regime = '→ NEUTRAL — BASELINE CONDITIONS';
-      color  = '#c9a84c';
-    } else if(netDelta > -300){
-      regime = '▼ MODERATE CONTRACTION — BEARISH PRESSURE';
-      color  = '#e07755';
+    const pct = percentChange * 100;
+    if(pct > 20){
+      regime = '🚀 STRONG EXPANSION — HIGHLY BULLISH';       color = '#4caf7d';
+    } else if(pct > 5){
+      regime = '▲ MODERATE EXPANSION — BULLISH BACKDROP';    color = '#7bc47f';
+    } else if(pct > -5){
+      regime = '→ NEUTRAL — BASELINE CONDITIONS';             color = '#c9a84c';
+    } else if(pct > -20){
+      regime = '▼ MODERATE CONTRACTION — BEARISH PRESSURE';  color = '#e07755';
     } else {
-      regime = '⚠ SEVERE LIQUIDITY DRAIN — RISK-OFF';
-      color  = '#e05555';
+      regime = '⚠ SEVERE LIQUIDITY DRAIN — RISK-OFF';        color = '#e05555';
     }
     regimeEl.textContent = regime;
     regimeEl.style.color = color;
@@ -4190,7 +4199,10 @@ async function fetchMacro(){
     ]);
     if(!btcRes || !m2Res) throw new Error('Data unavailable');
     renderMacroChart(btcRes, m2Res);
-    if(fedRes) renderFedLiquidity(fedRes);
+    if(fedRes) {
+      window._fedLiqData = fedRes;
+      renderFedLiquidity(fedRes);
+    }
     const el = document.getElementById('macroLastUpdated');
     if(el) el.textContent = 'BTC updated daily · M2 & Fed updated manually';
   }catch(e){
