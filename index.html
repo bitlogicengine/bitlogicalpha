@@ -577,6 +577,9 @@ header{
 .trend-price-loading{opacity:0.3;letter-spacing:4px}
 .trend-price{transition:opacity 0.4s}font-size:28px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-0.5px}
 .trend-change{font-size:11px;letter-spacing:1px;margin-bottom:20px}
+.trend-change.up{color:#4caf7d}
+.trend-change.down{color:#e05555}
+.trend-change.neutral{color:var(--text-muted)}
 .trend-status-wrap{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .trend-status-icon{font-size:32px;line-height:1;font-weight:700}
 .trend-status-text{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;letter-spacing:2px}
@@ -3038,18 +3041,7 @@ function getSparkline(coin){
 }
 
 function renderSparkline(coin){
-  const history = getSparkline(coin);
-  if(!history.length) return '';
-  const today = new Date().toISOString().slice(0,10);
-  const icons = {positive:'+', negative:'−', neutral:'='};
-  const dots = history.map((h,i)=>{
-    const isToday = h.d === today;
-    return `<div class="spark-dot ${h.s}${isToday?' today':''}" title="${h.d}: ${h.s}">${icons[h.s]||'='}</div>`;
-  }).join('');
-  return `<div class="sparkline-wrap">
-    <span class="sparkline-label">7D</span>
-    ${dots}
-  </div>`;
+  return '';
 }
 
 function showLastUpdated(containerId, ts, stale=false){
@@ -3518,15 +3510,16 @@ function injectPrices(prices){
   coins.forEach(({coin, id})=>{
     const data     = prices.find(p=>p.id===id);
     const priceEl  = document.getElementById('trend-price-'+coin);
-    const changeEl = document.getElementById('trend-change-'+coin);
     if(!data || !priceEl) return;
     priceEl.textContent = '$'+data.current_price.toLocaleString();
+    const changeEl = document.getElementById('trend-change-'+coin);
     if(changeEl){
       const chg = data.price_change_percentage_24h || 0;
       const up  = chg >= 0;
       changeEl.className   = 'trend-change '+(up?'up':'down');
       changeEl.textContent = (up?'↑':'↓')+' '+Math.abs(chg).toFixed(2)+'% today';
     }
+
   });
   const el = document.getElementById('trendWidget');
   if(el) showLastUpdated('trendWidget', Date.now(), false);
@@ -3557,9 +3550,9 @@ async function fetchTrend(){
     const gold = parseManifest(goldRes);
 
     const statusConfig = {
-      positive: {label:'Positive', icon:'↑', color:'#4caf7d', cls:'positive'},
-      negative: {label:'Negative', icon:'↓', color:'#e05555', cls:'negative'},
-      neutral:  {label:'Neutral',  icon:'→', color:'#c9a84c', cls:'neutral'},
+      positive: {label:'Positive', color:'#4caf7d', cls:'positive'},
+      negative: {label:'Negative', color:'#e05555', cls:'negative'},
+      neutral:  {label:'Neutral',  color:'#c9a84c', cls:'neutral'},
     };
 
     function buildCard(coin, label, data, price, change){
@@ -3581,11 +3574,10 @@ async function fetchTrend(){
           <div class="trend-ribbon-fill" style="width:${ribbonWidth}%;background:${s.color};box-shadow:0 0 8px ${s.color}40"></div>
         </div>
         <div class="trend-ribbon-labels"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
-        <div class="trend-change ${up?'up':'down'}" id="trend-change-${coin}" style="margin-top:8px">${priceLoading ? '' : (up?'↑':'↓')+' '+Math.abs(change).toFixed(2)+'% today'}</div>
         <div class="trend-status-wrap">
-          <div class="trend-status-icon" style="color:${s.color}">${s.icon}</div>
           <div class="trend-status-text" style="color:${s.color}">${s.label}</div>
         </div>
+        <div class="trend-change ${priceLoading ? '' : (change >= 0 ? 'up' : 'down')}" id="trend-change-${coin}" style="margin-top:8px">${priceLoading ? '' : (change >= 0 ? '↑' : '↓')+' '+Math.abs(change).toFixed(2)+'% today'}</div>
         ${sparkline}
         ${data.note?`<div class="trend-note">${data.note}</div>`:''}
         ${data.updated?`<div class="trend-updated">Updated: ${data.updated}</div>`:''}
