@@ -1,2 +1,3 @@
+status: Positive
 note: Ethereum closed the week at $2,360, maintaining its hold on the $2,300 base with high precision. While Bitcoin is currently leading the market expansion, ETH is showing remarkable resilience and lack of sell-pressure. This "silent accumulation" suggests a volatility squeeze; once BTC stabilizes its new range, we expect a rapid rotation into the ETH/BTC pair to test the $2,500 liquidity pocket.
 updated: 27 Apr 2026
