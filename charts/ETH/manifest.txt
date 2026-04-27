@@ -1,3 +1,2 @@
-status: Positive
-note: ETH is showing remarkable resilience, maintaining its hold on the $2,300 handle. While the price action remains tighter compared to Bitcoin, the absence of a sell-off after the recent rally is a high-conviction signal. Technical indicators point toward a volatility squeeze; a successful weekly defense of $2,280 prepares the asset for a potential breakout toward the $2,450–$2,500 liquidity pocket in early May.
-updated: 26 Apr 2026
+note: Ethereum closed the week at $2,360, maintaining its hold on the $2,300 base with high precision. While Bitcoin is currently leading the market expansion, ETH is showing remarkable resilience and lack of sell-pressure. This "silent accumulation" suggests a volatility squeeze; once BTC stabilizes its new range, we expect a rapid rotation into the ETH/BTC pair to test the $2,500 liquidity pocket.
+updated: 27 Apr 2026
