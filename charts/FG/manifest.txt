@@ -1,2 +1,2 @@
-comment: The Index has ticked up slightly to 33, but remains firmly in the "Fear" zone. The market is currently in a state of "Disbelief" — a phase where prices rise while retail participants remain convinced of an impending crash. This is the definition of climbing the Wall of Worry. With the Net Liquidity floor steady at $5.69T, the lack of retail euphoria is the best indicator that the cyclical top is not yet in sight.
-date: 26 Apr 2026
+comment: The Index is holding steady at 33, firmly in "Fear" territory. This creates a massive divergence: Bitcoin is at $78.6k, yet the general public is still skeptical. This is a classic "Disbelief Phase." In professional trading, this "Wall of Worry" is the healthiest environment for a sustained rally. The engine remains fueled as Net Liquidity has ticked up to a precise $5.69T, providing a solid foundation for further expansion.
+date: 27 Apr 2026
