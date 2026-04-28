@@ -3142,6 +3142,7 @@ function switchTab(tab){
   document.getElementById('tab-'+tab).classList.add('active');
   document.getElementById('view-'+tab).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+  history.replaceState(null, '', '#'+tab);
   if(tab==='insights' && !insightsLoaded){
     insightsLoaded=true;
     fetchFearGreed();
@@ -4780,6 +4781,13 @@ fetchMarket();
 fetchTrend();
 fetchNews();
 fetchCalendar();
+
+// Open tab from URL hash if present
+(function(){
+  const valid = ['home','insights','bitcoin','alts','macro','resources','about'];
+  const hash  = window.location.hash.replace('#','');
+  if(valid.includes(hash)) switchTab(hash);
+})();
 
 window.addEventListener('scroll',()=>{
   const b=document.getElementById('backToTop');
