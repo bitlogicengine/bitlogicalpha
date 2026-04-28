@@ -1,3 +1,3 @@
 status: Positive
-note: Bitcoin has delivered a powerhouse weekly close at $78,600, decisively clearing the mid-April resistance. This move confirms that the $77,000–$77,500 zone has flipped from a ceiling to a structural floor. With the Monday US open approaching, the technical setup suggests a "liquidity vacuum" up to the $82k psychological barrier. The "Peace Dividend" from the Islamabad accords is providing the macro tailwind needed for this expansion.
-updated: 27 Apr 2026
+note: Bitcoin is holding its ground at $77,000 despite a sharp rejection from yesterday's highs. The structural floor remains firm as capital fleeing the Gold market seeks higher-velocity alternatives. As long as BTC stays above $76,500, this is considered a healthy retest of the previous resistance-turned-support. The divergence between BTC's stability and Gold's collapse is the primary macro story today.
+updated: 28 Apr 2026
