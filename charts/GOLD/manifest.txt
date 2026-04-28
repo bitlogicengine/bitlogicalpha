@@ -1,3 +1,3 @@
 status: Negative
-note: Gold markets remain flat at $4,700 following the Sunday break. The bearish sentiment persists as the global "Safe Haven" demand continues to evaporate in light of the Islamabad ceasefire framework. Analysts expect a gap-down at the Monday open; if the $4,680 support fails, the next technical target lies at the $4,550 zone.
-updated: 27 Apr 2026
+note: Gold (XAU) secured a daily close at $4,680, but the live tape has since plummeted to $4,600. This massive gap indicates a "limit-down" style sentiment as the US session approaches. The breach of the $4,700 close level confirms that the "geopolitical fear premium" is officially dead. We expect further weakness as the trend turns decisively bearish.
+updated: 28 Apr 2026
