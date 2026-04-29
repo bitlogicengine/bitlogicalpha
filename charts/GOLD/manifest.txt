@@ -1,3 +1,5 @@
 status: Negative
-note: Gold (XAU) secured a daily close at $4,680, but the live tape has since plummeted to $4,600. This massive gap indicates a "limit-down" style sentiment as the US session approaches. The breach of the $4,700 close level confirms that the "geopolitical fear premium" is officially dead. We expect further weakness as the trend turns decisively bearish.
-updated: 28 Apr 2026
+
+note: Gold (XAU) remains under pressure, trading within a range of $4,645–$4,760. The "Safe Haven" premium continues to leak into risk assets as geopolitical de-escalation persists. The trend remains tilted to the downside unless today's Fed commentary shifts the macro outlook.
+
+updated: 29 Apr 2026
