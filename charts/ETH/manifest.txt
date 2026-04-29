@@ -1,3 +1,5 @@
 status: Positive
-note: Ethereum remains resilient at $2,360, outperforming Gold significantly on a relative basis. ETH continues to consolidate within its established range, acting as a secondary liquidity sink for the capital rotating out of the commodities sector. All eyes remain on the $2,400 psychological barrier as the next major hurdle.
-updated: 28 Apr 2026
+
+note: ETH continues to hold its ground, mirroring BTC's late-session recovery. It remains in a consolidation phase, with the market waiting for a "volatility trigger" from the Fed. Support at $2,280 remains the critical line to defend.
+
+updated: 29 Apr 2026
