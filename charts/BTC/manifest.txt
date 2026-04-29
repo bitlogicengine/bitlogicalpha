@@ -1,3 +1,5 @@
 status: Positive
-note: Bitcoin is holding its ground at $77,000 despite a sharp rejection from yesterday's highs. The structural floor remains firm as capital fleeing the Gold market seeks higher-velocity alternatives. As long as BTC stays above $76,500, this is considered a healthy retest of the previous resistance-turned-support. The divergence between BTC's stability and Gold's collapse is the primary macro story today.
-updated: 28 Apr 2026
+
+note: Bitcoin secured a daily close at $76.3k, showing significant resilience ahead of the FOMC decision. While it dipped earlier, the ability to reclaim the $76k handle indicates that buyers are stepping in aggressively at these levels. We are now in a "wait-and-see" range between $75.6k (support) and $78.6k (resistance).
+
+updated: 29 Apr 2026
