@@ -1,5 +1,5 @@
 status: Positive
 
-note: ETH continues to hold its ground, mirroring BTC's late-session recovery. It remains in a consolidation phase, with the market waiting for a "volatility trigger" from the Fed. Support at $2,280 remains the critical line to defend.
+note: Ethereum closed at $2,250. While it is trailing Bitcoin's momentum, ETH is maintaining its primary support base. The current consolidation is creating a high-conviction setup; as long as the $2,200 level remains unchallenged, the "rotation thesis" for May remains the dominant macro play.
 
-updated: 29 Apr 2026
+updated: 30 Apr 2026
