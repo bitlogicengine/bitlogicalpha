@@ -1,2 +1,3 @@
-comment: The Index has plummeted to 26, sliding from "Fear" into "Extreme Fear". This marks an incredible "Disbelief Phase" peak: the market is terrified despite BTC holding $76.3k. Historically, "Extreme Fear" during a macro consolidation has been a primary indicator of a local bottom before a liquidity-driven squeeze. Net Liquidity remains the anchor at $5.69T.
-date: 29 Apr 2026
+comment: The Index has ticked up slightly to 29, but remains deep in "Extreme Fear". We are witnessing a historic psychological anomaly: Bitcoin is comfortably above $75k, yet the average participant is terrified. This is the definition of a "Stealth Bull Market." With Net Liquidity at a robust $5.73T, the math is winning, even if the emotions aren't.
+
+date: 30 Apr 2026
