@@ -1,5 +1,5 @@
 status: Negative
 
-note: Gold (XAU) remains under pressure, trading within a range of $4,645–$4,760. The "Safe Haven" premium continues to leak into risk assets as geopolitical de-escalation persists. The trend remains tilted to the downside unless today's Fed commentary shifts the macro outlook.
+note: Gold (XAU) has suffered a definitive breakdown, closing at $4,544. This confirms the loss of the $4,600 floor we were monitoring. The "Peace Dividend" is now fully priced in, and without a new geopolitical flare-up, Gold appears headed for a test of the $4,480 liquidity pocket.
 
-updated: 29 Apr 2026
+updated: 30 Apr 2026
