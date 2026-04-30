@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin secured a daily close at $76.3k, showing significant resilience ahead of the FOMC decision. While it dipped earlier, the ability to reclaim the $76k handle indicates that buyers are stepping in aggressively at these levels. We are now in a "wait-and-see" range between $75.6k (support) and $78.6k (resistance).
+note: Bitcoin secured a daily close at $75,750. Despite the slight pullback from the $76k handle, the structural trend remains bullish as it holds firmly above the critical $75.6k support zone. The market is currently absorbing the transition of Fed leadership, but the lack of aggressive sell-side pressure at these levels suggests institutional "diamond-handing."
 
-updated: 29 Apr 2026
+updated: 30 Apr 2026
