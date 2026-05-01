@@ -1,5 +1,5 @@
 status: Positive
 
-note: Ethereum closed at $2,250. While it is trailing Bitcoin's momentum, ETH is maintaining its primary support base. The current consolidation is creating a high-conviction setup; as long as the $2,200 level remains unchallenged, the "rotation thesis" for May remains the dominant macro play.
+note: Ethereum remains stable, closing at $2,250. While it continues to consolidate behind Bitcoin’s lead, the price floor is hardening. The stability at this level suggests that sellers are exhausted, and any fresh liquidity injection could trigger a rapid catch-up trade toward the $2,400 resistance.
 
-updated: 30 Apr 2026
+updated: 01 May 2026
