@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin secured a daily close at $75,750. Despite the slight pullback from the $76k handle, the structural trend remains bullish as it holds firmly above the critical $75.6k support zone. The market is currently absorbing the transition of Fed leadership, but the lack of aggressive sell-side pressure at these levels suggests institutional "diamond-handing."
+note: Bitcoin delivered a statement close at $77,000, fully recovering from the mid-week jitters. By locking in this level, BTC has confirmed the $76k zone as a validated support floor. As we head into the weekend, the "supply shock" narrative is intensifying, with exchange reserves hitting new lows while the price continues to grind higher.
 
-updated: 30 Apr 2026
+updated: 01 May 2026
