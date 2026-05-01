@@ -1,5 +1,5 @@
 status: Negative
 
-note: Gold (XAU) has suffered a definitive breakdown, closing at $4,544. This confirms the loss of the $4,600 floor we were monitoring. The "Peace Dividend" is now fully priced in, and without a new geopolitical flare-up, Gold appears headed for a test of the $4,480 liquidity pocket.
+note: Gold (XAU) managed a slight bounce to close at $4,620, but remains firmly in a negative state. The recovery is viewed as a "dead cat bounce" following the collapse to $4,544 yesterday. The overall trend remains bearish as capital continues to favor high-velocity risk assets over traditional safe havens.
 
-updated: 30 Apr 2026
+updated: 01 May 2026
