@@ -1,5 +1,5 @@
 status: Negative
 
-note: Gold (XAU) managed a slight bounce to close at $4,620, but remains firmly in a negative state. The recovery is viewed as a "dead cat bounce" following the collapse to $4,544 yesterday. The overall trend remains bearish as capital continues to favor high-velocity risk assets over traditional safe havens.
+note: Gold (XAU) continues its downward drift, closing at $4,615. While the pace of the sell-off has slowed, the metal has failed to reclaim its previous support levels. The "Safe Haven" rotation remains the dominant theme, as capital continues to flee into high-growth digital assets.
 
-updated: 01 May 2026
+updated: 02 May 2026
