@@ -1,3 +1,3 @@
-comment: The Index has retreated to 26, sliding back into "Extreme Fear". This is a textbook "Disbelief Phase." Bitcoin is holding $76.3k—a level that would normally signal strength—yet the public is terrified. For BitLogic Alpha users, this remains the ultimate buy-signal: price resilience coupled with extreme crowd panic. Net Liquidity is still the primary driver at $5.73T.
+comment: The Index has jumped significantly to 39, exiting "Extreme Fear" and moving back into "Fear". This 13-point leap is a classic "Short Squeeze" indicator—traders who were betting on a breakdown at 26 are now being forced to buy back their positions at higher prices. Despite the bounce, sentiment remains well below the neutral 50 line, suggesting there is still plenty of "fuel" left for the rally to continue.
 
-date: 01 May 2026
+date: 02 May 2026
