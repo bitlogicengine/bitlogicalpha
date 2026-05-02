@@ -1,5 +1,5 @@
 status: Positive
 
-note: Ethereum remains stable, closing at $2,250. While it continues to consolidate behind Bitcoin’s lead, the price floor is hardening. The stability at this level suggests that sellers are exhausted, and any fresh liquidity injection could trigger a rapid catch-up trade toward the $2,400 resistance.
+note: Ethereum has finally cleared the $2,300 hurdle, closing the daily session at $2,300 exactly. This move confirms that ETH is no longer lagging and has entered a "catch-up" phase. The technical structure is now significantly more robust, with a clear path toward the $2,450 resistance zone if the weekend volume holds.
 
-updated: 01 May 2026
+updated: 02 May 2026
