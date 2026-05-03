@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin delivered a massive daily close at $78,220, marking a clean breakout from the previous week's consolidation. This level effectively turns the old $77k resistance into a psychological floor. With the market successfully absorbing the "Extreme Fear" from earlier this week, BTC is now positioned for a direct challenge of the $80,000 milestone.
+note: Bitcoin delivered another strong daily close at $78,668. The asset is showing incredible strength by holding above the $78k level through the weekend, typically a lower-volume period. This price action suggests that the "supply floor" has moved up significantly, and bulls are now eyeing the psychological $80k resistance as the next major target.
 
-updated: 02 May 2026
+updated: 03 May 2026
