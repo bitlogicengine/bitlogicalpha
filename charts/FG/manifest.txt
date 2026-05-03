@@ -1,3 +1,3 @@
-comment: The Index has jumped significantly to 39, exiting "Extreme Fear" and moving back into "Fear". This 13-point leap is a classic "Short Squeeze" indicator—traders who were betting on a breakdown at 26 are now being forced to buy back their positions at higher prices. Despite the bounce, sentiment remains well below the neutral 50 line, suggesting there is still plenty of "fuel" left for the rally to continue.
+comment: The Index has surged to 47, moving within a hair's breadth of "Neutral". This is a massive recovery from the "Extreme Fear" of 26 seen just days ago. The "Disbelief Phase" is rapidly evaporating as the crowd realizes that despite their fears, the price floor held. We are now entering the "Validation Phase," where retail investors typically begin to chase the rally they doubted last week.
 
-date: 02 May 2026
+date: 03 May 2026
