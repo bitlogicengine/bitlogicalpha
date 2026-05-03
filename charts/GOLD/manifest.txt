@@ -1,5 +1,5 @@
 status: Negative
 
-note: Gold (XAU) continues its downward drift, closing at $4,615. While the pace of the sell-off has slowed, the metal has failed to reclaim its previous support levels. The "Safe Haven" rotation remains the dominant theme, as capital continues to flee into high-growth digital assets.
+note: Gold (XAU) remains unchanged at $4,615 as global markets were closed for the weekend. We expect volatility to return to the metals market at the Sunday evening Asian open. All eyes remain on whether Gold can find a bottom or if the rotation into digital assets will continue to weigh on the price.
 
-updated: 02 May 2026
+updated: 03 May 2026
