@@ -1,5 +1,5 @@
 status: Positive
 
-note: Ethereum has finally cleared the $2,300 hurdle, closing the daily session at $2,300 exactly. This move confirms that ETH is no longer lagging and has entered a "catch-up" phase. The technical structure is now significantly more robust, with a clear path toward the $2,450 resistance zone if the weekend volume holds.
+note: Ethereum remains in a clear consolidation phase, closing at $2,316. While it is technically in a "Positive" state because it's holding above key moving averages, it lacks the breakout momentum seen in BTC. It is currently "ping-ponging" in a tight range, building the necessary cause for its next major move.
 
-updated: 02 May 2026
+updated: 03 May 2026
