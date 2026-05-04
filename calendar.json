@@ -1,51 +1,51 @@
 [
   {
-    "day": "27",
-    "month": "Apr",
-    "type": "crypto",
-    "title": "Bitcoin 2026 Conference — Las Vegas (Day 1)",
-    "desc": "Opening day at The Venetian. Historically a catalyst for volatility. Focus shifts to sovereign adoption rumors and major institutional product launches. Watch for the 'Keynote Surprise' at 10:00 AM PST."
-  },
-  {
-    "day": "28",
-    "month": "Apr",
-    "type": "macro",
-    "title": "FOMC Decision — Powell's Swan Song",
-    "desc": "Jerome Powell’s final interest rate decision before handing the gavel to Kevin Warsh. While rates are expected to hold, the market will scrutinize the 'Exit Presser' for hints on how the transition will impact the 2026 easing cycle."
-  },
-  {
-    "day": "29",
-    "month": "Apr",
-    "type": "macro",
-    "title": "US GDP Q1 2026 (Advance Estimate)",
-    "desc": "The first official look at growth during the tariff-implementation quarter. A reading below 1.2% would signal a 'Hard Landing' risk, likely forcing a dovish pivot despite inflation concerns. Critical for BTC's 'Recession Hedge' narrative."
-  },
-  {
-    "day": "30",
-    "month": "Apr",
-    "type": "crypto",
-    "title": "CLARITY Act — Senate Markup Deadline",
-    "desc": "Final window for the Senate Banking Committee to move the bill to the floor. Confirmation of a markup session would be the single largest regulatory 'Green Flag' in crypto history. Failure to move signals a delay until 2027."
-  },
-  {
-    "day": "01",
+    "day": "04",
     "month": "May",
     "type": "macro",
-    "title": "US ISM Manufacturing PMI (April)",
-    "desc": "First major manufacturing data for Q2. Investors are looking for signs of stagflation. A print below 48.0 would confirm industrial contraction, potentially weakening the Dollar (DXY) and providing a tailwind for BTC/ETH."
+    "title": "Fed SLOOS Report — Credit Liquidity Update",
+    "desc": "The Senior Loan Officer Opinion Survey will reveal if banks are tightening or loosening credit. This is a primary driver for Net Liquidity; a 'tightening' result could stall BTC's move toward $80k as the broader money supply feels the squeeze."
   },
   {
-    "day": "01",
+    "day": "05",
     "month": "May",
     "type": "macro",
-    "title": "US Non-Farm Payrolls (April)",
-    "desc": "The 'Jobs Report'. Market expects 145k new jobs. If unemployment ticks above 4.1%, expect an immediate repricing of June rate-cut probabilities. Extreme sensitivity expected for high-beta assets."
+    "title": "ISM Services PMI & RBA Decision",
+    "desc": "A heavy macro day. Global markets will react to Australia's rate decision before the US Services PMI print. A weak US services sector would strengthen the 'Recession Hedge' case for Gold and Bitcoin as the DXY faces pressure."
   },
   {
-    "day": "03",
+    "day": "07",
     "month": "May",
     "type": "crypto",
-    "title": "Post-Conference Network Difficulty Adjustment",
-    "desc": "Following the Vegas summit, we expect a rebalancing of hash rate as new North American mining fleets come online. A positive adjustment will signal increasing network security and institutional miner confidence."
+    "title": "Coinbase (COIN) Q1 Earnings Report",
+    "desc": "The 'Vibe Check' for the crypto industry. Analysts are watching for retail volume growth and custodial fee revenue from Spot ETFs. A beat here validates the institutional adoption narrative and often acts as a front-runner for BTC price action."
+  },
+  {
+    "day": "07",
+    "month": "May",
+    "type": "crypto",
+    "title": "MicroStrategy (MSTR) Earnings & BTC Strategy",
+    "desc": "Expect Saylor to provide updates on the 'Bitcoin Treasury' model. The market will be watching for any new debt issuance or BTC purchase announcements. MSTR remains the high-beta proxy for institutional Bitcoin sentiment."
+  },
+  {
+    "day": "08",
+    "month": "May",
+    "type": "macro",
+    "title": "US Non-Farm Payrolls (NFP)",
+    "desc": "The most important data point of the week. A 'Goldilocks' report (not too hot, not too cold) is needed to keep the rally alive. If unemployment rises, the market will pivot to 'Rate Cut' mode, likely causing a spike in BTC and ETH volatility."
+  },
+  {
+    "day": "08",
+    "month": "May",
+    "type": "macro",
+    "title": "Consumer Sentiment (Univ. of Michigan)",
+    "desc": "Closing the week with a look at inflation expectations. High expectations here could lead to a 'Hawkish' weekend, potentially capping BTC's gains as traders hedge against a persistent 'higher for longer' Fed stance."
+  },
+  {
+    "day": "10",
+    "month": "May",
+    "type": "crypto",
+    "title": "Monthly Token Unlock Cycle — Phase 1",
+    "desc": "The first major cliff for several Tier-1 altcoin projects begins. We watch for potential sell-pressure on the ETH/Alt pairs. High-liquidity days often absorb these unlocks, but thin weekend volumes could create localized price dips."
   }
 ]
