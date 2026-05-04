@@ -1,5 +1,5 @@
 status: Negative
 
-note: Gold (XAU) remains unchanged at $4,615 as global markets were closed for the weekend. We expect volatility to return to the metals market at the Sunday evening Asian open. All eyes remain on whether Gold can find a bottom or if the rotation into digital assets will continue to weigh on the price.
+note: Gold (XAU) remains unchanged at $4,615 as it transitions from the weekend pause into the Monday global open. We are watching for a reaction at the $4,600 level; if it fails to hold, the capital rotation into risk-on assets like BTC is likely to accelerate.
 
-updated: 03 May 2026
+updated: 04 May 2026
