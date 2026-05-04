@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin delivered another strong daily close at $78,668. The asset is showing incredible strength by holding above the $78k level through the weekend, typically a lower-volume period. This price action suggests that the "supply floor" has moved up significantly, and bulls are now eyeing the psychological $80k resistance as the next major target.
+note: Bitcoin secured a daily close at $78,543. While slightly lower than the weekend peak, this remains a highly constructive hold above the $78k level. BTC is successfully absorbing the "sell-the-news" pressure from the Fed transition, consolidating its gains as it prepares for a potential high-volume attempt at the $80k psychological barrier.
 
-updated: 03 May 2026
+updated: 04 May 2026
