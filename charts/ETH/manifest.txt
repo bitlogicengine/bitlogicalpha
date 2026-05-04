@@ -1,5 +1,5 @@
 status: Positive
 
-note: Ethereum remains in a clear consolidation phase, closing at $2,316. While it is technically in a "Positive" state because it's holding above key moving averages, it lacks the breakout momentum seen in BTC. It is currently "ping-ponging" in a tight range, building the necessary cause for its next major move.
+note: Ethereum closed at $2,321. ETH continues its pattern of high-level consolidation; it is holding its ground and slowly grinding upward, but lacks the explosive momentum seen in the BTC pair. This sideways movement is building a significant "volatility floor" that could support a catch-up trade later in the week.
 
-updated: 03 May 2026
+updated: 04 May 2026
