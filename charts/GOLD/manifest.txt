@@ -1,5 +1,5 @@
 status: Negative
 
-note: Gold (XAU) remains unchanged at $4,615 as it transitions from the weekend pause into the Monday global open. We are watching for a reaction at the $4,600 level; if it fails to hold, the capital rotation into risk-on assets like BTC is likely to accelerate.
+note: Gold (XAU) remains under immense pressure at $4,524. The metal is showing zero signs of recovery as capital continues to migrate toward the "High-Velocity" returns found in the crypto market. The breakdown of the $4,600 level has triggered a technical liquidation.
 
-updated: 04 May 2026
+updated: 05 May 2026
