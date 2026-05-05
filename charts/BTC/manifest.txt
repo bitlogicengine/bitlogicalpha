@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin secured a daily close at $78,543. While slightly lower than the weekend peak, this remains a highly constructive hold above the $78k level. BTC is successfully absorbing the "sell-the-news" pressure from the Fed transition, consolidating its gains as it prepares for a potential high-volume attempt at the $80k psychological barrier.
+note: Bitcoin delivered a powerful daily close at $79,840. We are currently seeing a massive "buy the dip" mentality as the asset sits less than $200 away from the historic $80k mark. This price action is supported by the liquidity floor we identified at $5.73T, proving that macro forces are overpowering retail hesitation.
 
-updated: 04 May 2026
+updated: 05 May 2026
