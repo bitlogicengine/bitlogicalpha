@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin delivered a powerful daily close at $79,840. We are currently seeing a massive "buy the dip" mentality as the asset sits less than $200 away from the historic $80k mark. This price action is supported by the liquidity floor we identified at $5.73T, proving that macro forces are overpowering retail hesitation.
+note: Bitcoin has surged past the historic $80,000 milestone, hitting an intra-day high of $81,150. This move confirms that the "Wall of Worry" has been scaled. We are now in a high-volatility price discovery phase. The previous resistance at $80k will now be tested as a new structural support floor.
 
 updated: 05 May 2026
