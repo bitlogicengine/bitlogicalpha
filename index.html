@@ -1328,6 +1328,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   .res-grid{grid-template-columns:1fr !important}
   #simOutputGrid{grid-template-columns:1fr !important}
   #fedLiqGrid{grid-template-columns:1fr !important}
+  #divGrid{grid-template-columns:1fr !important}
 }
 
 /* Jump bar fade cue */
@@ -2040,6 +2041,20 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
       </div>
       <div id="fedLiquidityWidget">
         <div class="skeleton skel-block tall" style="margin:0"></div>
+      </div>
+    </div>
+
+    <!-- Divergence Tracker -->
+    <div class="section" id="sec-macro-divergence">
+      <div class="section-header">
+        <div class="section-label" style="font-size:14px">Retail vs Liquidity Divergence</div>
+        <div class="section-meta">Fear & Greed vs Fed Net Liquidity</div>
+      </div>
+      <div id="divergenceWidget">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
+          <div class="skeleton skel-block tall"></div>
+          <div class="skeleton skel-block short"></div>
+        </div>
       </div>
     </div>
 
@@ -3697,7 +3712,7 @@ async function fetchNews(){
       <div class="news-item">
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
         <div class="news-preview">
-          <a class="news-preview-title news-title-link" href="${BASE}/news/${slugify(n.title||'')}/" target="_blank">${n.title||''}</a>
+          <a class="news-preview-title news-title-link" href="${n.url||'#'}" target="_blank">${n.title||''}</a>
           <div class="news-preview-snippet">${firstPara}</div>
         </div>
         <div class="news-full" id="newsFull">
@@ -3734,11 +3749,13 @@ async function fetchFearGreed(){
   const cached = loadCache('bl_fg', 3600000);
   if(cached && cached.data){
     applyFearGreedData(cached.data);
+    window._fgHistory = cached.data;
     if(cached.stale) showLastUpdated('fgHistory', cached.ts, true);
   }
   try{
-    const data=await fetch('https://api.alternative.me/fng/?limit=10').then(r=>r.json());
+    const data=await fetch('https://api.alternative.me/fng/?limit=30').then(r=>r.json());
     applyFearGreedData(data.data);
+    window._fgHistory = data.data;
     saveCache('bl_fg', data.data);
     showLastUpdated('fgHistory', Date.now(), false);
 
@@ -4038,7 +4055,7 @@ async function fetchWeeklySummary(){
           ${posts.map(p=>`
             <div class="week-post" onclick="togglePost(this)">
               <div class="week-post-date">${p.date||''}</div>
-              <a class="week-post-title" href="${BASE}/news/${slugify(p.title||'')}/" target="_blank" onclick="event.stopPropagation()">${p.title||''}</a>
+              <a class="week-post-title" href="${p.url||'#'} target="_blank" onclick="event.stopPropagation()">${p.title||''}</a>
               <div class="week-post-arrow">→</div>
             </div>
             <div class="week-post-expand">
@@ -4134,7 +4151,252 @@ async function fetchPerformance(){
   }
 }
 
-// ── LIQUIDITY SHOCK SIMULATOR ─────────────────────────────
+// ── DIVERGENCE TRACKER ───────────────────────────────────
+function renderDivergenceTracker(){
+  const el = document.getElementById('divergenceWidget');
+  if(!el) return;
+
+  const fedData = window._fedLiqData;
+  const fgData  = window._fgHistory;
+
+  if(!fedData || !fedData.length || !fgData || !fgData.length){
+    let attempts = 0;
+    const retry = setInterval(()=>{
+      attempts++;
+      if(window._fedLiqData && window._fedLiqData.length && window._fgHistory && window._fgHistory.length){
+        clearInterval(retry);
+        renderDivergenceTracker();
+      } else if(attempts >= 30){
+        clearInterval(retry);
+        // Try fetching FG data directly if insights tab was never opened
+        if(!window._fgHistory){
+          fetch('https://api.alternative.me/fng/?limit=30')
+            .then(r=>r.json())
+            .then(d=>{ window._fgHistory = d.data; renderDivergenceTracker(); })
+            .catch(()=>{ if(el) el.innerHTML='<div class="loading">Data unavailable</div>'; });
+        }
+      }
+    }, 500);
+    return;
+  }
+
+  // Build net liquidity series from fed data
+  const liqSeries = fedData.map(d => ({
+    date: d.date,
+    netLiq: d.balance_sheet - d.tga - d.rrp
+  }));
+
+  // Normalize net liquidity to 0-100 scale for overlay
+  const liqMin = Math.min(...liqSeries.map(d=>d.netLiq));
+  const liqMax = Math.max(...liqSeries.map(d=>d.netLiq));
+  const liqNorm = liqSeries.map(d => ({
+    date: d.date,
+    raw:  d.netLiq,
+    norm: Math.round(((d.netLiq - liqMin) / (liqMax - liqMin)) * 100)
+  }));
+
+  // FG series — already 0-100
+  const fgSeries = fgData.map(d => ({
+    date:  new Date(d.timestamp * 1000).toISOString().slice(0,10),
+    value: parseInt(d.value),
+    label: d.value_classification
+  })).reverse(); // oldest first
+
+  // Latest values
+  const latestLiq = liqNorm[liqNorm.length - 1];
+  const latestFG  = fgSeries[fgSeries.length - 1];
+  const divergence = latestFG.value - latestLiq.norm;
+  const absDiverg  = Math.abs(divergence);
+
+  // Interpretation
+  let signal, signalColor, signalDesc;
+  if(divergence > 20){
+    signal = 'RETAIL OVERCONFIDENT';
+    signalColor = '#e07755';
+    signalDesc = 'Sentiment is significantly more bullish than liquidity conditions justify. Smart money has not confirmed the move. Historically a mean-reversion risk signal.';
+  } else if(divergence < -20){
+    signal = 'SENTIMENT LAGGING LIQUIDITY';
+    signalColor = '#4caf7d';
+    signalDesc = 'Liquidity conditions are more bullish than retail sentiment reflects. Smart money is ahead of retail. Historically a contrarian accumulation opportunity.';
+  } else {
+    signal = 'ALIGNED';
+    signalColor = '#c9a84c';
+    signalDesc = 'Retail sentiment and liquidity conditions are broadly in sync. No major divergence detected. Watch for a breakout in either direction.';
+  }
+
+  // Use last 10 FG daily values + last 10 fed liquidity entries
+  // Plot them side by side on the same 0-100 normalised scale
+  const fgLast10  = fgSeries.slice(-10);
+  const liqLast10 = liqNorm.slice(-10);
+
+  // Build unified chartData — one entry per FG day, liq interpolated
+  const chartData = fgLast10.map((fg, i) => {
+    // Pick the closest liq entry
+    const liq = liqLast10.reduce((closest, d) =>
+      Math.abs(new Date(d.date) - new Date(fg.date)) <
+      Math.abs(new Date(closest.date) - new Date(fg.date)) ? d : closest
+    , liqLast10[0]);
+    return { date: fg.date, fg: fg.value, liq: liq.norm, raw: liq.raw };
+  });
+
+  // Last point always matches card values exactly
+  if(chartData.length > 0){
+    chartData[chartData.length-1].fg  = latestFG.value;
+    chartData[chartData.length-1].liq = latestLiq.norm;
+  }
+
+  // SVG chart — dual line overlay
+  const w = 600, h = 260, pad = 12;
+  const pts = chartData.length;
+  const xStep = (w - pad*2) / (pts - 1);
+
+  const liqLine = chartData.map((d,i) =>
+    `${pad + i*xStep},${h - pad - (d.liq/100)*(h-pad*2)}`).join(' ');
+  const fgLine  = chartData.map((d,i) =>
+    `${pad + i*xStep},${h - pad - (d.fg/100)*(h-pad*2)}`).join(' ');
+
+  // Shaded divergence area
+  const areaPoints = [
+    ...chartData.map((d,i) => `${pad + i*xStep},${h - pad - (d.liq/100)*(h-pad*2)}`),
+    ...[...chartData].reverse().map((d,i) => `${pad + (pts-1-i)*xStep},${h - pad - (d.fg/100)*(h-pad*2)}`)
+  ].join(' ');
+
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:2px" id="divGrid">
+      <div style="background:var(--surface2);padding:20px 16px;text-align:center">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Fear & Greed</div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${fgColor(latestFG.value)};line-height:1">${latestFG.value}</div>
+        <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">${latestFG.label}</div>
+      </div>
+      <div style="background:var(--surface2);padding:20px 16px;text-align:center">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Net Liq (normalised)</div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#4caf7d;line-height:1">${latestLiq.norm}</div>
+        <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">$${(latestLiq.raw/1000).toFixed(2)}T raw</div>
+      </div>
+      <div style="background:var(--surface2);padding:20px 16px;text-align:center;border-left:3px solid ${signalColor}">
+        <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Divergence</div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${signalColor};line-height:1">${divergence > 0 ? '+' : ''}${divergence}</div>
+        <div style="font-size:9px;color:${signalColor};letter-spacing:1px;margin-top:6px;font-weight:700">${signal}</div>
+      </div>
+    </div>
+
+    <!-- Overlay chart -->
+    <div style="background:var(--surface2);padding:20px 56px 20px 56px;position:relative">
+      <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">Last 10 days · FG daily · Net Liq weekly</div>
+      <div style="position:relative">
+        <svg id="divChart" viewBox="0 0 ${w} ${h}" width="100%" height="260" style="display:block;overflow:visible;cursor:crosshair">
+          ${[0,25,50,75,100].map(v => {
+            const y = h - pad - (v/100)*(h-pad*2);
+            const rawVal = liqMin + (v/100)*(liqMax-liqMin);
+            return '<text x="' + (pad-6) + '" y="' + (y+3) + '" text-anchor="end" font-size="8" fill="#e07755" font-family="DM Mono,monospace" opacity="0.8">' + v + '</text>' +
+                   '<line x1="' + pad + '" y1="' + y + '" x2="' + (w-pad) + '" y2="' + y + '" stroke="rgba(255,255,255,' + (v===50?'0.06':'0.03') + ')" stroke-dasharray="' + (v===50?'4,4':'2,4') + '"/>' +
+                   '<text x="' + (w-pad+6) + '" y="' + (y+3) + '" text-anchor="start" font-size="8" fill="#4caf7d" font-family="DM Mono,monospace" opacity="0.8">$' + (rawVal/1000).toFixed(1) + 'T</text>';
+          }).join('')}
+          <line x1="${pad}" y1="${h - pad - (70/100)*(h-pad*2)}" x2="${w-pad}" y2="${h - pad - (70/100)*(h-pad*2)}" stroke="rgba(224,119,85,0.25)" stroke-dasharray="3,3"/>
+          <line x1="${pad}" y1="${h - pad - (30/100)*(h-pad*2)}" x2="${w-pad}" y2="${h - pad - (30/100)*(h-pad*2)}" stroke="rgba(76,175,125,0.25)" stroke-dasharray="3,3"/>
+          <polygon points="${areaPoints}" fill="rgba(201,168,76,0.06)"/>
+          <polyline points="${liqLine}" fill="none" stroke="#4caf7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="${fgLine}" fill="none" stroke="#e07755" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line id="divHoverLine" x1="0" y1="${pad}" x2="0" y2="${h-pad}" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3,3" display="none"/>
+          <circle id="divDotFG"  cx="0" cy="0" r="4" fill="#e07755" display="none"/>
+          <circle id="divDotLiq" cx="0" cy="0" r="4" fill="#4caf7d" display="none"/>
+        </svg>
+        <div id="divTooltip" style="position:absolute;pointer-events:none;display:none;background:#1a1a1a;border:1px solid #3a3530;padding:8px 12px;font-family:'DM Mono',monospace;font-size:10px;line-height:1.8;white-space:nowrap;z-index:10">
+          <div id="divTipDate" style="color:#c9a84c;font-size:9px;letter-spacing:1px;margin-bottom:4px"></div>
+          <div><span style="color:#e07755">F&G: </span><span id="divTipFG" style="color:#e07755;font-weight:700"></span></div>
+          <div><span style="color:#4caf7d">Liq: </span><span id="divTipLiq" style="color:#4caf7d;font-weight:700"></span></div>
+          <div><span style="color:#c9a84c">Delta: </span><span id="divTipDelta" style="color:#c9a84c;font-weight:700"></span></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:24px;margin-top:10px;flex-wrap:wrap;justify-content:space-between">
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:16px;height:2px;background:#e07755"></div><span style="font-size:8px;color:#e07755;letter-spacing:1px">FEAR & GREED (left axis)</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:16px;height:2px;background:#4caf7d"></div><span style="font-size:8px;color:#4caf7d;letter-spacing:1px">NET LIQUIDITY (right axis $T)</span></div>
+        </div>
+        <span style="font-size:8px;color:var(--text-dim);letter-spacing:1px">Hover for values</span>
+      </div>
+    </div>
+
+    <!-- Signal -->
+    <div style="background:var(--surface2);border-left:3px solid ${signalColor};padding:18px 24px;margin-top:2px">
+      <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">BitLogic Signal · Divergence</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:${signalColor};margin-bottom:8px">${signal}</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.85;margin-bottom:16px">${signalDesc}</div>
+    </div>
+
+    <!-- Signal states explanation -->
+    <div style="background:var(--surface);padding:20px 24px;border-top:1px solid var(--text-dim)">
+      <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px">How To Read This</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:10px;height:10px;border-radius:50%;background:#e07755;flex-shrink:0;margin-top:3px"></div>
+          <div>
+            <div style="font-size:10px;color:#e07755;letter-spacing:2px;font-weight:700;margin-bottom:3px">RETAIL OVERCONFIDENT — FG leads Net Liq by 20+ pts</div>
+            <div style="font-size:10px;color:var(--text-muted);line-height:1.6">Sentiment is running ahead of actual liquidity conditions. Mean-reversion risk is elevated — the market may be pricing in optimism that the Fed has not yet funded.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:10px;height:10px;border-radius:50%;background:#4caf7d;flex-shrink:0;margin-top:3px"></div>
+          <div>
+            <div style="font-size:10px;color:#4caf7d;letter-spacing:2px;font-weight:700;margin-bottom:3px">SENTIMENT LAGGING LIQUIDITY — Net Liq leads FG by 20+ pts</div>
+            <div style="font-size:10px;color:var(--text-muted);line-height:1.6">Liquidity conditions are more bullish than retail sentiment reflects. Smart money is positioned ahead of the crowd. Historically a contrarian accumulation opportunity before the retail catch-up.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:10px;height:10px;border-radius:50%;background:#c9a84c;flex-shrink:0;margin-top:3px"></div>
+          <div>
+            <div style="font-size:10px;color:#c9a84c;letter-spacing:2px;font-weight:700;margin-bottom:3px">ALIGNED — within 20 pts</div>
+            <div style="font-size:10px;color:var(--text-muted);line-height:1.6">Retail sentiment and liquidity conditions are broadly in sync. No major divergence detected. Watch for a breakout in either direction as the leading indicator moves first.</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  // Wire hover events after DOM update
+  setTimeout(()=>{
+    const svg = document.getElementById('divChart');
+    if(!svg) return;
+    const hLine = document.getElementById('divHoverLine');
+    const dotFG  = document.getElementById('divDotFG');
+    const dotLiq = document.getElementById('divDotLiq');
+    const tip    = document.getElementById('divTooltip');
+    const W = 600, H = 260, P = 12;
+    const chartW = W - P*2;
+
+    svg.addEventListener('mousemove', function(e){
+      const rect = svg.getBoundingClientRect();
+      const scaleX = W / rect.width;
+      const mx = (e.clientX - rect.left) * scaleX;
+      const ci = Math.max(0, Math.min(chartData.length-1, Math.round((mx - P) / (chartW / (chartData.length-1)))));
+      const d = chartData[ci];
+      if(!d) return;
+      const xPos = P + ci * (chartW / (chartData.length-1));
+      const yFG  = H - P - (d.fg/100)*(H-P*2);
+      const yLiq = H - P - (d.liq/100)*(H-P*2);
+      const rawLiq = liqMin + (d.liq/100)*(liqMax-liqMin);
+      const delta = d.fg - d.liq;
+      hLine.setAttribute('x1',xPos); hLine.setAttribute('x2',xPos); hLine.removeAttribute('display');
+      dotFG.setAttribute('cx',xPos);  dotFG.setAttribute('cy',yFG);  dotFG.removeAttribute('display');
+      dotLiq.setAttribute('cx',xPos); dotLiq.setAttribute('cy',yLiq); dotLiq.removeAttribute('display');
+      document.getElementById('divTipDate').textContent  = d.date;
+      document.getElementById('divTipFG').textContent    = d.fg;
+      document.getElementById('divTipLiq').textContent   = '$'+(rawLiq/1000).toFixed(2)+'T';
+      document.getElementById('divTipDelta').textContent = (delta>0?'+':'')+delta;
+      const tipLeft = (e.clientX - rect.left + 12);
+      tip.style.left    = (tipLeft > rect.width - 160 ? tipLeft - 170 : tipLeft) + 'px';
+      tip.style.top     = (e.clientY - rect.top - 10) + 'px';
+      tip.style.display = 'block';
+    });
+    svg.addEventListener('mouseleave', function(){
+      hLine.setAttribute('display','none');
+      dotFG.setAttribute('display','none');
+      dotLiq.setAttribute('display','none');
+      tip.style.display = 'none';
+    });
+  }, 100);
+}
+
+
 function updateSimulator(){
   // ── Read slider values (deltas in billions) ───────────────
   const deltaBS  = parseInt(document.getElementById('simBs')?.value  || 0);
@@ -4235,6 +4497,7 @@ async function fetchMacro(){
     if(fedRes) {
       window._fedLiqData = fedRes;
       renderFedLiquidity(fedRes);
+      renderDivergenceTracker();
     }
     const el = document.getElementById('macroLastUpdated');
     if(el) el.textContent = 'BTC updated daily · M2 & Fed updated manually';
