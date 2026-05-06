@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin has surged past the historic $80,000 milestone, hitting an intra-day high of $81,150. This move confirms that the "Wall of Worry" has been scaled. We are now in a high-volatility price discovery phase. The previous resistance at $80k will now be tested as a new structural support floor.
+note: Bitcoin secured a daily close at $80,900. After hitting intra-day highs above $81k, BTC is now building a base just above the previous $80k psychological resistance. This "settling" is healthy; it converts old resistance into a new support floor, backed by the $5.73T Net Liquidity environment.
 
-updated: 05 May 2026
+updated: 06 May 2026
