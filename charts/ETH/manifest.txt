@@ -1,5 +1,5 @@
 status: Positive
 
-note: Ethereum is benefiting from the BTC breakout, currently trading near $2,380. While it hasn't matched the percentage gains of Bitcoin's $81k run, the "catch-up" trade is beginning. With BTC clearing the path, ETH is well-positioned to challenge the $2,450 level.
+note: Ethereum closed at $2,360. ETH continues its slow-motion "catch-up" trade. While it isn't leading the market, it is maintaining a positive slope and absorbing supply. This consolidation at higher levels suggests that when the next move comes, the path toward $2,500 will be relatively clear.
 
-updated: 05 May 2026
+updated: 06 May 2026
