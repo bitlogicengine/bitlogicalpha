@@ -1,5 +1,5 @@
 status: Negative
 
-note: Gold (XAU) remains under immense pressure at $4,524. The metal is showing zero signs of recovery as capital continues to migrate toward the "High-Velocity" returns found in the crypto market. The breakdown of the $4,600 level has triggered a technical liquidation.
+note: Gold (XAU) closed at $4,556. Although it saw a minor bounce from yesterday's lows, the overall trend remains firmly negative. The metal is struggling to regain the $4,600 level as investors prioritize the high-velocity returns currently found in the digital asset class.
 
-updated: 05 May 2026
+updated: 06 May 2026
