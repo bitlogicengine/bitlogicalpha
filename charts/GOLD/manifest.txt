@@ -1,5 +1,5 @@
-status: Negative
+status: Negative 
 
-note: Gold (XAU) closed at $4,556. Although it saw a minor bounce from yesterday's lows, the overall trend remains firmly negative. The metal is struggling to regain the $4,600 level as investors prioritize the high-velocity returns currently found in the digital asset class.
+note: Gold (XAU) is in a clear Negative state, closing at $4,690. After a brief "dead cat bounce" attempt yesterday, Gold has failed to reclaim its bullish structure. The capital rotation into digital assets is undeniable; Gold's inability to hold the $4,700 level today further validates our $BTC/Gold target of 20.
 
-updated: 06 May 2026
+updated: 07 May 2026
