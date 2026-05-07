@@ -1,5 +1,5 @@
-status: Positive
+status: Positive 
 
-note: Bitcoin secured a daily close at $80,900. After hitting intra-day highs above $81k, BTC is now building a base just above the previous $80k psychological resistance. This "settling" is healthy; it converts old resistance into a new support floor, backed by the $5.73T Net Liquidity environment.
+note: Bitcoin secured a daily close at $81,420. After a brief dip yesterday, BTC has reclaimed its bullish momentum, successfully holding above the $81k level. This strength ahead of today's major earnings reports suggests that institutional "smart money" is positioning for a positive outcome. The $80k support is now firm, and the path to $85k is opening.
 
-updated: 06 May 2026
+updated: 07 May 2026
