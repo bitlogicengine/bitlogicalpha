@@ -1,5 +1,5 @@
-status: Positive
+status: Positive 
 
-note: Ethereum closed at $2,360. ETH continues its slow-motion "catch-up" trade. While it isn't leading the market, it is maintaining a positive slope and absorbing supply. This consolidation at higher levels suggests that when the next move comes, the path toward $2,500 will be relatively clear.
+note: Ethereum closed at $2,350. ETH remains in a stable, constructive posture. While it continues to consolidate at these high levels, the steady price action is reducing volatility and building a strong base for its next leg up. It is currently acting as the "steady hand" while BTC leads the charge.
 
-updated: 06 May 2026
+updated: 07 May 2026
