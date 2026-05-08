@@ -1,3 +1,3 @@
-comment: The Index has returned to 47, remaining firmly in the "Neutral" zone. This is the "Sweet Spot" for trend continuation. Because the market is not yet in "Greed," there is no excessive leverage to flush out. This neutrality indicates that investors are in a "wait and see" mode for today's earnings—a classic setup for a volatility expansion once the news breaks.
+comment: The Fear & Greed Index has crashed to 38 (Fear), a 9-point drop from yesterday. This is a classic "Sentiment Flush." The market is overreacting to the Coinbase EPS miss (-$1.49 vs. $0.29 expected). For BitLogic users, the "Alpha" is the divergence: Liquidity is rising while Sentiment is falling. This is historically a high-probability accumulation zone for smart money.
 
-date: 07 May 2026
+date: 08 May 2026
