@@ -4284,6 +4284,39 @@ function renderDivergenceTracker(){
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Divergence Score</div>
         <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${signalColor};line-height:1;${glowStyle}">${divScore>0?'+':''}${divScore}</div>
         <div style="font-size:8px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">Liq%Δ − Sentiment%Δ</div>
+        <!-- Confidence gauge -->
+        <div style="margin-top:14px">
+          ${(()=>{
+            // Map divScore (-30 to +30) to needle angle (-90° to +90°)
+            const clamp = Math.max(-30, Math.min(30, divScore));
+            const angle = (clamp / 30) * 90;
+            const rad   = (angle - 90) * Math.PI / 180;
+            const cx=60, cy=52, r=38;
+            const nx = cx + r * Math.cos(rad);
+            const ny = cy + r * Math.sin(rad);
+            // Arc gradient stops
+            const zones = [
+              {start:-90,end:-54,color:'#e05555'},  // < -18 bearish
+              {start:-54,end:-18,color:'#e07755'},  // -18 to -6
+              {start:-18,end:18, color:'#c9a84c'},  // neutral
+              {start:18, end:54, color:'#7bc47f'},  // +6 to +18
+              {start:54, end:90, color:'#4caf7d'},  // > +18 bullish
+            ];
+            const arcPaths = zones.map(z=>{
+              const a1=(z.start-90)*Math.PI/180, a2=(z.end-90)*Math.PI/180;
+              const x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+              const x2=cx+r*Math.cos(a2),y2=cy+r*Math.sin(a2);
+              return '<path d="M'+x1+' '+y1+' A'+r+' '+r+' 0 0 1 '+x2+' '+y2+'" fill="none" stroke="'+z.color+'" stroke-width="5" stroke-linecap="round"/>';
+            }).join('');
+            return '<svg viewBox="0 0 120 60" width="100" style="display:block;margin:0 auto">'+
+              arcPaths+
+              '<line x1="'+cx+'" y1="'+cy+'" x2="'+nx+'" y2="'+ny+'" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.9"/>'+
+              '<circle cx="'+cx+'" cy="'+cy+'" r="3" fill="white" opacity="0.8"/>'+
+              '<text x="6"  y="58" font-size="7" fill="#e05555" font-family="DM Mono,monospace" opacity="0.7">SELL</text>'+
+              '<text x="94" y="58" font-size="7" fill="#4caf7d" font-family="DM Mono,monospace" opacity="0.7" text-anchor="end">BUY</text>'+
+              '</svg>';
+          })()}
+        </div>
       </div>
       <div style="background:${glowColor!=='none'?glowColor:'var(--surface2)'};padding:20px 16px;text-align:center;border-left:3px solid ${signalColor};${glowStyle}">
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Signal</div>
