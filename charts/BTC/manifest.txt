@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Bitcoin is showing incredible resilience, defending the $80,000 psychological floor. While the "Fear" in the air is palpable, BTC is refusing to break, supported by a significant surge in global liquidity. We are currently witnessing a battle between negative headlines and a $5.85T liquidity tide that is keeping the floor from collapsing.
+note: Bitcoin has successfully reclaimed the $80,190 level for today's close. After the aggressive "long-squeeze" to $79,500 yesterday, BTC is showing high relative strength. Holding above $80k while the sentiment index remains in "Fear" is a major signal of institutional absorption. The $5.85T liquidity tide is acting as a hard floor.
 
-updated: 08 May 2026
+updated: 09 May 2026
