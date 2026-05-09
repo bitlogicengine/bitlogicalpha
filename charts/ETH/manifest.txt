@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Ethereum is consolidating at $2,291. ETH has been more sensitive to today’s sentiment shift, losing the $2,300 handle during the London session. However, its long-term structure remains constructive as it waits for the macro volatility from the Jobs Report to subside.
+note: Ethereum closed at $2,300. ETH is currently acting as the market's stability anchor, perfectly holding the psychological $2.3k handle. While it lagged earlier in the week, its steady posture suggests that the "Earnings Panic" from earlier this week has been fully digested.
 
-updated: 08 May 2026
+updated: 09 May 2026
