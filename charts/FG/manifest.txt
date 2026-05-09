@@ -1,3 +1,2 @@
-comment: The Fear & Greed Index has crashed to 38 (Fear), a 9-point drop from yesterday. This is a classic "Sentiment Flush." The market is overreacting to the Coinbase EPS miss (-$1.49 vs. $0.29 expected). For BitLogic users, the "Alpha" is the divergence: Liquidity is rising while Sentiment is falling. This is historically a high-probability accumulation zone for smart money.
-
-date: 08 May 2026
+comment: The Fear & Greed Index remains pinned at 38 (Fear). This is a massive Bullish Divergence. Usually, when the crowd is this scared, prices are 10–15% lower. The fact that BTC is at $80k and the Index is at 38 means the "Weak Hands" have already exited, leaving only "Diamond Hands" and institutional buyers.
+date: 09 May 2026
