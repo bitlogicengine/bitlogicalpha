@@ -3312,18 +3312,24 @@ async function fetchHeatmap(){
   try{
     const cached = loadCache('bl_heatmap', 3600000);
     if(cached) { renderHeatmap(cached); }
+    else {
+      // Show placeholder while loading
+      renderHeatmap({ score: 0, updated: '—', note: 'Loading data...' });
+    }
     const txt = await fetch(`${BASE}/charts/ACCUMULATION/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():null);
     if(!txt) return;
     const lines = txt.split('\n').map(l=>l.trim()).filter(Boolean);
     const data = {};
     lines.forEach(l=>{
-      if(l.toLowerCase().startsWith('score:'))   data.score   = parseFloat(l.split(':')[1].trim());
+      if(l.toLowerCase().startsWith('score:'))      data.score   = parseFloat(l.split(':')[1].trim());
       else if(l.toLowerCase().startsWith('updated:')) data.updated = l.substring(l.indexOf(':')+1).trim();
       else if(l.toLowerCase().startsWith('note:'))    data.note    = l.substring(l.indexOf(':')+1).trim();
     });
     saveCache('bl_heatmap', data);
     renderHeatmap(data);
-  } catch(e){ console.warn('Heatmap fetch failed', e); }
+  } catch(e){
+    renderHeatmap({ score: 0, updated: '—', note: 'Data unavailable.' });
+  }
 }
 
 function renderHeatmap(d){
