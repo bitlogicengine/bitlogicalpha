@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index remains pinned at 38 (Fear). This is a massive Bullish Divergence. Usually, when the crowd is this scared, prices are 10–15% lower. The fact that BTC is at $80k and the Index is at 38 means the "Weak Hands" have already exited, leaving only "Diamond Hands" and institutional buyers.
-date: 09 May 2026
+comment: The Fear & Greed Index has surged to 47 (Neutral), up 9 points from yesterday's "Fear" reading of 38. This rapid normalization of sentiment while prices are near local highs is a strong signal. The "Weak Hands" were flushed out at $79k, and the market is now entering a healthy consolidation phase before the Monday morning Asian open.
+date: 10 May 2026
