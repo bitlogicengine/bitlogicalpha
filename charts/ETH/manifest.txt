@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Ethereum closed at $2,300. ETH is currently acting as the market's stability anchor, perfectly holding the psychological $2.3k handle. While it lagged earlier in the week, its steady posture suggests that the "Earnings Panic" from earlier this week has been fully digested.
+note: Ethereum is closing the week above $2,300. ETH continues to show relative strength, moving back above the $2,300 mark. The recovery in the ETH/BTC ratio suggests that risk appetite is returning as geopolitical fears begin to subside.  
 
-updated: 09 May 2026
+updated: 10 May 2026
