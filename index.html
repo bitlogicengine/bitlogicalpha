@@ -1367,6 +1367,14 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   transition:opacity 0.3s,transform 0.3s,border-color 0.2s,color 0.2s;
   z-index:400;border-radius:2px;pointer-events:none;
 }
+@keyframes cardglow{
+  0%,100%{opacity:0.8}
+  50%{opacity:1;box-shadow:inset 0 0 30px rgba(76,175,125,0.15)}
+}
+@keyframes cardglowred{
+  0%,100%{opacity:0.8}
+  50%{opacity:1;box-shadow:inset 0 0 30px rgba(224,85,85,0.12)}
+}
 @keyframes diamondpulse{
   0%,100%{filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #fff);transform:translate(-50%,-50%) scale(1)}
   50%{filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px rgba(255,255,255,0.6));transform:translate(-50%,-50%) scale(1.25)}
@@ -3919,26 +3927,51 @@ async function fetchTrend(){
       const ribbonWidth = data.status==='positive'?80:data.status==='negative'?20:50;
       const sparkline = renderSparkline(coin);
       const priceLoading = price === '---';
-      return `<div class="trend-card ${s.cls}">
-        <div class="trend-coin-label">
-          <span>${label}</span>
+
+      // Glow config per status
+      const glowColor = data.status==='positive' ? 'rgba(76,175,125,0.12)' :
+                        data.status==='negative' ? 'rgba(224,85,85,0.10)'  :
+                        'rgba(107,101,96,0.08)';
+      const glowBorder = data.status==='positive' ? '#4caf7d' :
+                         data.status==='negative' ? '#e05555' :
+                         '#6b6560';
+      const glowAnim   = data.status==='positive' ? 'animation:cardglow 2.5s ease-in-out infinite' :
+                         data.status==='negative' ? 'animation:cardglowred 2.5s ease-in-out infinite' : '';
+      const coinIcon   = data.status==='positive' ? '●' :
+                         data.status==='negative' ? '●' : '●';
+      const iconColor  = s.color;
+
+      return `<div class="trend-card ${s.cls}" style="position:relative;overflow:hidden">
+        <!-- Status glow background -->
+        <div style="position:absolute;inset:0;background:${glowColor};pointer-events:none;${glowAnim}"></div>
+        <!-- Top border glow -->
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:${glowBorder};box-shadow:0 0 8px ${glowBorder};opacity:0.8"></div>
+
+        <div class="trend-coin-label" style="position:relative">
+          <div style="display:flex;align-items:center;gap:8px">
+            <!-- Coin icon with glow -->
+            <div style="width:32px;height:32px;border-radius:50%;background:${glowColor};border:1.5px solid ${glowBorder};display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px ${glowBorder}60;${glowAnim}">
+              <span style="font-size:11px;font-weight:900;color:${iconColor};letter-spacing:-0.5px">${coin==='GOLD'?'XAU':label.substring(0,3)}</span>
+            </div>
+            <span style="font-size:11px;letter-spacing:3px;color:var(--text-muted)">${label}</span>
+          </div>
           <span class="trend-live" style="color:${s.color}">
             <span class="trend-live-dot" style="background:${s.color}"></span>
             LIVE
           </span>
         </div>
-        <div class="trend-price" id="trend-price-${coin}">${priceLoading ? '<span class="trend-price-loading">---</span>' : '$'+price}</div>
-        <div class="trend-ribbon">
+        <div class="trend-price" id="trend-price-${coin}" style="position:relative">${priceLoading ? '<span class="trend-price-loading">---</span>' : '$'+price}</div>
+        <div class="trend-ribbon" style="position:relative">
           <div class="trend-ribbon-fill" style="width:${ribbonWidth}%;background:${s.color};box-shadow:0 0 8px ${s.color}40"></div>
         </div>
         <div class="trend-ribbon-labels"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
-        <div class="trend-status-wrap">
+        <div class="trend-status-wrap" style="position:relative">
           <div class="trend-status-text" style="color:${s.color}">${s.label}</div>
         </div>
-        <div class="trend-change ${priceLoading ? '' : (change >= 0 ? 'up' : 'down')}" id="trend-change-${coin}" style="margin-top:8px">${priceLoading ? '' : (change >= 0 ? '↑' : '↓')+' '+Math.abs(change).toFixed(2)+'% today'}</div>
+        <div class="trend-change ${priceLoading ? '' : (change >= 0 ? 'up' : 'down')}" id="trend-change-${coin}" style="margin-top:8px;position:relative">${priceLoading ? '' : (change >= 0 ? '↑' : '↓')+' '+Math.abs(change).toFixed(2)+'% today'}</div>
         ${sparkline}
-        ${data.note?`<div class="trend-note">${data.note}</div>`:''}
-        <div class="trend-updated">Updated: ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
+        ${data.note?`<div class="trend-note" style="position:relative">${data.note}</div>`:''}
+        <div class="trend-updated" style="position:relative">Updated: ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
       </div>`;
     }
 
