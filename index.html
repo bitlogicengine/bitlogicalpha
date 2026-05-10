@@ -3420,28 +3420,44 @@ async function fetchHeatmap(){
     const cached = loadCache('bl_heatmap', 3600000);
     if(cached) { renderHeatmap(cached); }
     else {
-      // Show placeholder while loading
-      renderHeatmap({ score: 0, updated: '—', note: 'Loading data...' });
+      renderHeatmap({ score: null, updated: '—', note: 'Loading...' });
     }
     const txt = await fetch(`${BASE}/charts/ACCUMULATION/manifest.txt?t=${Date.now()}`).then(r=>r.ok?r.text():null);
-    if(!txt) return;
-    const lines = txt.split('\n').map(l=>l.trim()).filter(Boolean);
-    const data = {};
-    lines.forEach(l=>{
-      if(l.toLowerCase().startsWith('score:'))      data.score   = parseFloat(l.split(':')[1].trim());
-      else if(l.toLowerCase().startsWith('updated:')) data.updated = l.substring(l.indexOf(':')+1).trim();
-      else if(l.toLowerCase().startsWith('note:'))    data.note    = l.substring(l.indexOf(':')+1).trim();
-    });
-    saveCache('bl_heatmap', data);
-    renderHeatmap(data);
+    if(txt){
+      const lines = txt.split('\n').map(l=>l.trim()).filter(Boolean);
+      const data = {};
+      lines.forEach(l=>{
+        if(l.toLowerCase().startsWith('score:'))      data.score   = parseFloat(l.split(':')[1].trim());
+        else if(l.toLowerCase().startsWith('updated:')) data.updated = l.substring(l.indexOf(':')+1).trim();
+        else if(l.toLowerCase().startsWith('note:'))    data.note    = l.substring(l.indexOf(':')+1).trim();
+      });
+      saveCache('bl_heatmap', data);
+      renderHeatmap(data);
+    }
+    // Ensure BTC price updates once market data arrives
+    if(!cachedMarketData || !cachedMarketData.length){
+      let attempts = 0;
+      const retry = setInterval(()=>{
+        attempts++;
+        const priceEl = document.getElementById('heatmapPrice');
+        const liveBTC = cachedMarketData?.find(c=>c.id==='bitcoin')?.current_price;
+        if(liveBTC && priceEl){ priceEl.textContent = '$'+liveBTC.toLocaleString(); clearInterval(retry); }
+        else if(attempts >= 20) clearInterval(retry);
+      }, 500);
+    }
   } catch(e){
-    renderHeatmap({ score: 0, updated: '—', note: 'Data unavailable.' });
+    renderHeatmap({ score: null, updated: '—', note: 'Data unavailable.' });
   }
 }
 
 function renderHeatmap(d){
+  if(!d) return;
+  const score = d.score;
+  const hasScore = score !== null && score !== undefined && !isNaN(score);
   let zone, zoneColor, signal;
-  if(score >= 1.0){
+  if(!hasScore){
+    zone='—'; zoneColor='var(--text-dim)'; signal='Loading...';
+  } else if(score >= 1.0){
     zone='AGGRESSIVE ACCUMULATION · DEEP VALUE'; zoneColor='#4caf7d'; signal='High Conviction Buy Zone';
   } else if(score >= 0.5){
     zone='MODERATE ACCUMULATION'; zoneColor='#7bc47f'; signal='Below fair value — Accumulate';
@@ -3452,9 +3468,9 @@ function renderHeatmap(d){
   } else {
     zone='PROFIT TAKING · DE-RISK'; zoneColor='#e05555'; signal='High Conviction Sell Zone — Overheated';
   }
-  const pct = Math.min(100, Math.max(0, ((score + 2) / 4) * 100));
+  const pct = hasScore ? Math.min(100, Math.max(0, ((score + 2) / 4) * 100)) : 50;
   const scoreEl = document.getElementById('heatmapScore');
-  if(scoreEl){ scoreEl.textContent=(score>0?'+':'')+score.toFixed(1); scoreEl.style.color=zoneColor; }
+  if(scoreEl){ scoreEl.textContent=hasScore?(score>0?'+':'')+score.toFixed(1):'—'; scoreEl.style.color=zoneColor; }
   const zoneEl = document.getElementById('heatmapZone');
   if(zoneEl){ zoneEl.textContent=zone; zoneEl.style.color=zoneColor; }
   const priceEl = document.getElementById('heatmapPrice');
