@@ -3305,8 +3305,10 @@ function toggleSection(type){
 function switchTab(tab){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
-  document.getElementById('view-'+tab).classList.add('active');
+  const tabBtn = document.getElementById('tab-'+tab);
+  if(tabBtn) tabBtn.classList.add('active');
+  const tabView = document.getElementById('view-'+tab);
+  if(tabView) tabView.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   history.replaceState(null, '', '#'+tab);
   if(tab==='insights' && !insightsLoaded){
@@ -5277,7 +5279,7 @@ fetchCalendar();
 
 // Open tab from URL hash if present
 (function(){
-  const valid = ['home','insights','bitcoin','alts','macro','resources','about'];
+  const valid = ['home','insights','bitcoin','alts','macro','resources','about','accumulation'];
   const hash  = window.location.hash.replace('#','');
   if(valid.includes(hash)) switchTab(hash);
 })();
@@ -5296,6 +5298,22 @@ renderGlossary();
 const em = document.getElementById('footerEmail');
 if(em){ const e='bitlogic.engine'+'@'+'gmail.com'; em.href='mailto:'+e; em.textContent=e; }
 </script>
+
+  <!-- ══════════════ ACCUMULATION TERMINAL (HIDDEN - PRIVATE) ══════════════ -->
+  <div class="view" id="view-accumulation">
+
+    <div class="section" style="margin-top:32px">
+      <div class="section-header">
+        <div class="section-label">The Accumulation Terminal</div>
+        <div class="section-meta" style="color:var(--gold)">🔒 Private · Work in Progress</div>
+      </div>
+      <div style="background:var(--surface2);border-left:3px solid var(--gold);padding:32px 28px;text-align:center">
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);margin-bottom:12px">Coming Soon</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.85">This section is under construction. Only you can see this page.</div>
+      </div>
+    </div>
+
+  </div><!-- end view-accumulation -->
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
