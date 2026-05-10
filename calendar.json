@@ -1,51 +1,58 @@
 [
   {
-    "day": "04",
+    "day": "11",
     "month": "May",
     "type": "macro",
-    "title": "Fed SLOOS Report — Credit Liquidity Update",
-    "desc": "The Senior Loan Officer Opinion Survey will reveal if banks are tightening or loosening credit. This is a primary driver for Net Liquidity; a 'tightening' result could stall BTC's move toward $80k as the broader money supply feels the squeeze."
+    "title": "China CPI & PPI Data — Global Liquidity Scan",
+    "desc": "A critical look at the world’s manufacturing hub. Deflationary PPI signals in China often precede global price cooling, which would provide a structural 'macro tailwind' for BTC and Gold as the market anticipates central bank easing."
   },
   {
-    "day": "05",
+    "day": "11",
     "month": "May",
     "type": "macro",
-    "title": "ISM Services PMI & RBA Decision",
-    "desc": "A heavy macro day. Global markets will react to Australia's rate decision before the US Services PMI print. A weak US services sector would strengthen the 'Recession Hedge' case for Gold and Bitcoin as the DXY faces pressure."
+    "title": "US Senate Vote on Fed Leadership",
+    "desc": "The official vote on Walsh's appointment. Fed leadership transitions are key volatility triggers; any hawkish commentary during the confirmation could tighten financial conditions and pressure risk assets before Tuesday's CPI."
   },
   {
-    "day": "07",
+    "day": "12",
+    "month": "May",
+    "type": "macro",
+    "title": "US Consumer Price Index (CPI) Report",
+    "desc": "The 'Volatility King' of the week. If April's inflation data comes in cooler than expected (<3.5%), it confirms the 'Soft Landing' and could trigger a breakout above the $82k resistance. A hot print kills the rate-cut hope and tests the $78k floor."
+  },
+  {
+    "day": "12",
     "month": "May",
     "type": "crypto",
-    "title": "Coinbase (COIN) Q1 Earnings Report",
-    "desc": "The 'Vibe Check' for the crypto industry. Analysts are watching for retail volume growth and custodial fee revenue from Spot ETFs. A beat here validates the institutional adoption narrative and often acts as a front-runner for BTC price action."
+    "title": "Avalanche (AVAX) & Aptos (APT) Unlock Cluster",
+    "desc": "A dual-supply event for high-throughput L1s. While these are routine unlocks, their alignment with CPI day increases the risk of 'Stop-Loss Hunting.' Watch for volatility in the AVAX/BTC and APT/BTC pairs as supply hits the market."
   },
   {
-    "day": "07",
-    "month": "May",
-    "type": "crypto",
-    "title": "MicroStrategy (MSTR) Earnings & BTC Strategy",
-    "desc": "Expect Saylor to provide updates on the 'Bitcoin Treasury' model. The market will be watching for any new debt issuance or BTC purchase announcements. MSTR remains the high-beta proxy for institutional Bitcoin sentiment."
-  },
-  {
-    "day": "08",
+    "day": "13",
     "month": "May",
     "type": "macro",
-    "title": "US Non-Farm Payrolls (NFP)",
-    "desc": "The most important data point of the week. A 'Goldilocks' report (not too hot, not too cold) is needed to keep the rally alive. If unemployment rises, the market will pivot to 'Rate Cut' mode, likely causing a spike in BTC and ETH volatility."
+    "title": "US Producer Price Index (PPI)",
+    "desc": "The 'Inflation Pipeline' update. High producer prices usually bleed into consumer prices. A hot PPI following a hot CPI would be a 'Double-Hawkish' signal, likely pushing the BitLogic Divergence Score into deep negative territory."
   },
   {
-    "day": "08",
+    "day": "14",
     "month": "May",
     "type": "macro",
-    "title": "Consumer Sentiment (Univ. of Michigan)",
-    "desc": "Closing the week with a look at inflation expectations. High expectations here could lead to a 'Hawkish' weekend, potentially capping BTC's gains as traders hedge against a persistent 'higher for longer' Fed stance."
+    "title": "US Retail Sales — Consumer Resilience Check",
+    "desc": "Data on whether the US consumer is still driving the economy. Strong retail sales bolster the 'Higher for Longer' Fed stance, strengthening the DXY and potentially capping crypto gains for the week."
   },
   {
-    "day": "10",
+    "day": "16",
     "month": "May",
     "type": "crypto",
-    "title": "Monthly Token Unlock Cycle — Phase 1",
-    "desc": "The first major cliff for several Tier-1 altcoin projects begins. We watch for potential sell-pressure on the ETH/Alt pairs. High-liquidity days often absorb these unlocks, but thin weekend volumes could create localized price dips."
+    "title": "Arbitrum (ARB) & STBL Major Unlock",
+    "desc": "A significant supply dilution for the L2 sector. ~$28M total across both assets entering circulation. In the current 'Disbelief Phase,' these events test if the market liquidity floor is thick enough to absorb sell pressure without price breakdown."
+  },
+  {
+    "day": "17",
+    "month": "May",
+    "type": "crypto",
+    "title": "BitLogic Alpha Weekly Macro Review",
+    "desc": "Closing the week by synthesizing the CPI/PPI data into our Net Liquidity Model. We determine if the $5.85T floor moved and set the 'High-Conviction' zones for the upcoming week's trade setup."
   }
 ]
