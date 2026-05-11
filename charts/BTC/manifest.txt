@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Bitcoin closed at $80,655. BTC has successfully neutralized the "Earnings Panic" from earlier this week, reclaiming and holding the key $80,500 level. The defense of this zone confirms that the $5.85T liquidity floor is providing the necessary support for the next leg of price discovery.
+note: Bitcoin closed at around $82,172. BTC has successfully cleared the 200-day EMA ($82,024) and trying to turn it into support. The move was fueled by a significant short-squeeze over the last 24 hours, liquidating over $125M in bearish positions. The technical path is now open toward the $84.5k Fibonacci extension.  
 
-updated: 10 May 2026
+updated: 11 May 2026
