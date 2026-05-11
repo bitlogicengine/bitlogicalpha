@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Ethereum is closing the week above $2,300. ETH continues to show relative strength, moving back above the $2,300 mark. The recovery in the ETH/BTC ratio suggests that risk appetite is returning as geopolitical fears begin to subside.  
+note: Ethereum has moved to $2,370. On-chain data shows massive whale accumulation, with large wallets adding 140,000 ETH ($322M) in the last few days. ETH looks like is under "Bull Control" as it prepares to test the $2,400 psychological barrier.  
 
-updated: 10 May 2026
+updated: 11 May 2026
