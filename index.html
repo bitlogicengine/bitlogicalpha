@@ -1411,6 +1411,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     <button class="nav-tab" id="tab-bitcoin" onclick="switchTab('bitcoin')">Bitcoin</button>
     <button class="nav-tab" id="tab-alts" onclick="switchTab('alts')">Alts</button>
     <button class="nav-tab" id="tab-macro" onclick="switchTab('macro')">Macro</button>
+    <button class="nav-tab" id="tab-news" onclick="switchTab('news')">News</button>
     <button class="nav-tab" id="tab-resources" onclick="switchTab('resources')">Resources</button>
     <button class="nav-tab" id="tab-about" onclick="switchTab('about')">About</button>
   </div>
@@ -2223,6 +2224,19 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
     </div>
 
   </div><!-- end view-macro -->
+
+  <!-- ══════════════ NEWS VIEW ══════════════ -->
+  <div class="view" id="view-news">
+    <div class="section" style="margin-top:32px">
+      <div class="section-header">
+        <div class="section-label">Market Intelligence</div>
+        <div class="section-meta">All Articles · Click to read</div>
+      </div>
+      <div id="newsTabList">
+        <div style="padding:24px;font-size:11px;color:var(--text-muted);letter-spacing:1px">Loading articles...</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════════ RESOURCES VIEW ══════════════ -->
   <div class="view" id="view-resources">
@@ -3515,6 +3529,10 @@ function switchTab(tab){
     setTimeout(()=>fetchWeeklySummary(), 500);
     setTimeout(()=>computeCustomFG(), 1000);
   }
+  if(tab==='news'){
+    if(window._newsItems) renderNewsTab(window._newsItems);
+    else fetch(`${BASE}/news.json?t=${Date.now()}`).then(r=>r.json()).then(d=>{window._newsItems=d;renderNewsTab(d);}).catch(()=>{});
+  }
   if(tab==='macro' && !macroLoaded){
     macroLoaded=true;
     fetchMacro();
@@ -4063,37 +4081,28 @@ function updateTicker(data){
 
 async function fetchNews(){
   const el=document.getElementById('newsList');
-  // Show cached news immediately
   const cached = loadCache('bl_news', 86400000);
   if(cached && cached.data){ el.innerHTML = cached.data; if(cached.stale) showLastUpdated('newsList', cached.ts, true); }
   try{
     const res=await fetch(`${BASE}/news.json?t=${Date.now()}`);
     if(!res.ok) throw new Error();
     const items=await res.json();
+    window._newsItems = items;
     if(!items.length){el.innerHTML='<div class="empty-news">No analysis published yet.</div>';return}
     const n=items[0];
     const shareText = encodeURIComponent(`${n.title}\n\nRead the full analysis 👇\nhttps://bitlogicalpha.com\n\n#Bitcoin #Crypto #Gold @QuantAlphaTrend`);
     const shareUrl = `https://x.com/intent/tweet?text=${shareText}`;
-
-    const bodyHtml = n.body ? n.body.split('\n').filter(p=>p.trim()).map(p=>{
-      const t=p.trim();
-      if(/^[1-9]\d*\./.test(t)) return `<p class="news-list-item">${t}</p>`;
-      if(/^(What|Final|Key)/.test(t)) return `<p class="news-section-title">${t}</p>`;
-      return `<p>${t}</p>`;
-    }).join('') : '';
     const firstPara = n.body ? n.body.split('\n').filter(p=>p.trim())[0] || '' : '';
-
     const html = `
       <div class="news-item">
         <div class="news-meta-row"><span class="news-date">${n.date||''}</span></div>
         <div class="news-preview">
-          <a class="news-preview-title news-title-link" href="${n.url||'#'}" target="_blank">${n.title||''}</a>
-          <div class="news-preview-snippet">${firstPara}</div>
+          <a class="news-preview-title news-title-link" href="${BASE}/article.html?id=0" target="_blank">${n.title||''}</a>
         </div>
         <div class="news-full" id="newsFull">
-          <div class="news-body">${bodyHtml}</div>
+          <div class="news-body"><p>${firstPara}</p></div>
           <div class="news-footer">
-            <span></span>
+            <a class="news-share" href="${BASE}/article.html?id=0" target="_blank" style="color:var(--gold);font-size:9px;letter-spacing:2px;text-decoration:none">READ FULL ARTICLE →</a>
             <a class="news-share" href="${shareUrl}" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               Share on X
@@ -4104,10 +4113,23 @@ async function fetchNews(){
     el.innerHTML = html;
     saveCache('bl_news', html);
     showLastUpdated('newsList', Date.now(), false);
+    // Also populate news tab if open
+    renderNewsTab(items);
   }catch(e){
     if(!cached) el.innerHTML='<div class="empty-news">No analysis published yet.</div>';
     else showLastUpdated('newsList', cached.ts, true);
   }
+}
+
+function renderNewsTab(items){
+  const el = document.getElementById('newsTabList');
+  if(!el || !items || !items.length) return;
+  el.innerHTML = items.map((n,i)=>`
+    <a href="${BASE}/article.html?id=${i}" target="_blank" style="display:block;background:var(--surface);padding:20px 24px;border-left:2px solid var(--text-dim);text-decoration:none;transition:border-color 0.2s,background 0.2s;margin-bottom:2px" onmouseover="this.style.borderColor='var(--gold)';this.style.background='var(--surface2)'" onmouseout="this.style.borderColor='var(--text-dim)';this.style.background='var(--surface)'">
+      <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-bottom:6px">${n.date||''}</div>
+      <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:8px">${n.title||''}</div>
+      <div style="font-size:9px;color:var(--gold);letter-spacing:2px">READ FULL ARTICLE →</div>
+    </a>`).join('');
 }
 
 // ── INSIGHTS ──────────────────────────────────────────────
@@ -5501,7 +5523,7 @@ fetchCalendar();
 
 // Open tab from URL hash if present
 (function(){
-  const valid = ['home','insights','bitcoin','alts','macro','resources','about','accumulation'];
+  const valid = ['home','insights','bitcoin','alts','macro','resources','about','accumulation','news'];
   const hash  = window.location.hash.replace('#','');
   if(valid.includes(hash)) switchTab(hash);
 })();
