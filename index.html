@@ -3920,13 +3920,16 @@ async function fetchTrend(){
 
     function parseManifest(txt){
       const lines = txt.split('\n').map(l=>l.trim()).filter(Boolean);
-      let status='neutral', note='', updated='';
+      let status='neutral', note='', updated='', real_rates=null, etf_flows=null, cot_signal=null;
       lines.forEach(l=>{
-        if(l.toLowerCase().startsWith('status:')) status=l.split(':')[1].trim().toLowerCase();
-        else if(l.toLowerCase().startsWith('note:')) note=l.substring(l.indexOf(':')+1).trim();
-        else if(l.toLowerCase().startsWith('updated:')) updated=l.substring(l.indexOf(':')+1).trim();
+        if(l.toLowerCase().startsWith('status:'))      status=l.split(':')[1].trim().toLowerCase();
+        else if(l.toLowerCase().startsWith('note:'))        note=l.substring(l.indexOf(':')+1).trim();
+        else if(l.toLowerCase().startsWith('updated:'))     updated=l.substring(l.indexOf(':')+1).trim();
+        else if(l.toLowerCase().startsWith('real_rates:'))  real_rates=parseFloat(l.split(':')[1].trim());
+        else if(l.toLowerCase().startsWith('etf_flows:'))   etf_flows=parseFloat(l.split(':')[1].trim());
+        else if(l.toLowerCase().startsWith('cot_signal:'))  cot_signal=l.split(':')[1].trim().toLowerCase();
       });
-      return {status,note,updated};
+      return {status,note,updated,real_rates,etf_flows,cot_signal};
     }
 
     const btc  = parseManifest(btcRes);
@@ -4989,17 +4992,47 @@ async function fetchLogicPanel(coin){
       else{liqStatus='Contracting (-$'+Math.abs(change).toFixed(0)+'B WoW)';liqColor='#e07755';liqIcon='⚠️';}
     }
     let flowStatus='—',flowColor='var(--text-muted)',flowIcon='⚪';
-    const assetId = coin==='BTC'?'bitcoin':coin==='ETH'?'ethereum':'pax-gold';
-    const assetData = cachedMarketData?.find(c=>c.id===assetId);
-    if(assetData){
-      const chg24=assetData.price_change_percentage_24h||0;
-      if(chg24>1){flowStatus='Inflows dominant (price +'+chg24.toFixed(1)+'%)';flowColor='#4caf7d';flowIcon='✅';}
-      else if(chg24<-1){flowStatus='Outflows dominant (price '+chg24.toFixed(1)+'%)';flowColor='#e05555';flowIcon='⚠️';}
-      else{flowStatus='Neutral ('+Math.abs(chg24).toFixed(1)+'% 24h)';flowColor='#c9a84c';flowIcon='⚪';}
-    }
     let frStatus='N/A',frColor='var(--text-muted)',frIcon='⚪';
-    const symbol=coin==='ETH'?'ETHUSDT':coin==='BTC'?'BTCUSDT':null;
-    if(symbol){
+    let liqLabel='Liquidity',flowLabel='Exchange Flows',frLabel='Funding Rate';
+
+    if(coin==='GOLD'){
+      // Gold-specific signals from manifest
+      liqLabel='Real Interest Rates';
+      flowLabel='GLD/IAU ETF Flows';
+      frLabel='COT Report';
+      const goldData = window._cachedTrendData?.GOLD;
+      // Real rates
+      if(goldData && goldData.real_rates!==null){
+        const rr = goldData.real_rates;
+        if(rr<0){liqStatus='Negative ('+rr.toFixed(2)+'%) — Bullish for Gold';liqColor='#4caf7d';liqIcon='✅';}
+        else if(rr<=1.5){liqStatus='Low ('+rr.toFixed(2)+'%) — Neutral';liqColor='#c9a84c';liqIcon='⚪';}
+        else{liqStatus='High ('+rr.toFixed(2)+'%) — Bearish for Gold';liqColor='#e05555';liqIcon='⚠️';}
+      } else { liqStatus='Update real_rates in gold manifest'; }
+      // ETF flows
+      if(goldData && goldData.etf_flows!==null){
+        const ef = goldData.etf_flows;
+        if(ef>0){flowStatus='Inflows +$'+ef.toFixed(0)+'M — Bullish';flowColor='#4caf7d';flowIcon='✅';}
+        else if(ef<0){flowStatus='Outflows -$'+Math.abs(ef).toFixed(0)+'M — Bearish';flowColor='#e05555';flowIcon='⚠️';}
+        else{flowStatus='Flat — Neutral';flowColor='#c9a84c';flowIcon='⚪';}
+      } else { flowStatus='Update etf_flows in gold manifest'; }
+      // COT
+      if(goldData && goldData.cot_signal){
+        const cot = goldData.cot_signal;
+        if(cot==='bullish'){frStatus='Speculators net long — Bullish';frColor='#4caf7d';frIcon='✅';}
+        else if(cot==='bearish'){frStatus='Speculators net short — Bearish';frColor='#e05555';frIcon='⚠️';}
+        else{frStatus='Mixed positioning — Neutral';frColor='#c9a84c';frIcon='⚪';}
+      } else { frStatus='Update cot_signal in gold manifest'; }
+    } else {
+      // BTC / ETH signals
+      const assetId = coin==='BTC'?'bitcoin':'ethereum';
+      const assetData = cachedMarketData?.find(c=>c.id===assetId);
+      if(assetData){
+        const chg24=assetData.price_change_percentage_24h||0;
+        if(chg24>1){flowStatus='Inflows dominant (price +'+chg24.toFixed(1)+'%)';flowColor='#4caf7d';flowIcon='✅';}
+        else if(chg24<-1){flowStatus='Outflows dominant (price '+chg24.toFixed(1)+'%)';flowColor='#e05555';flowIcon='⚠️';}
+        else{flowStatus='Neutral ('+Math.abs(chg24).toFixed(1)+'% 24h)';flowColor='#c9a84c';flowIcon='⚪';}
+      }
+      const symbol=coin==='ETH'?'ETHUSDT':'BTCUSDT';
       const frData=await fetch('https://fapi.binance.com/fapi/v1/premiumIndex?symbol='+symbol).then(r=>r.ok?r.json():null).catch(()=>null);
       if(frData&&frData.lastFundingRate!==undefined){
         const fr=parseFloat(frData.lastFundingRate)*100;
