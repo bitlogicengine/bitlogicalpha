@@ -3936,6 +3936,9 @@ async function fetchTrend(){
     const eth  = parseManifest(ethRes);
     const gold = parseManifest(goldRes);
 
+    // Store globally for logic panel access
+    window._cachedTrendData = { BTC: btc, ETH: eth, GOLD: gold };
+
     const statusConfig = {
       positive: {label:'Positive', color:'#4caf7d', cls:'positive'},
       negative: {label:'Negative', color:'#e05555', cls:'negative'},
