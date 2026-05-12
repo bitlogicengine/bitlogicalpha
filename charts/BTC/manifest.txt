@@ -1,5 +1,5 @@
 status: Positive 
 
-Positive note: Bitcoin has successfully consolidated above the $81k level after yesterday's push. The focus is now entirely on the 8:30 AM ET CPI release. A "Cool" inflation print is the only missing ingredient for a run toward the $84.5k Fibonacci level.
+note: Bitcoin has successfully consolidated above the $81k level after yesterday's push. The focus is now entirely on the 8:30 AM ET CPI release. A "Cool" inflation print is the only missing ingredient for a run toward the $84.5k Fibonacci level.
 
 updated: 12 May 2026
