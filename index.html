@@ -5008,10 +5008,10 @@ async function fetchLogicPanel(coin){
         else{frStatus='Negative ('+fr.toFixed(4)+'%) — Shorts paying';frColor='#4caf7d';frIcon='✅';}
       }
     }
-    panel.innerHTML='<div style="padding:14px 0 4px;display:flex;flex-direction:column;gap:10px">'+
-      '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:12px;flex-shrink:0">'+liqIcon+'</span><div><div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Liquidity</div><div style="font-size:10px;color:'+liqColor+'">'+liqStatus+'</div></div></div>'+
-      '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:12px;flex-shrink:0">'+flowIcon+'</span><div><div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Exchange Flows</div><div style="font-size:10px;color:'+flowColor+'">'+flowStatus+'</div></div></div>'+
-      '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:12px;flex-shrink:0">'+frIcon+'</span><div><div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Funding Rate</div><div style="font-size:10px;color:'+frColor+'">'+frStatus+'</div></div></div>'+
+    panel.innerHTML='<div style="padding:14px 0 4px;display:flex;flex-direction:column;gap:12px">'+
+      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+liqIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Liquidity</div><div style="font-size:12px;color:'+liqColor+';font-weight:500;letter-spacing:0.3px">'+liqStatus+'</div></div></div>'+
+      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+flowIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Exchange Flows</div><div style="font-size:12px;color:'+flowColor+';font-weight:500;letter-spacing:0.3px">'+flowStatus+'</div></div></div>'+
+      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+frIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Funding Rate</div><div style="font-size:12px;color:'+frColor+';font-weight:500;letter-spacing:0.3px">'+frStatus+'</div></div></div>'+
       '</div>';
   }catch(e){panel.innerHTML='<div style="padding:12px 0;font-size:9px;color:var(--text-muted)">Signal data unavailable.</div>';}
 }
