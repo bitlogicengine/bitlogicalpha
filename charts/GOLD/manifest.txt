@@ -1,5 +1,5 @@
 status: Negative 
 
-note: Gold (XAU) is at $4,690. Gold continues its struggle to reclaim a bullish posture. Despite a minor intraday bounce yesterday on geopolitical tension, it has failed to sustain any momentum. It remains in a Negative state as capital continues to rotate into digital assets, pushing the $BTC/Gold ratio toward our target of 20.
+note: Gold (XAU) has ticked up to $4,735 as markets reopen. While rising, it remains "Negative" in our model as digital assets continue to outperform on a relative basis. Gold may see increased volatility today as it acts as the primary "inflation hedge" proxy during the US CPI announcement.
 
-updated: 09 May 2026
+updated: 12 May 2026
