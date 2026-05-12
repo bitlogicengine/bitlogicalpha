@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>BitLogic Alpha · Article</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#080808;--surface:#0f0f0f;--surface2:#161616;
+      --gold:#c9a84c;--text:#f0ece4;--text-muted:#6b6560;--text-dim:#3a3530;
+    }
+    html{scroll-behavior:smooth}
+    body{min-height:100vh;background:var(--bg);font-family:'DM Mono',monospace;color:var(--text);line-height:1.6}
+    body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
+
+    /* Header */
+    .art-header{position:sticky;top:0;z-index:100;background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--text-dim);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
+    .art-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--gold);letter-spacing:1px;text-decoration:none}
+    .art-back{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--text-dim);padding:6px 14px;transition:all 0.2s}
+    .art-back:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* Article */
+    .art-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .art-meta{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+    .art-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);font-weight:700;color:var(--text);line-height:1.25;margin-bottom:32px;border-left:3px solid var(--gold);padding-left:18px}
+    .art-divider{height:1px;background:var(--text-dim);margin-bottom:32px}
+
+    /* Body */
+    .art-body{font-size:12px;color:var(--text-muted);line-height:1.95;letter-spacing:0.3px}
+    .art-body p{margin-bottom:20px}
+    .art-body .art-section-title{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:700;margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--text-dim)}
+    .art-body strong{color:var(--text)}
+
+    /* Footer */
+    .art-footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--text-dim);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .art-footer-brand{font-size:9px;color:var(--text-dim);letter-spacing:2px}
+    .art-footer-link{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-decoration:none;text-transform:uppercase}
+    .art-footer-link:hover{color:var(--gold)}
+
+    /* Loading */
+    .art-loading{text-align:center;padding:80px 24px;font-size:11px;color:var(--text-muted);letter-spacing:2px}
+    .art-error{text-align:center;padding:80px 24px}
+    .art-error h2{font-family:'Playfair Display',serif;font-size:24px;color:var(--text);margin-bottom:12px}
+    .art-error p{font-size:11px;color:var(--text-muted)}
+
+    @media(max-width:600px){
+      .art-wrap{padding:32px 16px 60px}
+      .art-header{padding:0 16px}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="art-header">
+    <a href="https://bitlogicalpha.com" class="art-brand">₿L</a>
+    <a href="https://bitlogicalpha.com" class="art-back">← Back to BitLogic</a>
+  </header>
+
+  <main class="art-wrap" id="artWrap">
+    <div class="art-loading">Loading article...</div>
+  </main>
+
+  <script>
+    const BASE = 'https://bitlogicalpha.com';
+
+    function parseBody(body){
+      if(!body) return '';
+      const paras = body.split('\n').filter(p=>p.trim());
+      return paras.map(p=>{
+        const t = p.trim();
+        // Numbered section headings like "1. The Title:"
+        if(/^[1-9]\d*\./.test(t)){
+          const dot = t.indexOf('.');
+          const rest = t.substring(dot+1).trim();
+          const colon = rest.indexOf(' — ') > -1 ? rest.indexOf(' — ') :
+                        rest.indexOf(': ') > -1  ? rest.indexOf(': ')  : -1;
+          if(colon > -1){
+            const heading = rest.substring(0, colon);
+            const body    = rest.substring(colon + (rest[colon]===' ' ? 3 : 2));
+            return `<div class="art-section-title">${t.substring(0,dot+1)} ${heading}</div><p>${body}</p>`;
+          }
+          return `<div class="art-section-title">${t}</div>`;
+        }
+        return `<p>${t}</p>`;
+      }).join('');
+    }
+
+    async function loadArticle(){
+      const wrap = document.getElementById('artWrap');
+      try{
+        // Get article index from URL param
+        const params = new URLSearchParams(window.location.search);
+        const idx = parseInt(params.get('id') || '0');
+
+        const res = await fetch(`${BASE}/news.json?t=${Date.now()}`);
+        if(!res.ok) throw new Error('Failed to load');
+        const articles = await res.json();
+
+        if(idx < 0 || idx >= articles.length){
+          throw new Error('Article not found');
+        }
+
+        const art = articles[idx];
+        document.title = `${art.title} · BitLogic Alpha`;
+
+        const bodyHtml = parseBody(art.body);
+
+        wrap.innerHTML = `
+          <div class="art-meta">BitLogic Alpha · ${art.date||''}</div>
+          <h1 class="art-title">${art.title||''}</h1>
+          <div class="art-divider"></div>
+          <div class="art-body">${bodyHtml}</div>
+          <div class="art-footer">
+            <span class="art-footer-brand">BitLogic Alpha · bitlogicalpha.com</span>
+            <a href="https://bitlogicalpha.com" class="art-footer-link">← All Articles</a>
+          </div>
+        `;
+      } catch(e){
+        wrap.innerHTML = `
+          <div class="art-error">
+            <h2>Article not found</h2>
+            <p>This article may have been moved or removed.</p>
+            <br>
+            <a href="https://bitlogicalpha.com" class="art-back">← Back to BitLogic</a>
+          </div>
+        `;
+      }
+    }
+
+    loadArticle();
+  </script>
+</body>
+</html>
