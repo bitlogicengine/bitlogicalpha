@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Ethereum has moved to $2,370. On-chain data shows massive whale accumulation, with large wallets adding 140,000 ETH ($322M) in the last few days. ETH looks like is under "Bull Control" as it prepares to test the $2,400 psychological barrier.  
+note: Ethereum closed at around $2,339. Despite a slight pullback from yesterday's highs, the structural setup is constructive. Whale wallets have continued their accumulation streak, adding over 140,000 ETH ($322M) in the last week. A daily close above the $2,375–$2,380 resistance zone is the trigger required for a move toward $2,550.  
 
-updated: 11 May 2026
+updated: 12 May 2026
