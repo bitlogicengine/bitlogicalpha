@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index is at 48 (Neutral). We are in a rare "Goldilocks" zone—price is rising, but retail sentiment hasn't reached "Greed" yet. This suggests the Disbelief Phase is still active; the "Smart Money" is buying while the general public remains cautious.
-date: 11 May 2026
+comment: The Fear & Greed Index remains at 49 (Neutral). This is a "Bullish Neutral" reading. Price is holding significant gains while the crowd remains hesitant to enter. This lack of "Greed" indicates that the top is not yet in, as structural buyers (Whales and ETFs) continue to absorb supply while retail waits for more "certainty."
+date: 12 May 2026
