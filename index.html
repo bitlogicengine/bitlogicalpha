@@ -3990,6 +3990,13 @@ async function fetchTrend(){
         ${sparkline}
         ${data.note?`<div class="trend-note" style="position:relative">${data.note}</div>`:''}
         <div class="trend-updated" style="position:relative;color:var(--text-muted)">Updated: ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
+        <!-- View Logic chevron -->
+        <div style="border-top:1px solid var(--text-dim);margin-top:14px;padding-top:10px;position:relative">
+          <button onclick="toggleLogicPanel('${coin}',this)" style="background:none;border:none;color:var(--text-dim);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;text-transform:uppercase;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-dim)'">
+            <span>⌵ View Logic</span>
+          </button>
+          <div id="logicPanel_${coin}" style="display:none;border-top:1px solid var(--text-dim);margin-top:8px"></div>
+        </div>
       </div>`;
     }
 
@@ -4958,6 +4965,57 @@ function updateSimulator(){
 }
 
 // ── MACRO TAB ─────────────────────────────────────────────
+// ── VIEW LOGIC PANEL ─────────────────────────────────────
+function toggleLogicPanel(coin, btn){
+  const panel = document.getElementById('logicPanel_'+coin);
+  if(!panel) return;
+  const isOpen = panel.style.display !== 'none';
+  panel.style.display = isOpen ? 'none' : 'block';
+  btn.querySelector('span').textContent = isOpen ? '⌵ View Logic' : '⌃ Hide Logic';
+  if(!isOpen) fetchLogicPanel(coin);
+}
+
+async function fetchLogicPanel(coin){
+  const panel = document.getElementById('logicPanel_'+coin);
+  if(!panel) return;
+  panel.innerHTML = '<div style="padding:12px 0;font-size:9px;color:var(--text-muted);letter-spacing:1px">Loading signals...</div>';
+  try{
+    let liqStatus='—',liqColor='var(--text-muted)',liqIcon='⚪';
+    if(window._fedLiqData && window._fedLiqData.length>=2){
+      const latest=window._fedLiqData[window._fedLiqData.length-1];
+      const prev=window._fedLiqData[window._fedLiqData.length-2];
+      const change=(latest.balance_sheet-latest.tga-latest.rrp)-(prev.balance_sheet-prev.tga-prev.rrp);
+      if(change>=0){liqStatus='Expanding (+$'+Math.abs(change).toFixed(0)+'B WoW)';liqColor='#4caf7d';liqIcon='✅';}
+      else{liqStatus='Contracting (-$'+Math.abs(change).toFixed(0)+'B WoW)';liqColor='#e07755';liqIcon='⚠️';}
+    }
+    let flowStatus='—',flowColor='var(--text-muted)',flowIcon='⚪';
+    const btcData=cachedMarketData?.find(c=>c.id==='bitcoin');
+    if(btcData){
+      const chg24=btcData.price_change_percentage_24h||0;
+      if(chg24>1){flowStatus='Inflows dominant (price +'+chg24.toFixed(1)+'%)';flowColor='#4caf7d';flowIcon='✅';}
+      else if(chg24<-1){flowStatus='Outflows dominant (price '+chg24.toFixed(1)+'%)';flowColor='#e05555';flowIcon='⚠️';}
+      else{flowStatus='Neutral ('+Math.abs(chg24).toFixed(1)+'% 24h)';flowColor='#c9a84c';flowIcon='⚪';}
+    }
+    let frStatus='N/A',frColor='var(--text-muted)',frIcon='⚪';
+    const symbol=coin==='ETH'?'ETHUSDT':coin==='BTC'?'BTCUSDT':null;
+    if(symbol){
+      const frData=await fetch('https://fapi.binance.com/fapi/v1/premiumIndex?symbol='+symbol).then(r=>r.ok?r.json():null).catch(()=>null);
+      if(frData&&frData.lastFundingRate!==undefined){
+        const fr=parseFloat(frData.lastFundingRate)*100;
+        if(fr>0.05){frStatus='High ('+fr.toFixed(4)+'%) — Longs paying';frColor='#e07755';frIcon='⚠️';}
+        else if(fr>0.01){frStatus='Moderate ('+fr.toFixed(4)+'%)';frColor='#c9a84c';frIcon='⚪';}
+        else if(fr>=0){frStatus='Low ('+fr.toFixed(4)+'%) — Healthy';frColor='#4caf7d';frIcon='✅';}
+        else{frStatus='Negative ('+fr.toFixed(4)+'%) — Shorts paying';frColor='#4caf7d';frIcon='✅';}
+      }
+    }
+    panel.innerHTML='<div style="padding:14px 0 4px;display:flex;flex-direction:column;gap:10px">'+
+      '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:12px;flex-shrink:0">'+liqIcon+'</span><div><div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Liquidity</div><div style="font-size:10px;color:'+liqColor+'">'+liqStatus+'</div></div></div>'+
+      '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:12px;flex-shrink:0">'+flowIcon+'</span><div><div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Exchange Flows</div><div style="font-size:10px;color:'+flowColor+'">'+flowStatus+'</div></div></div>'+
+      '<div style="display:flex;align-items:flex-start;gap:10px"><span style="font-size:12px;flex-shrink:0">'+frIcon+'</span><div><div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Funding Rate</div><div style="font-size:10px;color:'+frColor+'">'+frStatus+'</div></div></div>'+
+      '</div>';
+  }catch(e){panel.innerHTML='<div style="padding:12px 0;font-size:9px;color:var(--text-muted)">Signal data unavailable.</div>';}
+}
+
 async function fetchMacro(){
   try{
     const [btcRes, m2Res, fedRes, fgRes] = await Promise.all([
