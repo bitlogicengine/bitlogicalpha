@@ -4006,7 +4006,7 @@ async function fetchTrend(){
         <!-- View Logic chevron -->
         <div style="border-top:1px solid var(--text-dim);margin-top:14px;padding-top:10px;position:relative">
           <button onclick="toggleLogicPanel('${coin}',this)" style="background:none;border:1px solid var(--text-dim);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 0;width:100%;text-transform:uppercase;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--text-dim)';this.style.color='var(--text-muted)'">
-            <span>+ Market Signals</span>
+            <span>+ Market Health Check</span>
           </button>
           <div id="logicPanel_${coin}" style="display:none;border-top:1px solid var(--text-dim);margin-top:8px"></div>
         </div>
@@ -4984,7 +4984,7 @@ function toggleLogicPanel(coin, btn){
   if(!panel) return;
   const isOpen = panel.style.display !== 'none';
   panel.style.display = isOpen ? 'none' : 'block';
-  btn.querySelector('span').textContent = isOpen ? '+ Market Signals' : '− Hide Signals';
+  btn.querySelector('span').textContent = isOpen ? '+ Market Health Check' : '− Hide Health Check';
   if(!isOpen) fetchLogicPanel(coin);
 }
 
