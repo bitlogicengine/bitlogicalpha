@@ -3992,8 +3992,8 @@ async function fetchTrend(){
         <div class="trend-updated" style="position:relative;color:var(--text-muted)">Updated: ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
         <!-- View Logic chevron -->
         <div style="border-top:1px solid var(--text-dim);margin-top:14px;padding-top:10px;position:relative">
-          <button onclick="toggleLogicPanel('${coin}',this)" style="background:none;border:none;color:var(--text-dim);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;text-transform:uppercase;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-dim)'">
-            <span>⌵ View Logic</span>
+          <button onclick="toggleLogicPanel('${coin}',this)" style="background:none;border:1px solid var(--text-dim);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 0;width:100%;text-transform:uppercase;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--text-dim)';this.style.color='var(--text-muted)'">
+            <span>+ Market Signals</span>
           </button>
           <div id="logicPanel_${coin}" style="display:none;border-top:1px solid var(--text-dim);margin-top:8px"></div>
         </div>
@@ -4971,7 +4971,7 @@ function toggleLogicPanel(coin, btn){
   if(!panel) return;
   const isOpen = panel.style.display !== 'none';
   panel.style.display = isOpen ? 'none' : 'block';
-  btn.querySelector('span').textContent = isOpen ? '⌵ View Logic' : '⌃ Hide Logic';
+  btn.querySelector('span').textContent = isOpen ? '+ Market Signals' : '− Hide Signals';
   if(!isOpen) fetchLogicPanel(coin);
 }
 
@@ -5578,6 +5578,8 @@ fetchMarket();
 fetchTrend();
 fetchNews();
 fetchCalendar();
+// Pre-fetch fed liquidity so View Logic panel works without opening Macro tab
+fetch(`${BASE}/data/fed-liquidity.json?t=${Date.now()}`).then(r=>r.ok?r.json():null).then(d=>{ if(d) window._fedLiqData=d; }).catch(()=>{});
 
 // Open tab from URL hash if present
 (function(){
