@@ -4989,9 +4989,10 @@ async function fetchLogicPanel(coin){
       else{liqStatus='Contracting (-$'+Math.abs(change).toFixed(0)+'B WoW)';liqColor='#e07755';liqIcon='⚠️';}
     }
     let flowStatus='—',flowColor='var(--text-muted)',flowIcon='⚪';
-    const btcData=cachedMarketData?.find(c=>c.id==='bitcoin');
-    if(btcData){
-      const chg24=btcData.price_change_percentage_24h||0;
+    const assetId = coin==='BTC'?'bitcoin':coin==='ETH'?'ethereum':'pax-gold';
+    const assetData = cachedMarketData?.find(c=>c.id===assetId);
+    if(assetData){
+      const chg24=assetData.price_change_percentage_24h||0;
       if(chg24>1){flowStatus='Inflows dominant (price +'+chg24.toFixed(1)+'%)';flowColor='#4caf7d';flowIcon='✅';}
       else if(chg24<-1){flowStatus='Outflows dominant (price '+chg24.toFixed(1)+'%)';flowColor='#e05555';flowIcon='⚠️';}
       else{flowStatus='Neutral ('+Math.abs(chg24).toFixed(1)+'% 24h)';flowColor='#c9a84c';flowIcon='⚪';}
