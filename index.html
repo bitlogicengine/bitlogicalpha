@@ -1381,6 +1381,13 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 }
 .back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .back-to-top:hover{border-color:var(--gold);color:var(--gold)}
+
+.sig-tooltip-wrap{position:relative;display:inline-block;margin-left:5px;vertical-align:middle}
+.sig-tooltip-btn{background:none;border:1px solid var(--text-dim);color:var(--text-dim);border-radius:50%;width:13px;height:13px;font-size:7px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;line-height:1;font-family:'DM Mono',monospace;transition:all 0.2s}
+.sig-tooltip-btn:hover{border-color:var(--gold);color:var(--gold)}
+.sig-tooltip-box{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a1a;border:1px solid var(--gold);padding:10px 12px;font-size:9px;color:var(--text-muted);line-height:1.6;letter-spacing:0.3px;z-index:100;pointer-events:none}
+.sig-tooltip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1a1a1a}
+.sig-tooltip-wrap:hover .sig-tooltip-box{display:block}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
@@ -4997,6 +5004,18 @@ async function fetchLogicPanel(coin){
     let flowStatus='—',flowColor='var(--text-muted)',flowIcon='⚪';
     let frStatus='N/A',frColor='var(--text-muted)',frIcon='⚪';
     let liqLabel='Liquidity',flowLabel='Exchange Flows',frLabel='Funding Rate';
+    const tipBTC = {
+      liq:  "Measures the global dollar flow from the Federal Reserve and Treasury (Net Liquidity). Bullish when liquidity is expanding, as it provides the 'fuel' for price growth. Bearish when the system is tightening.",
+      flow: "Tracks the net movement of assets in and out of major exchanges. Outflows suggest investors are moving coins to cold storage (Bullish). Inflows suggest increased selling pressure (Bearish).",
+      fr:   "The cost of holding leveraged long positions. Positive rates mean longs pay shorts (Bullish Sentiment). Extreme high rates suggest the market is 'too crowded' and a correction is likely."
+    };
+    const tipGOLD = {
+      liq:  "The actual yield of government bonds after subtracting inflation. Gold is the ultimate hedge against low or negative real rates. When real rates rise, Gold becomes less attractive compared to cash/bonds.",
+      flow: "Tracks the capital entering or exiting the world's largest Gold ETFs. Persistent inflows represent institutional accumulation. Outflows signal rotation into other risk assets.",
+      fr:   "A weekly breakdown of how professional speculators and big banks are positioned. 'High Long' warns the trade is over-crowded, while 'Commercial Short' shows big banks hedging against a potential top."
+    };
+    const tips = coin==='GOLD' ? tipGOLD : tipBTC;
+    function tipHtml(text){ return '<span class="sig-tooltip-wrap"><button class="sig-tooltip-btn">i</button><div class="sig-tooltip-box">'+text+'</div></span>'; }
 
     if(coin==='GOLD'){
       // Gold-specific signals from manifest
@@ -5046,9 +5065,9 @@ async function fetchLogicPanel(coin){
       }
     }
     panel.innerHTML='<div style="padding:14px 0 4px;display:flex;flex-direction:column;gap:12px">'+
-      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+liqIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">'+(liqLabel||'Liquidity')+'</div><div style="font-size:12px;color:'+liqColor+';font-weight:500;letter-spacing:0.3px">'+liqStatus+'</div></div></div>'+
-      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+flowIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">'+(flowLabel||'Exchange Flows')+'</div><div style="font-size:12px;color:'+flowColor+';font-weight:500;letter-spacing:0.3px">'+flowStatus+'</div></div></div>'+
-      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+frIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">'+(frLabel||'Funding Rate')+'</div><div style="font-size:12px;color:'+frColor+';font-weight:500;letter-spacing:0.3px">'+frStatus+'</div></div></div>'+
+      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+liqIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">'+(liqLabel||'Liquidity')+tipHtml(tips.liq)+'</div><div style="font-size:12px;color:'+liqColor+';font-weight:500;letter-spacing:0.3px">'+liqStatus+'</div></div></div>'+
+      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+flowIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">'+(flowLabel||'Exchange Flows')+tipHtml(tips.flow)+'</div><div style="font-size:12px;color:'+flowColor+';font-weight:500;letter-spacing:0.3px">'+flowStatus+'</div></div></div>'+
+      '<div style="display:flex;align-items:flex-start;gap:12px;background:var(--surface);padding:12px 14px"><span style="font-size:14px;flex-shrink:0;margin-top:1px">'+frIcon+'</span><div><div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">'+(frLabel||'Funding Rate')+tipHtml(tips.fr)+'</div><div style="font-size:12px;color:'+frColor+';font-weight:500;letter-spacing:0.3px">'+frStatus+'</div></div></div>'+
       '</div>';
   }catch(e){panel.innerHTML='<div style="padding:12px 0;font-size:9px;color:var(--text-muted)">Signal data unavailable.</div>';}
 }
