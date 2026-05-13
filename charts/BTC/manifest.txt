@@ -1,5 +1,4 @@
 status: Positive 
 
-note: Bitcoin has successfully consolidated above the $81k level after yesterday's push. The focus is now entirely on the 8:30 AM ET CPI release. A "Cool" inflation print is the only missing ingredient for a run toward the $84.5k Fibonacci level.
-
-updated: 12 May 2026
+note: Bitcoin is trading above $81k again. Despite slipping from $82k, BTC is showing immense strength by holding the $80k psychological floor. The pullback is driven by short-term "Inflation FUD," but on-chain data shows institutional accumulation remains relentless. 
+updated: 13 May 2026
