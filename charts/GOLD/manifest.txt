@@ -1,9 +1,9 @@
 status: Negative 
 
-real_rates: 2.1
-etf_flows: -85
+real_rates: 2.2
+etf_flows: -112
 cot_signal: High Long (Caution)
 
-note: Gold (XAU) has ticked up to $4,735 as markets reopen. While rising, it remains "Negative" in our model as digital assets continue to outperform on a relative basis. Gold may see increased volatility today as it acts as the primary "inflation hedge" proxy during the US CPI announcement.
+note: Gold (XAU) has slipped to $4,715 as the "Hot CPI" hangover takes effect. The jump in real interest rates to 2.2 is acting as a heavy anchor on price, while -112M in ETF outflows suggests institutional investors are de-risking. The High Long (Caution) signal remains active, warning that the market is still "top-heavy" with speculators who may be forced to liquidate if the $4,700 support breaks.
 
-updated: 12 May 2026
+updated: 13 May 2026
