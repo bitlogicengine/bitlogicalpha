@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Ethereum has consolidated at around $2,300 holding its support levels more firmly. With the launch of Charles Schwab's spot trading yesterday, institutional access is expanding. The path to $2,500 remains the high-probability outcome.
+note: Ethereum closed at $2,258. ETH is tracking the broader market consolidation but remains constructive. Institutional interest in "Staking ETFs" is currently pegged to today’s Clarity Act outcome. Holding the $2,200 support is vital for maintaining the 2026 breakout structure.  
 
-updated: 13 May 2026
+updated: 14 May 2026
