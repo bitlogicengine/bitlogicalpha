@@ -1,9 +1,9 @@
 status: Negative 
 
-real_rates: 2.2
-etf_flows: -112
+real_rates: 2.25
+etf_flows: -130
 cot_signal: High Long (Caution)
 
-note: Gold (XAU) has slipped to $4,715 as the "Hot CPI" hangover takes effect. The jump in real interest rates to 2.2 is acting as a heavy anchor on price, while -112M in ETF outflows suggests institutional investors are de-risking. The High Long (Caution) signal remains active, warning that the market is still "top-heavy" with speculators who may be forced to liquidate if the $4,700 support breaks.
+note: Gold remains in a bearish local trend as Real Interest Rates climbed to 2.25 following the inflation data. ETF Outflows accelerated to -$130M, suggesting a rotation out of physical hedges. The High Long signal remains a major warning—the market is "heavy" and vulnerable to a deeper correction if support at $4,650 fails.
 
-updated: 13 May 2026
+updated: 14 May 2026
