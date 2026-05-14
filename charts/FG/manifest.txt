@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index has officially shifted into 42 (Fear). This 7-point drop in 24 hours reflects the market's reaction to the "Hot CPI" print and local price volatility. Historically, when the BitLogic State remains Positive while the FG Index hits Fear, it identifies a high-probability "Value Zone." The crowd is focused on the $80k headline, but the structural floor remains intact.
-date: 13 May 2026
+comment: The Fear & Greed Index has dropped to 34 (Fear). This is a significant 8-point slide from yesterday. We are officially in the "Caution" zone. However, at BitLogic Alpha, we view this as a Contrarian Opportunity. When price holds structural support (like $79k) while the crowd reaches a "Fear" of 34, it often signals the final shakeout before a major upward move.
+date: 14 May 2026
