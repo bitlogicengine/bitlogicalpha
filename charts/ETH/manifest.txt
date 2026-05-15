@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed at $2,258 and has officially flipped to Negative. ETH has dropped below its 50-day and 200-day moving averages, with a bearish MACD crossover signaling a loss of short-term conviction. Institutional "wait-and-see" behavior regarding staking regulatory clarity is causing a local drain in liquidity. We are watching $2,211 as the "must-hold" support to avoid a flush to $2,050.  
+note: Ethereum closed at $2,282. While it bounced with the market, ETH remains in a Negative state in our model. The "Staking Clarity" rally hasn't fully materialized yet.
 
-updated: 14 May 2026
+updated: 15 May 2026
