@@ -1,5 +1,5 @@
 status: Positive 
 
-note: Bitcoin closed yesterday at $79,290. Despite the psychological slip below $80k, BTC remains "Positive" in our model. We are seeing a classic "Sell the Rumor" event ahead of today’s Senate vote. On-chain data shows massive spot accumulation at this $79k level, with whales absorbing the "Hot CPI" panic from earlier this week. The $78.5k support remains the crucial line to hold.
+note: Bitcoin closed yesterday at $81,064. BTC has successfully "V-bottomed" after shaking out weak hands at $79k. This move was fueled by the $36B liquidity injection and the passing of the CLARITY Act through committee. As long as we stay above $80.2k, the path of least resistance is up.
 
-updated: 14 May 2026
+updated: 15 May 2026
