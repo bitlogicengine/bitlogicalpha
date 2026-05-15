@@ -1,9 +1,9 @@
 status: Negative 
 
-real_rates: 2.25
-etf_flows: -130
+real_rates: 2.28
+etf_flows: -145
 cot_signal: High Long (Caution)
 
-note: Gold remains in a bearish local trend as Real Interest Rates climbed to 2.25 following the inflation data. ETF Outflows accelerated to -$130M, suggesting a rotation out of physical hedges. The High Long signal remains a major warning—the market is "heavy" and vulnerable to a deeper correction if support at $4,650 fails.
+note: Gold (XAU) closed yesterday at $4,652. Gold is the primary victim of the "Risk-On" rotation. Real Rates have ticked up to 2.28, and ETF Outflows have deepened to -$145M. The High Long COT signal is now a major red flag—if Gold breaks $4,640, we could see a rapid flush toward $4,500 as speculators bail.
 
-updated: 14 May 2026
+updated: 15 May 2026
