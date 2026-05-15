@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index has dropped to 34 (Fear). This is a significant 8-point slide from yesterday. We are officially in the "Caution" zone. However, at BitLogic Alpha, we view this as a Contrarian Opportunity. When price holds structural support (like $79k) while the crowd reaches a "Fear" of 34, it often signals the final shakeout before a major upward move.
-date: 14 May 2026
+comment: The Fear & Greed Index is at 43 (Fear). This is a "Bullish Divergence." Price is moving up ($81k BTC), Liquidity is moving up (+$36B), but the crowd is still afraid. In our model, this is the "Sweet Spot"—the point where the smart money is fully positioned before retail FOMO kicks in and drives the index back above 70.
+date: 15 May 2026
