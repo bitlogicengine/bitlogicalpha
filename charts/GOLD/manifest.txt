@@ -1,9 +1,9 @@
 status: Negative 
 
-real_rates: 2.28
-etf_flows: -145
+real_rates: 2.35
+etf_flows: -185
 cot_signal: High Long (Caution)
 
-note: Gold (XAU) closed yesterday at $4,652. Gold is the primary victim of the "Risk-On" rotation. Real Rates have ticked up to 2.28, and ETF Outflows have deepened to -$145M. The High Long COT signal is now a major red flag—if Gold breaks $4,640, we could see a rapid flush toward $4,500 as speculators bail.
+note: Gold (XAU) suffered a massive drop, closing yesterday at $4,540. The surge in Real Interest Rates to 2.35 (with the 10-year yield approaching a one-year high of 4.52%) completely broke the asset's defensive floor. Institutional ETF Outflows worsened to -$185M. This rapid breakdown past $4,640 has officially triggered the High Long "Long Squeeze" we warned about, forcing over-leveraged speculators to liquidate their positions in mass.
 
-updated: 15 May 2026
+updated: 16 May 2026
