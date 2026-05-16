@@ -1,5 +1,5 @@
-status: Positive 
+status: Neutral
 
-note: Bitcoin closed yesterday at $81,064. BTC has successfully "V-bottomed" after shaking out weak hands at $79k. This move was fueled by the $36B liquidity injection and the passing of the CLARITY Act through committee. As long as we stay above $80.2k, the path of least resistance is up.
+note: Bitcoin closed yesterday down at $79,066. BTC has broken back below the $80k psychological level, shifting its short-term momentum from Positive to Neutral. The sell-off was driven by a massive spike in US Treasury yields and short-term spot anxiety from corporate whale rebalancing. The $78.5k support is currently acting as the primary defensive floor.  
 
-updated: 15 May 2026
+updated: 16 May 2026
