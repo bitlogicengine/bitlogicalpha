@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed at $2,282. While it bounced with the market, ETH remains in a Negative state in our model. The "Staking Clarity" rally hasn't fully materialized yet.
+note: Ethereum closed yesterday at $2,223. ETH continues its downward slide, firmly embedded in a Negative state. The asset broke below its crucial $2,250 support zone as spot ETF outflows intensified over the past five sessions. Momentum remains weak, and a test of the $2,150 liquidity pocket is highly probable unless a macro reversal occurs next week.
 
-updated: 15 May 2026
+updated: 16 May 2026
