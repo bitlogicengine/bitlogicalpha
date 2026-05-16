@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index is at 43 (Fear). This is a "Bullish Divergence." Price is moving up ($81k BTC), Liquidity is moving up (+$36B), but the crowd is still afraid. In our model, this is the "Sweet Spot"—the point where the smart money is fully positioned before retail FOMO kicks in and drives the index back above 70.
-date: 15 May 2026
+comment: The Fear & Greed Index has dropped deeply into 31 (Fear). This represents a 12-point flush from yesterday's reading of 43. This is a severe psychological reset for retail traders who expected an immediate moon-shot after the committee vote. On the institutional side, funding rates have been completely flattened, clearing out the speculative froth and setting up a structurally cleaner bottoming process.
+date: 16 May 2026
