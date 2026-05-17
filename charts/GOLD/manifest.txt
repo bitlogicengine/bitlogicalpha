@@ -1,9 +1,9 @@
-status: Negative 
+status: Negative
 
-real_rates: 2.35
-etf_flows: -185
-cot_signal: High Long (Caution)
+real_rates: 2.38
+etf_flows: -190
+cot_signal: High Long (Squeeze)
 
-note: Gold (XAU) suffered a massive drop, closing yesterday at $4,540. The surge in Real Interest Rates to 2.35 (with the 10-year yield approaching a one-year high of 4.52%) completely broke the asset's defensive floor. Institutional ETF Outflows worsened to -$185M. This rapid breakdown past $4,640 has officially triggered the High Long "Long Squeeze" we warned about, forcing over-leveraged speculators to liquidate their positions in mass.
+note: Gold (XAU) remained unchanged, closing yesterday at $4,540 since the traditional bullion markets were closed over the weekend. The asset stays firmly in a Negative state following its recent sharp breakdown past $4,640, heavily pressured by elevated Real Interest Rates and ongoing institutional ETF outflows.
 
-updated: 16 May 2026
+updated: 17 May 2026
