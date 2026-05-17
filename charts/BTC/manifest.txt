@@ -1,5 +1,5 @@
 status: Neutral
 
-note: Bitcoin closed yesterday down at $79,066. BTC has broken back below the $80k psychological level, shifting its short-term momentum from Positive to Neutral. The sell-off was driven by a massive spike in US Treasury yields and short-term spot anxiety from corporate whale rebalancing. The $78.5k support is currently acting as the primary defensive floor.  
+note: Bitcoin closed yesterday down at $78,110. BTC continues to trade below the $80k psychological level, maintaining its short-term Neutral state as weekend liquidity thins out. The recent spike in US Treasury yields and lingering spot anxiety keep buyers cautious, though the $78k-$78.5k range is currently acting as the primary defensive floor.
 
-updated: 16 May 2026
+updated: 17 May 2026
