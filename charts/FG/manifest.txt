@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index has dropped deeply into 31 (Fear). This represents a 12-point flush from yesterday's reading of 43. This is a severe psychological reset for retail traders who expected an immediate moon-shot after the committee vote. On the institutional side, funding rates have been completely flattened, clearing out the speculative froth and setting up a structurally cleaner bottoming process.
-date: 16 May 2026
+comment: The Fear & Greed Index has dropped deeply into 27 (Fear). This represents a 4-point decline from yesterday's reading of 31. This deepening fear highlights a persistent psychological reset among retail traders as the post-committee rally lacks immediate follow-through. On the institutional side, completely flattened funding rates suggest speculative froth has been entirely cleared out.
+date: 17 May 2026
