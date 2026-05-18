@@ -1,9 +1,9 @@
-status: Negative
+status: Negative 
 
 real_rates: 2.35
 etf_flows: -185
-cot_signal: High Long (Squeeze)
+cot_signal: High Long (Caution)
 
-note: Gold (XAU) remained unchanged, closing yesterday at $4,540 since the traditional bullion markets were closed over the weekend. The asset stays firmly in a Negative state following its recent sharp breakdown past $4,640, heavily pressured by elevated Real Interest Rates and ongoing institutional ETF outflows.
+note: Gold (XAU) remains at $4,540 as spot bullion markets were closed over the weekend. The asset continues to carry a Negative technical rating following last week's major structural breakdown below $4,640, heavily anchored by high real yields and accelerated institutional ETF outflows.
 
-updated: 17 May 2026
+updated: 18 May 2026
