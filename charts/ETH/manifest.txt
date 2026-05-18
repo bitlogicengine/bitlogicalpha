@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday at $2,180. ETH remains heavily embedded in a Negative state, drifting further below the broken $2,250 support zone. With spot ETF outflows weighing on market sentiment and daily trading volumes tapering off, a test of the deeper $2,150 liquidity pocket remains highly probable.
+note: Ethereum closed yesterday down at $2,130. ETH remains deeply locked in a Negative state, suffering further markdown extension past the broken $2,250 support level. Weak spot demand and broader macro risk-off momentum are keeping buyers sidelined as price inches closer to the critical $2,110–$2,150 liquidity pocket.
 
-updated: 17 May 2026
+updated: 18 May 2026
