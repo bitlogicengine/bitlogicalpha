@@ -1,58 +1,58 @@
 [
   {
-    "day": "11",
+    "day": "18",
     "month": "May",
     "type": "macro",
-    "title": "China CPI & PPI Data — Global Liquidity Scan",
-    "desc": "A critical look at the world’s manufacturing hub. Deflationary PPI signals in China often precede global price cooling, which would provide a structural 'macro tailwind' for BTC and Gold as the market anticipates central bank easing."
+    "title": "Eurozone Final CPI & Trade Balance",
+    "desc": "The official read on European inflation. Divergence between ECB and Fed policy is a primary driver of the DXY. A cooler European CPI locks in the ECB rate cut narrative, which could artificially prop up the Dollar Index and suppress BTC in the short term."
   },
   {
-    "day": "11",
+    "day": "19",
     "month": "May",
     "type": "macro",
-    "title": "US Senate Vote on Fed Leadership",
-    "desc": "The official vote on Walsh's appointment. Fed leadership transitions are key volatility triggers; any hawkish commentary during the confirmation could tighten financial conditions and pressure risk assets before Tuesday's CPI."
+    "title": "US Building Permits & Housing Starts",
+    "desc": "Housing data acts as a leading indicator for systemic economic health. Severe weakness here signals that sustained high yields are fracturing structural economic pillars, potentially forcing a dovish pivot sooner than the market anticipates."
   },
   {
-    "day": "12",
+    "day": "20",
     "month": "May",
     "type": "macro",
-    "title": "US Consumer Price Index (CPI) Report",
-    "desc": "The 'Volatility King' of the week. If April's inflation data comes in cooler than expected (<3.5%), it confirms the 'Soft Landing' and could trigger a breakout above the $82k resistance. A hot print kills the rate-cut hope and tests the $78k floor."
+    "title": "FOMC Meeting Minutes Release",
+    "desc": "A critical look under the hood of the Fed's latest policy discussions. Institutional algos will parse the text for 'sticky inflation' vs 'easing' rhetoric. Expect high-frequency volatility spikes across both DXY and BTC trading pairs the moment the minutes hit the wire."
   },
   {
-    "day": "12",
+    "day": "20",
     "month": "May",
     "type": "crypto",
-    "title": "Avalanche (AVAX) & Aptos (APT) Unlock Cluster",
-    "desc": "A dual-supply event for high-throughput L1s. While these are routine unlocks, their alignment with CPI day increases the risk of 'Stop-Loss Hunting.' Watch for volatility in the AVAX/BTC and APT/BTC pairs as supply hits the market."
+    "title": "Pyth Network (PYTH) Major Unlock",
+    "desc": "A massive scheduled cliff unlock for the oracle network. With millions of tokens entering circulating supply, watch for immediate spot pressure and potential 'sell the news' volatility bleeding into the broader Solana DeFi ecosystem."
   },
   {
-    "day": "13",
+    "day": "21",
     "month": "May",
     "type": "macro",
-    "title": "US Producer Price Index (PPI)",
-    "desc": "The 'Inflation Pipeline' update. High producer prices usually bleed into consumer prices. A hot PPI following a hot CPI would be a 'Double-Hawkish' signal, likely pushing the BitLogic Divergence Score into deep negative territory."
+    "title": "US Initial Jobless Claims",
+    "desc": "Labor market resilience is the final anchor for the 'Higher for Longer' hawkish narrative. An unexpected spike in jobless claims could accelerate the 'bad news is good news' cycle for digital assets, shifting capital back toward scarce assets."
   },
   {
-    "day": "14",
+    "day": "22",
     "month": "May",
     "type": "macro",
-    "title": "US Retail Sales — Consumer Resilience Check",
-    "desc": "Data on whether the US consumer is still driving the economy. Strong retail sales bolster the 'Higher for Longer' Fed stance, strengthening the DXY and potentially capping crypto gains for the week."
+    "title": "US Flash PMIs (Manufacturing & Services)",
+    "desc": "A real-time snapshot of economic momentum. If the Services PMI drops into contraction (<50), expect a swift downward revision in GDP growth models, triggering a potential aggressive bid for both Treasury bonds and Gold as risk-off hedges."
   },
   {
-    "day": "16",
+    "day": "23",
     "month": "May",
     "type": "crypto",
-    "title": "Arbitrum (ARB) & STBL Major Unlock",
-    "desc": "A significant supply dilution for the L2 sector. ~$28M total across both assets entering circulation. In the current 'Disbelief Phase,' these events test if the market liquidity floor is thick enough to absorb sell pressure without price breakdown."
+    "title": "Space ID (ID) & Immutable (IMX) Supply Unlocks",
+    "desc": "Weekend liquidity is typically thin, making these weekend token unlocks particularly dangerous for localized price action. Expect isolated volatility and potential aggressive funding rate manipulation on perpetual futures markets."
   },
   {
-    "day": "17",
+    "day": "24",
     "month": "May",
     "type": "crypto",
     "title": "BitLogic Alpha Weekly Macro Review",
-    "desc": "Closing the week by synthesizing the CPI/PPI data into our Net Liquidity Model. We determine if the $5.85T floor moved and set the 'High-Conviction' zones for the upcoming week's trade setup."
+    "desc": "Synthesizing the FOMC minutes and PMI data into our Net Liquidity Model. We map the institutional footprint left over the week to establish the 'High-Conviction' zones and Divergence setups for the final trading week of May."
   }
 ]
