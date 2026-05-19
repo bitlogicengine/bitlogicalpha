@@ -3482,24 +3482,25 @@ async function fetchHeatmap(){
 function renderHeatmap(d){
   if(!d) return;
   const score = d.score;
-  const hasScore = score !== null && score !== undefined && !isNaN(score);
+  const displayScore = score !== null ? -score : null; // flip: negative Z = positive display (good value)
+  const hasScore = displayScore !== null && !isNaN(displayScore);
   let zone, zoneColor, signal;
   if(!hasScore){
     zone='—'; zoneColor='var(--text-dim)'; signal='Loading...';
-  } else if(score >= 1.0){
+  } else if(displayScore >= 1.0){
     zone='AGGRESSIVE ACCUMULATION · DEEP VALUE'; zoneColor='#4caf7d'; signal='High Conviction Buy Zone';
-  } else if(score >= 0.5){
+  } else if(displayScore >= 0.5){
     zone='MODERATE ACCUMULATION'; zoneColor='#7bc47f'; signal='Below fair value — Accumulate';
-  } else if(score >= -0.5){
+  } else if(displayScore >= -0.5){
     zone='NEUTRAL · HOLD'; zoneColor='#c9a84c'; signal='Standard DCA zone — Near fair value';
-  } else if(score >= -1.0){
+  } else if(displayScore >= -1.0){
     zone='MODERATE CAUTION'; zoneColor='#e07755'; signal='Above fair value — Reduce entries';
   } else {
     zone='PROFIT TAKING · DE-RISK'; zoneColor='#e05555'; signal='High Conviction Sell Zone — Overheated';
   }
-  const pct = hasScore ? Math.min(100, Math.max(0, ((2 - score) / 4) * 100)) : 50;
+  const pct = hasScore ? Math.min(100, Math.max(0, ((2 - displayScore) / 4) * 100)) : 50;
   const scoreEl = document.getElementById('heatmapScore');
-  if(scoreEl){ scoreEl.textContent=hasScore?(score>0?'+':'')+score.toFixed(1):'—'; scoreEl.style.color=zoneColor; }
+  if(scoreEl){ scoreEl.textContent=hasScore?(displayScore>0?'+':'')+displayScore.toFixed(1):'—'; scoreEl.style.color=zoneColor; }
   const zoneEl = document.getElementById('heatmapZone');
   if(zoneEl){ zoneEl.textContent=zone; zoneEl.style.color=zoneColor; }
   const priceEl = document.getElementById('heatmapPrice');
