@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index is at 28 (Fear). This indicates a compounding psychological washout among retail participants as the price dips into the mid-$77k range. On-chain funding rates remain completely flat, meaning speculative leverage has effectively been purged from the system, laying the structural groundwork for a cleaner technical reset.
-date: 18 May 2026
+comment: The Fear & Greed Index has dropped to 25 (Extreme Fear). This 3-point decline from yesterday indicates a deepening psychological washout. With the upcoming swearing-in of the new Federal Reserve Chair later this week, retail participants are paralyzed by macroeconomic uncertainty. However, this level of extreme fear often coincides with local structural bottoms as weak hands exit the market and funding rates remain flat.
+date: 19 May 2026
