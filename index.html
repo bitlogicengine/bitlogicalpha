@@ -3482,8 +3482,8 @@ async function fetchHeatmap(){
 function renderHeatmap(d){
   if(!d) return;
   const score = d.score;
-  const displayScore = score !== null ? -score : null; // flip: negative Z = positive display (good value)
-  const hasScore = displayScore !== null && !isNaN(displayScore);
+  const displayScore = score;
+  const hasScore = score !== null && score !== undefined && !isNaN(score);
   let zone, zoneColor, signal;
   if(!hasScore){
     zone='—'; zoneColor='var(--text-dim)'; signal='Loading...';
