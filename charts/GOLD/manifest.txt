@@ -1,9 +1,9 @@
 status: Negative 
 
-real_rates: 2.40
-etf_flows: -180
-cot_signal: High Long (Caution)
+real_rates: 2.42
+etf_flows: -205
+cot_signal: High Long (Unwinding)
 
-note: Gold (XAU) closed yesterday at $4,566, remaining firmly in a Negative state. The precious metal is facing immense pressure from the fixed-income sector, as the U.S. 10-year Treasury yield hit a 16-month high of 4.60%. This mechanical surge in real interest rates to 2.40 continues to increase the opportunity cost of holding the asset, driving persistent institutional ETF outflows and preventing any meaningful recovery bounce.
+note: Gold (XAU) experienced another significant breakdown, closing yesterday at $4,482. The precious metal remains firmly in a Negative state. Persistent high U.S. Treasury yields and a rising DXY are choking off dollar liquidity, accelerating institutional ETF outflows (-$205M) and forcing over-leveraged high longs to unwind their positions into a thinning order book.
 
-updated: 19 May 2026
+updated: 20 May 2026
