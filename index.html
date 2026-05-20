@@ -3170,6 +3170,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 
     <div class="jump-bar" style="margin-top:32px">
       <a class="jump-link" onclick="jumpTo('acc-heatmap')">Z-Score Heatmap</a>
+      <a class="jump-link" onclick="jumpTo('acc-whale')">Whale Footprint</a>
     </div>
 
     <!-- BITLOGIC HEATMAP -->
@@ -3267,6 +3268,31 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           <div style="font-size:12px;color:var(--text-muted);line-height:1.85" id="heatmapNote">—</div>
         </div>
 
+      </div>
+    </div>
+
+    <!-- WHALE FOOTPRINT -->
+    <div class="section" id="acc-whale">
+      <div class="section-header">
+        <div class="section-label">Whale Footprint</div>
+        <div class="section-meta">Order Book Liquidity · Live from Binance</div>
+      </div>
+      <div style="background:var(--surface2);padding:28px 24px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:24px">
+          <div>
+            <div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px">BitLogic Alpha · Order Book Intelligence</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.7;max-width:420px">Where institutions are placing their limit orders. Large clusters indicate price magnets — levels where the market is likely to gravitate.</div>
+          </div>
+          <button onclick="fetchWhaleFootprint()" style="background:none;border:1px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;padding:8px 16px;cursor:pointer" onmouseover="this.style.background='var(--gold)';this.style.color='#1a1a1a'" onmouseout="this.style.background='none';this.style.color='var(--gold)'">↻ REFRESH</button>
+        </div>
+        <div id="whaleSummary" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:2px"></div>
+        <div id="whaleChart" style="background:var(--surface);padding:20px 24px;margin-bottom:2px">
+          <div style="font-size:11px;color:var(--text-muted);letter-spacing:1px;text-align:center">Click REFRESH to load order book data</div>
+        </div>
+        <div id="whaleWalls" style="background:var(--surface);padding:16px 24px">
+          <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">Detected Walls</div>
+          <div id="whaleWallsList" style="font-size:11px;color:var(--text-muted)">—</div>
+        </div>
       </div>
     </div>
 
@@ -3478,6 +3504,111 @@ async function fetchHeatmap(){
     renderHeatmap({ score: null, updated: '—', note: 'Data unavailable.' });
   }
 }
+
+// ── WHALE FOOTPRINT ─────────────────────────────────────
+async function fetchWhaleFootprint(){
+  var chartEl   = document.getElementById('whaleChart');
+  var summaryEl = document.getElementById('whaleSummary');
+  var wallsEl   = document.getElementById('whaleWallsList');
+  if(!chartEl) return;
+  chartEl.innerHTML = '<div style="text-align:center;padding:20px;font-size:10px;color:#6b6560;letter-spacing:1px">Fetching order book...</div>';
+  try{
+    var res = await fetch('https://api.binance.com/api/v3/depth?symbol=BTCUSDT&limit=500').then(function(r){ return r.ok?r.json():null; });
+    if(!res) throw new Error('Failed');
+    var currentPrice = (cachedMarketData && cachedMarketData.find(function(c){ return c.id==='bitcoin'; }) || {}).current_price || 0;
+
+    function cluster(orders){
+      var map = {};
+      for(var i=0;i<orders.length;i++){
+        var price  = parseFloat(orders[i][0]);
+        var qty    = parseFloat(orders[i][1]);
+        var bucket = Math.round(price/500)*500;
+        map[bucket] = (map[bucket]||0) + qty*price;
+      }
+      var arr = [];
+      for(var k in map) arr.push({price:parseFloat(k), value:map[k]/1e6});
+      arr.sort(function(a,b){ return b.price-a.price; });
+      return arr;
+    }
+
+    var bids = cluster(res.bids);
+    var asks = cluster(res.asks);
+    var totalBid = bids.reduce(function(s,b){ return s+b.value; },0);
+    var totalAsk = asks.reduce(function(s,a){ return s+a.value; },0);
+    var ratio = totalBid/(totalBid+totalAsk);
+    var pressure = ratio>0.55?'BUY PRESSURE':ratio<0.45?'SELL PRESSURE':'BALANCED';
+    var pc = ratio>0.55?'#4caf7d':ratio<0.45?'#e05555':'#c9a84c';
+
+    var topBids = bids.slice().sort(function(a,b){ return b.value-a.value; }).slice(0,3);
+    var topAsks = asks.slice().sort(function(a,b){ return b.value-a.value; }).slice(0,3);
+
+    summaryEl.innerHTML =
+      '<div style="background:var(--surface);padding:18px 16px;text-align:center">' +
+        '<div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Total Bid Liquidity</div>' +
+        '<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;color:#4caf7d">$' + totalBid.toFixed(0) + 'M</div>' +
+        '<div style="font-size:8px;color:var(--text-dim);margin-top:4px">Buy walls below price</div>' +
+      '</div>' +
+      '<div style="background:var(--surface);padding:18px 16px;text-align:center;border-left:3px solid ' + pc + '">' +
+        '<div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Bid/Ask Ratio</div>' +
+        '<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;color:' + pc + '">' + (ratio*100).toFixed(0) + '%</div>' +
+        '<div style="font-size:8px;color:' + pc + ';margin-top:4px;letter-spacing:1px">' + pressure + '</div>' +
+      '</div>' +
+      '<div style="background:var(--surface);padding:18px 16px;text-align:center">' +
+        '<div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Total Ask Liquidity</div>' +
+        '<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;color:#e05555">$' + totalAsk.toFixed(0) + 'M</div>' +
+        '<div style="font-size:8px;color:var(--text-dim);margin-top:4px">Sell walls above price</div>' +
+      '</div>';
+
+    var allLevels = asks.slice(0,15).map(function(a){ return {price:a.price,value:a.value,side:'ask'}; })
+      .concat(bids.slice(0,15).map(function(b){ return {price:b.price,value:b.value,side:'bid'}; }))
+      .sort(function(a,b){ return b.price-a.price; });
+    var maxVal = Math.max.apply(null, allLevels.map(function(l){ return l.value; }));
+
+    var bars = '';
+    for(var i=0;i<allLevels.length;i++){
+      var l = allLevels[i];
+      var pct    = Math.min(100, (l.value/maxVal)*100);
+      var color  = l.side==='bid'?'#4caf7d':'#e05555';
+      var isWall = l.value > maxVal*0.4;
+      var isCur  = Math.abs(l.price-currentPrice)<500;
+      bars +=
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:3px' + (isCur?';border-left:2px solid #c9a84c;padding-left:6px':'') + '">' +
+          '<div style="font-size:8px;color:' + (isCur?'#c9a84c':'#3a3530') + ';font-family:DM Mono,monospace;width:70px;flex-shrink:0;text-align:right">$' + l.price.toLocaleString() + '</div>' +
+          '<div style="flex:1;height:' + (isWall?12:7) + 'px;background:var(--surface2);border-radius:1px">' +
+            '<div style="height:100%;width:' + pct.toFixed(1) + '%;background:' + color + ';opacity:' + (isWall?1:0.5) + ';border-radius:1px' + (isWall?';box-shadow:0 0 6px '+color+'80':'') + '"></div>' +
+          '</div>' +
+          '<div style="font-size:8px;color:' + color + ';width:60px;flex-shrink:0">' + (isWall?'🐋 ':'') + '$' + l.value.toFixed(0) + 'M</div>' +
+        '</div>';
+    }
+
+    chartEl.innerHTML =
+      '<div style="display:flex;justify-content:space-between;margin-bottom:12px">' +
+        '<div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">Order Book Depth</div>' +
+        '<div style="font-size:9px;color:var(--gold);letter-spacing:1px">▲ ASKS &nbsp; ▼ BIDS</div>' +
+      '</div>' +
+      '<div style="max-height:400px;overflow-y:auto">' + bars + '</div>' +
+      '<div style="margin-top:8px;font-size:8px;color:var(--text-dim);letter-spacing:1px">🐋 = Wall detected · Gold = Current price · Live Binance BTCUSDT</div>';
+
+    var wallHtml = '';
+    for(var i=0;i<topBids.length;i++){
+      wallHtml += '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--text-dim)">' +
+        '<span style="font-size:10px;color:#4caf7d">🐋 BUY WALL at $' + topBids[i].price.toLocaleString() + '</span>' +
+        '<span style="font-size:10px;color:#4caf7d;font-weight:700">$' + topBids[i].value.toFixed(0) + 'M in bids</span>' +
+      '</div>';
+    }
+    for(var i=0;i<topAsks.length;i++){
+      wallHtml += '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--text-dim)">' +
+        '<span style="font-size:10px;color:#e05555">🧱 SELL WALL at $' + topAsks[i].price.toLocaleString() + '</span>' +
+        '<span style="font-size:10px;color:#e05555;font-weight:700">$' + topAsks[i].value.toFixed(0) + 'M in asks</span>' +
+      '</div>';
+    }
+    wallsEl.innerHTML = wallHtml || '—';
+
+  } catch(e){
+    chartEl.innerHTML = '<div style="text-align:center;padding:20px;font-size:10px;color:var(--text-muted)">Order book unavailable. Try refreshing.</div>';
+  }
+}
+
 
 function renderHeatmap(d){
   if(!d) return;
