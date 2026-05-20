@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday down at $2,129. ETH continues to slide and remains locked in a Negative state as risk-aversion dominates the digital asset space. The asset is struggling to find meaningful spot demand as capital flows rotate toward safe havens in traditional markets, pushing price action dangerously close to the lower bounds of its critical $2,110 liquidity pocket.
+note: Ethereum closed yesterday down at $2,110. ETH remains heavily embedded in a Negative state and is now actively testing the absolute bottom of its critical liquidity pocket. Broader altcoin weakness, exacerbated by major supply unlocks like Pyth Network (PYTH) today, is keeping spot demand suppressed. A daily close below $2,100 could trigger a deeper structural breakdown.
 
-updated: 19 May 2026
+updated: 20 May 2026
