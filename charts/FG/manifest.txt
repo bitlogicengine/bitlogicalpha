@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index has dropped to 25 (Extreme Fear). This 3-point decline from yesterday indicates a deepening psychological washout. With the upcoming swearing-in of the new Federal Reserve Chair later this week, retail participants are paralyzed by macroeconomic uncertainty. However, this level of extreme fear often coincides with local structural bottoms as weak hands exit the market and funding rates remain flat.
-date: 19 May 2026
+comment: The Fear & Greed Index remains deep in the washout zone at 27 (Fear). Retail participants are largely sidelined and paralyzed by macro uncertainty ahead of this afternoon's FOMC minutes. However, with perpetual funding rates remaining completely flat, speculative leverage has been purged, minimizing the risk of a cascading long liquidation event.
+date: 20 May 2026
