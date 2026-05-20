@@ -1,5 +1,5 @@
 status: Neutral
 
-note: Bitcoin closed yesterday down at $76,989. BTC continues its Neutral consolidation as it faces ongoing selling pressure below the $80k hurdle. The broader market remains weighed down by macroeconomic uncertainty, specifically the U.S. 10-year Treasury yield surging to a 16-month high of 4.60%. However, strong corporate accumulation—highlighted by MicroStrategy's recent $2 Billion purchase—is currently acting as a structural floor against the macro headwinds.
+note: Bitcoin closed yesterday down at $76,792. BTC remains in a Neutral consolidation phase, hovering just above key defensive supports. The broader market is experiencing a localized liquidity squeeze as the Treasury General Account (TGA) balance increased to $785.92 Billion. Market participants are adopting a defensive posture, awaiting the release of the FOMC meeting minutes later today to determine the next directional macro move.
 
-updated: 19 May 2026
+updated: 20 May 2026
