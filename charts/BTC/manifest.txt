@@ -1,5 +1,5 @@
 status: Neutral
 
-note: Bitcoin closed yesterday down at $76,792. BTC remains in a Neutral consolidation phase, hovering just above key defensive supports. The broader market is experiencing a localized liquidity squeeze as the Treasury General Account (TGA) balance increased to $785.92 Billion. Market participants are adopting a defensive posture, awaiting the release of the FOMC meeting minutes later today to determine the next directional macro move.
+note: Bitcoin closed yesterday at $77,590. BTC is clinging to its Neutral state, staging a mild recovery despite a sudden $25 Billion liquidity drain via the Fed's Reverse Repo (RRP) facility. The market successfully absorbed the hawkish undertones from yesterday's FOMC minutes, but upside momentum remains heavily capped by the broader macroeconomic tightening and reduced systemic dollar liquidity.
 
-updated: 20 May 2026
+updated: 21 May 2026
