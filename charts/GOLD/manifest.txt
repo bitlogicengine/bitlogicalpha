@@ -1,7 +1,7 @@
 status: Negative 
 
-real_rates: 2.42
-etf_flows: -205
+real_rates: 2.44
+etf_flows: -212
 cot_signal: High Long (Unwinding)
 
 note: Gold (XAU) closed yesterday at $4,543, remaining locked in a Negative trend. The precious metal continues to face heavy structural headwinds from elevated Real Interest Rates and a strengthening dollar. With institutional ETF outflows persisting, Gold is struggling to find a sustained bid even as traditional equity markets show signs of macro exhaustion.
