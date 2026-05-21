@@ -4,6 +4,6 @@ real_rates: 2.42
 etf_flows: -205
 cot_signal: High Long (Unwinding)
 
-note: Gold (XAU) experienced another significant breakdown, closing yesterday at $4,482. The precious metal remains firmly in a Negative state. Persistent high U.S. Treasury yields and a rising DXY are choking off dollar liquidity, accelerating institutional ETF outflows (-$205M) and forcing over-leveraged high longs to unwind their positions into a thinning order book.
+note: Gold (XAU) closed yesterday at $4,543, remaining locked in a Negative trend. The precious metal continues to face heavy structural headwinds from elevated Real Interest Rates and a strengthening dollar. With institutional ETF outflows persisting, Gold is struggling to find a sustained bid even as traditional equity markets show signs of macro exhaustion.
 
-updated: 20 May 2026
+updated: 21 May 2026
