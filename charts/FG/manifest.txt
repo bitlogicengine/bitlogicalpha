@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index remains deep in the washout zone at 27 (Fear). Retail participants are largely sidelined and paralyzed by macro uncertainty ahead of this afternoon's FOMC minutes. However, with perpetual funding rates remaining completely flat, speculative leverage has been purged, minimizing the risk of a cascading long liquidation event.
-date: 20 May 2026
+comment: The Fear & Greed Index ticked up slightly to 29 (Fear). While the extreme panic from earlier in the week is subsiding, retail sentiment remains deeply suppressed. Funding rates across perpetual futures are still anchored near zero, indicating a healthy absence of excessive speculative leverage as the market digests the recent Federal Reserve data.
+date: 21 May 2026
