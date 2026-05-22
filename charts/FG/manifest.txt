@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index ticked up slightly to 29 (Fear). While the extreme panic from earlier in the week is subsiding, retail sentiment remains deeply suppressed. Funding rates across perpetual futures are still anchored near zero, indicating a healthy absence of excessive speculative leverage as the market digests the recent Federal Reserve data.
-date: 21 May 2026
+comment: The Fear & Greed Index slipped one point to 28 (Fear). Market psychology remains deeply defensive. This prolonged period of fear is indicative of an exhaustion phase, where retail capitulation has largely played out but institutional capital is waiting for a clear macroeconomic catalyst before deploying fresh liquidity.
+date: 22 May 2026
