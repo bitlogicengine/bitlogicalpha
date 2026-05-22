@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday at $2,140. ETH remains in a Negative state, seeing only a marginal relief bounce. The asset is still struggling to establish a definitive local bottom, as the mechanical reduction in macro liquidity and ongoing altcoin supply dilution keep institutional capital firmly parked on the sidelines.
+note: Ethereum closed yesterday at $2,132. ETH continues to chop sideways, firmly anchored in a Negative state. The lack of aggressive institutional spot bidding and the lingering overhang of recent Layer-2 supply unlocks are preventing any meaningful momentum shift. The $2,110 liquidity pocket remains the critical downside level to watch heading into the weekend.
 
-updated: 21 May 2026
+updated: 22 May 2026
