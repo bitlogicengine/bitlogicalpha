@@ -1,5 +1,5 @@
 status: Neutral
 
-note: Bitcoin closed yesterday at $77,590. BTC is clinging to its Neutral state, staging a mild recovery despite a sudden $25 Billion liquidity drain via the Fed's Reverse Repo (RRP) facility. The market successfully absorbed the hawkish undertones from yesterday's FOMC minutes, but upside momentum remains heavily capped by the broader macroeconomic tightening and reduced systemic dollar liquidity.
+note: Bitcoin closed yesterday at $77,543. BTC remains locked in a tight Neutral consolidation range. The asset is successfully defending the mid-$77k level despite a continued mechanical drain on systemic liquidity, with the TGA climbing to $792.15 Billion and the RRP ticking up to $27.45 Billion. Traders are firmly sidelined as they await today's US Flash PMI data and the official swearing-in of the new Federal Reserve Chair.
 
-updated: 21 May 2026
+updated: 22 May 2026
