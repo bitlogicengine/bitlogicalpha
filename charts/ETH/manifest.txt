@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday at $2,132. ETH continues to chop sideways, firmly anchored in a Negative state. The lack of aggressive institutional spot bidding and the lingering overhang of recent Layer-2 supply unlocks are preventing any meaningful momentum shift. The $2,110 liquidity pocket remains the critical downside level to watch heading into the weekend.
+note: Ethereum closed yesterday at $2,064. ETH has suffered a severe technical breakdown, crashing straight through the critical $2,110 liquidity pocket. The asset remains deeply embedded in a Negative state. The structural weakness is being compounded by broad altcoin capitulation and rising institutional skepticism regarding near-term network revenue, leaving Ethereum vulnerable to a retest of the psychological $2,000 floor.
 
-updated: 22 May 2026
+updated: 23 May 2026
