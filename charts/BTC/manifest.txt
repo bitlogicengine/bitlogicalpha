@@ -1,5 +1,5 @@
-status: Neutral
+status: Negative
 
-note: Bitcoin closed yesterday at $77,543. BTC remains locked in a tight Neutral consolidation range. The asset is successfully defending the mid-$77k level despite a continued mechanical drain on systemic liquidity, with the TGA climbing to $792.15 Billion and the RRP ticking up to $27.45 Billion. Traders are firmly sidelined as they await today's US Flash PMI data and the official swearing-in of the new Federal Reserve Chair.
+note: Bitcoin closed yesterday down at $77,418. BTC has officially slipped from Neutral into a Negative state as the weekend opens. The failure to hold the $77,500 defensive line points to continued macro exhaustion. With systemic liquidity restricted by the recent RRP and TGA spikes, the market lacks the institutional bid necessary to offset persistent retail selling pressure.
 
-updated: 22 May 2026
+updated: 23 May 2026
