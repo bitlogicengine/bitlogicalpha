@@ -1,8 +1,8 @@
 status: Negative 
 
-real_rates: 2.45
-etf_flows: -215
-cot_signal: High Long (Unwinding)
+real_rates: 2.16
+etf_flows: +6600
+cot_signal: cot_signal: High Long (Unwinding)
 
 note: Gold (XAU) experienced a sharp Friday sell-off, closing yesterday at $4,510. The precious metal remains heavily Negative. The combination of surging real yields and a resolute U.S. dollar continues to punish the asset, forcing the remaining over-leveraged long positions into a painful weekend liquidation cycle. Traditional spot markets are now closed until Monday.
 
