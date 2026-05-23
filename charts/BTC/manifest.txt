@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down at $77,418. BTC has officially slipped from Neutral into a Negative state as the weekend opens. The failure to hold the $77,500 defensive line points to continued macro exhaustion. With systemic liquidity restricted by the recent RRP and TGA spikes, the market lacks the institutional bid necessary to offset persistent retail selling pressure.
+note: Bitcoin closed yesterday down at $75,484. BTC has officially slipped from Neutral into a Negative state as the weekend opens. The failure to hold the $77,500 defensive line points to continued macro exhaustion. With systemic liquidity restricted by the recent RRP and TGA spikes, the market lacks the institutional bid necessary to offset persistent retail selling pressure.
 
 updated: 23 May 2026
