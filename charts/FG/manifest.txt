@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index remains flat at 28 (Fear). Retail sentiment is entrenched in a persistent state of anxiety. As Bitcoin breaks lower and Ethereum loses macro support, this extended fear phase is beginning to transition into early-stage capitulation. On-chain metrics suggest short-term holders are exiting aggressively, laying the necessary groundwork for a deeper market reset.
-date: 23 May 2026
+comment: The Fear & Greed Index has dropped 3 points down to 25 (Extreme Fear). The psychological threshold of 'Extreme Fear' has officially been breached as Bitcoin slides deeper into the $76k range. This level of broad market anxiety typically aligns with the final stages of a local washout, as weak hands are fully flushed from the system before the new weekly open.
+date: 24 May 2026
