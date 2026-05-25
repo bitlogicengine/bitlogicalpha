@@ -1,58 +1,58 @@
 [
   {
-    "day": "18",
+    "day": "25",
     "month": "May",
     "type": "macro",
-    "title": "Eurozone Final CPI & Trade Balance",
-    "desc": "The official read on European inflation. Divergence between ECB and Fed policy is a primary driver of the DXY. A cooler European CPI locks in the ECB rate cut narrative, which could artificially prop up the Dollar Index and suppress BTC in the short term."
+    "title": "US Memorial Day & UK Spring Bank Holiday",
+    "desc": "Traditional markets are closed, leading to a severe liquidity void. The absence of institutional capital creates thin order books, increasing the probability of erratic, retail-driven volatility across digital assets."
   },
   {
-    "day": "19",
+    "day": "26",
     "month": "May",
     "type": "macro",
-    "title": "US Building Permits & Housing Starts",
-    "desc": "Housing data acts as a leading indicator for systemic economic health. Severe weakness here signals that sustained high yields are fracturing structural economic pillars, potentially forcing a dovish pivot sooner than the market anticipates."
+    "title": "US CB Consumer Confidence Index",
+    "desc": "A critical gauge of retail sentiment regarding economic conditions. A sharp drop could signal emerging weakness in consumer spending, potentially forcing a dovish repricing, while a strong print bolsters the 'higher for longer' narrative."
   },
   {
-    "day": "20",
+    "day": "27",
     "month": "May",
     "type": "macro",
-    "title": "FOMC Meeting Minutes Release",
-    "desc": "A critical look under the hood of the Fed's latest policy discussions. Institutional algos will parse the text for 'sticky inflation' vs 'easing' rhetoric. Expect high-frequency volatility spikes across both DXY and BTC trading pairs the moment the minutes hit the wire."
+    "title": "RBNZ Interest Rate Decision",
+    "desc": "The Reserve Bank of New Zealand sets its benchmark rate. While localized, this serves as an early bellwether for global central bank liquidity trends and the broader fight against sticky global inflation."
   },
   {
-    "day": "20",
+    "day": "28",
     "month": "May",
-    "type": "crypto",
-    "title": "Pyth Network (PYTH) Major Unlock",
-    "desc": "A massive scheduled cliff unlock for the oracle network. With millions of tokens entering circulating supply, watch for immediate spot pressure and potential 'sell the news' volatility bleeding into the broader Solana DeFi ecosystem."
+    "type": "macro",
+    "title": "US Q1 Flash GDP & Core PCE Price Index",
+    "desc": "The most critical data drop of the week. The PCE is the Fed's preferred inflation metric. Any upside surprise in 'Core' PCE will instantly price out rate cut probabilities, surging real yields and applying heavy downward pressure on risk assets."
   },
   {
-    "day": "21",
+    "day": "28",
     "month": "May",
     "type": "macro",
     "title": "US Initial Jobless Claims",
-    "desc": "Labor market resilience is the final anchor for the 'Higher for Longer' hawkish narrative. An unexpected spike in jobless claims could accelerate the 'bad news is good news' cycle for digital assets, shifting capital back toward scarce assets."
+    "desc": "Released alongside the GDP and PCE data, this will test the resilience of the labor market. An unexpected spike in claims could accelerate a 'bad news is good news' bid for fixed-supply assets."
   },
   {
-    "day": "22",
+    "day": "29",
     "month": "May",
     "type": "macro",
-    "title": "US Flash PMIs (Manufacturing & Services)",
-    "desc": "A real-time snapshot of economic momentum. If the Services PMI drops into contraction (<50), expect a swift downward revision in GDP growth models, triggering a potential aggressive bid for both Treasury bonds and Gold as risk-off hedges."
+    "title": "Eurozone Flash CPI (Germany & France)",
+    "desc": "A real-time look at European inflation dynamics. A cooler European CPI locks in the ECB rate cut narrative, widening the policy divergence with the Fed, which could artificially prop up the DXY."
   },
   {
-    "day": "23",
+    "day": "30",
     "month": "May",
     "type": "crypto",
-    "title": "Space ID (ID) & Immutable (IMX) Supply Unlocks",
-    "desc": "Weekend liquidity is typically thin, making these weekend token unlocks particularly dangerous for localized price action. Expect isolated volatility and potential aggressive funding rate manipulation on perpetual futures markets."
+    "title": "BASED Token Supply Unlock",
+    "desc": "A scheduled release of 50 million tokens entering circulating supply. Watch for immediate spot selling pressure and localized ecosystem volatility as early investors capture weekend liquidity."
   },
   {
-    "day": "24",
+    "day": "31",
     "month": "May",
     "type": "crypto",
     "title": "BitLogic Alpha Weekly Macro Review",
-    "desc": "Synthesizing the FOMC minutes and PMI data into our Net Liquidity Model. We map the institutional footprint left over the week to establish the 'High-Conviction' zones and Divergence setups for the final trading week of May."
+    "desc": "Synthesizing the critical PCE inflation data and GDP revisions into the Net Liquidity Model. The institutional footprint left over the week is mapped to establish 'High-Conviction' zones for the June transition."
   }
 ]
