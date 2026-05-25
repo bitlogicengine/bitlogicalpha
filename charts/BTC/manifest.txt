@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down at $76,689. BTC remains firmly in a Negative state as weekend liquidity dries up. The structural failure to reclaim the $77k handle confirms that institutional spot buyers have stepped back, allowing retail capitulation to dictate short-term price action. The asset is currently drifting toward deeper historical accumulation zones.
+note: Bitcoin closed yesterday at $77,012. BTC remains in a Negative state despite a minor weekend relief bounce. With U.S. markets closed today for the Memorial Day holiday, institutional trading desks and ETF inflows are offline. This leaves the market in a low-liquidity environment where retail volume is failing to generate the momentum needed to reclaim critical defensive levels.
 
-updated: 24 May 2026
+updated: 25 May 2026
