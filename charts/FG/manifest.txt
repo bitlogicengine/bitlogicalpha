@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index ticked up slightly to 30 (Fear). While the metric lifted out of the 'Extreme Fear' zone from the weekend, sentiment remains decidedly defensive. The slight easing of panic is largely a byproduct of the U.S. bank holiday pausing the macroeconomic data cycle, rather than a genuine return of market confidence.
-date: 25 May 2026
+comment: The Fear & Greed Index climbed slightly to 34 (Fear). Market sentiment remains defensive, though the intense panic of the weekend has temporarily subsided. This mechanical uptick is largely anticipatory, with retail participants hoping that the return of U.S. liquidity today will provide a definitive directional catalyst for the week.
+date: 26 May 2026
