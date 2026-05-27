@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday at $77,287. BTC remains in a Negative state as the U.S. market prepares to reopen following the Memorial Day weekend. While the asset has managed to float slightly higher on low holiday volume, it lacks the aggressive institutional bid required to reclaim structural neutrality. Traders are waiting to see how algorithmic liquidity reacts to the return of traditional finance desks today.
+note: Bitcoin closed yesterday down at $75,862. BTC remains heavily embedded in a Negative state as the holiday buffer fully dissolves. The return of traditional Wall Street capital following Memorial Day did not bring the necessary defensive bid, exposing thin order books to aggressive distribution. Sellers are firmly in control as liquidity conditions remain structurally constricted across global markets.
 
-updated: 26 May 2026
+updated: 27 May 2026
