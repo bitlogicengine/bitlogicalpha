@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index climbed slightly to 34 (Fear). Market sentiment remains defensive, though the intense panic of the weekend has temporarily subsided. This mechanical uptick is largely anticipatory, with retail participants hoping that the return of U.S. liquidity today will provide a definitive directional catalyst for the week.
-date: 26 May 2026
+comment: The Fear & Greed Index dropped severely back down to 25 (Extreme Fear). The brief pause in market panic has evaporated. As Bitcoin breaks down past key support blocks and Ethereum fails to find buyers, retail sentiment has collapsed back into absolute capitulation mode ahead of the upcoming high-tier U.S. GDP and PCE inflation data.
+date: 27 May 2026
