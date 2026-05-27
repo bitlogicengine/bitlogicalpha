@@ -2,8 +2,8 @@ status: Negative
 
 real_rates: 2.16
 etf_flows: +6600
-cot_signal: High Long (Bullish Bias)
+cot_signal: High Long (Liquidation Risk)
 
-note: Gold (XAU) closed yesterday at $4,570, entering the new week in a Negative short-term state. The price action is experiencing minor technical weakness ahead of the U.S. open, though the overarching macroeconomic structure remains intact. Crucially, institutional positioning remains heavily anchored, with the COT signal maintaining a Bullish Bias as smart money looks past localized volatility.
+note: Gold (XAU) closed yesterday down at $4,508. The precious metal has broken structural support and remains firmly in a Negative state. Despite the locked underlying metrics showing stable real yields and a positive macro layout, the immediate price action succumbed to heavy selling pressure as traditional markets reopened, triggering early unwinding behaviors among over-leveraged longs.
 
-updated: 26 May 2026
+updated: 27 May 2026
