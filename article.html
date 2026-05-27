@@ -108,6 +108,26 @@
         const art = articles[idx];
         document.title = `${art.title} · BitLogic Alpha`;
 
+        // JSON-LD for article SEO
+        const ld = document.createElement('script');
+        ld.type = 'application/ld+json';
+        ld.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "headline": art.title,
+          "datePublished": art.date,
+          "publisher": {
+            "@type": "Organization",
+            "name": "BitLogic Alpha",
+            "url": "https://bitlogicalpha.com"
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://bitlogicalpha.com/article.html?id=" + idx
+          }
+        });
+        document.head.appendChild(ld);
+
         const bodyHtml = parseBody(art.body);
 
         wrap.innerHTML = `
