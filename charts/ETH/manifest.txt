@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday at $2,112. ETH continues to flash a Negative status. The asset is precariously straddling the critical $2,110 liquidity pocket after last week's breakdown. Without strong organic spot demand, this minor relief bounce is highly vulnerable to being faded the moment traditional market makers resume operations and replenish the order books.
+note: Ethereum closed yesterday down at $2,072. ETH continues its sharp Negative descent, printing another consecutive close below the failed $2,110 liquidity floor. The structural breakdown is accelerating as a complete lack of on-chain volume and ongoing spot market fatigue leave the asset entirely exposed to cascading liquidations toward the psychological $2,000 baseline.
 
-updated: 26 May 2026
+updated: 27 May 2026
