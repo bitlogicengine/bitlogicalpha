@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down at $75,862. BTC remains heavily embedded in a Negative state as the holiday buffer fully dissolves. The return of traditional Wall Street capital following Memorial Day did not bring the necessary defensive bid, exposing thin order books to aggressive distribution. Sellers are firmly in control as liquidity conditions remain structurally constricted across global markets.
+note: Bitcoin closed yesterday down heavily at $74,375. BTC remains locked in a Negative state as severe distribution accelerates ahead of the morning's major macro data releases. Technical structures have completely broken down, converting previous key support blocks into overhead resistance. Without a rapid institutional intervention, the thin order books leave the price exposed to further algorithmic downside sweeps.
 
-updated: 27 May 2026
+updated: 28 May 2026
