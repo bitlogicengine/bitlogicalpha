@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday down at $2,072. ETH continues its sharp Negative descent, printing another consecutive close below the failed $2,110 liquidity floor. The structural breakdown is accelerating as a complete lack of on-chain volume and ongoing spot market fatigue leave the asset entirely exposed to cascading liquidations toward the psychological $2,000 baseline.
+note: Ethereum closed yesterday down at $2,022. ETH continues its aggressive Negative descent, now rapidly approaching the $2,000 psychological baseline. On-chain volume has flatlined, and spot ETF liquidity pools are offering no structural support. The path of least resistance remains strictly downward as late-stage long positions continue to get flushed.
 
-updated: 27 May 2026
+updated: 28 May 2026
