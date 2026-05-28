@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index dropped severely back down to 25 (Extreme Fear). The brief pause in market panic has evaporated. As Bitcoin breaks down past key support blocks and Ethereum fails to find buyers, retail sentiment has collapsed back into absolute capitulation mode ahead of the upcoming high-tier U.S. GDP and PCE inflation data.
-date: 27 May 2026
+comment: The Fear & Greed Index plummeted to 22 (Extreme Fear). Capitulation has intensified as Bitcoin and Ethereum hit fresh local lows. This structural flush reflects widespread market panic and defensive positioning from retail traders who are actively de-risking ahead of today's critical economic reports.
+date: 28 May 2026
