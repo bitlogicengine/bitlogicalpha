@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday down at $2,022. ETH continues its aggressive Negative descent, now rapidly approaching the $2,000 psychological baseline. On-chain volume has flatlined, and spot ETF liquidity pools are offering no structural support. The path of least resistance remains strictly downward as late-stage long positions continue to get flushed.
+note: Ethereum closed yesterday down at $2,008. ETH continues its aggressive Negative trajectory, officially resting on the razor-thin margin of the $2,000 psychological threshold. On-chain metrics remain completely flat, and structural spot demand has evaporated. Failing to swiftly reclaim the $2,050 zone will likely leave the asset exposed to a clean technical flush into sub-$2k liquidity pools.
 
-updated: 28 May 2026
+updated: 29 May 2026
