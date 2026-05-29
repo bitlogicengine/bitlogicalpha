@@ -1,9 +1,9 @@
 status: Negative 
 
-real_rates: 2.08
+real_rates: 2.10
 etf_flows: +6550
 cot_signal: High Long (Liquidation Risk)
 
-note: Gold (XAU) closed yesterday down sharply at $4,457. The precious metal remains in a Negative state as technical selling amplifies across traditional desks. Even though underlying real yields remain stable, the immediate spot action is suffering from a cascading long squeeze. The 'High Long' institutional positioning continues to present an active liquidation risk as over-leveraged market participants dump contracts.
+note: Gold (XAU) managed a moderate relief bounce to close yesterday around $4,495, yet remains structurally bound to its short-term Negative status. While the spot price action is attempting to form a localized floor, the broader macro parameters remain unchanged. With the 10-year real rate holding at 2.10%, the highly concentrated 'High Long' institutional position continues to present an active liquidation risk if risk-off momentum fails to sustain.
 
-updated: 28 May 2026
+updated: 29 May 2026
