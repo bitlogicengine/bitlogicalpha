@@ -18,6 +18,6 @@
   { "date": "2026-05-01", "balance_sheet": 6699.95, "tga": 860.29, "rrp": 1.12 },
   { "date": "2026-05-08", "balance_sheet": 6710, "tga": 854.59, "rrp": 3.719 },
   { "date": "2026-05-15", "balance_sheet": 6728, "tga": 785.92, "rrp": 0.647 },
-  { "date": "2026-05-21", "balance_sheet": 6713.64, "tga": 825.55, "rrp": 1.853 }
+  { "date": "2026-05-21", "balance_sheet": 6713.64, "tga": 825.55, "rrp": 1.853 },
   { "date": "2026-05-28", "balance_sheet": 670.38, "tga": 825.55, "rrp": 1.853 }
 ]
