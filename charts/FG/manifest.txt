@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index remains locked in at 23 (Extreme Fear). High-velocity spot liquidations and the loss of major support blocks across the blue-chip majors have kept retail participants entirely frozen. This sustained level of extreme market anxiety reflects heavy defensive hedging and widespread capitulation ahead of the weekly close.
-date: 29 May 2026
+comment: The Fear & Greed Index remains completely static at 23 (Extreme Fear). Market sentiment is deeply frozen as the weekly close offers no relief for digital asset spot prices. The prolonged consolidation in the lower bands of key structural ranges keeps retail participants heavily defensive and risk-averse.
+date: 30 May 2026
