@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down at $73,537. BTC remains heavily embedded in a Negative state as structural liquidations intensify. The minor intraday floor failed to hold as traditional desks reacted to mixed macroeconomic signals, dragging the price through long-standing retail defense zones. Order book depth is exceptionally thin, leaving the asset highly vulnerable to aggressive margin-driven sweeps until a clear institutional buyer stepping in can be verified.
+note: Bitcoin closed yesterday down slightly at $73,406. BTC remains locked in a Negative state as the trading week comes to a close. The price action continues to consolidate near local lows, reflecting a complete lack of aggressive institutional buying interest over the Friday session. With the monthly options expiry now settled, the asset is drifting into weekend liquidity conditions with clear overhead resistance.
 
-updated: 29 May 2026
+updated: 30 May 2026
