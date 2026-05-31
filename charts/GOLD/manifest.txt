@@ -4,6 +4,6 @@ real_rates: 2.10
 etf_flows: +6550
 cot_signal: High Long (Liquidation Risk)
 
-note: Gold (XAU) closed flat yesterday around $4,495, maintaining its short-term Negative status heading into the weekend pause. The traditional spot market has gone offline, leaving the asset anchored to its current technical floor. While the underlying 10-year real rate rests at 2.10%, the heavy concentration of institutional longs keeps the 'Liquidation Risk' active as traditional desks watch for fresh macro catalysts next week.
+note: Gold (XAU) carries over its corrected daily close of $4,540 with no fresh updates due to traditional markets remaining offline for the weekend. The asset remains bound to its short-term Negative layout. Underlying parameters stay locked at Friday's closing levels, leaving the concentrated institutional 'High Long' exposure positioned as an active liquidation risk when trading resumes.
 
-updated: 30 May 2026
+updated: 31 May 2026
