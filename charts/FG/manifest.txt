@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index remains completely static at 23 (Extreme Fear). Market sentiment is deeply frozen as the weekly close offers no relief for digital asset spot prices. The prolonged consolidation in the lower bands of key structural ranges keeps retail participants heavily defensive and risk-averse.
-date: 30 May 2026
+comment: The Fear & Greed Index ticked up slightly to 28, transitioning from Extreme Fear to Fear. This minor mechanical relief is primarily driven by the lack of aggressive spot selling over the weekend session. However, the broader sentiment landscape remains deeply defensive and cautious ahead of the upcoming June macro calendar.
+date: 31 May 2026
