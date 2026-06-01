@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday slightly up at $73,797. Despite a minor uptick on low weekend volume, BTC remains structurally confined within a Negative state. The price action reflects typical thin-order-book chop rather than organic, institutional accumulation. Traders are waiting for the impending Monday open to see if traditional finance desks will accept or reject this weekend liquidity drift.
+note: Bitcoin closed yesterday down at $73,611. BTC remains bound to its Negative layout as it enters the first trading day of June. A lack of aggressive spot demand over the weekend leaves the technical layout vulnerable. While institutional infrastructure continues to expand behind the scenes, immediate spot volumes are thin, forcing the price to consolidate near local support levels rather than initiating a clean trend reversal.
 
-updated: 31 May 2026
+updated: 1 June 2026
