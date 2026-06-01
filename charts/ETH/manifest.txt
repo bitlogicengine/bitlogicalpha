@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday at $2,020. ETH maintains its short-term Negative status, continuing to drift sideways within a razor-thin margin just above the $2,000 psychological floor. The weekend bounce lacks genuine spot volume or network velocity backing, keeping the structural risk of a deeper capitulation event highly elevated as global market hours approach.
+note: Ethereum closed yesterday down at $2,005. ETH continues its strict Negative descent, effectively grinding down into the absolute baseline of its $2,000 psychological threshold. The structural layout remains heavily compromised by ongoing lack of on-chain network velocity. Failing to construct an immediate, high-volume reclamation of the $2,050 area keeps the risk of an aggressive flush into deeper liquidity pools active.
 
-updated: 31 May 2026
+updated: 1 June 2026
