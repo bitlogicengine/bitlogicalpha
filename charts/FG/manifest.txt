@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index ticked up slightly to 28, transitioning from Extreme Fear to Fear. This minor mechanical relief is primarily driven by the lack of aggressive spot selling over the weekend session. However, the broader sentiment landscape remains deeply defensive and cautious ahead of the upcoming June macro calendar.
-date: 31 May 2026
+comment: The Fear & Greed Index ticked up slightly to 29 (Fear). While retail sentiment remains firmly in defensive territory due to consecutive negative daily closes on blue-chip majors, the extreme panic from last week has hit a localized plateau. Participants are heavily sidelined, waiting to see how traditional volume scales during the first New York sessions of the new month.
+date: 1 June 2026
