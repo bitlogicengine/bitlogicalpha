@@ -1,7 +1,7 @@
 status: Negative 
 
-real_rates: 2.10
-etf_flows: +6550
+real_rates: 2.07
+etf_flows: +6520
 cot_signal: High Long (Liquidation Risk)
 
 note: Gold (XAU) closed yesterday down at $4,484.7, reverting back to a Negative technical status as traditional desks returned to full operation. The brief relief rally was heavily rejected as broader commodities markets experienced sharp volatility spikes. Given the persistent 'High Long' structural positioning, the spot market failure to hold key technical support tiers sustains an active liquidation risk for over-leveraged contract holders.
