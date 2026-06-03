@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down at $71,339. BTC remains locked in a Negative layout as spot market fatigue intensifies at the start of June. Speculative interest has completely dried up following the monthly options settlement, and the localized order book depth is failing to attract institutional buyers. The breakdown past minor psychological tiers leaves the price resting entirely on raw retail defensive bid zones until Wall Street momentum shifts.
+note: Bitcoin closed yesterday down heavily at $66,678. BTC remains firmly locked in a Negative layout as an aggressive distribution sweep triggered an intense flush across the digital asset ecosystem. The cascade violently forced the price down to its lowest levels in nearly two months, invalidating major structural demand blocks. Local order books remain highly fragile and depleted of spot bids, leaving the asset exposed to further downside volatility until institutional buying presence re-stabilizes.
 
-updated: 2 June 2026
+updated: 3 June 2026
