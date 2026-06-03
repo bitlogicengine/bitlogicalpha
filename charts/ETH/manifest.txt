@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday down at $2,004. ETH continues its strict Negative trajectory, precariously clinging to the absolute boundary of the $2,000 psychological floor. On-chain activity has reached near-stagnation levels, and the structural spot ETF inflows provide zero buffer against persistent market distribution. Re-pricing risks remain heavily skewed downward as long as the asset stays pinned below the $2,050 overhead threshold.
+note: Ethereum closed yesterday down sharply at $1,857. ETH remains bound to a strict Negative trajectory, undergoing a severe technical capitulation that completely shattered the critical $2,000 psychological threshold. On-chain velocity has stalled, and spot market depth has completely dried up amid the broader risk-off environment. The immediate outlook stays heavily skewed to the downside until a high-volume reclamation of structural overhead resistance occurs.
 
-updated: 2 June 2026
+updated: 3 June 2026
