@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index fell back to 23 (Extreme Fear). The slight weekend reprieve has completely dissolved as the formal Monday and Tuesday sessions delivered fresh distribution sweeps across major digital assets. Retail sentiment remains thoroughly defensive as market participants anticipate heavy macro headwinds later in the week.
-date: 2 June 2026
+comment: The Fear & Greed Index plummeted heavily to 11 (Extreme Fear). This represents one of the lowest market sentiment readings recorded in recent months. The aggressive systemic flush across the blue-chip majors has triggered widespread retail panic and defensive capital flight as derivatives liquidations stack up ahead of late-week macro milestones.
+date: 3 June 2026
