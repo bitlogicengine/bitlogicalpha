@@ -6,4 +6,4 @@ cot_signal: High Long (Liquidation Risk)
 
 note: Gold (XAU) closed yesterday down at $4,435, maintaining its short-term Negative status as traditional desks aggressively unwind positions. Rising yields across the Treasury curve—with the nominal 10-year yield climbing to 4.49%—have applied massive structural pressure to non-yielding assets. Despite the 10-year real rate holding at 2.07%, the persistent spot weakness is actively triggering the 'Liquidation Risk' embedded within the heavily concentrated institutional 'High Long' exposure.
 
-updated: 4 June 4, 2026
+updated: 4 June 2026
