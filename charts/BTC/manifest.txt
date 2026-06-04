@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down heavily at $66,678. BTC remains firmly locked in a Negative layout as an aggressive distribution sweep triggered an intense flush across the digital asset ecosystem. The cascade violently forced the price down to its lowest levels in nearly two months, invalidating major structural demand blocks. Local order books remain highly fragile and depleted of spot bids, leaving the asset exposed to further downside volatility until institutional buying presence re-stabilizes.
+note: Bitcoin closed yesterday down heavily at $64,061. BTC continues its steep downward acceleration within a strict Negative layout. The technical structure has deteriorated rapidly as structural spot ETF outflows intensify, hitting a staggering $483.8 million drain in a single session. Widespread distribution and forced margin liquidations have thoroughly cleared out localized retail bid support, pushing the asset into a deep re-pricing phase ahead of the high-impact late-week employment prints.
 
-updated: 3 June 2026
+updated: 4 June 2026
