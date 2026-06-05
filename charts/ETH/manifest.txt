@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday down at $1,811. ETH remains firmly locked in its Negative trajectory, expanding its breakdown well below the previous $1,857 support structure. On-chain velocity remains severely depressed, and spot market depth has completely evaporated under the weight of systemic capital flight. The asset is entirely vulnerable to sudden programmatic stop-hunts and thin-order-book sweeps until a high-volume institutional reclamation wall is established.
+note: Ethereum closed yesterday down further at $1,769. ETH continues its severe Negative trajectory, sliding deeper into sub-$2,000 territory after permanently invalidating its prior psychological foundations. On-chain gas mechanics and network velocity have flattened to multi-year lows, providing no fundamental floor. The technical layout remains completely exposed to aggressive downside stop-hunts until a structural accumulation block is verified.
 
-updated: 4 June 2026
+updated: 5 June 2026
