@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index notched down slightly to 12 (Extreme Fear). Market sentiment is frozen at absolute lows following consecutive, high-velocity distribution drops across the blue-chip majors. Retail participants remain completely sidelined, anticipating further capitulation as macro-driven liquidations continue to flush through the derivatives markets.
-date: 4 June 2026
+comment: The Fear & Greed Index remains completely frozen at 12 (Extreme Fear). The market sentiment has failed to find relief as consecutive daily closes across blue-chip digital assets print negative. Retail capitulation is heavily visible, with the vast majority of participants entirely sidelined or actively hedging against structural systemic breakdowns.
+date: 5 June 2026
