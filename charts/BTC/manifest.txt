@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down slightly at $63,826. BTC remains firmly locked within a Negative structural layout as it drifts sideways at local multi-month lows. While the aggressive velocity of the early-week liquidations has leveled off, spot demand remains completely non-existent. Trading volumes are drying up as professional market makers refuse to commit fresh long capital ahead of the impending Friday Non-Farm Payrolls data drop.
+note: Bitcoin closed yesterday down heavily at $61,069. BTC continues its aggressive downward acceleration within a strict Negative layout. High-impact macro prints catalyzed an intense de-risking event across risk corridors. Localized retail bids were completely wiped out as the price swept through major structural demand blocks, pushing the asset directly toward its critical $60,000 production-cost floor and 200-week moving average.
 
-updated: 5 June 2026
+updated: 6 June 2026
