@@ -6,4 +6,4 @@ cot_signal: High Long (Liquidation Risk)
 
 note: Gold (XAU) closed yesterday down at $4,328, reinforcing its short-term Negative status as traditional trading desks experienced an aggressive bond-market rout. Blockbuster employment data forced an intensive repricing across safe-haven assets, surging real rates up to 2.12% and triggering localized fund outflows. Given the persistent institutional 'High Long' exposure concentration, the sudden technical floor failure heavily accelerates active liquidation risks for over-leveraged contracts.
 
-updated: 6 June 2026
+updated: 7 June 2026
