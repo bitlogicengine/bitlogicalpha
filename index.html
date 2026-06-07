@@ -85,7 +85,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 header{display:flex;align-items:center;justify-content:space-between;padding:16px 0;animation:fadeUp 0.6s ease both}
 .brand{display:flex;align-items:center;gap:14px;cursor:pointer}
 .brand-mark{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--gold);box-shadow:0 0 12px rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 40%,#1a1400,#080808);flex-shrink:0}
-.brand-name{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:var(--text);letter-spacing:2px}
+.brand-name{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:var(--text);letter-spacing:2px;contain:layout style}
 .brand-tag{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-top:2px}
 .nav-date{font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
 .nav-tabs{display:flex;gap:0;border-bottom:1px solid var(--text-dim);margin-bottom:64px;margin-top:24px}
@@ -94,14 +94,14 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
 .view{display:none}
 .view.active{display:block;animation:fadeUp 0.4s ease both}
-.ticker-wrap{overflow:hidden;border-top:1px solid var(--text-dim);border-bottom:1px solid var(--text-dim);padding:10px 0;margin-bottom:64px}
+.ticker-wrap{overflow:hidden;border-top:1px solid var(--text-dim);border-bottom:1px solid var(--text-dim);padding:10px 0;margin-bottom:64px;min-height:37px}
 .ticker-track{display:flex;gap:32px;white-space:nowrap;animation:ticker 40s linear infinite;will-change:transform}
 .ticker-item{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px;flex-shrink:0;padding:0 8px}
 .ticker-name{color:var(--text-muted)}
 .ticker-price{color:var(--text);font-weight:500}
 .ticker-change{font-size:10px}
 .up{color:var(--green)}.down{color:var(--red)}
-.section{margin-bottom:72px}
+.section{margin-bottom:72px;contain:layout}
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--text-dim)}
 .section-label{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:0.5px}
 .section-meta{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
@@ -459,28 +459,10 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 }
 </script>
 <link rel="preconnect" href="https://api.binance.com" crossorigin/>
-<style>
-/* Instant system font fallback — zero network cost */
-:root{
-  --font-serif: Georgia, 'Times New Roman', serif;
-  --font-mono: 'Courier New', Courier, monospace;
-}
-body{font-family:var(--font-mono)}
-.brand-name,.section-label,.fg-big-val,.trend-price,.sc-value,
-.fg-classification,.ratio-value,.halving-num,.btc-hero-title,
-h1,h2,h3{font-family:var(--font-serif)}
-</style>
-<script>
-/* Load web fonts after LCP — no render blocking */
-(function(){
-  var l=document.createElement('link');
-  l.rel='stylesheet';
-  l.href='https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap';
-  l.media='print';
-  l.onload=function(){this.media='all'};
-  document.head.appendChild(l);
-})();
-</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=DM+Mono:wght@0,300;0,400;0,500&display=optional" rel="stylesheet"/>
 </head>
 <body>
 
