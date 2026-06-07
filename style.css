@@ -88,7 +88,7 @@ header{
 
 /* VIEWS */
 .view{display:none}
-.view.active{display:block;animation:fadeUp 0.4s ease both}
+.view.active{display:block}
 
 /* TICKER */
 .ticker-wrap{
@@ -1219,7 +1219,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 }
 .footer-email:hover{color:var(--gold)}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0}to{opacity:1}}
 @keyframes livepulse{
   0%{box-shadow:0 0 0 0 rgba(224,85,85,0.7)}
   50%{box-shadow:0 0 0 5px rgba(224,85,85,0)}
