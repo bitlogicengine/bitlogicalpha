@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /charts/
+Disallow: /data/
 
 Sitemap: https://bitlogicalpha.com/sitemap.xml
