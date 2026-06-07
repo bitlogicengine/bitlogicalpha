@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed yesterday down heavily at $61,069. BTC continues its aggressive downward acceleration within a strict Negative layout. High-impact macro prints catalyzed an intense de-risking event across risk corridors. Localized retail bids were completely wiped out as the price swept through major structural demand blocks, pushing the asset directly toward its critical $60,000 production-cost floor and 200-week moving average.
+note: Bitcoin closed down yesterday at $60,894. BTC continues its aggressive contraction within a strict Negative layout as the weekend thin-order-book gaps offer no structural relief. The market is struggling heavily with an institutional liquidity drain, highlighted by an active 12-day consecutive net outflow streak from spot ETFs—the longest withdrawal cycle recorded since product launch. Spot prices are drifting directly above the critical $60,000 threshold, leaving the asset completely dependent on raw retail defensive bids until traditional volumes return on Monday.
 
-updated: 6 June 2026
+updated: 7 June 2026
