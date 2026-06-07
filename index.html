@@ -79,10 +79,10 @@ img{max-width:100%;height:auto}
 body{min-height:100vh;background:var(--bg);font-family:'DM Mono',monospace,Courier,sans-serif;color:var(--text);line-height:1.6}
 body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
 .page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:40px 24px 80px}
-.sticky-nav{position:sticky;top:0;z-index:500;background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--text-dim)}
+.sticky-nav{position:sticky;top:0;z-index:500;background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--text-dim);will-change:transform}
 .sticky-nav header{border-bottom:none;margin-bottom:0;padding:16px 24px;max-width:1100px;margin:0 auto}
 .sticky-nav .nav-tabs{border-bottom:none;margin-bottom:0;margin-top:0;padding:0 24px;max-width:1100px;margin:0 auto;border-top:1px solid rgba(58,53,48,0.5)}
-header{display:flex;align-items:center;justify-content:space-between;padding:16px 0;animation:fadeUp 0.6s ease both}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 0;animation:fadeUp 0.3s ease both}
 .brand{display:flex;align-items:center;gap:14px;cursor:pointer}
 .brand-mark{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--gold);box-shadow:0 0 12px rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 40%,#1a1400,#080808);flex-shrink:0}
 .brand-name{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:var(--text);letter-spacing:2px;contain:layout style}
@@ -93,19 +93,19 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
 .nav-tab:hover{color:var(--text)}
 .nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
 .view{display:none}
-.view.active{display:block;animation:fadeUp 0.4s ease both}
-.ticker-wrap{overflow:hidden;border-top:1px solid var(--text-dim);border-bottom:1px solid var(--text-dim);padding:10px 0;margin-bottom:64px;min-height:37px}
+.view.active{display:block}
+.ticker-wrap{overflow:hidden;border-top:1px solid var(--text-dim);border-bottom:1px solid var(--text-dim);padding:10px 0;margin-bottom:64px;height:37px}
 .ticker-track{display:flex;gap:32px;white-space:nowrap;animation:ticker 40s linear infinite;will-change:transform}
 .ticker-item{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px;flex-shrink:0;padding:0 8px}
 .ticker-name{color:var(--text-muted)}
 .ticker-price{color:var(--text);font-weight:500}
 .ticker-change{font-size:10px}
 .up{color:var(--green)}.down{color:var(--red)}
-.section{margin-bottom:72px;contain:layout}
+.section{margin-bottom:72px}
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--text-dim)}
 .section-label{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:0.5px}
 .section-meta{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0}to{opacity:1}}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(224,85,85,0.7)}50%{box-shadow:0 0 0 5px rgba(224,85,85,0)}100%{box-shadow:0 0 0 0 rgba(224,85,85,0)}}
 @keyframes scorebreath{0%,100%{opacity:1}50%{opacity:0.75}}
@@ -510,7 +510,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
     </div>
 
     <!-- HOME TABLE OF CONTENTS -->
-    <nav class="toc-nav" id="homeTOC">
+    <nav class="toc-nav" id="homeTOC" style="min-height:80px">
       <div class="toc-label">On This Page</div>
       <div class="toc-scroll-wrap">
         <div class="toc-arrow left hidden" id="tocArrowLeft" onclick="tocScroll(-1)">‹</div>
