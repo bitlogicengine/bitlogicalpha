@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
+<meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
+<link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="//api.coingecko.com"/>
+<link rel="dns-prefetch" href="//api.alternative.me"/>
+<link rel="dns-prefetch" href="//fapi.binance.com"/>
+
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="google-site-verification" content="XwjfaD9puBLi0-PlemWnx6n9KaSv8pwRf9S81I"/>
 <meta name="msvalidate.01" content="2EC2430CD9F7371B42F39DB2D61360C0"/>
@@ -52,6 +58,7 @@
   --text:#f0ece4;--text-muted:#6b6560;--text-dim:#3a3530;
   --red:#e05555;--green:#4caf7d;
 }
+@font-face{font-display:swap}
 html{scroll-behavior:smooth}
 body{min-height:100vh;background:var(--bg);font-family:'DM Mono',monospace;color:var(--text);line-height:1.6}
 body::before{
@@ -250,7 +257,7 @@ header{
 .sentiment-card{background:var(--surface);padding:28px;border-left:2px solid transparent;transition:border-color 0.2s}
 .sentiment-card:hover{border-left-color:var(--gold)}
 .sc-label{font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
-.sc-value{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px}
+.sc-value{font-family:'Playfair Display',serif;font-size:clamp(24px,4.5vw,36px);font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px}
 .sc-sub{font-size:11px;color:var(--text-muted);letter-spacing:1px}
 .sc-bar{height:3px;background:var(--surface2);margin-top:16px;overflow:hidden}
 .sc-bar-fill{height:100%;transition:width 1s ease}
@@ -284,7 +291,7 @@ header{
 }
 .fg-big-val{
   font-family:'Playfair Display',serif;
-  font-size:44px;font-weight:700;line-height:1;
+  font-size:clamp(30px,5.5vw,44px);font-weight:700;line-height:1;
   animation:scorebreath 3s ease-in-out infinite;
   position:relative;z-index:1;
 }
@@ -429,7 +436,7 @@ header{
 @media(max-width:600px){.ratio-header{grid-template-columns:1fr}}
 .ratio-left,.ratio-right{background:var(--surface2);padding:20px}
 .ratio-label{font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.ratio-value{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px}
+.ratio-value{font-family:'Playfair Display',serif;font-size:clamp(24px,4.5vw,36px);font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px}
 .ratio-mult{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#c9a84c;line-height:1;margin-bottom:4px}
 .ratio-sub{font-size:11px;color:var(--text-muted);letter-spacing:1px}
 .ratio-bar-wrap{margin-bottom:20px}
@@ -796,7 +803,7 @@ header{
 .alt-season-bar-wrap{background:rgba(255,255,255,0.05);height:8px;border-radius:4px;margin:16px 0 8px;overflow:hidden}
 .alt-season-bar-fill{height:100%;border-radius:4px;transition:width 1s ease;background:linear-gradient(90deg,#4caf7d,#c9a84c)}
 .alt-season-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
-.alt-season-score{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.alt-season-score{font-family:'Playfair Display',serif;font-size:clamp(24px,4.5vw,36px);font-weight:700;color:var(--gold);margin-bottom:4px}
 .alt-season-status{font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
 .alt-season-desc{font-size:12px;color:var(--text-secondary);line-height:1.7;margin-top:12px}
 .alt-season-meta{display:flex;gap:24px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
@@ -1328,6 +1335,8 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   #fedLiqGrid{grid-template-columns:1fr !important}
   #divGrid{grid-template-columns:1fr !important}
   #heatmapScoreGrid{grid-template-columns:1fr !important}
+  #whaleSummary{grid-template-columns:1fr !important}
+  #divGrid{grid-template-columns:1fr !important}
 }
 
 /* Jump bar fade cue */
@@ -1386,8 +1395,27 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
 .sig-tooltip-box{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a1a;border:1px solid var(--gold);padding:10px 12px;font-size:9px;color:var(--text-muted);line-height:1.6;letter-spacing:0.3px;z-index:100;pointer-events:none}
 .sig-tooltip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1a1a1a}
 .sig-tooltip-wrap:hover .sig-tooltip-box{display:block}
+
+/* Additional mobile performance fixes */
+@media(max-width:600px){
+  .trend-card{padding:20px 16px}
+  .news-item{padding:20px 16px}
+  .section{margin-bottom:48px}
+  .section-header{margin-bottom:18px}
+  .market-grid{grid-template-columns:1fr 1fr !important}
+  .sentiment-grid{grid-template-columns:1fr !important}
+  .performers-grid{grid-template-columns:1fr !important}
+  .charts-grid{grid-template-columns:1fr !important}
+  #whaleSummary{grid-template-columns:1fr !important}
+  .trend-widget{gap:8px}
+  svg{max-width:100%}
+}
+/* Prevent horizontal overflow globally */
+html,body{overflow-x:hidden}
+*{min-width:0}
+img{max-width:100%;height:auto}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1433,12 +1461,13 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   ]
 }
 </script>
+<link rel="preconnect" href="https://api.binance.com" crossorigin/>
 </head>
 <body>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕ CLOSE</button>
-  <img id="lightboxImg" src="" alt="chart"/>
+  <img id="lightboxImg" src="" alt="chart"/ loading="lazy">
 </div>
 
 <!-- STICKY NAV -->
@@ -3243,12 +3272,12 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px" id="heatmapScoreGrid">
           <div style="background:var(--surface);padding:24px 20px">
             <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Current Z-Score</div>
-            <div style="font-family:'Playfair Display',serif;font-size:56px;font-weight:700;line-height:1;animation:scorebreath 3s ease-in-out infinite" id="heatmapScore" style="color:#4caf7d">—</div>
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,56px);font-weight:700;line-height:1;animation:scorebreath 3s ease-in-out infinite" id="heatmapScore" style="color:#4caf7d">—</div>
             <div style="font-size:9px;letter-spacing:2px;margin-top:8px;font-weight:700" id="heatmapZone">—</div>
           </div>
           <div style="background:var(--surface);padding:24px 20px">
             <div style="font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">BTC Price at Update</div>
-            <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--text);line-height:1" id="heatmapPrice">—</div>
+            <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);font-weight:700;color:var(--text);line-height:1" id="heatmapPrice">—</div>
             <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-top:8px" id="heatmapSignal">—</div>
           </div>
         </div>
@@ -3328,7 +3357,7 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
           </div>
           <button onclick="fetchWhaleFootprint()" style="background:none;border:1px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;padding:8px 16px;cursor:pointer" onmouseover="this.style.background='var(--gold)';this.style.color='#1a1a1a'" onmouseout="this.style.background='none';this.style.color='var(--gold)'">↻ REFRESH</button>
         </div>
-        <div id="whaleSummary" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:2px"></div>
+        <div id="whaleSummary" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:2px;min-width:0"></div>
         <div id="whaleChart" style="background:var(--surface);padding:20px 24px;margin-bottom:2px">
           <div style="font-size:11px;color:var(--text-muted);letter-spacing:1px;text-align:center">Click REFRESH to load order book data</div>
         </div>
@@ -3588,7 +3617,7 @@ async function fetchWhaleFootprint(){
     summaryEl.innerHTML =
       '<div style="background:var(--surface);padding:18px 16px;text-align:center">' +
         '<div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Total Bid Liquidity</div>' +
-        '<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;color:#4caf7d">$' + totalBid.toFixed(0) + 'M</div>' +
+        '<div style="font-family:Playfair Display,serif;font-size:clamp(18px,3vw,24px);font-weight:700;color:#4caf7d">$' + totalBid.toFixed(0) + 'M</div>' +
         '<div style="font-size:8px;color:var(--text-dim);margin-top:4px">Buy walls below price</div>' +
       '</div>' +
       '<div style="background:var(--surface);padding:18px 16px;text-align:center;border-left:3px solid ' + pc + '">' +
@@ -3598,7 +3627,7 @@ async function fetchWhaleFootprint(){
       '</div>' +
       '<div style="background:var(--surface);padding:18px 16px;text-align:center">' +
         '<div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Total Ask Liquidity</div>' +
-        '<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;color:#e05555">$' + totalAsk.toFixed(0) + 'M</div>' +
+        '<div style="font-family:Playfair Display,serif;font-size:clamp(18px,3vw,24px);font-weight:700;color:#e05555">$' + totalAsk.toFixed(0) + 'M</div>' +
         '<div style="font-size:8px;color:var(--text-dim);margin-top:4px">Sell walls above price</div>' +
       '</div>';
 
@@ -4869,13 +4898,13 @@ function renderDivergenceTracker(){
       </div>
       <div style="background:var(--surface2);padding:20px 16px;text-align:center">
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Net Liq (norm.)</div>
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#4caf7d;line-height:1">${latestLiq.norm}</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);font-weight:700;color:#4caf7d;line-height:1">${latestLiq.norm}</div>
         <div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;margin-top:6px">$${(latestLiq.raw/1000).toFixed(2)}T</div>
       </div>
       <div style="background:var(--surface2);padding:20px 16px;text-align:center">
         <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Divergence Score</div>
         <div style="display:flex;align-items:baseline;justify-content:center;gap:8px">
-          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:${signalColor};line-height:1;${glowStyle}">${divScore>0?'+':''}${divScore}</div>
+          <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);font-weight:700;color:${signalColor};line-height:1;${glowStyle}">${divScore>0?'+':''}${divScore}</div>
           ${(()=>{
             // Show FG change vs yesterday — the most meaningful daily signal
             const prevFGVal = fgSeries.length > 1 ? fgSeries[fgSeries.length-2].value : latestFG.value;
