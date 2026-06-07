@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+  <link rel="dns-prefetch" href="//bitlogicalpha.com"/>
   <title>BitLogic Alpha · Article</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +17,9 @@
       --bg:#080808;--surface:#0f0f0f;--surface2:#161616;
       --gold:#c9a84c;--text:#f0ece4;--text-muted:#6b6560;--text-dim:#3a3530;
     }
+    html,body{overflow-x:hidden}
+    img{max-width:100%;height:auto}
+    *{min-width:0}
     html{scroll-behavior:smooth}
     body{min-height:100vh;background:var(--bg);font-family:'DM Mono',monospace;color:var(--text);line-height:1.6}
     body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
