@@ -4,5 +4,12 @@
     <loc>https://bitlogicalpha.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <lastmod>2026-05-13</lastmod>
+  </url>
+  <url>
+    <loc>https://bitlogicalpha.com/article.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-05-13</lastmod>
   </url>
 </urlset>
