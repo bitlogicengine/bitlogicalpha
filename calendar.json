@@ -1,58 +1,58 @@
 [
   {
-    "day": "1",
+    "day": "9",
     "month": "June",
     "type": "macro",
-    "title": "US ISM Manufacturing PMI",
-    "desc": "A foundational forward indicator of industrial health. The market is zeroing in on the 'Prices' index component; ongoing gains here reflect stubborn supply-chain or energy-driven input costs that reinforce the Fed's restrictive liquidity loop."
+    "title": "US EIA Short-Term Energy Outlook",
+    "desc": "Un report cruciale per quantificare le proiezioni dell'offerta di greggio. Con lo stallo geopolitico nello Stretto di Hormuz che continua a minacciare le catene logistiche, qualsiasi revisione al rialzo sui costi energetici alimenterà le aspettative di inflazione strutturale (stagflazione)."
   },
   {
-    "day": "2",
+    "day": "10",
     "month": "June",
     "type": "macro",
-    "title": "Eurozone Flash CPI Estimates",
-    "desc": "The primary preliminary tracking metric for European inflation. A cool print completely solidifies expectations for an upcoming ECB policy easing cycle, structurally shifting relative yield pairs against the dollar."
+    "title": "China Consumer Price Index (CPI)",
+    "desc": "Il principale indicatore delle dinamiche deflazionistiche/inflazionistiche della seconda economia mondiale. Un dato debole segnalerebbe il persistere di una domanda interna asfittica, costringendo la PBOC a ulteriori iniezioni di liquidità che potrebbero impattare i flussi di capitale globali."
   },
   {
-    "day": "2",
+    "day": "11",
     "month": "June",
     "type": "macro",
-    "title": "US JOLTS Job Openings",
-    "desc": "Initial high-frequency labor data drop for the month. It serves as a gauge of structural market tightening; a surprise contracture signals corporate hiring cools down, offering early cracks in the resilient employment layout."
+    "title": "US Federal Reserve Interest Rate Decision & Dot Plot",
+    "desc": "L'evento macro più critico del mese. Dopo il blocco dei dati sui Non-Farm Payrolls della scorsa settimana, i mercati cercano conferme sulla traiettoria restrittiva della Fed. Un 'Dot Plot' più aggressivo eliminerà definitivamente le speranze di tagli ai tassi nel 2026, spingendo i rendimenti reali e mettendo sotto forte pressione gli asset di rischio."
   },
   {
-    "day": "3",
+    "day": "11",
     "month": "June",
     "type": "macro",
-    "title": "US ADP Non-Farm Employment Change",
-    "desc": "The private sector precursor to official labor department data. Serving as an early benchmark, any severe deviations from the expected 110k print will cause aggressive intraday positioning ahead of the weekend tape."
+    "title": "US Initial Jobless Claims",
+    "desc": "Rilasciato in concomitanza con la scomposizione post-Fed, questo dato testerà la reattività in tempo reale del mercato del lavoro. Un aumento inatteso delle richieste potrebbe riaccendere la narrativa 'bad news is good news', fungendo da paracadute temporaneo per gli asset a offerta fissa."
   },
   {
-    "day": "3",
+    "day": "12",
     "month": "June",
     "type": "macro",
-    "title": "US ISM Non-Manufacturing Composite",
-    "desc": "Tracks economic activity within the critical service sector economy. Since services are highly linked to wage-push inflation sticky behavior, this reading provides immediate context into underlying stagflation metrics."
+    "title": "US Consumer Price Index (CPI)",
+    "desc": "Il verdetto finale sull'inflazione statunitense. Qualsiasi sorpresa al rialzo sulla componente 'Core'CPI, esacerbata dai costi di trasporto marittimo e dall'energia, accelererà il de-risking istituzionale, innescando una fuga di liquidità verso il dollaro (DXY)."
   },
   {
-    "day": "5",
+    "day": "12",
     "month": "June",
     "type": "macro",
-    "title": "US BLS Non-Farm Payrolls & Unemployment Rate",
-    "desc": "The absolute highest volatility event of the week. Consensus anticipates a cooling addition of roughly 95k-96k jobs and an unemployment print at 4.3%. A hot payroll number (>150k) or surging average hourly earnings will violently price out near-term rate cut expectations and spike real yields."
+    "title": "Eurozone Industrial Production",
+    "desc": "Fornisce una panoramica sullo stato di salute manifatturiero europeo sotto stress energetico. Un forte rallentamento convaliderà le politiche di allentamento della BCE, allargando il divario di politica monetaria con la Fed."
   },
   {
-    "day": "6",
+    "day": "13",
     "month": "June",
     "type": "crypto",
-    "title": "Systemic Yield Premium Realignment",
-    "desc": "Tracking weekend order-book depth to observe how capital reallocates out of the newly established Friday BLS payroll numbers. Thin weekend liquidity blocks amplify structural spot market moves."
+    "title": "Post-Fed Order Book Depth Realignment",
+    "desc": "Finestra di monitoraggio nel weekend per analizzare la profondità dei book di negoziazione spot e i tassi di finanziamento dei derivati. L'assenza di capitali istituzionali amplificherà i movimenti algoritmici di riallineamento ai nuovi tassi reali decisi dalla Fed."
   },
   {
-    "day": "7",
+    "day": "14",
     "month": "June",
     "type": "crypto",
-    "title": "BitLogic Alpha Net Liquidity Matrix Map",
-    "desc": "Consolidating the fresh weekly trends of the contracting Fed balance sheet, TGA cash drains, and the newly established macro labor numbers into the Altcoin Season Index models for the month's trading ranges."
+    "title": "BitLogic Alpha Weekly Liquidity Integration",
+    "desc": "Sintesi dei nuovi dati H.4.1 della Fed, dei saldi TGA post-settlement e del CPI statunitense all'interno del Net Liquidity Model per mappare le zone di alta convinzione in vista dell'apertura dei mercati asiatici."
   }
 ]
