@@ -49,8 +49,6 @@
     window.gtag=gtag;
   });
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.coingecko.com">
 <link rel="preconnect" href="https://api.alternative.me">
 <link rel="preconnect" href="https://raw.githubusercontent.com">
@@ -1478,8 +1476,28 @@ img{max-width:100%;height:auto}
 }
 </script>
 <link rel="preconnect" href="https://api.binance.com" crossorigin/>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap"/></noscript>
+<style>
+/* Instant system font fallback — zero network cost */
+:root{
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+body{font-family:var(--font-mono)}
+.brand-name,.section-label,.fg-big-val,.trend-price,.sc-value,
+.fg-classification,.ratio-value,.halving-num,.btc-hero-title,
+h1,h2,h3{font-family:var(--font-serif)}
+</style>
+<script>
+/* Load web fonts after LCP — no render blocking */
+(function(){
+  var l=document.createElement('link');
+  l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap';
+  l.media='print';
+  l.onload=function(){this.media='all'};
+  document.head.appendChild(l);
+})();
+</script>
 </head>
 <body>
 
