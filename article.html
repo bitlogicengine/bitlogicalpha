@@ -114,6 +114,12 @@
         const art = articles[idx];
         document.title = `${art.title} · BitLogic Alpha`;
 
+        // Dynamic meta description
+        const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
+        metaDesc.name = 'description';
+        metaDesc.content = art.body ? art.body.substring(0, 155).replace(/\n/g,' ') + '...' : art.title;
+        if(!document.querySelector('meta[name="description"]')) document.head.appendChild(metaDesc);
+
         // JSON-LD for article SEO
         const ld = document.createElement('script');
         ld.type = 'application/ld+json';
@@ -139,6 +145,7 @@
         wrap.innerHTML = `
           <div class="art-meta">BitLogic Alpha · ${art.date||''}</div>
           <h1 class="art-title">${art.title||''}</h1>
+          <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">BitLogic Alpha Market Analysis Article</h2>
           <div class="art-divider"></div>
           <div class="art-body">${bodyHtml}</div>
           <div class="art-footer">
