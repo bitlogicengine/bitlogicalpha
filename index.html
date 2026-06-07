@@ -162,8 +162,8 @@ header{
   overflow:hidden;border-top:1px solid var(--text-dim);border-bottom:1px solid var(--text-dim);
   padding:10px 0;margin-bottom:64px;
 }
-.ticker-track{display:flex;gap:48px;white-space:nowrap;animation:ticker 30s linear infinite}
-.ticker-item{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px}
+.ticker-track{display:flex;gap:32px;white-space:nowrap;animation:ticker 40s linear infinite;will-change:transform}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px;flex-shrink:0;padding:0 8px}
 .ticker-name{color:var(--text-muted)}
 .ticker-price{color:var(--text);font-weight:500}
 .ticker-change{font-size:10px}
@@ -1421,7 +1421,9 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
   .performers-grid{grid-template-columns:1fr !important}
   .charts-grid{grid-template-columns:1fr !important}
   #whaleSummary{grid-template-columns:1fr !important}
-  .trend-widget{gap:8px}
+  .ticker-item{font-size:10px;padding:0 4px;gap:5px}
+  .ticker-track{gap:16px}
+  .ticker-wrap{margin-bottom:32px}
   svg{max-width:100%}
 }
 /* Prevent horizontal overflow globally */
@@ -4337,7 +4339,12 @@ function updateTicker(data){
     const up=c.price_change_percentage_24h>=0;
     return `<span class="ticker-item"><span class="ticker-name">${c.symbol.toUpperCase()}</span><span class="ticker-price">$${c.current_price.toLocaleString()}</span><span class="ticker-change ${up?'up':'down'}">${up?'↑':'↓'}${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</span></span>`;
   }).join('');
-  document.getElementById('tickerTrack').innerHTML=items+items;
+  document.getElementById('tickerTrack').innerHTML = items + items;
+  // Adjust animation speed based on number of items
+  const track = document.getElementById('tickerTrack');
+  const itemCount = track.querySelectorAll('.ticker-item').length / 2;
+  const duration = Math.max(20, itemCount * 3); // 3s per item, min 20s
+  track.style.animationDuration = duration + 's';
 }
 
 async function fetchNews(){
