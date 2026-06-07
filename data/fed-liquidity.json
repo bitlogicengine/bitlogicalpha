@@ -1,5 +1,5 @@
 [
-{ "date": "2026-01-08", "balance_sheet": 6780.5, "tga": 750.2, "rrp": 96.4 },
+  { "date": "2026-01-08", "balance_sheet": 6780.5, "tga": 750.2, "rrp": 96.4 },
   { "date": "2026-01-15", "balance_sheet": 6775.2, "tga": 735.8, "rrp": 88.1 },
   { "date": "2026-01-22", "balance_sheet": 6768.9, "tga": 715.4, "rrp": 75.3 },
   { "date": "2026-01-29", "balance_sheet": 6760.1, "tga": 690.6, "rrp": 62.0 },
