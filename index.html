@@ -35,21 +35,37 @@
 <meta name="twitter:title" content="BitLogic Alpha — Crypto &amp; Gold Market Intelligence"/>
 <meta name="twitter:description" content="Free crypto and gold market intelligence. BTC, ETH and Gold signals, Fed Net Liquidity tracker, Fear &amp; Greed Index, macro divergence analysis. Weekly newsletter."/>
 <meta name="twitter:image" content="https://bitlogicalpha.com/preview.png"/>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DED8MMWG24"></script>
+<!-- Google Analytics — deferred -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DED8MMWG24');
+  window.addEventListener('load',function(){
+    var s=document.createElement('script');
+    s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-DED8MMWG24';
+    document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-DED8MMWG24',{transport_type:'beacon'});
+    window.gtag=gtag;
+  });
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.coingecko.com">
 <link rel="preconnect" href="https://api.alternative.me">
 <link rel="preconnect" href="https://raw.githubusercontent.com">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<noscript></noscript>
+<style id="critical-css">
+/* Critical above-fold CSS */
+.sticky-nav{position:sticky;top:0;z-index:500;background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #3a3530}
+.brand{display:flex;align-items:center;gap:14px;cursor:pointer}
+.brand-mark{width:48px;height:48px;border-radius:50%;border:1.5px solid #c9a84c;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 40%,#1a1400,#080808);flex-shrink:0}
+.brand-name{font-family:serif;font-size:20px;font-weight:700;color:#f0ece4;letter-spacing:2px}
+.nav-tab{padding:12px 28px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#6b6560;cursor:pointer;border-bottom:2px solid transparent;background:transparent;border-top:none;border-left:none;border-right:none}
+.nav-tab.active{color:#c9a84c;border-bottom-color:#c9a84c}
+body{background:#080808;color:#f0ece4;font-family:monospace}
+.page{max-width:1100px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:1}
+</style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -1415,7 +1431,7 @@ html,body{overflow-x:hidden}
 *{min-width:0}
 img{max-width:100%;height:auto}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<!-- Chart.js loaded on demand -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1462,6 +1478,8 @@ img{max-width:100%;height:auto}
 }
 </script>
 <link rel="preconnect" href="https://api.binance.com" crossorigin/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&display=swap"/></noscript>
 </head>
 <body>
 
@@ -5278,6 +5296,15 @@ async function fetchLogicPanel(coin){
 }
 
 async function fetchMacro(){
+  // Lazy-load Chart.js only when Macro tab is first opened
+  if(typeof Chart === "undefined"){
+    await new Promise((resolve,reject)=>{
+      const s=document.createElement('script');
+      s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+      s.onload=resolve; s.onerror=reject;
+      document.head.appendChild(s);
+    });
+  }
   try{
     const [btcRes, m2Res, fedRes, fgRes] = await Promise.all([
       fetch(`${BASE}/data/btc-daily.json?t=${Date.now()}`).then(r=>r.ok?r.json():null),
