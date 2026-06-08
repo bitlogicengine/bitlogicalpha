@@ -298,6 +298,25 @@ header{display:flex;align-items:center;justify-content:space-between;padding:16p
       </div>
     </div>
 
+    <!-- Featured Article -->
+    <div class="section" id="sec-featured">
+      <div class="section-header">
+        <div class="section-label" style="display:flex;align-items:center;gap:10px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--gold)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Featured Article
+        </div>
+        <div class="section-meta">Latest Analysis</div>
+      </div>
+      <div id="featuredArticle">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
+          <div class="skeleton skel-block" style="height:14px;width:30%"></div>
+          <div class="skeleton skel-block" style="height:24px;width:90%"></div>
+          <div class="skeleton skel-block" style="height:14px;width:80%"></div>
+          <div class="skeleton skel-block short" style="height:14px;width:60%"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Newsletter -->
     <div class="section" id="sec-newsletter">
       <div class="section-header">
@@ -2949,6 +2968,7 @@ async function fetchNews(){
     if(!res.ok) throw new Error();
     const items=await res.json();
     window._newsItems = items;
+    renderFeaturedArticle(items);
     if(!items.length){el.innerHTML='<div class="empty-news">No analysis published yet.</div>';return}
     const n=items[0];
     const shareText = encodeURIComponent(`${n.title}\n\nRead the full analysis 👇\nhttps://bitlogicalpha.com\n\n#Bitcoin #Crypto #Gold @QuantAlphaTrend`);
@@ -2980,6 +3000,27 @@ async function fetchNews(){
     if(!cached) el.innerHTML='<div class="empty-news">No analysis published yet.</div>';
     else showLastUpdated('newsList', cached.ts, true);
   }
+}
+
+function renderFeaturedArticle(items){
+  const el = document.getElementById('featuredArticle');
+  if(!el || !items || !items.length) return;
+  const n = items[0];
+  const preview = n.body ? n.body.split('\n').filter(p=>p.trim())[0] || '' : '';
+  const shareText = encodeURIComponent(n.title + '\n\nhttps://bitlogicalpha.com\n\n#Bitcoin #Crypto @QuantAlphaTrend');
+  el.innerHTML =
+    '<a href="' + BASE + '/article.html?id=0" target="_blank" style="display:block;text-decoration:none;background:var(--surface2);border-left:3px solid var(--gold);padding:28px 28px 24px;transition:background 0.2s" onmouseover="this.style.background=\'var(--surface)\'" onmouseout="this.style.background=\'var(--surface2)\'">' +
+      '<div style="font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">BitLogic Alpha · ' + (n.date||'') + '</div>' +
+      '<div style="font-family:\'Playfair Display\',Georgia,serif;font-size:clamp(18px,3vw,24px);font-weight:700;color:var(--text);line-height:1.3;margin-bottom:12px">' + (n.title||'') + '</div>' +
+      '<div style="font-size:12px;color:var(--text-muted);line-height:1.85;margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">' + preview + '</div>' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">' +
+        '<span style="font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase">Read Full Article \u2192</span>' +
+        '<a href="https://x.com/intent/tweet?text=' + shareText + '" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:flex;align-items:center;gap:6px;font-size:9px;color:var(--text-muted);letter-spacing:1px;text-decoration:none;text-transform:uppercase" onmouseover="this.style.color=\'var(--gold)\'" onmouseout="this.style.color=\'var(--text-muted)\'">' +
+          '<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' +
+          'Share' +
+        '</a>' +
+      '</div>' +
+    '</a>';
 }
 
 function renderNewsTab(items){
