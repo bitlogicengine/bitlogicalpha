@@ -40,7 +40,57 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=DM+Mono:wght@0,300;0,400;0,500&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%24%2B%2D%2E%2C%25" media="print" onload="this.media='all'"/>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=DM+Mono:wght@0,300;0,400;0,500&display=swap"/></noscript>
 <!-- External CSS async -->
-<link rel="stylesheet" href="/style.css"/>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080808;--surface:#0f0f0f;--surface2:#161616;--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.08);--gold-border:rgba(201,168,76,0.2);--text:#f0ece4;--text-muted:#6b6560;--text-dim:#3a3530;--red:#e05555;--green:#4caf7d}
+html,body{margin:0;padding:0;overflow-x:hidden;background:#080808;color:#f0ece4}
+*{min-width:0}
+body{font-family:'DM Mono',monospace,Courier,sans-serif;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
+.sticky-nav{position:sticky;top:0;z-index:500;background:rgba(8,8,8,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #3a3530}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+.brand{display:flex;align-items:center;gap:14px;cursor:pointer}
+.brand-mark{width:48px;height:48px;border-radius:50%;border:1.5px solid #c9a84c;box-shadow:0 0 12px rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 40%,#1a1400,#080808);flex-shrink:0}
+.brand-name{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:#f0ece4;letter-spacing:2px}
+.brand-tag{font-size:9px;color:#6b6560;letter-spacing:3px;text-transform:uppercase;margin-top:2px}
+.nav-date{font-size:10px;color:#6b6560;letter-spacing:2px;text-transform:uppercase}
+.nav-tabs{display:flex;gap:0;border-bottom:1px solid #3a3530;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:12px 28px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#6b6560;cursor:pointer;border-bottom:2px solid transparent;background:transparent;border-top:none;border-left:none;border-right:none;font-family:'DM Mono',monospace;white-space:nowrap;flex-shrink:0}
+.nav-tab.active{color:#c9a84c;border-bottom-color:#c9a84c}
+.view{display:none}.view.active{display:block}
+.ticker-wrap{overflow:hidden;border-top:1px solid #3a3530;border-bottom:1px solid #3a3530;padding:10px 0;margin-bottom:64px;height:37px}
+.ticker-track{display:flex;gap:32px;white-space:nowrap;animation:ticker 40s linear infinite;will-change:transform}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px;flex-shrink:0;padding:0 8px}
+.ticker-name{color:#6b6560}.ticker-price{color:#f0ece4;font-weight:500}.ticker-change{font-size:10px}
+.up{color:#4caf7d}.down{color:#e05555}
+.section{margin-bottom:72px}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid #3a3530}
+.section-label{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:#f0ece4;letter-spacing:0.5px}
+.section-meta{font-size:9px;color:#6b6560;letter-spacing:3px;text-transform:uppercase}
+.skeleton{background:linear-gradient(90deg,#161616 25%,#1f1f1f 50%,#161616 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+.skel-block{height:20px;border-radius:2px;margin-bottom:8px}
+.skel-card{border-radius:2px;margin-bottom:8px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(224,85,85,0.7)}50%{box-shadow:0 0 0 5px rgba(224,85,85,0)}100%{box-shadow:0 0 0 0 rgba(224,85,85,0)}}
+@keyframes scorebreath{0%,100%{opacity:1}50%{opacity:0.75}}
+@keyframes cardglow{0%,100%{opacity:0.8}50%{opacity:1}}
+@keyframes cardglowred{0%,100%{opacity:0.8}50%{opacity:1}}
+@keyframes diamondpulse{0%,100%{filter:drop-shadow(0 0 4px #fff);transform:translate(-50%,-50%) scale(1)}50%{filter:drop-shadow(0 0 10px #fff);transform:translate(-50%,-50%) scale(1.25)}}
+.jump-bar{display:flex;gap:2px;flex-wrap:wrap;margin-bottom:32px}
+.jump-link{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6b6560;cursor:pointer;padding:8px 16px;border:1px solid #3a3530;background:none;transition:all 0.2s}
+.jump-link:hover{color:#c9a84c;border-color:#c9a84c}
+@media(max-width:600px){
+  .brand-mark{width:36px!important;height:36px!important}
+  .brand-name{font-size:15px;letter-spacing:1px}
+  .brand-tag,.nav-date{display:none}
+  .nav-tab{flex-shrink:0;padding:10px 16px;font-size:9px;letter-spacing:1px}
+  .ticker-item{font-size:10px;padding:0 4px;gap:5px}
+  .ticker-track{gap:16px}
+  .ticker-wrap{margin-bottom:32px}
+}</style>
+<link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'"/>
+<noscript><link rel="stylesheet" href="/style.css"/></noscript>
 <!-- Chart.js loaded on demand by fetchMacro() -->
 </head>
 <body>
