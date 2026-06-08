@@ -1244,8 +1244,8 @@ footer{border-top:1px solid var(--text-dim);padding-top:32px;display:flex;justif
    MOBILE — single clean pass (max-width:600px)
    ======================================== */
 @media(max-width:600px){
-  .page{padding:20px 14px 60px}
-  .sticky-nav header{padding:10px 14px}
+  .page{padding:12px 8px 60px !important;width:100% !important;max-width:100% !important}
+  .sticky-nav header{padding:10px 8px}
   .brand{gap:10px}
   .brand-mark{width:36px !important;height:36px !important}
   .brand-name{font-size:15px;letter-spacing:1px}
