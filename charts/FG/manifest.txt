@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index is hovering at 12 (Extreme Fear). Sentiment is completely frozen at multi-month lows following a brutal, high-velocity week of distribution on major digital assets. This severe crypto-specific panic marks a stark divergence from traditional equities, as retail capital shifts heavily into traditional equity indices and artificial intelligence plays, leaving digital asset order books thin and fragile.
-date: 7 June 2026
+comment: The Fear & Greed Index collapsed further to 8 (Extreme Fear). Sentiment has fractured to absolute multi-month lows as back-to-back distribution flushes on the blue-chip majors trigger widespread retail panic. Liquidations continue to cascade through the derivatives landscape, driving capital aggressively into strict cash-hoarding behaviors.
+date: 8 June 2026
