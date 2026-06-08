@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed down yesterday at $60,894. BTC continues its aggressive contraction within a strict Negative layout as the weekend thin-order-book gaps offer no structural relief. The market is struggling heavily with an institutional liquidity drain, highlighted by an active 12-day consecutive net outflow streak from spot ETFs—the longest withdrawal cycle recorded since product launch. Spot prices are drifting directly above the critical $60,000 threshold, leaving the asset completely dependent on raw retail defensive bids until traditional volumes return on Monday.
+note: Bitcoin printed a sharp, highly compressed daily close at around $63,330, extending its Negative structural trajectory. The asset is enduring intense macro-driven headwind exposure as spot order book depth fails to attract fresh capital. The breakdown keeps price action locked below key multi-week moving averages, leaving localized market structures highly fragile ahead of the upcoming mid-week central bank policy decisions.
 
-updated: 7 June 2026
+updated: 8 June 2026
