@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed down yesterday at $1,570. ETH remains deeply locked in its Negative trajectory, establishing a fresh multi-month low as structural distribution continues to flush out late-stage leverage. Failing to form any immediate signs of on-chain network velocity or spot reclamation keeps the order book highly compromised. The asset is entirely vulnerable to sudden programmatic stop-hunts across deeper weekend liquidity pockets.
+note: Ethereum posted a negative session close at around $1,691. ETH remains firmly bound to its Negative trajectory, slipping well below the previous $1,700 consolidation base. Network velocity and on-chain gas consumption remain near historical stagnation levels. The technical layout remains thoroughly exposed to systematic distribution sweeps, requiring an aggressive high-volume reclamation of overhead resistance blocks to stabilize.
 
-updated: 7 June 2026
+updated: 8 June 2026
