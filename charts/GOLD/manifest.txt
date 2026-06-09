@@ -4,6 +4,6 @@ real_rates: 2.12
 etf_flows: +6495
 cot_signal: High Long (Liquidation Risk)
 
-note: Gold (XAU) closed yesterday down at $4,328, reinforcing its short-term Negative status as traditional trading desks experienced an aggressive bond-market rout. Blockbuster employment data forced an intensive repricing across safe-haven assets, surging real rates up to 2.12% and triggering localized fund outflows. Given the persistent institutional 'High Long' exposure concentration, the sudden technical floor failure heavily accelerates active liquidation risks for over-leveraged contracts.
+note: Gold (XAU) closed yesterday down at $4,330, confirming a strict resumption of its Negative technical status as traditional desks returned to full operational capacity. The brief weekend pause dissolved rapidly as nominal U.S. Treasury yields held strong near the 4.54% mark. Given the heavily built-up institutional 'High Long' structural positioning, the spot market's failure to reclaim higher technical support tiers sustains an active liquidation risk for over-leveraged contract holders.
 
-updated: 7 June 2026
+updated: 9 June 2026
