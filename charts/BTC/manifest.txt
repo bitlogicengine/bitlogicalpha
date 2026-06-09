@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed a sharp, highly compressed daily close at around $63,330, extending its Negative structural trajectory. The asset is enduring intense macro-driven headwind exposure as spot order book depth fails to attract fresh capital. The breakdown keeps price action locked below key multi-week moving averages, leaving localized market structures highly fragile ahead of the upcoming mid-week central bank policy decisions.
+note: Bitcoin closed yesterday down at $63,086. BTC continues to grind lower within a strict Negative layout, entirely failing to mount any significant defensive bounce following the weekend flush. Institutional order book depth has thinned out dramatically as professional trading desks pull spot bids ahead of tomorrow's critical Federal Reserve Interest Rate Decision and Dot Plot release. Programmatic stop-hunts remain highly active, keeping the asset heavily exposed to a psychological retest of the $60,000 baseline.
 
-updated: 8 June 2026
+updated: 9 June 2026
