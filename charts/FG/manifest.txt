@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index ticked up slightly but remains locked at 10 (Extreme Fear). Market sentiment is frozen at absolute lows as persistent negative daily closes on blue-chip digital assets paralyze retail trading activity. Total volume across derivatives markets is contracting as participants wait for the mid-week U.S. inflation data to drop.
-date: 9 June 2026
+comment: The Fear & Greed Index plummeted further to 9 (Extreme Fear). Market sentiment is frozen near absolute annual lows as relentless negative daily closes on blue-chip digital assets trigger widespread panic. Total open interest is shrinking rapidly as leverage positions flush out ahead of today's massive macroeconomic milestones.
+date: 10 June 2026
