@@ -1,7 +1,7 @@
 status: Negative 
 
-real_rates: 2.19
-etf_flows: +6415
+real_rates: 2.21
+etf_flows: +6390
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
 note: Gold (XAU) printed an aggressive downward daily close at around $4,260, validating its structural Negative layout. With nominal yields surging across the curve and the 10-year real rate locked at a restrictive 2.19%, non-yielding safe havens are absorbing heavy capital preservation outflows. The sharp break past historical technical support lines is actively forcing the 'Extreme Long' institutional cohort into defensive unwind mechanics, leaving over-leveraged contracts exposed to systemic liquidation.
