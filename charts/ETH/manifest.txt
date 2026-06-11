@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday down sharply at around $1,638. ETH is locked deep inside a harsh Negative trend, erasing its prior short-term consolidation boundaries. Network velocity is severely flatlining and on-chain transactional depth has completely stalled out. The overall technical layout remains structurally compromised, forcing systematic derivatives liquidations in thin environments until an institutional accumulation wall forms.
+note: Ethereum closed yesterday down at $1,621. ETH continues its punishing Negative trajectory, failing to mount any sustainable defense after breaking below its $1,700 consolidation pivot. Network velocity and on-chain transactional depth remain severely depressed. Under the weight of systemic risk-off de-leveraging, the asset remains highly vulnerable to thin-order-book sweeps and liquidations until an institutional accumulation wall materializes.
 
-updated: 10 June 2026
+updated: 11 June 2026
