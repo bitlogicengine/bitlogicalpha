@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed a sharp negative daily close at around $61,712. BTC remains heavily restricted within its Negative technical trajectory as structural capital flight intensifies. While local spot order books managed a brief defense earlier in the week, systemic distribution and spot ETF net outflows have wiped out any near-term upside momentum. Algorithmic desks are pulling key spot bids to isolate risk, leaving the asset completely vulnerable to a programmatic test of the key $60,000 baseline.
+note: Bitcoin closed yesterday down at $61,478. BTC remains locked in a strict Negative layout as a hotter-than-expected 4.2% U.S. CPI print completely shattered immediate monetary easing narratives. The structural break was further amplified by aggressive geopolitical flare-ups in the Middle East. Spot market depth remains incredibly thin, leaving the asset highly exposed to programmatic stop-hunts targeting the critical $60,000 baseline.
 
-updated: 10 June 2026
+updated: 11 June 2026
