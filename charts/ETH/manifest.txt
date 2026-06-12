@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum closed yesterday down at $1,621. ETH continues its punishing Negative trajectory, failing to mount any sustainable defense after breaking below its $1,700 consolidation pivot. Network velocity and on-chain transactional depth remain severely depressed. Under the weight of systemic risk-off de-leveraging, the asset remains highly vulnerable to thin-order-book sweeps and liquidations until an institutional accumulation wall materializes.
+note: Ethereum logged its daily close at around $1,673. This corrected print represents a modest, short-lived relief bounce alongside BTC, moving slightly up from the previous $1,621 capitulation low. However, the asset remains stuck firmly within a Negative structural trajectory, failing to reclaim its core $1,700 consolidation pivot. On-chain gas mechanics and transactional depth remain deeply depressed.
 
-updated: 11 June 2026
+updated: 12 June 2026
