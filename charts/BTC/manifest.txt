@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed a daily close at around $63,526. While this marks a sharp localized short-squeeze from the low-$61,000 liquidity pockets—fueled by a sudden midnight de-escalation of geopolitical tensions—the macro layout remains structurally Negative. Institutional volume remains highly defensive, treating the brief upward velocity as an opportunity to distribution-hedge rather than a true trend reversal. The order book stays thin ahead of the weekly close.
+note: Bitcoin printed a negative weekly close at around $63,504. Despite early geopolitical relief, the broader crypto landscape faced an unconventional liquidity drain on Friday as the historic SpaceX mega-IPO on Wall Street acted as a massive vacuum for global speculative capital. Algorithmic desks noted widespread capital extraction from high-beta corridors to fund public allocations, stalling out BTC's mid-week recovery and keeping spot price structures vulnerable within a thin weekend order book.
 
-updated: 12 June 2026
+updated: 13 June 2026
