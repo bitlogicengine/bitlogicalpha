@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index notched up to 12 but remains heavily pinned deep inside Extreme Fear. The modest relief squeeze on the majors has done nothing to repair broken retail sentiment. Capital remains primarily parked in cash reserves or structural short-hedges as participants wait to see if the sudden macro de-escalation holds over the weekend.
-date: 12 June 2026
+comment: The Fear & Greed Index notched up slightly to 13 but remains deeply locked inside Extreme Fear territory. While the macro tape saw an intense relief rally in traditional equities following an abrupt pause in Middle East military escalation, digital asset retail participants remain completely sidelined, refusing to deploy fresh spot capital into deteriorating technical charts.
+date: 13 June 2026
