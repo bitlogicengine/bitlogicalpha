@@ -4,6 +4,6 @@ real_rates: 2.24
 etf_flows: +6340
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-note: Gold (XAU) engineered a sharp relief bounce to close yesterday at around $4,211, recovering a significant portion of its prior-day losses. The recovery was driven directly by the midnight geopolitical pivot as immediate safe-haven premium unwinding slowed down. Despite this bounce, the broader short-term trend stays Negative, and the 10-year real rate remains highly restrictive at 2.24%, leaving the heavily concentrated 'Extreme Long' institutional cohort exposed to continued liquidation risk if local technical support pivots fail.
+note: Gold (XAU) posted a slight negative grind to close out the weekly session at around $4,218. The safe-haven premium continued to unwind as Brent crude compressed to $87.58 on rising US-Iran negotiation prospects. However, gold's downside was heavily exacerbated by a surprise macroeconomic move from Europe, where the ECB implemented an unexpected 25-basis-point interest rate hike to defend against sticky energy costs. This hawkish central bank pivot kept global real yields elevated, restricting any significant safe-haven bounce.
 
-updated: 12 June 2026
+updated: 13 June 2026
