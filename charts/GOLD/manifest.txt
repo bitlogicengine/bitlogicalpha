@@ -6,4 +6,4 @@ cot_signal: Extreme Long (Liquidation Trigger Active)
 
 note: Gold (XAU) posted a slight negative grind to close out the weekly session at around $4,218. The safe-haven premium continued to unwind as Brent crude compressed to $87.58 on rising US-Iran negotiation prospects. However, gold's downside was heavily exacerbated by a surprise macroeconomic move from Europe, where the ECB implemented an unexpected 25-basis-point interest rate hike to defend against sticky energy costs. This hawkish central bank pivot kept global real yields elevated, restricting any significant safe-haven bounce.
 
-updated: 13 June 2026
+updated: 14 June 2026
