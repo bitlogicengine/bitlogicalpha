@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index notched up slightly to 13 but remains deeply locked inside Extreme Fear territory. While the macro tape saw an intense relief rally in traditional equities following an abrupt pause in Middle East military escalation, digital asset retail participants remain completely sidelined, refusing to deploy fresh spot capital into deteriorating technical charts.
-date: 13 June 2026
+comment: The Fear & Greed Index clambered up to 18, escaping the deep single-digit panic zone. While the metric still registers intense Extreme Fear, the combination of Friday's net positive spot ETF flows and an overall equity relief rally on Wall Street has injected a small defensive cushion into broader sentiment models.
+date: 14 June 2026
