@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed a negative weekly close at around $63,504. Despite early geopolitical relief, the broader crypto landscape faced an unconventional liquidity drain on Friday as the historic SpaceX mega-IPO on Wall Street acted as a massive vacuum for global speculative capital. Algorithmic desks noted widespread capital extraction from high-beta corridors to fund public allocations, stalling out BTC's mid-week recovery and keeping spot price structures vulnerable within a thin weekend order book.
+note: Bitcoin printed a minor weekend relief close at around $64,305. The short-term structural outlook remains Negative, but the immediate downward velocity has paused. Friday's trading session saw spot Bitcoin ETFs successfully snap a brutal multi-day capital flight cycle by posting a net $85.8 million inflow. However, localized order books faced friction after major exchanges—including Binance, Bybit, and Bitget—abruptly canceled tokenized SpaceX allocations due to an institutional share shortage following its massive Nasdaq debut, forcing some retail capital back into cash stables.
 
-updated: 13 June 2026
+updated: 14 June 2026
