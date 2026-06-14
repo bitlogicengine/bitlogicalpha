@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum logged a negative session close at around $1,666. ETH remains trapped inside a definitive Negative structural matrix, failing to hold onto its minor mid-week bounce and dropping cleanly back under the critical $1,700 overhead resistance level. On-chain gas dynamics are completely frozen, and the asset continues to experience distribution from key institutional whale wallets seeking out higher-yielding sovereign debt alternatives.
+note: Ethereum logged a weekend daily close at around $1,679. ETH remains pinned to a strict Negative layout, underperforming BTC's localized capital reprieve. While Bitcoin ETFs attracted defensive inflows, Ethereum-backed institutional funds continued their uninterrupted net liquidation streak over the Friday close. On-chain transaction density is historically low, leaving the technical matrix exposed to systematic downside sweeps unless overhead structural resistance at $1,700 is decisively reclaimed.
 
-updated: 13 June 2026
+updated: 14 June 2026
