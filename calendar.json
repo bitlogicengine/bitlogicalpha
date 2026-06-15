@@ -1,58 +1,51 @@
 [
   {
-    "day": "9",
+    "day": "16",
     "month": "June",
     "type": "macro",
-    "title": "US EIA Short-Term Energy Outlook",
-    "desc": "Un report cruciale per quantificare le proiezioni dell'offerta di greggio. Con lo stallo geopolitico nello Stretto di Hormuz che continua a minacciare le catene logistiche, qualsiasi revisione al rialzo sui costi energetici alimenterà le aspettative di inflazione strutturale (stagflazione)."
+    "title": "US Retail Sales MoM",
+    "desc": "Il barometro fondamentale per eccellenza sui consumi reali statunitensi. In un contesto post-Fed dominato da timori di stagflazione, una lettura debole accelererà i segnali di rallentamento della crescita economica, mentre un dato resiliente fornirà alla Fed un ulteriore pretesto per mantenere intatta la politica restrittiva."
   },
   {
-    "day": "10",
+    "day": "17",
     "month": "June",
     "type": "macro",
-    "title": "China Consumer Price Index (CPI)",
-    "desc": "Il principale indicatore delle dinamiche deflazionistiche/inflazionistiche della seconda economia mondiale. Un dato debole segnalerebbe il persistere di una domanda interna asfittica, costringendo la PBOC a ulteriori iniezioni di liquidità che potrebbero impattare i flussi di capitale globali."
+    "title": "Eurozone Final CPI YoY",
+    "desc": "La validazione definitiva della traiettoria inflazionistica europea dopo la mossa shock della BCE. Eventuali revisioni al rialzo cementeranno lo scenario di 'stagflazione da costi energetici', limitando lo spazio di manovra monetario della banca centrale e impattando direttamente la coppia EUR/USD."
   },
   {
-    "day": "11",
+    "day": "18",
     "month": "June",
     "type": "macro",
-    "title": "US Federal Reserve Interest Rate Decision & Dot Plot",
-    "desc": "L'evento macro più critico del mese. Dopo il blocco dei dati sui Non-Farm Payrolls della scorsa settimana, i mercati cercano conferme sulla traiettoria restrittiva della Fed. Un 'Dot Plot' più aggressivo eliminerà definitivamente le speranze di tagli ai tassi nel 2026, spingendo i rendimenti reali e mettendo sotto forte pressione gli asset di rischio."
+    "title": "US Initial Jobless Claims & Philly Fed Manufacturing",
+    "desc": "Doppio rilascio ad alta frequenza macro. I dati sul mercato del lavoro offriranno un riscontro immediato sull'andamento delle assunzioni, mentre l'indice Philly Fed quantificherà lo stress sui costi dei fattori produttivi manifatturieri in scia ai recenti blocchi logistici globali."
   },
   {
-    "day": "11",
+    "day": "18",
     "month": "June",
     "type": "macro",
-    "title": "US Initial Jobless Claims",
-    "desc": "Rilasciato in concomitanza con la scomposizione post-Fed, questo dato testerà la reattività in tempo reale del mercato del lavoro. Un aumento inatteso delle richieste potrebbe riaccendere la narrativa 'bad news is good news', fungendo da paracadute temporaneo per gli asset a offerta fissa."
+    "title": "Bank of England (BoE) Interest Rate Decision",
+    "desc": "Un nodo cruciale per la liquidità del vecchio continente. Sotto la pressione della convergenza restrittiva tra Fed e BCE, la BoE dovrà calibrare il costo del denaro difendendo la sterlina dalla forza gravitazionale del dollaro (DXY), innescando volatilità d'impatto sui cross valutari europei."
   },
   {
-    "day": "12",
+    "day": "19",
     "month": "June",
     "type": "macro",
-    "title": "US Consumer Price Index (CPI)",
-    "desc": "Il verdetto finale sull'inflazione statunitense. Qualsiasi sorpresa al rialzo sulla componente 'Core'CPI, esacerbata dai costi di trasporto marittimo e dall'energia, accelererà il de-risking istituzionale, innescando una fuga di liquidità verso il dollaro (DXY)."
+    "title": "US Sessions Holiday - Juneteenth National Independence Day",
+    "desc": "Chiusura ufficiale dei desk bancari e azionari tradizionali statunitensi. La contestuale parziale illiquidità sui mercati fixed income sposterà la concentrazione dei flussi di volume sui mercati alternativi, amplificando il potenziale di oscillazione asimmetrica dei prezzi."
   },
   {
-    "day": "12",
-    "month": "June",
-    "type": "macro",
-    "title": "Eurozone Industrial Production",
-    "desc": "Fornisce una panoramica sullo stato di salute manifatturiero europeo sotto stress energetico. Un forte rallentamento convaliderà le politiche di allentamento della BCE, allargando il divario di politica monetaria con la Fed."
-  },
-  {
-    "day": "13",
+    "day": "20",
     "month": "June",
     "type": "crypto",
-    "title": "Post-Fed Order Book Depth Realignment",
-    "desc": "Finestra di monitoraggio nel weekend per analizzare la profondità dei book di negoziazione spot e i tassi di finanziamento dei derivati. L'assenza di capitali istituzionali amplificherà i movimenti algoritmici di riallineamento ai nuovi tassi reali decisi dalla Fed."
+    "title": "Holiday Liquidity Gap Spot Monitoring",
+    "desc": "Finestra di monitoraggio focalizzata sui book di negoziazione spot durante il weekend lungo statunitense. Con l'assenza strutturale dei market maker istituzionali, i motori algoritmici rimarranno i principali driver, facilitando repentine caccie alla liquidità (stop-hunts)."
   },
   {
-    "day": "14",
+    "day": "21",
     "month": "June",
     "type": "crypto",
-    "title": "BitLogic Alpha Weekly Liquidity Integration",
-    "desc": "Sintesi dei nuovi dati H.4.1 della Fed, dei saldi TGA post-settlement e del CPI statunitense all'interno del Net Liquidity Model per mappare le zone di alta convinzione in vista dell'apertura dei mercati asiatici."
+    "title": "BitLogic Alpha Peace Momentum Matrix",
+    "desc": "Integrazione quantitativa del modello di Net Liquidity. Analisi della chiusura H.4.1 Fed, dei flussi di cassa TGA post-settlement e dell'impatto del decongestionamento energetico derivante dagli sviluppi geopolitici per mappare l'apertura della sessione asiatica."
   }
 ]
