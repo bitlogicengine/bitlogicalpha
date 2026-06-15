@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum logged a weekend daily close at around $1,679. ETH remains pinned to a strict Negative layout, underperforming BTC's localized capital reprieve. While Bitcoin ETFs attracted defensive inflows, Ethereum-backed institutional funds continued their uninterrupted net liquidation streak over the Friday close. On-chain transaction density is historically low, leaving the technical matrix exposed to systematic downside sweeps unless overhead structural resistance at $1,700 is decisively reclaimed.
+note: Ethereum logged its daily close at around $1,709. This move establishes a minor technical reclamation of the $1,700 psychological pivot, printing a short-lived relief bounce alongside BTC. Despite the green daily candle, the asset remains bound to its broader Negative trajectory. On-chain transaction density and smart contract gas deployments remain near multi-month lows, keeping the order book vulnerable to automated distribution sweeps if macro liquidity trends tighten into mid-week.
 
-updated: 14 June 2026
+updated: 15 June 2026
