@@ -4,6 +4,6 @@ real_rates: 2.24
 etf_flows: +6340
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-note: Gold (XAU) posted a slight negative grind to close out the weekly session at around $4,218. The safe-haven premium continued to unwind as Brent crude compressed to $87.58 on rising US-Iran negotiation prospects. However, gold's downside was heavily exacerbated by a surprise macroeconomic move from Europe, where the ECB implemented an unexpected 25-basis-point interest rate hike to defend against sticky energy costs. This hawkish central bank pivot kept global real yields elevated, restricting any significant safe-haven bounce.
+note: Gold (XAU) printed a flat, slightly defensive session to close at around $4,218, maintaining its strict Negative structural designation. Safe-haven premium liquidation accelerated significantly across international asset desks as escalating hopes for a formal Strait of Hormuz peace agreement forced crude oil to break below key support bands. With the 10-year real yield remaining highly restrictive at 2.24%, the 'Extreme Long' speculative cohort is absorbing severe macro headwinds, leaving over-leveraged long contracts exposed to active liquidation risk.
 
-updated: 14 June 2026
+updated: 15 June 2026
