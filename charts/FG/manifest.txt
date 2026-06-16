@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index crept up to 20 but is still locked deep inside the Extreme Fear regime. The rapid, news-driven price recovery across the blue-chip majors has provided localized liquidations relief, but retail sentiment remains thoroughly broken. Market participants continue to express severe defensive positioning, waiting for audited spot ETF flows to stabilize before committing fresh risk capital.
-date: 15 June 2026
+comment: The Fear & Greed Index climbed up to 23, showing a steady clawback from the extreme single-digit despair recorded during the peak inflation shocks. Although the framework remains pinned inside the broader Fear territory, the stabilization of blue-chip crypto structures and the temporary cooling of immediate Middle East safe-haven premiums have given sentiment algorithms room to breathe.
+date: 16 June 2026
