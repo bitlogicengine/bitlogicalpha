@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed a daily close at around $65,699. While nominal spot prices engineered a clean short-squeeze from the weekend sub-$64,000 baseline, the macro layout remains structurally Negative. The bounce was heavily driven by a sudden, massive unwinding of geopolitical war hedges following a concrete turn toward a U.S.-Iran peace framework. However, spot market velocity remains highly restricted as institutional desks keep net allocation volumes flat, treating the upward drift as localized relief rather than a definitive trend reversal.
+note: Bitcoin recorded a downward session close at around $66,280. While the token is structurally holding a higher consolidation shelf relative to last week's sub-$62,000 panic floors, the short-term layout remains strictly Negative. Aggressive distribution from structural altcoin positions continues to drain liquidity from the broader ecosystem, keeping spot buy walls highly thin. Order books are coiling tight as algorithmic desks wait for the impending high-frequency U.S. Retail Sales data release to gauge the next directional swing.
 
-updated: 15 June 2026
+updated: 16 June 2026
