@@ -1,7 +1,7 @@
 status: Negative
 
-real_rates: 2.24
-etf_flows: +6340
+real_rates: 2.14
+etf_flows: +6305
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
 note: Gold (XAU) registered a negative daily print to settle at around $4,309. The price action reflects a localized downward reset after a violent intraday surge to $4,369 fell short of breaking major overhead resistance. Despite printing a technically negative session close on the tape, buying pressure has notably returned to defend the $4,300 psychological baseline. However, with global real rates holding firm, the broader macro layout remains locked in Negative status, keeping over-leveraged institutional contract holders under a persistent liquidation risk warning.
