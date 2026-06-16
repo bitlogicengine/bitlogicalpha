@@ -4,6 +4,6 @@ real_rates: 2.24
 etf_flows: +6340
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-note: Gold (XAU) printed a flat, slightly defensive session to close at around $4,218, maintaining its strict Negative structural designation. Safe-haven premium liquidation accelerated significantly across international asset desks as escalating hopes for a formal Strait of Hormuz peace agreement forced crude oil to break below key support bands. With the 10-year real yield remaining highly restrictive at 2.24%, the 'Extreme Long' speculative cohort is absorbing severe macro headwinds, leaving over-leveraged long contracts exposed to active liquidation risk.
+note: Gold (XAU) registered a negative daily print to settle at around $4,309. The price action reflects a localized downward reset after a violent intraday surge to $4,369 fell short of breaking major overhead resistance. Despite printing a technically negative session close on the tape, buying pressure has notably returned to defend the $4,300 psychological baseline. However, with global real rates holding firm, the broader macro layout remains locked in Negative status, keeping over-leveraged institutional contract holders under a persistent liquidation risk warning.
 
-updated: 15 June 2026
+updated: 16 June 2026
