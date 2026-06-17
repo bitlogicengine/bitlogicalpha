@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin recorded a downward session close at around $66,280. While the token is structurally holding a higher consolidation shelf relative to last week's sub-$62,000 panic floors, the short-term layout remains strictly Negative. Aggressive distribution from structural altcoin positions continues to drain liquidity from the broader ecosystem, keeping spot buy walls highly thin. Order books are coiling tight as algorithmic desks wait for the impending high-frequency U.S. Retail Sales data release to gauge the next directional swing.
+note: Bitcoin logged a down-session to close around $65,613. The directional tape stays firmly Negative as spot liquidity continues to consolidate inside a tight, defensive band. With the Federal Reserve's high-stakes policy showdown reaching its climax, order book depth remains exceptionally light. Algorithmic desks are proactively fading minor retail breakout attempts, leaving the price structure exposed to quick downside flushes if macro communication triggers systemic capital distribution.
 
-updated: 16 June 2026
+updated: 17 June 2026
