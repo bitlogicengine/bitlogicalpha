@@ -4,6 +4,6 @@ real_rates: 2.14
 etf_flows: +6305
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-note: Gold (XAU) registered a negative daily print to settle at around $4,309. The price action reflects a localized downward reset after a violent intraday surge to $4,369 fell short of breaking major overhead resistance. Despite printing a technically negative session close on the tape, buying pressure has notably returned to defend the $4,300 psychological baseline. However, with global real rates holding firm, the broader macro layout remains locked in Negative status, keeping over-leveraged institutional contract holders under a persistent liquidation risk warning.
+note: Gold (XAU) engineered a minor localized drop to settle at around $4,331. Despite recording a negative daily close, spot buying queues have shown robust technical defense to hold the asset comfortably above the $4,300 psychological baseline. The overarching macro layout remains structurally Negative, as traditional commodity desks maintain maximum capital preservation constraints prior to the upcoming central bank rate decision.
 
-updated: 16 June 2026
+updated: 17 June 2026
