@@ -1,9 +1,9 @@
 status: Negative
 
-real_rates: 2.14
-etf_flows: +6305
+real_rates: 2.11
+etf_flows: +6280
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-note: Gold (XAU) engineered a minor localized drop to settle at around $4,331. Despite recording a negative daily close, spot buying queues have shown robust technical defense to hold the asset comfortably above the $4,300 psychological baseline. The overarching macro layout remains structurally Negative, as traditional commodity desks maintain maximum capital preservation constraints prior to the upcoming central bank rate decision.
+note: Il Gold (XAU) ha registrato un lieve ripiegamento localizzato chiudendo a circa $4.331. Nonostante la chiusura giornaliera in territorio negativo, i flussi in acquisto spot hanno mostrato una robusta difesa tecnica, mantenendo l'asset stabilmente sopra il supporto psicologico dei $4.300. Il quadro macro generale resta impostato al Negative, mentre i desk delle materie prime mantengono i massimi vincoli di preservazione del capitale prima della decisione sui tassi della Fed.
 
 updated: 17 June 2026
