@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index climbed up to 23, showing a steady clawback from the extreme single-digit despair recorded during the peak inflation shocks. Although the framework remains pinned inside the broader Fear territory, the stabilization of blue-chip crypto structures and the temporary cooling of immediate Middle East safe-haven premiums have given sentiment algorithms room to breathe.
-date: 16 June 2026
+comment: The Fear & Greed Index notched down slightly to 22. Sentiment tracking algorithms remain deeply restricted within the Fear threshold. While the severe single-digit panic from the prior week's inflation shocks has eased, retail and institutional participants are refusing to deploy fresh spot risk capital until the Fed's imminent policy statement drops.
+date: 17 June 2026
