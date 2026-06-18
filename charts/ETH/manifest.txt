@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum wrapped up yesterday's session down slightly at around $1,791. ETH remains pinned to its broader Negative trajectory, failing to secure a clean structural breakout despite fluctuating near the upper ceiling of its localized consolidation frame. Stagnant on-chain velocity and flat institutional wrapper flows offer zero upside thrust, keeping the underlying asset structure vulnerable to thin-order-book sweeps by systematic derivative desks.
+note: Ethereum posted a negative daily close at around $1,748, marking a clean structural breakdown below the key $1,800 psychological support pivot. ETH continues to track within a strict Negative trajectory as on-chain transaction metrics and smart contract network velocity flatline near multi-month lows. The lack of institutional spot inflows leaves the asset highly vulnerable to continuous derivatives liquidation flushes in a thin-order-book environment.
 
-updated: 17 June 2026
+updated: 18 June 2026
