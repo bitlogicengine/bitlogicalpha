@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index notched down slightly to 22. Sentiment tracking algorithms remain deeply restricted within the Fear threshold. While the severe single-digit panic from the prior week's inflation shocks has eased, retail and institutional participants are refusing to deploy fresh spot risk capital until the Fed's imminent policy statement drops.
-date: 17 June 2026
+comment: The Fear & Greed Index collapsed further to 15 (Extreme Fear). Market sentiment has fractured significantly following the realization of a permanently restrictive macroeconomic landscape. De-leveraging mechanics are highly active across offshore derivatives platforms, driving retail participants entirely into capital preservation behaviors and cash-hoarding stables.
+date: 18 June 2026
