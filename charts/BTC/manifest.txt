@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin logged a down-session to close around $65,613. The directional tape stays firmly Negative as spot liquidity continues to consolidate inside a tight, defensive band. With the Federal Reserve's high-stakes policy showdown reaching its climax, order book depth remains exceptionally light. Algorithmic desks are proactively fading minor retail breakout attempts, leaving the price structure exposed to quick downside flushes if macro communication triggers systemic capital distribution.
+note: Bitcoin printed a sharp downward daily close at around $64,441, extending its Negative trend regime. The breakdown was driven by the high-velocity fallout from yesterday's central bank rate decision, where the updated policy roadmap severely dampened immediate capital expansion hopes. Localized spot order book depth remains highly compromised, leaving the price action exposed to programmatic stop-hunts across deeper liquidity pools as professional desks minimize risk exposure.
 
-updated: 17 June 2026
+updated: 18 June 2026
