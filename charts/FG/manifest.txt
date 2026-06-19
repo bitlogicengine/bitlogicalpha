@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index collapsed further to 15 (Extreme Fear). Market sentiment has fractured significantly following the realization of a permanently restrictive macroeconomic landscape. De-leveraging mechanics are highly active across offshore derivatives platforms, driving retail participants entirely into capital preservation behaviors and cash-hoarding stables.
-date: 18 June 2026
+comment: The Fear & Greed Index dialed back down to 14, consolidating heavily deep within the Extreme Fear bracket. The cascading liquidations across high-beta altcoin asset classes and the structural reset of fixed-income hurdle rates have completely shattered retail confidence, causing market participants to enter strict capital preservation mode.
+date: 19 June 2026
