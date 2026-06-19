@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum posted a negative daily close at around $1,748, marking a clean structural breakdown below the key $1,800 psychological support pivot. ETH continues to track within a strict Negative trajectory as on-chain transaction metrics and smart contract network velocity flatline near multi-month lows. The lack of institutional spot inflows leaves the asset highly vulnerable to continuous derivatives liquidation flushes in a thin-order-book environment.
+note: Ethereum completed its daily close lower at around $1,709. ETH continues its strict Negative trajectory, feeling the heavy burden of persistent layer-2 capital migration and depressed mainnet smart contract network velocity. Technical support lines are showing notable signs of fragility, leaving the underlying price structure vulnerable to high-velocity liquidation flushes from systematic derivatives desks until an institutional accumulation wall materializes.
 
-updated: 18 June 2026
+updated: 19 June 2026
