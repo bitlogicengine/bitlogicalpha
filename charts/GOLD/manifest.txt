@@ -4,6 +4,6 @@ real_rates: 2.18
 etf_flows: +6240
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-note: Gold (XAU) recorded a negative daily close at around $4,257, validating its strict Negative structural designation. The downward move was catalyzed by an aggressive breakout in fixed-income yields following the central bank statement, which pushed the 10-year real yield up to a highly restrictive 2.18%. This rapid acceleration in the hurdle rate of capital triggered another round of institutional distribution from physical fund wrappers (-40k oz), keeping the heavily crowded 'Extreme Long' speculative cohort trapped in an active liquidation cycle.
+note: Gold (XAU) registered a negative daily close to settle at around $4,210, reinforcing its short-term Negative structural status. The downside momentum is being firmly sustained by restrictive parameters across the fixed-income layer, where the 10-year real yield (TIPS) continues to hover at an elevated 2.18%. This highly restrictive environment keeps the long-warned 'Extreme Long' institutional cohort trapped inside an active liquidation phase, accelerating marginal outflows from traditional safe-haven fund wrappers.
 
-updated: 18 June 2026
+updated: 19 June 2026
