@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum completed its daily close lower at around $1,709. ETH continues its strict Negative trajectory, feeling the heavy burden of persistent layer-2 capital migration and depressed mainnet smart contract network velocity. Technical support lines are showing notable signs of fragility, leaving the underlying price structure vulnerable to high-velocity liquidation flushes from systematic derivatives desks until an institutional accumulation wall materializes.
+note: Ethereum logged its weekend session close at around $1,710. ETH stays locked within its broader Negative trajectory, flatlining immediately above its local support floor. Mainnet transactional activity and decentralized application gas burning remain heavily depressed over the weekend phase. Without a decisive technical impulse to clear the heavy overhead supply cluster at $1,800, the asset remains structurally fragile and exposed to sudden derivative flushes.
 
-updated: 19 June 2026
+updated: 20 June 2026
