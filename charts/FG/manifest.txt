@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index dialed back down to 14, consolidating heavily deep within the Extreme Fear bracket. The cascading liquidations across high-beta altcoin asset classes and the structural reset of fixed-income hurdle rates have completely shattered retail confidence, causing market participants to enter strict capital preservation mode.
-date: 19 June 2026
+comment: The Fear & Greed Index ticked back up to 23, mirroring the minor relief consolidation across the blue-chip majors. Despite escaping the lowest tiers of the extreme panic zone, sentiment tracking models remain firmly restricted within the Fear boundary. Market participants are expressing heavy defensive biases, choosing to maintain elevated cash cushions rather than accumulating spot positions during the low-liquidity weekend gap.
+date: 20 June 2026
