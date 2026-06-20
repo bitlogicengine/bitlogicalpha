@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin logged a down-session to close out yesterday at around $62,885. The technical and structural layout remains locked in a firm Negative trend regime as the higher-for-longer macro narrative continues to depress speculative capital depth. Localized order books are proving exceptionally thin on the spot side. Risk-off distribution is favoring liquid fiat and short-duration cash stable alternatives, leaving BTC exposed to programmatic downside sweeps ahead of the weekend.
+note: Bitcoin printed a minor weekend consolidation close at around $63,483. Despite a slight upward drift from yesterday’s sub-$63,000 liquidity flush, the structural tape remains strictly Negative. The market is operating within a total volume vacuum due to the extended holiday weekend in the United States. Automated market makers and algorithmic desks are dominating the order books, driving choppy, low-conviction range-bound flows with zero fresh institutional capital commitment.
 
-updated: 19 June 2026
+updated: 20 June 2026
