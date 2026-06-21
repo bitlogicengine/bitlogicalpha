@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index ticked back up to 23, mirroring the minor relief consolidation across the blue-chip majors. Despite escaping the lowest tiers of the extreme panic zone, sentiment tracking models remain firmly restricted within the Fear boundary. Market participants are expressing heavy defensive biases, choosing to maintain elevated cash cushions rather than accumulating spot positions during the low-liquidity weekend gap.
-date: 20 June 2026
+comment: The Fear & Greed Index held completely static at 23, mirroring the stagnant range-bound conditions of the weekend majors. Capital preservation remains the dominant theme across the board, with retail participants choosing to sit on stablecoin sidelines rather than deploying risk assets ahead of a dense macroeconomic week.
+date: 21 June 2026
