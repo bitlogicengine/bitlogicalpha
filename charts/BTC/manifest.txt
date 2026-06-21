@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed a minor weekend consolidation close at around $63,483. Despite a slight upward drift from yesterday’s sub-$63,000 liquidity flush, the structural tape remains strictly Negative. The market is operating within a total volume vacuum due to the extended holiday weekend in the United States. Automated market makers and algorithmic desks are dominating the order books, driving choppy, low-conviction range-bound flows with zero fresh institutional capital commitment.
+note: Bitcoin printed a weekend daily close at around $64,249. While the asset managed a localized bounce from the mid-week $62,000 range, it remains locked within a broader Negative structural trend. Spot order books are experiencing an extreme liquidity vacuum due to the extended U.S. long weekend. Trading is heavily dominated by algorithmic mean-reversion programs, keeping price action tight and devoid of true institutional continuation volume as the market prepares for the impending APAC weekly open.
 
-updated: 20 June 2026
+updated: 21 June 2026
