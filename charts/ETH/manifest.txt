@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum logged its weekend session close at around $1,710. ETH stays locked within its broader Negative trajectory, flatlining immediately above its local support floor. Mainnet transactional activity and decentralized application gas burning remain heavily depressed over the weekend phase. Without a decisive technical impulse to clear the heavy overhead supply cluster at $1,800, the asset remains structurally fragile and exposed to sudden derivative flushes.
+note: Ethereum wrapped up its weekend session with a daily close at around $1,739. The asset is holding its position within a defined Negative trajectory, mirroring BTC's low-volume weekend drift. Mainnet gas consumption metrics and layer-2 transaction volumes remain flat near seasonal lows, reflecting minimal retail or institutional smart contract engagement. Structural resistance at the $1,800 cluster remains intact, leaving lower liquidity pockets vulnerable to automated flushes.
 
-updated: 20 June 2026
+updated: 21 June 2026
