@@ -1,2 +1,2 @@
-comment: The Fear & Greed Index held completely static at 23, mirroring the stagnant range-bound conditions of the weekend majors. Capital preservation remains the dominant theme across the board, with retail participants choosing to sit on stablecoin sidelines rather than deploying risk assets ahead of a dense macroeconomic week.
-date: 21 June 2026
+comment: The Fear & Greed Index experienced a minor retraction to 20, maintaining its position within the deep Extreme Fear territory. The structural tape reflects heightened caution as market networks adjust to tighter global liquidity channels, keeping spot distribution active while broader retail participant groups shift into defensive stablecoin allocations ahead of the weekly open.
+date: 22 June 2026
