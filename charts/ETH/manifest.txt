@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum wrapped up its weekend session with a daily close at around $1,739. The asset is holding its position within a defined Negative trajectory, mirroring BTC's low-volume weekend drift. Mainnet gas consumption metrics and layer-2 transaction volumes remain flat near seasonal lows, reflecting minimal retail or institutional smart contract engagement. Structural resistance at the $1,800 cluster remains intact, leaving lower liquidity pockets vulnerable to automated flushes.
+note: Ethereum consolidates around the $1,705 mark, bound to the Negative Trend Regime under broader global headwinds. Despite the macro friction, high-timeframe order flow indicates initial signs of technical stabilization around key horizontal demand blocks. This absorption buffer is actively counteracting successive spot ETF net outflows and on-chain funding concerns, protecting immediate multi-month market floors.
 
-updated: 21 June 2026
+updated: 22 June 2026
