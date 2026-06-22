@@ -1,51 +1,50 @@
 [
   {
-    "day": "16",
+    "day": "23",
     "month": "June",
     "type": "macro",
-    "title": "US Retail Sales MoM",
-    "desc": "Il barometro fondamentale per eccellenza sui consumi reali statunitensi. In un contesto post-Fed dominato da timori di stagflazione, una lettura debole accelererà i segnali di rallentamento della crescita economica, mentre un dato resiliente fornirà alla Fed un ulteriore pretesto per mantenere intatta la politica restrittiva."
+    "title": "US Richmond Fed Manufacturing Index",
+    "desc": "Primo riscontro mensile sullo stato della salute manifatturiera della East Coast sotto il nuovo regime Warsh. Una contrazione oltre le attese amplificherà i timori di stagflazione, mentre un dato resiliente supporterà l'approccio hawkish della banca centrale mantenendo elevato il rendimento reale."
   },
   {
-    "day": "17",
+    "day": "24",
     "month": "June",
     "type": "macro",
-    "title": "Eurozone Final CPI YoY",
-    "desc": "La validazione definitiva della traiettoria inflazionistica europea dopo la mossa shock della BCE. Eventuali revisioni al rialzo cementeranno lo scenario di 'stagflazione da costi energetici', limitando lo spazio di manovra monetario della banca centrale e impattando direttamente la coppia EUR/USD."
+    "title": "US New Home Sales & Crude Oil Inventories",
+    "desc": "Rilascio combinato ad alto impatto. I dati sul settore immobiliare quantificheranno l'impatto dei tassi di mutuo stabilmente sopra i massimi ciclici, mentre il report EIA sui fegati petroliferi testerà la tenuta dei modelli inflazionistici legati alle materie prime energetiche."
   },
   {
-    "day": "18",
+    "day": "25",
+    "month": "macro",
+    "title": "US Final GDP QoQ & Core PCE Prices",
+    "desc": "La validazione macroeconomica definitiva per il mercato obbligazionario e i risk asset. La revisione finale della crescita del PIL e del PCE core offrirà ai desk istituzionali il benchmark reale per ricalcolare i modelli di allocazione del capitale in vista della chiusura del secondo trimestre."
+  },
+  {
+    "day": "26",
     "month": "June",
     "type": "macro",
-    "title": "US Initial Jobless Claims & Philly Fed Manufacturing",
-    "desc": "Doppio rilascio ad alta frequenza macro. I dati sul mercato del lavoro offriranno un riscontro immediato sull'andamento delle assunzioni, mentre l'indice Philly Fed quantificherà lo stress sui costi dei fattori produttivi manifatturieri in scia ai recenti blocchi logistici globali."
+    "title": "Eurozone Inflation Expectations & US Personal Spending",
+    "desc": "Allineamento macro transatlantico. Le metriche sulle aspettative di inflazione nell'Eurozona testeranno la credibilità della BCE, mentre la spesa personale negli Stati Uniti confermerà se il consumo retail sta cedendo sotto il peso della restrizione monetaria sistemica."
   },
   {
-    "day": "18",
-    "month": "June",
-    "type": "macro",
-    "title": "Bank of England (BoE) Interest Rate Decision",
-    "desc": "Un nodo cruciale per la liquidità del vecchio continente. Sotto la pressione della convergenza restrittiva tra Fed e BCE, la BoE dovrà calibrare il costo del denaro difendendo la sterlina dalla forza gravitazionale del dollaro (DXY), innescando volatilità d'impatto sui cross valutari europei."
-  },
-  {
-    "day": "19",
-    "month": "June",
-    "type": "macro",
-    "title": "US Sessions Holiday - Juneteenth National Independence Day",
-    "desc": "Chiusura ufficiale dei desk bancari e azionari tradizionali statunitensi. La contestuale parziale illiquidità sui mercati fixed income sposterà la concentrazione dei flussi di volume sui mercati alternativi, amplificando il potenziale di oscillazione asimmetrica dei prezzi."
-  },
-  {
-    "day": "20",
+    "day": "26",
     "month": "June",
     "type": "crypto",
-    "title": "Holiday Liquidity Gap Spot Monitoring",
-    "desc": "Finestra di monitoraggio focalizzata sui book di negoziazione spot durante il weekend lungo statunitense. Con l'assenza strutturale dei market maker istituzionali, i motori algoritmici rimarranno i principali driver, facilitando repentine caccie alla liquidità (stop-hunts)."
+    "title": "Quarterly Derivatives Expiry Volatility Window",
+    "desc": "La mega-scadenza trimestrale di opzioni e future su BTC ed ETH. Con miliardi di dollari di open interest aperti ai strike chiave e l'allineamento dei market maker per il delta-hedging, la finestra temporale registrerà un'intensa sottomissione di ordini e picchi di volatilità artificiale sul nastro spot."
   },
   {
-    "day": "21",
+    "day": "27",
     "month": "June",
     "type": "crypto",
-    "title": "BitLogic Alpha Peace Momentum Matrix",
-    "desc": "Integrazione quantitativa del modello di Net Liquidity. Analisi della chiusura H.4.1 Fed, dei flussi di cassa TGA post-settlement e dell'impatto del decongestionamento energetico derivante dagli sviluppi geopolitici per mappare l'apertura della sessione asiatica."
+    "title": "Post-Expiry Liquidity Realignment Audit",
+    "desc": "Finestra di monitoraggio focalizzata sul riposizionamento delle posizioni aperte (Open Interest) dopo il settlement trimestrale. L'assenza di scadenze immediate lascerà i book spot sensibili a movimenti direzionali guidati da flussi algoritmici offshore."
+  },
+  {
+    "day": "28",
+    "month": "June",
+    "type": "crypto",
+    "title": "BitLogic Alpha Weekly Network Flow Matrix",
+    "desc": "Integrazione quantitativa del modello di Net Liquidity applicato alla chiusura settimanale. Analisi dei saldi DTS del Tesoro, dei flussi RRP rimasti stabili nel fine settimana e della rotazione dei volumi sulle reti Layer-2 per mappare la macro-apertura di lunedì."
   }
 ]
