@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum consolidates around the $1,705 mark, bound to the Negative Trend Regime under broader global headwinds. Despite the macro friction, high-timeframe order flow indicates initial signs of technical stabilization around key horizontal demand blocks. This absorption buffer is actively counteracting successive spot ETF net outflows and on-chain funding concerns, protecting immediate multi-month market floors.
+note: Ethereum consolidates around the $1,727 mark, bound to the Negative Trend Regime under broader global headwinds. Despite the macro friction, high-timeframe order flow indicates initial signs of technical stabilization around key horizontal demand blocks. This absorption buffer is actively counteracting successive spot ETF net outflows and on-chain funding concerns, protecting immediate multi-month market floors.
 
-updated: 22 June 2026
+updated: 23 June 2026
