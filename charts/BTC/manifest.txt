@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin registered a session print at $63,249. While the directional tape technically remains locked within the Negative Trend Regime, the internal order book layout continues to showcase improving underlying momentum and distinct sell-side exhaustion. Thick institutional limit buy grids are proactively stacking underneath the spot tape, absorbing macro distribution and laying the architectural groundwork for a structural reversal floor.
+note: Bitcoin registered a session print at $63,966. While the directional tape technically remains locked within the Negative Trend Regime, the internal order book layout continues to showcase improving underlying momentum and distinct sell-side exhaustion. Thick institutional limit buy grids are proactively stacking underneath the spot tape, absorbing macro distribution and laying the architectural groundwork for a structural reversal floor.
 
-updated: 22 June 2026
+updated: 23 June 2026
