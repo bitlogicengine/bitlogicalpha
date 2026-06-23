@@ -1,2 +1,3 @@
-comment: The Fear & Greed Index experienced a minor retraction to 20, maintaining its position within the deep Extreme Fear territory. The structural tape reflects heightened caution as market networks adjust to tighter global liquidity channels, keeping spot distribution active while broader retail participant groups shift into defensive stablecoin allocations ahead of the weekly open.
-date: 22 June 2026
+comment: The Fear & Greed Index experienced a minor retraction to 23, maintaining its position within the deep Extreme Fear territory. The structural tape reflects heightened caution as market networks adjust to tighter global liquidity channels, keeping spot distribution active while broader retail participant groups shift into defensive stablecoin allocations ahead of the weekly open.
+
+date: 23 June 2026
