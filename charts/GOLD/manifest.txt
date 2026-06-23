@@ -1,9 +1,9 @@
 status: Negative
 
+note: Gold settles lower at $4,192 per ounce as spot markets extend their descent under the Negative Trend Regime. Restrictive macroeconomic thresholds remain intense, with 10-Year real rates firming at 2.18% to anchor sticky core inflation. While global ETF fund flows show a net baseline inflow (+6,210), the paper structure is heavily capped by an active Liquidation Trigger on the COT report due to extreme institutional long concentration risks.
+
 real_rates: 2.18
 etf_flows: +6210
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-note: Gold (XAU) settled slightly lower at around $4,204 over the weekend tape as late-stage clearing desk adjustments were processed. Following a careful review of the newly released Friday evening CFTC Commitment of Traders (COT) dataset, the 'Extreme Long' institutional cohort remains heavily overextended and highly concentrated. With the 10-year real interest rate holding firm at its restrictive 2.18% peak, non-yielding hard assets face a persistent structural hurdle, keeping the liquidation trigger fully active for the upcoming APAC weekly opening.
-
-updated: 22 June 2026
+updated: 23 June 2026
