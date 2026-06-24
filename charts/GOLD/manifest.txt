@@ -1,9 +1,9 @@
 status: Negative
 
-note: Gold settles lower at $4,192 per ounce as spot markets extend their descent under the Negative Trend Regime. Restrictive macroeconomic thresholds remain intense, with 10-Year real rates firming at 2.18% to anchor sticky core inflation. While global ETF fund flows show a net baseline inflow (+6,210), the paper structure is heavily capped by an active Liquidation Trigger on the COT report due to extreme institutional long concentration risks.
+note: Gold tracked a definitive daily close baseline at $4,110 per ounce, reinforcing its Technical Pullback within the Negative Trend Regime. Restrictive sovereign thresholds keep raw commodities under intense drag as the 10-Year real yield curve limits non-yielding asset premiums. Despite local ETF net inflows remaining stable, extreme sbilanciamenti inside managed money COT exposures preserve an active systemic liquidation threat.
 
 real_rates: 2.18
 etf_flows: +6210
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-updated: 23 June 2026
+updated: 24 June 2026
