@@ -1,9 +1,9 @@
 status: Negative
 
-note: Gold tracked a definitive daily close baseline at $4,110 per ounce, reinforcing its Technical Pullback within the Negative Trend Regime. Restrictive sovereign thresholds keep raw commodities under intense drag as the 10-Year real yield curve limits non-yielding asset premiums. Despite local ETF net inflows remaining stable, extreme sbilanciamenti inside managed money COT exposures preserve an active systemic liquidation threat.
+note: Gold confirmed a previous daily close at $4,000 per ounce, sliding deeper into its Technical Pullback phase within the Negative Trend Regime. The macro landscape remains highly restrictive as the 10-Year TIPS curve real yields elevate the opportunity cost of unyielded hard storage. Capital flight remains evident via consistent monthly net outflows from physically backed Western ETF products, while managed money futures concentration continues to scale back on defensive portfolio updates.
 
-real_rates: 2.27
+real_rates: 2.28
 etf_flows: +6210
 cot_signal: Weak Long Exposure (Put Protection Dominant)
 
-updated: 24 June 2026
+updated: 25 June 2026
