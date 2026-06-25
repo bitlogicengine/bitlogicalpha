@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed a previous session close at $62,669, extending its structural presence deep within the Negative Trend Regime. Low-frequency tape dynamics continue to face systematic overhead pressure following tighter global sovereign yield conditions. However, local limit buy clustering is showing thick absorption layers directly underneath the spot market, attempting to stabilize an accumulation perimeter against algorithmic spot distribution.
+note: Bitcoin recorded a previous daily close at $61,024, continuing its contraction phase inside the Negative Trend Regime. Broader market networks are absorbing severe capital drain under the hawkish policy path enforced by the Warsh Fed. While order book clustering confirms long-term institutional limit blocks are attempting to support historical cycle baselines, active downside spot distribution maintains immediate near-term control.
 
-updated: 24 June 2026
+updated: 25 June 2026
