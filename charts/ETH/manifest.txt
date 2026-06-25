@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum completed its previous daily close baseline at $1,666, severely constrained by the Negative Trend Regime. Smart contract premiums are compressing as on-chain liquidity parameters cope with consecutive net capital outflows from spot ETF channels alongside accelerated layer-2 migration. Technical frameworks require intense demand riassorbimento before horizontal range stability can be convalidated.
+note: Ethereum completed yesterday's daily close baseline down at $1,621, remaining heavily constrained under the Negative Trend Regime. On-chain velocity parameters face ongoing structural drag due to consecutive capital out-flows from spot ETF vehicles alongside persistent network migration to secondary scaling layers. Reversal metrics require a significant volume riassorbimento before macro range stability can be reestablished.
 
-updated: 24 June 2026
+updated: 25 June 2026
