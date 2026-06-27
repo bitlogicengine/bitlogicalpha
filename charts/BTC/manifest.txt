@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin registered its previous daily close at $59,737, breaching a critical physiological barrier and cementing its posture deep within the Negative Trend Regime. Spot allocation grids continue to experience severe drainage under the pressure of the hawkish central bank trajectory enforced by the Warsh Fed. Automated order books highlight intense overhead distribution, leaving passive institutional limit orders stepping back to lower liquidity shelves.
+note: Bitcoin registered its previous daily close at $60,032, keeping its structural footprint locked within the Negative Trend Regime. Market networks continue to process ongoing capital drainage under the hawkish macro trajectory dictated by the central bank. While long-term institutional limit grids cluster at key lower intervals, active programmatic spot distribution remains the dominant near-term driver.
 
-updated: 26 June 2026
+updated: 27 June 2026
