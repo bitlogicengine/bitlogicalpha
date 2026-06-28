@@ -1,50 +1,51 @@
 [
   {
-    "day": "23",
+    "day": "29",
     "month": "June",
     "type": "macro",
-    "title": "US Richmond Fed Manufacturing Index",
-    "desc": "Primo riscontro mensile sullo stato della salute manifatturiera della East Coast sotto il nuovo regime Warsh. Una contrazione oltre le attese amplificherà i timori di stagflazione, mentre un dato resiliente supporterà l'approccio hawkish della banca centrale mantenendo elevato il rendimento reale."
+    "title": "Eurozone Economic Sentiment & US Dallas Fed Manufacturing",
+    "desc": "Opening macro cross-currents. European sentiment indicators will gauge baseline regional contraction risks, while the Dallas Fed release provides the first regional industrial data point of the week, testing the resilience of corporate margins against high real rates."
   },
   {
-    "day": "24",
+    "day": "30",
     "month": "June",
     "type": "macro",
-    "title": "US New Home Sales & Crude Oil Inventories",
-    "desc": "Rilascio combinato ad alto impatto. I dati sul settore immobiliare quantificheranno l'impatto dei tassi di mutuo stabilmente sopra i massimi ciclici, mentre il report EIA sui fegati petroliferi testerà la tenuta dei modelli inflazionistici legati alle materie prime energetiche."
+    "title": "US Conference Board Consumer Confidence Index",
+    "desc": "A critical high-frequency metric for domestic consumption trends. Any sharp deterioration will amplify stagflation narratives under the Warsh Fed regime, while a resilient print justifies the central bank's higher-for-longer policy path."
   },
   {
-    "day": "25",
-    "month": "macro",
-    "title": "US Final GDP QoQ & Core PCE Prices",
-    "desc": "La validazione macroeconomica definitiva per il mercato obbligazionario e i risk asset. La revisione finale della crescita del PIL e del PCE core offrirà ai desk istituzionali il benchmark reale per ricalcolare i modelli di allocazione del capitale in vista della chiusura del secondo trimestre."
-  },
-  {
-    "day": "26",
-    "month": "June",
+    "day": "01",
+    "month": "July",
     "type": "macro",
-    "title": "Eurozone Inflation Expectations & US Personal Spending",
-    "desc": "Allineamento macro transatlantico. Le metriche sulle aspettative di inflazione nell'Eurozona testeranno la credibilità della BCE, mentre la spesa personale negli Stati Uniti confermerà se il consumo retail sta cedendo sotto il peso della restrizione monetaria sistemica."
+    "title": "US ISM Manufacturing PMI & JOLTS Job Openings",
+    "desc": "Mid-week heavy macro dual release. The ISM report provides definitive national industrial momentum data, while JOLTS openings will measure labor market tightness, heavily influencing sovereign yield curve expectations and risk-asset pricing."
   },
   {
-    "day": "26",
-    "month": "June",
-    "type": "crypto",
-    "title": "Quarterly Derivatives Expiry Volatility Window",
-    "desc": "La mega-scadenza trimestrale di opzioni e future su BTC ed ETH. Con miliardi di dollari di open interest aperti ai strike chiave e l'allineamento dei market maker per il delta-hedging, la finestra temporale registrerà un'intensa sottomissione di ordini e picchi di volatilità artificiale sul nastro spot."
+    "day": "02",
+    "month": "July",
+    "type": "macro",
+    "title": "Eurozone Unemployment Rate & US Weekly Jobless Claims",
+    "desc": "Transatlantic labor tracking window. Institutional desks will leverage these metrics to refine expectations for upcoming payrolls, monitoring whether systemic credit tightening is beginning to accelerate structural corporate layoffs."
   },
   {
-    "day": "27",
-    "month": "June",
-    "type": "crypto",
-    "title": "Post-Expiry Liquidity Realignment Audit",
-    "desc": "Finestra di monitoraggio focalizzata sul riposizionamento delle posizioni aperte (Open Interest) dopo il settlement trimestrale. L'assenza di scadenze immediate lascerà i book spot sensibili a movimenti direzionali guidati da flussi algoritmici offshore."
+    "text": "03",
+    "month": "July",
+    "type": "macro",
+    "title": "US Government Market Holiday (Independence Day Observed)",
+    "desc": "Traditional financial market closure. Federal debt auctions and spot trading volumes will drop significantly. Central bank settlement pipelines will freeze, leaving crypto spot books exposed to thin, low-liquidity weekend price actions."
   },
   {
-    "day": "28",
-    "month": "June",
+    "day": "04",
+    "month": "July",
     "type": "crypto",
-    "title": "BitLogic Alpha Weekly Network Flow Matrix",
-    "desc": "Integrazione quantitativa del modello di Net Liquidity applicato alla chiusura settimanale. Analisi dei saldi DTS del Tesoro, dei flussi RRP rimasti stabili nel fine settimana e della rotazione dei volumi sulle reti Layer-2 per mappare la macro-apertura di lunedì."
+    "title": "Weekend Liquidity Squeeze Monitoring Window",
+    "desc": "Thin order book surveillance. With Western institutional banking and market-maker desks offline for the holiday weekend, the spot tape becomes highly sensitive to offshore programmatic sweeps and algorithmic volume exploitation."
+  },
+  {
+    "day": "05",
+    "month": "July",
+    "type": "crypto",
+    "title": "BitLogic Alpha Weekly Net Liquidity Pre-Open Matrix",
+    "desc": "Quantitative assessment ahead of the weekly open. Aggregating Federal Reserve H.4.1 balance sheet updates, Treasury cash balances from the Daily Treasury Statement (DTS), and RRP operational facility changes to map out global fiat liquidity curves."
   }
 ]
