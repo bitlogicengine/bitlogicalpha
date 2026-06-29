@@ -1,3 +1,3 @@
-comment: The Fear & Greed Index notched slightly higher to 18, keeping the broader decentralized asset index deeply constrained within the Extreme Fear perimeter. High-frequency network tracking highlights absolute capital preservation behavior among non-institutional pools, with sideline liquidity rotating out of alternative assets and anchoring inside yield-bearing fiat stablecoin instruments prior to the weekly open.
+comment: The Fear & Greed Index plummeted to 12, signaling an acute escalation into absolute Extreme Fear. Risk networks are indicating total capital preservation behavior across all retail participant groups, with market size fleeing into sovereign cash instruments and stablecoin perimeters ahead of the core global fixed-income re-benchmarking windows.
 
-date: 28 June 2026
+date: 29 June 2026
