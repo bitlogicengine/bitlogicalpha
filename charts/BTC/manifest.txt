@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin recorded its previous daily close at $59,958, sustaining heavy technical drag underneath the psychological $60,000 threshold inside the Negative Trend Regime. Institutional limit structures remain flat as programmatic selling algorithms systematically distribute spot inventories. The baseline profile continues to pay a strict capital carry tax under the hawkish interest rate environment enforced by the Warsh Fed, pushing intermediate risk allocations into cash perimeters.
+note: Bitcoin registered its previous daily close at $59,503, remaining heavily suppressed beneath the $60,000 threshold within the Negative Trend Regime. Macro liquidity channels continue to drain speculative premiums from alternative asset books as central bank hawkish cohesion limits risk exposure. Order book layouts reveal that institutional limit buyers are widening execution spreads, leaving near-term tape dynamics controlled by systematic spot distribution.
 
-updated: 28 June 2026
+updated: 29 June 2026
