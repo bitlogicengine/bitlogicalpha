@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin registered its previous daily close at $60,180, maintaining its position within the Negative Trend Regime as capital continues to face drainage under the hawkish interest rate environment enforced by the Fed. While order book clustering confirms long-term institutional limit blocks are attempting to support core cycle baselines, active downside spot distribution maintains immediate near-term control.
+note: Bitcoin registered its previous daily close at $58,554, accelerating lower beneath the key psychological $60,000 baseline inside the Negative Trend Regime. Broader multi-asset desks continue to reduce spot exposures as credit tightening measures under the hawkish Warsh Fed drain system-wide scarcity premiums. High-frequency order books show intense overhead distribution blocks, leaving passive institutional limit grids tracking down to lower structural support shelves.
 
-updated: 30 June 2026
+updated: 1 July 2026
