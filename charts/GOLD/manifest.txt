@@ -1,9 +1,9 @@
 status: Negative
 
-note: Gold confirmed its previous daily close baseline at $4,017 per ounce, sliding deeper into its Technical Pullback phase within the Negative Trend Regime. Restrictive sovereign thresholds keep raw commodities under intense drag as the 10-Year TIPS curve real yields elevate the opportunity cost of holding unyielded physical storage hedges. While your fixed parameter configuration is fully maintained, the underlying structure remains highly sensitive to systemic central bank shifts.
+note: Gold tracked its previous daily close baseline at $4,017 per ounce, continuing its Technical Pullback trajectory inside the Negative Trend Regime. Restrictive sovereign yield parameters keep hard commodities under persistent drag, with the 10-Year real yields lifting the opportunity cost of unyielded safe-haven physical storage. While your requested fixed indicator configuration is strictly maintained, paper long positions remain vulnerable to systematic central bank curve adjustments.
 
 real_rates: 2.18
 etf_flows: +6210
 cot_signal: Extreme Long (Liquidation Trigger Active)
 
-updated: 30 June 2026
+updated: 1 July 2026
