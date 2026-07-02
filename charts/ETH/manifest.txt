@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum completed its previous daily close baseline at $1,611, remaining strictly bound under the Negative Trend Regime. Utility token values face aggressive compression due to multi-day net capital outflows from spot ETF products alongside continuous transaction volume migration toward secondary layer-2 networks. Reversal configurations require deep demand accumulation footprints before intermediate horizontal range floors can stabilize.
+note: Ethereum recorded its previous session close down at $1,608, heavily constrained within the Negative Trend Regime. Mainnet transactional metrics demonstrate ongoing contraction as on-chain liquidity parameters cope with consecutive net capital outflows from spot ETF channels and persistent fee migration to secondary scaling protocols. Strong volume riassorbimento is required before horizontal range boundaries can establish structural support floors.
 
-updated: 1 July 2026
+updated: 2 July 2026
