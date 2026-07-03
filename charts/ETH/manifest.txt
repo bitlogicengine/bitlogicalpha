@@ -1,5 +1,5 @@
 status: Negative
 
-note: Ethereum recorded its previous session close down at $1,608, heavily constrained within the Negative Trend Regime. Mainnet transactional metrics demonstrate ongoing contraction as on-chain liquidity parameters cope with consecutive net capital outflows from spot ETF channels and persistent fee migration to secondary scaling protocols. Strong volume riassorbimento is required before horizontal range boundaries can establish structural support floors.
+note: Ethereum concluded yesterday's daily close at $1,699, bound tightly within the Negative Trend Regime. On-chain activity and transactional velocities continue to face structural headwinds due to consecutive net outflows from spot ETF products and ongoing capital migration to layer-2 networks. Reversal indicators require substantial demand riassorbimento before local horizontal range limits can provide a reliable floor.
 
-updated: 2 July 2026
+updated: 3 July 2026
