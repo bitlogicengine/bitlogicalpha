@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed yesterday's daily close baseline at $59,983, stabilizing slightly beneath the critical $60,000 threshold within the Negative Trend Regime. Broader market depth remains thinned out under systematic spot inventory distribution from larger institutional desks. While passive limit buy clusters continue to stack around structural cycle support low blocks, programmatic execution sweeps maintain immediate near-term overhead control.
+note: Bitcoin closed its previous session at $61,508, maintaining its position within the Negative Trend Regime as market networks absorb systematic distribution. Tighter global credit lines and hawkish policy signals from the Fed under Chair Kevin Warsh continue to suppress the speculative alternative asset premium. While large institutional buyers are clustering passive limit orders at lower support bands, the near-term tape remains under clear downside pressure.
 
-updated: 2 July 2026
+updated: 3 July 2026
