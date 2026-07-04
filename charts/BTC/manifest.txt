@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin closed its previous session at $61,508, maintaining its position within the Negative Trend Regime as market networks absorb systematic distribution. Tighter global credit lines and hawkish policy signals from the Fed under Chair Kevin Warsh continue to suppress the speculative alternative asset premium. While large institutional buyers are clustering passive limit orders at lower support bands, the near-term tape remains under clear downside pressure.
+note: Bitcoin recorded its previous daily close at $62,559, keeping its directional tape technically constrained within the Negative Trend Regime. Market structures continue to face systematic overhead drain following persistent global policy headwinds and thinned order book parameters. While institutional bid blocks are proactively clustering passive limit orders underneath current range floors to intercept distribution, programmatic execution sweeps maintain immediate defensive control.
 
-updated: 3 July 2026
+updated: 4 July 2026
