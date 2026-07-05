@@ -1,5 +1,5 @@
 status: Positive
 
-note: Ethereum completed yesterday's daily close at $1,757, executing a technical breakout out of near-term local compression to flip into a Positive Trend Regime. Smart contract premiums are experiencing structural stabilization as localized transactional volume riassorbimento buffers recent spot ETF outflow pressures. This localized momentum spike needs to confirm high-timeframe horizontal range support to invalidate broader macro drag layers.
+note: Ethereum completed yesterday's daily close at $1,779, executing a technical breakout out of near-term local compression to flip into a Positive Trend Regime. Smart contract premiums are experiencing structural stabilization as localized transactional volume riassorbimento buffers recent spot ETF outflow pressures. This localized momentum spike needs to confirm high-timeframe horizontal range support to invalidate broader macro drag layers.
 
 updated: 5 July 2026
