@@ -1,51 +1,51 @@
 [
   {
-    "day": "29",
-    "month": "June",
-    "type": "macro",
-    "title": "Eurozone Economic Sentiment & US Dallas Fed Manufacturing",
-    "desc": "Opening macro cross-currents. European sentiment indicators will gauge baseline regional contraction risks, while the Dallas Fed release provides the first regional industrial data point of the week, testing the resilience of corporate margins against high real rates."
-  },
-  {
-    "day": "30",
-    "month": "June",
-    "type": "macro",
-    "title": "US Conference Board Consumer Confidence Index",
-    "desc": "A critical high-frequency metric for domestic consumption trends. Any sharp deterioration will amplify stagflation narratives under the Warsh Fed regime, while a resilient print justifies the central bank's higher-for-longer policy path."
-  },
-  {
-    "day": "01",
+    "day": "06",
     "month": "July",
     "type": "macro",
-    "title": "US ISM Manufacturing PMI & JOLTS Job Openings",
-    "desc": "Mid-week heavy macro dual release. The ISM report provides definitive national industrial momentum data, while JOLTS openings will measure labor market tightness, heavily influencing sovereign yield curve expectations and risk-asset pricing."
+    "title": "US ISM Non-Manufacturing (Services) PMI & Eurozone Retail Sales",
+    "desc": "Opening multi-regional tape. Eurozone retail spending profiles track domestic baseline consumer weakness, while the US ISM Services report provides a crucial look into the economy's engine room. Institutional desks will scrutinize the Prices Paid component following the recent oil shocks to update near-term inflation path forecasts under Chair Kevin Warsh."
   },
   {
-    "day": "02",
+    "day": "07",
     "month": "July",
     "type": "macro",
-    "title": "Eurozone Unemployment Rate & US Weekly Jobless Claims",
-    "desc": "Transatlantic labor tracking window. Institutional desks will leverage these metrics to refine expectations for upcoming payrolls, monitoring whether systemic credit tightening is beginning to accelerate structural corporate layoffs."
+    "title": "US Foreign Trade Balance & Germany Industrial Production",
+    "desc": "Trade and output audit. German industrial data measures manufacturing contraction depths across Europe's core. Meanwhile, the US balance of trade prints its final consolidated May metric, offering macro funds the baseline variables to cross-reference global fiat capital velocity."
   },
   {
-    "text": "03",
+    "day": "08",
     "month": "July",
     "type": "macro",
-    "title": "US Government Market Holiday (Independence Day Observed)",
-    "desc": "Traditional financial market closure. Federal debt auctions and spot trading volumes will drop significantly. Central bank settlement pipelines will freeze, leaving crypto spot books exposed to thin, low-liquidity weekend price actions."
+    "title": "US Federal Open Market Committee (FOMC) Meeting Minutes",
+    "desc": "The primary high-impact macro anchor of the weekly block. The release of the full minutes from the June 16–17 policy meeting—the historical debut session chaired by Kevin Warsh—will uncover the internal policy divide and trace out the exact parameters of the central bank's higher-for-longer regime, shaking sovereign debt curves and alternative reserve premiums."
   },
   {
-    "day": "04",
+    "day": "09",
     "month": "July",
-    "type": "crypto",
-    "title": "Weekend Liquidity Squeeze Monitoring Window",
-    "desc": "Thin order book surveillance. With Western institutional banking and market-maker desks offline for the holiday weekend, the spot tape becomes highly sensitive to offshore programmatic sweeps and algorithmic volume exploitation."
+    "type": "macro",
+    "title": "China CPI & PPI Inflation Profiles & US Existing Home Sales",
+    "desc": "Global deflationary filters vs. real estate bottlenecks. Factory-gate and consumer price aggregates out of China measure global supply-chain price transmission variables. Simultaneously, US home transactions test real-world consumer absorption levels under high terminal interest rates."
   },
   {
-    "day": "05",
+    "day": "10",
+    "month": "July",
+    "type": "macro",
+    "title": "Germany Final CPI & Delta Air Lines Q2 Earnings Release",
+    "desc": "Closing macro adjustments. Eurozone inflation numbers settle definitively into the database, while the formal kickoff of the corporate earnings season via Delta Air Lines tests corporate margin thresholds, dictating active institutional asset rotation lines into the weekly close."
+  },
+  {
+    "day": "11",
     "month": "July",
     "type": "crypto",
-    "title": "BitLogic Alpha Weekly Net Liquidity Pre-Open Matrix",
-    "desc": "Quantitative assessment ahead of the weekly open. Aggregating Federal Reserve H.4.1 balance sheet updates, Treasury cash balances from the Daily Treasury Statement (DTS), and RRP operational facility changes to map out global fiat liquidity curves."
+    "title": "Post-FOMC Minutes Derivatives Squeeze Window",
+    "desc": "Thin weekend order book monitoring. With traditional financial institutions offline, automated trading engines and market-maker books will process the structural layout left behind by the FOMC minutes, leaving spot books highly exposed to offshore algorithmic sweeps and margin liquidations."
+  },
+  {
+    "day": "12",
+    "month": "July",
+    "type": "crypto",
+    "title": "BitLogic Alpha Weekly Net Liquidity Command Matrix",
+    "desc": "Systemic plumbing audit prior to the upcoming weekly open. Aggregating the newly updated H.4.1 Federal Reserve asset ledger balance sheet, processing the TGA cash balance adjustments post-summer outlays, and tracking overnight repo usage floors to model macro liquidity pathways."
   }
 ]
