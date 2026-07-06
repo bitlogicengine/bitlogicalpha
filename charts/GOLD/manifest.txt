@@ -6,4 +6,4 @@ real_rates: 2.25
 etf_flows: Net Outflows
 cot_signal: Weak Long Exposure (113,010 Net Contracts)
 
-updated: 5 July 2026
+updated: 6 July 2026
