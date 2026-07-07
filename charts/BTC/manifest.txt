@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin registered its previous daily close at $63,603, maintaining its localized alignment within the Negative Trend Regime. Traditional financial institutions and programmatic desk pipelines continue to enforce a strict risk-off posture over the weekend block, accelerating the drainage of speculative premium parameters under the hawkish baseline set by the Warsh Fed. Automated order books track thinned bid density, with passive buyer limit grids holding back at deeper liquidity shelves.
+note: Bitcoin registered its previous daily close at $64,018, keeping its intermediate structure held within the Negative Trend Regime. Spot allocation parameters monitor continuing pressure as institutional market-maker order books prioritize overhead distribution. While passive limit grids continue to thick out near historical horizontal demand blocks to protect downside ranges, clear accumulation indicators remain unconfirmed on the high-timeframe tape.
 
-updated: 6 July 2026
+updated: 7 July 2026
