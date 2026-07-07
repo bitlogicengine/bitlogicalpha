@@ -1,5 +1,5 @@
-status: Negative
+status: Neutral
 
-note: Bitcoin registered its previous daily close at $64,018, keeping its intermediate structure held within the Negative Trend Regime. Spot allocation parameters monitor continuing pressure as institutional market-maker order books prioritize overhead distribution. While passive limit grids continue to thick out near historical horizontal demand blocks to protect downside ranges, clear accumulation indicators remain unconfirmed on the high-timeframe tape.
+note: Bitcoin has shifted into a Neutral Trend Regime, establishing a local consolidation baseline around the $64,018 horizontal pivot zone. Programmatic order flow indicates an equilibrium phase between overhead institutional distribution and localized buy-side spot absorption. Market thickness is clustering inside a well-defined value area structure as macro participants await subsequent direction from upcoming central bank liquidity pipelines.
 
 updated: 7 July 2026
