@@ -1,3 +1,3 @@
-comment: The Fear & Greed Index printed a slight uptick to 24, holding on the upper boundary of the Extreme Fear zone. Multi-asset networks show persistent reliance on cash preservation plays, with passive retail size remaining on the sidelines in favor of short-duration sovereign yield hedges and stablecoins prior to the weekly macro openings.
+comment: The Fear & Greed Index notched slightly higher to 27, executing a minor relief shift into the Fear category from Extreme Fear blocks. The overarching macro allocation posture remains highly defensive, with non-institutional market size predominantly positioned within yield-bearing stablecoins and sovereign cash instruments.
 
-date: 6 July 2026
+date: 7 July 2026
