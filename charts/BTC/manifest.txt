@@ -1,5 +1,5 @@
-status: Neutral
+status: Negative
 
-note: Bitcoin has shifted into a Neutral Trend Regime, establishing a local consolidation baseline around the $64,018 horizontal pivot zone. Programmatic order flow indicates an equilibrium phase between overhead institutional distribution and localized buy-side spot absorption. Market thickness is clustering inside a well-defined value area structure as macro participants await subsequent direction from upcoming central bank liquidity pipelines.
+note: Bitcoin registered its previous daily close at $63,322, invalidating recent stabilization attempts to keep its intermediate footprint bound inside the Negative Trend Regime. Order book configurations show expanding overhead distribution layers under the weight of hawkish macro liquidity restrictions. While institutional limit blocks are stacked pro-actively lower down the ledger, programmatic spot selling retains primary market control.
 
-updated: 7 July 2026
+updated: 8 July 2026
