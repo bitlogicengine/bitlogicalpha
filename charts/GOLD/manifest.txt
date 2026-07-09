@@ -1,9 +1,9 @@
 status: Negative
 
-note: Gold locked in yesterday's previous daily close baseline lower at $4,106 per ounce, holding onto its Technical Pullback trajectory inside the Negative Trend Regime. Macroeconomic headwinds remain highly active across the commodity complex as the 10-Year TIPS curve real yield coordinates at 2.25%, sustaining a high carry-tax over unyielded safe-haven storage assets. Institutional paper positioning remains unsupportive with weak long configurations.
+note: Gold locked in yesterday's previous daily close baseline lower at $4,078 per ounce, keeping its Technical Pullback firmly active inside the Negative Trend Regime. Macroeconomic friction continues to escalate across the commodity complex as the 10-Year TIPS curve real yield adjusts to a highly restrictive 2.24%, expanding the opportunity carry tax on physical storage hedges. Global physically backed ETFs register steady redemptions, while managed money net futures open interest drops to 116,817 contracts to maintain a weak long positioning model.
 
-real_rates: 2.25
+real_rates: 2.24
 etf_flows: Net Outflows
-cot_signal: Weak Long Exposure (113,010 Net Contracts)
+cot_signal: Weak Long Exposure (116,817 Net Contracts)
 
-updated: 8 July 2026
+updated: 9 July 2026
