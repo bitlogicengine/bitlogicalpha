@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed yesterday's daily close baseline down at $63,194, maintaining its tactical structure deep within the Negative Trend Regime. Institutional market makers continue to scale back order book thickness as systematic spot inventory distribution caps near-term upward relief lines. While passive buy-side limit grids are proactively tracking lower down the ledger, automated execution programs keep immediate overhead resistance defended.
+note: Bitcoin registered its previous daily close at $64,118, keeping its directional tape technically constrained within the Negative Trend Regime. Market structures continue to face systematic overhead drain following persistent global policy headwinds and thinned order book parameters. While institutional bid blocks are proactively clustering passive limit orders underneath current range floors to intercept distribution, programmatic execution sweeps maintain immediate defensive control.
 
-updated: 10 July 2026
+updated: 11 July 2026
