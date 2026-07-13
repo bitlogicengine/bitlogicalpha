@@ -1,51 +1,51 @@
 [
   {
-    "day": "06",
+    "day": "13",
     "month": "July",
     "type": "macro",
-    "title": "US ISM Non-Manufacturing (Services) PMI & Eurozone Retail Sales",
-    "desc": "Opening multi-regional tape. Eurozone retail spending profiles track domestic baseline consumer weakness, while the US ISM Services report provides a crucial look into the economy's engine room. Institutional desks will scrutinize the Prices Paid component following the recent oil shocks to update near-term inflation path forecasts under Chair Kevin Warsh."
+    "title": "China Trade Balance & Eurozone Industrial Production",
+    "desc": "Opening cross-currents. China's import-export trade volume measures baseline global demand elasticity, while the Eurozone output numbers print historical weights, testing regional industrial resilience against tight terminal currency values."
   },
   {
-    "day": "07",
+    "day": "14",
     "month": "July",
     "type": "macro",
-    "title": "US Foreign Trade Balance & Germany Industrial Production",
-    "desc": "Trade and output audit. German industrial data measures manufacturing contraction depths across Europe's core. Meanwhile, the US balance of trade prints its final consolidated May metric, offering macro funds the baseline variables to cross-reference global fiat capital velocity."
+    "title": "US June Consumer Price Index (CPI) & Big Bank Earnings Kickoff",
+    "desc": "The primary high-impact macro anchor of the first half of the week. June headline inflation is projected to cool slightly following the post-ceasefire decline in energy quotes, but core service inflation remains sticky. Simultaneously, Q2 earnings releases from JPMorgan Chase ($JPM), Bank of America ($BAC), and Goldman Sachs ($GS) test Wall Street trading margins under high sovereign borrowing costs."
   },
   {
-    "day": "08",
+    "day": "15",
     "month": "July",
     "type": "macro",
-    "title": "US Federal Open Market Committee (FOMC) Meeting Minutes",
-    "desc": "The primary high-impact macro anchor of the weekly block. The release of the full minutes from the June 16–17 policy meeting—the historical debut session chaired by Kevin Warsh—will uncover the internal policy divide and trace out the exact parameters of the central bank's higher-for-longer regime, shaking sovereign debt curves and alternative reserve premiums."
+    "title": "US June Producer Price Index (PPI) & Bank of Canada Rate Decision",
+    "desc": "Mid-week systemic inflation and monetary policy layout. June factory-gate PPI data tracks how supply chain input costs feed downstream consumer prices. Concurrently, the Bank of Canada (BoC) policy meeting delivers its latest rate adjustment path, matching global rate curves against the Fed's pro-yield structure under Kevin Warsh."
   },
   {
-    "day": "09",
+    "day": "16",
     "month": "July",
     "type": "macro",
-    "title": "China CPI & PPI Inflation Profiles & US Existing Home Sales",
-    "desc": "Global deflationary filters vs. real estate bottlenecks. Factory-gate and consumer price aggregates out of China measure global supply-chain price transmission variables. Simultaneously, US home transactions test real-world consumer absorption levels under high terminal interest rates."
+    "title": "US June Advance Monthly Retail Sales & Philly Fed Survey",
+    "desc": "High-frequency consumer and manufacturing tracking window. The retail print measures real-world consumer absorption and spending velocity under restrictive credit lines. Meanwhile, the Philadelphia Fed survey provides definitive, forward-looking industrial momentum metrics for July."
   },
   {
-    "day": "10",
+    "day": "17",
     "month": "July",
     "type": "macro",
-    "title": "Germany Final CPI & Delta Air Lines Q2 Earnings Release",
-    "desc": "Closing macro adjustments. Eurozone inflation numbers settle definitively into the database, while the formal kickoff of the corporate earnings season via Delta Air Lines tests corporate margin thresholds, dictating active institutional asset rotation lines into the weekly close."
+    "title": "US June Industrial Production & Preliminary University of Michigan Consumer Sentiment",
+    "desc": "Closing macro adjustments. Industrial output indices map out raw manufacturing and utility performance, while the early July Michigan sentiment data isolates real-time consumer inflation expectations, dictating institutional capital layout vectors into the weekly close."
   },
   {
-    "day": "11",
+    "day": "18",
     "month": "July",
     "type": "crypto",
-    "title": "Post-FOMC Minutes Derivatives Squeeze Window",
-    "desc": "Thin weekend order book monitoring. With traditional financial institutions offline, automated trading engines and market-maker books will process the structural layout left behind by the FOMC minutes, leaving spot books highly exposed to offshore algorithmic sweeps and margin liquidations."
+    "title": "Post-CPI Derivatives Squeeze & Weekend Volatility Window",
+    "desc": "Thin weekend order book surveillance. With traditional financial desks and primary market makers offline for the weekend block, decentralized derivative books process the macro structures left behind by the inflation and retail sales data, leaving spot books highly exposed to offshore algorithmic loops and margin flushes."
   },
   {
-    "day": "12",
+    "day": "19",
     "month": "July",
     "type": "crypto",
     "title": "BitLogic Alpha Weekly Net Liquidity Command Matrix",
-    "desc": "Systemic plumbing audit prior to the upcoming weekly open. Aggregating the newly updated H.4.1 Federal Reserve asset ledger balance sheet, processing the TGA cash balance adjustments post-summer outlays, and tracking overnight repo usage floors to model macro liquidity pathways."
+    "desc": "Quantitative systemic plumbing audit prior to the upcoming macro weekly open. Aggregating the newly transmitted H.4.1 Federal Reserve asset ledger balance sheet, processing the smoothed TGA operational cash adjustments, and tracking overnight repo usage blocks to map out global fiat liquidity pathways."
   }
 ]
