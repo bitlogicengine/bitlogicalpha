@@ -1,5 +1,5 @@
-status: Positive
+status: Negative
 
-note: Bitcoin registered its previous daily close up at $63,801, establishing an immediate structure flip into the Positive Trend Regime. Market tracking parameters register localized short-covering activity across high-frequency order books as programmatic distribution from institutional desks hits an interim pause. Passive buyer limit grids are responding by thickening out layers directly beneath core horizontal support pivots to intercept retail spikes.
+note: Bitcoin printed its previous daily close down at $63,914, keeping its localized alignment under pressure within the Negative Trend Regime. Tighter macro credit perimeters and thinned exchange liquidity continue to accelerate overhead spot distribution as programmatic institution desk parameters prioritize risk mitigation shields over near-term portfolio growth. Limit grids are visible down the tracking database to defend historical value zones, though a definitive cycle bottom remains unvalidated.
 
-updated: 17 July 2026
+updated: 18 July 2026
