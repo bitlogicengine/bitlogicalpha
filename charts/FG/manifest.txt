@@ -1,3 +1,3 @@
-comment: The Fear & Greed Index notched slightly higher to 27, cementing its current placement inside the Fear zone just clear of Extreme Fear boundaries. Strategic cross-asset allocation blueprints maintain a conservative stance, favoring secure sovereign bill hedges and yield-bearing stablecoin layers over secondary protocol exposure prior to next-tier macro transmissions.
+comment: The Fear & Greed Index holds flat at 25, anchoring the broader digital risk perimeter on the upper threshold of the Extreme Fear zone. Strategic money manager parameters remain highly defensive, with non-institutional and intermediate retail size heavily sidelined within short-duration sovereign cash instruments or secure stablecoins prior to next-tier macro releases.
 
-date: 17 July 2026
+date: 18 July 2026
