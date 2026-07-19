@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin printed its previous daily close down at $63,914, keeping its localized alignment under pressure within the Negative Trend Regime. Tighter macro credit perimeters and thinned exchange liquidity continue to accelerate overhead spot distribution as programmatic institution desk parameters prioritize risk mitigation shields over near-term portfolio growth. Limit grids are visible down the tracking database to defend historical value zones, though a definitive cycle bottom remains unvalidated.
+note: Bitcoin registered its previous daily close down at $64,814, remaining technically pinioned within the Negative Trend Regime. Market tracking parameters register continuous overhead distribution as institutional programmatic desks structure short-duration sell loops across high-frequency books. While localized passive buyer limit blocks are visible lower down the ledger to cushion historical support perimeters, confirmation of a cyclical trend bottom remains unvalidated on high-timeframe order flow.
 
-updated: 18 July 2026
+updated: 19 July 2026
