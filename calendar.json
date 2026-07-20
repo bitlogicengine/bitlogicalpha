@@ -1,48 +1,48 @@
 [
   {
-    "day": "13",
+    "day": "20",
     "month": "July",
     "type": "macro",
-    "title": "China Trade Balance & Eurozone Industrial Production",
-    "desc": "Opening cross-currents. China's import-export trade volume measures baseline global demand elasticity, while the Eurozone output numbers print historical weights, testing regional industrial resilience against tight terminal currency values."
+    "title": "People's Bank of China (PBoC) LPR Decision & Canadian June CPI",
+    "desc": "Opening crosswinds. The PBoC sets its benchmark Loan Prime Rates to manage ongoing property contractions, while Canada's consumer price data signals multi-regional inflation trends, challenging resource currency balances against persistent U.S. dollar carry premiums."
   },
   {
-    "day": "14",
+    "day": "21",
     "month": "July",
     "type": "macro",
-    "title": "US June Consumer Price Index (CPI) & Big Bank Earnings Kickoff",
-    "desc": "The primary high-impact macro anchor of the first half of the week. June headline inflation is projected to cool slightly following the post-ceasefire decline in energy quotes, but core service inflation remains sticky. Simultaneously, Q2 earnings releases from JPMorgan Chase ($JPM), Bank of America ($BAC), and Goldman Sachs ($GS) test Wall Street trading margins under high sovereign borrowing costs."
+    "title": "UK Labor Market Data & Euro Area Bank Lending Survey (BLS)",
+    "desc": "Employment and systemic credit tracking. The UK jobs report measures wage-push stickiness, while the ECB's Bank Lending Survey provides an intimate look into how corporate credit availability is tightening across Europe's core banking pipelines."
   },
   {
-    "day": "15",
+    "day": "22",
     "month": "July",
     "type": "macro",
-    "title": "US June Producer Price Index (PPI) & Bank of Canada Rate Decision",
-    "desc": "Mid-week systemic inflation and monetary policy layout. June factory-gate PPI data tracks how supply chain input costs feed downstream consumer prices. Concurrently, the Bank of Canada (BoC) policy meeting delivers its latest rate adjustment path, matching global rate curves against the Fed's pro-yield structure under Kevin Warsh."
+    "title": "UK June CPI Inflation & Tech Megacap Earnings Wave",
+    "desc": "Mid-week heavy macro and equity nexus. The UK inflation report defines near-term sterling policy traps. Concurrently, the tech corporate slate accelerates with major earnings releases from Tesla ($TSLA), Alphabet ($GOOGL), and IBM ($IBM), testing risk-asset valuation multiples against high real rates."
   },
   {
-    "day": "16",
+    "day": "23",
     "month": "July",
     "type": "macro",
-    "title": "US June Advance Monthly Retail Sales & Philly Fed Survey",
-    "desc": "High-frequency consumer and manufacturing tracking window. The retail print measures real-world consumer absorption and spending velocity under restrictive credit lines. Meanwhile, the Philadelphia Fed survey provides definitive, forward-looking industrial momentum metrics for July."
+    "title": "European Central Bank (ECB) Policy Decision & US June New Home Sales",
+    "desc": "The primary high-impact macro anchor of the week. President Christine Lagarde leads the ECB rate decision amid escalating energy shocks, setting the trans-atlantic policy spread. Simultaneously, US housing metrics test domestic consumer absorption layers under restrictive financing parameters."
   },
   {
-    "day": "17",
+    "day": "24",
     "month": "July",
     "type": "macro",
-    "title": "US June Industrial Production & Preliminary University of Michigan Consumer Sentiment",
-    "desc": "Closing macro adjustments. Industrial output indices map out raw manufacturing and utility performance, while the early July Michigan sentiment data isolates real-time consumer inflation expectations, dictating institutional capital layout vectors into the weekly close."
+    "title": "S&P Global Flash Preliminary PMIs & Japan June CPI Inflation",
+    "desc": "Closing systemic macro adjustments. Japan's inflation report challenges the yen's carry dynamics, while the synchronized flash manufacturing and services PMIs across Germany, the Eurozone, the UK, and the US provide real-time economic growth data to institutional portfolio managers."
   },
   {
-    "day": "18",
+    "day": "25",
     "month": "July",
     "type": "crypto",
-    "title": "Post-CPI Derivatives Squeeze & Weekend Volatility Window",
-    "desc": "Thin weekend order book surveillance. With traditional financial desks and primary market makers offline for the weekend block, decentralized derivative books process the macro structures left behind by the inflation and retail sales data, leaving spot books highly exposed to offshore algorithmic loops and margin flushes."
+    "title": "Post-ECB & Tech Earnings Volatility Squeeze Window",
+    "desc": "Thin weekend order book surveillance. With Western institutional desks offline, market makers will reduce liquidity depth while processing the weekly accumulation of tech earnings and monetary guidance, leaving decentralized spot books highly vulnerable to offshore algorithmic loops and programmatic sweeps."
   },
   {
-    "day": "19",
+    "day": "26",
     "month": "July",
     "type": "crypto",
     "title": "BitLogic Alpha Weekly Net Liquidity Command Matrix",
