@@ -6,4 +6,4 @@ real_rates: 2.29
 etf_flows: Net Outflows
 cot_signal: Cautious Speculative Sizing (114,854 Net Long Contracts)
 
-updated: 19 July 2026
+updated: 20 July 2026
