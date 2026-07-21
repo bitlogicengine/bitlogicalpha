@@ -1,5 +1,5 @@
 status: Negative
 
-note: Bitcoin recorded its previous daily close down at $64,701, remaining technically restricted within the Negative Trend Regime. Market tracking parameters register continuous overhead distribution as institutional programmatic desks structure short-duration sell loops across high-frequency books. While localized passive buyer limit blocks are visible lower down the ledger to cushion historical support perimeters, confirmation of a cyclical trend bottom remains unvalidated on high-timeframe order flow.
+note: Bitcoin registered its previous daily close down at $65,230, maintaining its localized trajectory within the Negative Trend Regime. Institutional order flow indicates continued distribution across primary exchange books, with high-frequency trading desks widening execution spreads to buffer broader macro volatility. Passive buyer limit grids continue to stack lower down the order book ledger to cushion horizontal support floors, though a confirmed cyclical bottom remains unverified.
 
-updated: 20 July 2026
+updated: 21 July 2026
