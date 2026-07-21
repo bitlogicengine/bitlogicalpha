@@ -1,3 +1,3 @@
-comment: The Fear & Greed Index ticked slightly higher to 29, holding its placement within the Fear category just clear of Extreme Fear bounds. Cross-asset sizing models maintain a conservative stance, keeping retail and intermediate participant size predominantly positioned within secure stablecoins or sovereign bill cash sidelines ahead of next-tier macro transmissions.
+comment: The Fear & Greed Index printed flat at 25, remaining anchored directly on the upper boundary of the Extreme Fear zone. Multi-asset allocation behavior reflects strict capital preservation playbooks, with non-institutional and intermediate participant cohorts favoring sidelined cash positions in secure short-duration sovereign bills and stablecoins ahead of key earnings and central bank milestones.
 
-date: 20 July 2026
+date: 21 July 2026
