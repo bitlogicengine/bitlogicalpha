@@ -1,9 +1,9 @@
 status: Negative
 
-note: Gold marked its previous daily close baseline down at $4,007 per ounce, continuing its Technical Pullback trajectory inside the Negative Trend Regime. Overhead macro friction remains intensely active across commodity desk lines as 10-Year TIPS real yields hold near cycle peaks at 2.29%, maintaining a high cash carry tax over unyielded safe-haven storage assets. Western physically backed ETFs continue to register net redemptions while professional paper futures metrics track weak speculative long exposure.
+note: Gold marked its previous session daily close baseline lower at $4,077 per ounce, maintaining its Technical Pullback trajectory inside the Negative Trend Regime. Restrictive macroeconomic hurdles remain active across commodity desks, with 10-Year TIPS real yields anchoring near cycle peaks at 2.29% to sustain a heavy cash carry tax on non-yielding storage assets. Western physically backed ETFs continue to process net redemptions, matching weak speculative long positions.
 
 real_rates: 2.29
 etf_flows: Net Outflows
 cot_signal: Cautious Speculative Sizing (114,854 Net Long Contracts)
 
-updated: 21 July 2026
+updated: 22 July 2026
