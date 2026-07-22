@@ -1,5 +1,5 @@
-status: Negative
+status: Positive
 
-note: Bitcoin registered its previous daily close down at $65,230, maintaining its localized trajectory within the Negative Trend Regime. Institutional order flow indicates continued distribution across primary exchange books, with high-frequency trading desks widening execution spreads to buffer broader macro volatility. Passive buyer limit grids continue to stack lower down the order book ledger to cushion horizontal support floors, though a confirmed cyclical bottom remains unverified.
+note: Bitcoin registered its previous daily close up at $66,534, accelerating its structural rebound inside the Positive Trend Regime. Programmatic institutional distribution has cleared locally, allowing buy-side spot absorption to reclaim key horizontal resistance bands. While macro tightening frameworks remain active under the Warsh Fed, thinned ask-side liquidity has facilitated an intra-day short squeeze toward upper value boundaries.
 
-updated: 21 July 2026
+updated: 22 July 2026
