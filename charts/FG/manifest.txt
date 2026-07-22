@@ -1,3 +1,3 @@
-comment: The Fear & Greed Index printed flat at 25, remaining anchored directly on the upper boundary of the Extreme Fear zone. Multi-asset allocation behavior reflects strict capital preservation playbooks, with non-institutional and intermediate participant cohorts favoring sidelined cash positions in secure short-duration sovereign bills and stablecoins ahead of key earnings and central bank milestones.
+comment: The Fear & Greed Index notched higher to 33, executing an explicit relief bounce inside the Fear category away from Extreme Fear thresholds. Market participant sentiment shows an initial expansion in active risk appetite as spot absorptions across primary token books incentivize selective capital deployment out of sideline stablecoin wrappers.
 
-date: 21 July 2026
+date: 22 July 2026
