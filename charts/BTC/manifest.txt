@@ -1,5 +1,5 @@
 status: Positive
 
-note: Bitcoin registered its previous daily close up at $66,534, accelerating its structural rebound inside the Positive Trend Regime. Programmatic institutional distribution has cleared locally, allowing buy-side spot absorption to reclaim key horizontal resistance bands. While macro tightening frameworks remain active under the Warsh Fed, thinned ask-side liquidity has facilitated an intra-day short squeeze toward upper value boundaries.
+note: Bitcoin registered its previous daily close up at $66,090, sustaining its structural momentum shift within the Positive Trend Regime. Order flow tracking reveals programmatic buy-side spot absorption breaking through nearby overhead distribution clusters. While systemic monetary tightening filters remain active under the Warsh Fed, thinned ask liquidity on major exchange order books has enabled bulls to solidify support above reclaimed key value areas.
 
-updated: 22 July 2026
+updated: 23 July 2026
