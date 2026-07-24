@@ -1,3 +1,3 @@
-comment: The Fear & Greed Index ticked up to 31, extending its relief trajectory within the Fear territory away from Extreme Fear levels. Broad risk appetite displays selective expansion across active participant pools, encouraging a gradual rotation of capital out of defensive stablecoin wrappers and into primary digital asset order books.
+comment: The Fear & Greed Index notched down slightly to 28, remaining consolidated inside the Fear zone. Cross-asset allocation behavior reflects continued cautious execution across market participant groups, maintaining active sidelines prioritized within yield-bearing stablecoin layers and sovereign bill wrappers ahead of next-tier macro transmissions.
 
-date: 23 July 2026
+date: 24 July 2026
